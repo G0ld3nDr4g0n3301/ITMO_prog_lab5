@@ -1,9 +1,9 @@
 package ru.ifmo.se.lab.server;
 
 
-public class Command implements ICommand {
-    public String name;
-    public String description;
+public abstract class Command implements ICommand {
+    protected String name;
+    protected String description;
     
     public String getName(){
         return this.name;
@@ -13,8 +13,4 @@ public class Command implements ICommand {
         return this.description;
     }
     
-    @Override
-    public void execute(String[] args){
-        
-    }
 }
