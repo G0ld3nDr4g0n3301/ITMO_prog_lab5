@@ -16,8 +16,13 @@ public class Invoker {
         commands.put(help.getName(), help);
     }
     
-    public static void execute(String[] args){
+    public static int execute(String[] args){
+        if (!(commands.containsKey(args[0]))){
+            OutputManager.print("Wrong command. Type \"help\" for command list");
+            return 1;
+        }
         commands.get(args[0]).execute(args);
+        return 0;
     }
     
     public static HashMap<String, Command> getCommands(){
