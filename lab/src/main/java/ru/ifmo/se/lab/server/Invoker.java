@@ -11,9 +11,11 @@ public class Invoker {
         
         Exit exit = new Exit("exit","quit the program");
         Help help = new Help("help", "print this screen");
+//        Add add = new Add("add", "create a new element, and add it to collection.");
         
         commands.put(exit.getName(), exit);
         commands.put(help.getName(), help);
+//        commands.put(add.getName(), add);
     }
     
     public static int execute(String[] args){

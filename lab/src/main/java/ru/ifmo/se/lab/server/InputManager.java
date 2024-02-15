@@ -6,7 +6,7 @@ public class InputManager {
     private static Scanner scan = new Scanner(System.in);
     
     public static String[] CLAsk(){
-        String input = GetCLInput.askCommand(scan);
+        String input = GetCLInput.ask(scan, "> ");
         if(input == null){
             System.out.print("\n");
             scan = new Scanner(System.in);

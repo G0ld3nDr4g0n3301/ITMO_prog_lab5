@@ -1,8 +1,6 @@
 package ru.ifmo.se.lab.server.commands;
 
 import ru.ifmo.se.lab.server.Command;
-import ru.ifmo.se.lab.Main;
-import java.io.IOException;
 
 public class Exit extends Command {
     
