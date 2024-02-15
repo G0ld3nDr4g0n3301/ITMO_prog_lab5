@@ -12,7 +12,8 @@ public class Exit extends Command {
     }
    
     @Override
-    public void execute(String[] args){
+    public int execute(String[] args){
         System.exit(0);
+        return 0;
     }
 }

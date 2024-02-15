@@ -4,6 +4,10 @@ public class GetCLInput {
     
     public static String askCommand(java.util.Scanner scan){
         OutputManager.print("> ");
-        return scan.nextLine();
-    }
+        if (scan.hasNextLine()){
+            return scan.nextLine();
+        } else{
+            return null;
+        }
+    } 
 }

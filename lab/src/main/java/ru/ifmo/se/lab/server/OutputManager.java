@@ -3,6 +3,6 @@ package ru.ifmo.se.lab.server;
 public class OutputManager {
     
     public static <T> void print(T obj){
-        System.out.println(obj);
+        System.out.print(obj);
     }
 }

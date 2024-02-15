@@ -7,7 +7,10 @@ public class Main {
     public static void main(String[] args){
         Invoker.init();
         while(true){
-            Invoker.execute(InputManager.CLAsk());
+            String[] input = InputManager.CLAsk();
+            if(input != null){
+                Invoker.execute(input);
+            }
         }
     }
 
