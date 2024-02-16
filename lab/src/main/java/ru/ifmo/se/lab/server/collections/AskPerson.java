@@ -19,7 +19,7 @@ public class AskPerson {
 //        CoordinatesField coordinates = new CoordinatesField(); //Поле не может быть null
 //        CreationDate creationDate = new CreationDate(); //Поле не может быть null, Значение этого поля должно генерироваться автоматически
         Height height = new Height(); //Значение поля должно быть больше 0
-//        Birthday birthday = new Birthday(); //Поле может быть null
+        Birthday birthday = new Birthday(); //Поле может быть null
         Weight weight = new Weight(); //Значение поля должно быть больше 0
 //        HairColor hairColor = new HairColor(); //Поле не может быть null
 //        LocationField location = new LocationField(); //Поле не может быть null
@@ -29,7 +29,7 @@ public class AskPerson {
         simpleFields.add(weight);
  //       simpleFields.add(hairColor);
         
-//        canBeNullFields.add(birthday);
+        canBeNullFields.add(birthday);
         
 //        complexFields.add(coordinates);
 //        complexFields.add(location);
@@ -62,9 +62,9 @@ public class AskPerson {
         
         // Ask about unnecessary fields
         if(!canBeNullFields.isEmpty()){
-            for (int i = -1; i < canBeNullFields.size(); ++i){
+            for (int i = 0; i < canBeNullFields.size(); i++){
                 if(args.length - simpleFields.size() - i - 1 > 0){
-                    String input = args[simpleFields.size() + i];
+                    String input = args[simpleFields.size() + i + 1];
                     AbstractField field = canBeNullFields.get(i);
                     if(!field.validate(input)){
                         OutputManager.print("Wrong input format for field " + field);

@@ -1,5 +1,7 @@
 package ru.ifmo.se.lab.server;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import ru.ifmo.se.lab.server.collections.Person;
 
 public class Validator {
@@ -53,6 +55,16 @@ public class Validator {
             }
         } catch (Exception e){
             OutputManager.print("Wrong options for weight(must be >0)");
+            return false;
+        }
+        return true;
+    }
+    
+    public static boolean validateBirthday(String input){
+        try{
+            LocalDate.parse(input, DateTimeFormatter.ISO_DATE);
+        } catch( Exception e){
+            OutputManager.print("Wrong date format. Correct one is yyyy-mm-dd");
             return false;
         }
         return true;
