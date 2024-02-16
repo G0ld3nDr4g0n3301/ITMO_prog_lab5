@@ -45,4 +45,16 @@ public class Validator {
         }
         return true;
     }
+    
+    public static boolean validateWeight(String input){
+        try{
+            if(Integer.parseInt(input) <= 0){
+                throw new Exception();
+            }
+        } catch (Exception e){
+            OutputManager.print("Wrong options for weight(must be >0)");
+            return false;
+        }
+        return true;
+    }
 }
