@@ -10,8 +10,8 @@ public class Exit extends Command {
     }
    
     @Override
-    public int execute(String[] args){
+    public boolean execute(String[] args){
         System.exit(0);
-        return 0;
+        return true;
     }
 }

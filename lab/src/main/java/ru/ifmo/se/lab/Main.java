@@ -2,14 +2,16 @@ package ru.ifmo.se.lab;
 
 import ru.ifmo.se.lab.server.InputManager;
 import ru.ifmo.se.lab.server.Invoker;
+import ru.ifmo.se.lab.server.Validator;
 
 public class Main {
     public static void main(String[] args){
-        Invoker.init();
         while(true){
-            String[] input = InputManager.CLAsk();
+            String input = InputManager.ask("> ");
             if(input != null){
-                Invoker.execute(input);
+                if(Validator.validateCommand(input)){
+                    Invoker.execute(input.split(" "));
+                }
             }
         }
     }

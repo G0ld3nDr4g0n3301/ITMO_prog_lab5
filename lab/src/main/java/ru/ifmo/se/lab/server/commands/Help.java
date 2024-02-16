@@ -13,12 +13,13 @@ public class Help extends Command {
         this.description = description;
     }
     
-    public int execute(String[] args){
+    @Override
+    public boolean execute(String[] args){
         Set<String> commandSet = this.commands.keySet();
         for(String key : commandSet){
             OutputManager.print(key + " - " + this.commands.get(key).getDescription());
         }
-        return 0;
+        return true;
     }
     
     

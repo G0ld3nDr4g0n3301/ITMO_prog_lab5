@@ -5,16 +5,21 @@ import java.util.Scanner;
 public class InputManager {
     private static Scanner scan = new Scanner(System.in);
     
-    public static String[] CLAsk(){
-        String input = GetCLInput.ask(scan, "> ");
+    public static String ask(String question){
+        return CLAsk(question);
+    }
+    
+    public static String CLAsk(String question){
+        String input = GetCLInput.ask(scan, question);
         if(input == null){
-            System.out.print("\n");
-            scan = new Scanner(System.in);
+            reloadScanner();
             return null;
-        }else if(input.length() == 0 || input.split(" ").length == 0){
-            return null;
-        } else{
-            return input.split(" ");
         }
+        return input;
+    }
+    
+    public static void reloadScanner(){
+        System.out.print("\n");
+        scan = new Scanner(System.in);
     }
 }

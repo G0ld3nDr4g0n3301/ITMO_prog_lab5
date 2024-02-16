@@ -10,4 +10,22 @@ public class Person {
     private int weight; //Значение поля должно быть больше 0
     private Color hairColor; //Поле не может быть null
     private Location location; //Поле не может быть null
+    
+    
+    public Person(){
+        
+    }
+    
+    public void setId(Integer id){
+        this.id = id;
+    }
+    
+    public int getId(){
+        return id;
+    }
+    
+    @Override
+    public String toString(){
+        return " Person credentials: id = " + id;
+    }
 }
