@@ -31,6 +31,18 @@ public class Validator {
     }
     
     public static boolean validatePerson(Person person){
-        return person.getId() != null;
+        return person.getName() != null;
+    }
+    
+    public static boolean validateHeight(String input){
+        try{
+            if(Long.parseLong(input) <= 0){
+                throw new Exception();
+            }
+        } catch (Exception e){
+            OutputManager.print("Wrong options for height(must be >0)");
+            return false;
+        }
+        return true;
     }
 }

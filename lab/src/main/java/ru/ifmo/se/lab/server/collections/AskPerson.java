@@ -1,5 +1,6 @@
 package ru.ifmo.se.lab.server.collections;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import ru.ifmo.se.lab.server.OutputManager;
 import ru.ifmo.se.lab.server.Validator;
@@ -8,15 +9,39 @@ import ru.ifmo.se.lab.server.Validator;
 public class AskPerson {
     private static ArrayList<AbstractField> simpleFields = new ArrayList<>();
     private static ArrayList<AbstractField> canBeNullFields = new ArrayList<>();
+    private static ArrayList<AbstractField> complexFields = new ArrayList<>(); 
+    private static ArrayList<AbstractField> toGenerate = new ArrayList<>();
     
     static {
-        Id id = new Id();
         
-        simpleFields.add(id);
+        Id id = new Id();
+        Name name = new Name(); //Поле не может быть null, Строка не может быть пустой
+//        CoordinatesField coordinates = new CoordinatesField(); //Поле не может быть null
+//        CreationDate creationDate = new CreationDate(); //Поле не может быть null, Значение этого поля должно генерироваться автоматически
+        Height height = new Height(); //Значение поля должно быть больше 0
+//        Birthday birthday = new Birthday(); //Поле может быть null
+//        Weight weight = new Weight(); //Значение поля должно быть больше 0
+//        HairColor hairColor = new HairColor(); //Поле не может быть null
+//        LocationField location = new LocationField(); //Поле не может быть null
+
+        simpleFields.add(name);
+        simpleFields.add(height);
+//        simpleFields.add(weight);
+ //       simpleFields.add(hairColor);
+        
+//        canBeNullFields.add(birthday);
+        
+//        complexFields.add(coordinates);
+//        complexFields.add(location);
+        
+//        toGenerate.add(id);
+//        toGenerate.add(creationDate);
     }
     
     public static Person generatePerson(String[] args){
         Person person = new Person();
+        
+        // Necessary fields
         for (int i = 0; i < simpleFields.size(); i++){
             try{
                 String input = args[i+1];
@@ -34,6 +59,8 @@ public class AskPerson {
                 return null;
             }
         }
+        
+        // Ask about unnecessary fields
         if(!canBeNullFields.isEmpty()){
             for (int i = -1; i < canBeNullFields.size(); ++i){
                 if(args.length - simpleFields.size() - i - 1 > 0){
@@ -47,6 +74,18 @@ public class AskPerson {
                 }
             }
         }
+        
+        // Ask about complex fields
+/*        for(AbstractField field : complexFields){
+            String input = null;
+            do{
+                input = field.ask();
+                if(field.validate(input)){
+                    field.set(person, field.create(input));
+                }
+            } while(!field.validate(input));
+        }
+ */      
         if(Validator.validatePerson(person)){
             return person;
         }
