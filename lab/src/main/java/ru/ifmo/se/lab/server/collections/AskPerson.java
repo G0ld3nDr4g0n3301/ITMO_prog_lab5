@@ -7,6 +7,7 @@ import ru.ifmo.se.lab.server.Validator;
 
 public class AskPerson {
     private static ArrayList<AbstractField> simpleFields = new ArrayList<>();
+    private static ArrayList<AbstractField> canBeNullFields = new ArrayList<>();
     
     static {
         Id id = new Id();
@@ -33,7 +34,19 @@ public class AskPerson {
                 return null;
             }
         }
-        
+        if(!canBeNullFields.isEmpty()){
+            for (int i = -1; i < canBeNullFields.size(); ++i){
+                if(args.length - simpleFields.size() - i - 1 > 0){
+                    String input = args[simpleFields.size() + i];
+                    AbstractField field = canBeNullFields.get(i);
+                    if(!field.validate(input)){
+                        OutputManager.print("Wrong input format for field " + field);
+                        return null;
+                    }
+                    field.set(person, field.create(input)); 
+                }
+            }
+        }
         if(Validator.validatePerson(person)){
             return person;
         }
