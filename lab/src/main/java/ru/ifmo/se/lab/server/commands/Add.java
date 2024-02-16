@@ -14,7 +14,7 @@ public class Add extends Command{
     
     @Override
     public boolean execute(String[] args){
-        Person person = AskPerson.generatePerson();
+        Person person = AskPerson.generatePerson(args);
         if(person == null){
             return false;
         }
