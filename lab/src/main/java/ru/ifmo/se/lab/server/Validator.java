@@ -2,6 +2,7 @@ package ru.ifmo.se.lab.server;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import ru.ifmo.se.lab.server.collections.Color;
 import ru.ifmo.se.lab.server.collections.Coordinates;
 import ru.ifmo.se.lab.server.collections.Location;
 import ru.ifmo.se.lab.server.collections.Person;
@@ -124,4 +125,15 @@ public class Validator {
             return false;
         }
     }
+
+    public static boolean validateColor(String input){
+        try{
+            Color.valueOf(input);
+            return true;
+        } catch (Exception e){
+            OutputManager.print("Wrong option for Color");
+            return false;
+        }
+    }
 }
+
