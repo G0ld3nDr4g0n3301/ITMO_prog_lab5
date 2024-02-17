@@ -22,7 +22,7 @@ public class AskPerson {
         Birthday birthday = new Birthday(); //Поле может быть null
         Weight weight = new Weight(); //Значение поля должно быть больше 0
 //        HairColor hairColor = new HairColor(); //Поле не может быть null
-//        LocationField location = new LocationField(); //Поле не может быть null
+        LocationField location = new LocationField(); //Поле не может быть null
 
         simpleFields.add(name);
         simpleFields.add(height);
@@ -32,7 +32,7 @@ public class AskPerson {
         canBeNullFields.add(birthday);
         
         complexFields.add(coordinates);
-//        complexFields.add(location);
+        complexFields.add(location);
         
 //        toGenerate.add(id);
 //        toGenerate.add(creationDate);

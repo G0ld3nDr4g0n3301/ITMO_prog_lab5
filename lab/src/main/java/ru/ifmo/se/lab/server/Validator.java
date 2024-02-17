@@ -3,6 +3,7 @@ package ru.ifmo.se.lab.server;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import ru.ifmo.se.lab.server.collections.Coordinates;
+import ru.ifmo.se.lab.server.collections.Location;
 import ru.ifmo.se.lab.server.collections.Person;
 
 public class Validator {
@@ -98,5 +99,29 @@ public class Validator {
             return false;
         }
         return true;
+    }
+    
+    public static boolean validateLoc(Location loc){
+        return loc != null;
+    }
+    
+    public static boolean validateLocX(String x){
+        try{
+            Float.parseFloat(x);
+            return true;
+        } catch(Exception e){
+            OutputManager.print("Wrong input for x.");
+            return false;
+        }
+    }
+    
+    public static boolean validateLocY(String y){
+        try{
+            Double.parseDouble(y);
+            return true;
+        } catch(Exception e){
+            OutputManager.print("Wrong input for y.");
+            return false;
+        }
     }
 }

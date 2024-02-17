@@ -11,7 +11,10 @@ class Name extends AbstractField<Person, String>{
     
     @Override
     public boolean validate(String input){
-        return true;
+        if(input != ""){
+            return true;
+        }
+        return false;
     }
     
     @Override
