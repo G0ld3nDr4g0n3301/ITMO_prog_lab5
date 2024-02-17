@@ -16,7 +16,7 @@ public class AskPerson {
         
         Id id = new Id();
         Name name = new Name(); //Поле не может быть null, Строка не может быть пустой
-//        CoordinatesField coordinates = new CoordinatesField(); //Поле не может быть null
+        CoordinatesField coordinates = new CoordinatesField(); //Поле не может быть null
 //        CreationDate creationDate = new CreationDate(); //Поле не может быть null, Значение этого поля должно генерироваться автоматически
         Height height = new Height(); //Значение поля должно быть больше 0
         Birthday birthday = new Birthday(); //Поле может быть null
@@ -31,7 +31,7 @@ public class AskPerson {
         
         canBeNullFields.add(birthday);
         
-//        complexFields.add(coordinates);
+        complexFields.add(coordinates);
 //        complexFields.add(location);
         
 //        toGenerate.add(id);
@@ -76,16 +76,17 @@ public class AskPerson {
         }
         
         // Ask about complex fields
-/*        for(AbstractField field : complexFields){
-            String input = null;
+        for(AbstractField field : complexFields){
+            boolean end = false;
             do{
-                input = field.ask();
-                if(field.validate(input)){
-                    field.set(person, field.create(input));
+                Object value = field.create(new String());
+                if(value != null){
+                    field.set(person, value);
+                    end = true;
                 }
-            } while(!field.validate(input));
+            } while(!end);
         }
- */      
+       
         if(Validator.validatePerson(person)){
             return person;
         }

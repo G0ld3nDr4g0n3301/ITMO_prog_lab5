@@ -2,6 +2,7 @@ package ru.ifmo.se.lab.server;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import ru.ifmo.se.lab.server.collections.Coordinates;
 import ru.ifmo.se.lab.server.collections.Person;
 
 public class Validator {
@@ -65,6 +66,35 @@ public class Validator {
             LocalDate.parse(input, DateTimeFormatter.ISO_DATE);
         } catch( Exception e){
             OutputManager.print("Wrong date format. Correct one is yyyy-mm-dd");
+            return false;
+        }
+        return true;
+    }
+    
+    
+    public static boolean validateCoords(Coordinates c){
+        return c != null;
+    }
+    
+    public static boolean validateCoordX(String x){
+        try{
+            Double newX = Double.parseDouble(x);
+            if(newX > -92){
+                return true;
+            } else{
+                throw new Exception();
+            }
+        } catch( Exception e){
+            OutputManager.print("Incorrect input for x(must be greater than -92).");
+            return false;
+        }
+    }
+    
+    public static boolean validateCoordY(String y){
+        try{
+            Long newY = Long.parseLong(y);
+        } catch (Exception e){
+            OutputManager.print("Wrong input in coordinate y");
             return false;
         }
         return true;
