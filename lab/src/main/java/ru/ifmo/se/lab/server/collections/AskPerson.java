@@ -2,6 +2,7 @@ package ru.ifmo.se.lab.server.collections;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
+import ru.ifmo.se.lab.server.Invoker;
 import ru.ifmo.se.lab.server.OutputManager;
 import ru.ifmo.se.lab.server.Validator;
 
@@ -82,6 +83,9 @@ public class AskPerson {
                 Object value = field.create("");
                 if(value != null){
                     field.set(person, value);
+                    end = true;
+                }
+                if(Invoker.getModeState() && value == null){
                     end = true;
                 }
             } while(!end);

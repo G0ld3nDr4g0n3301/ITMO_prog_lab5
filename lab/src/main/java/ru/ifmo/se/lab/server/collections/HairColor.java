@@ -1,6 +1,7 @@
 package ru.ifmo.se.lab.server.collections;
 
 import ru.ifmo.se.lab.server.InputManager;
+import ru.ifmo.se.lab.server.Invoker;
 import ru.ifmo.se.lab.server.OutputManager;
 import ru.ifmo.se.lab.server.Validator;
 
@@ -23,9 +24,11 @@ class HairColor extends AbstractField<Person, Color>{
     
     @Override
     public Color create(String Uselessinput){
-        OutputManager.print("Available hair colors: \n");
-        for (Color c : Color.values()){
-            OutputManager.print(c);
+        if (!Invoker.getModeState()){
+            OutputManager.print("Available hair colors: \n");
+            for (Color c : Color.values()){
+                OutputManager.print(c);
+            }
         }
         String input = InputManager.ask("Enter the hair color: ");
         if(Validator.validateColor(input)){

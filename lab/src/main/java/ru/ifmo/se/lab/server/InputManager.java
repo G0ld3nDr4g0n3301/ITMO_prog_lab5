@@ -6,7 +6,10 @@ public class InputManager {
     private static Scanner scan = new Scanner(System.in);
     
     public static String ask(String question){
-        return CLAsk(question);
+        if(!Invoker.getModeState()){
+            return CLAsk(question);
+        }
+        return askFile();
     }
     
     public static String CLAsk(String question){
@@ -21,5 +24,10 @@ public class InputManager {
     public static void reloadScanner(){
         System.out.print("\n");
         scan = new Scanner(System.in);
+    }
+    
+    public static String askFile(){
+        String input = Invoker.getCurrReadFile().readLine();
+        return input;
     }
 }

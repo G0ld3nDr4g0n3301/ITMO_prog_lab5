@@ -1,6 +1,7 @@
 package ru.ifmo.se.lab.server.collections;
 
 import ru.ifmo.se.lab.server.InputManager;
+import ru.ifmo.se.lab.server.OutputManager;
 import ru.ifmo.se.lab.server.Validator;
 
 

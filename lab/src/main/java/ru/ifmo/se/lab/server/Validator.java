@@ -36,7 +36,16 @@ public class Validator {
     }
     
     public static boolean validatePerson(Person p){
-        return true;
+        boolean good = p.getCoordinates() != null;
+        good = good && p.getHairColor() != null;
+        good = good && p.getHeight() != null;
+        good = good && p.getLocation() != null;
+        good = good && p.getName() != null;
+        good = good && p.getWeight() != null;
+        if(!good){
+            OutputManager.print("Wrong person credentials.");
+        }
+        return good;
     }
     
     public static boolean validateHeight(String input){
