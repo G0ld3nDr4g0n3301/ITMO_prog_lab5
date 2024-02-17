@@ -35,8 +35,8 @@ public class Validator {
         return input.split(input).length == 2;
     }
     
-    public static boolean validatePerson(Person person){
-        return person.getName() != null;
+    public static boolean validatePerson(Person p){
+        return true;
     }
     
     public static boolean validateHeight(String input){

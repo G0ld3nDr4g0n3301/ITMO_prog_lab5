@@ -12,10 +12,12 @@ public class Invoker {
         Exit exit = new Exit("exit","quit the program");
         Help help = new Help("help", "print this screen");
         Add add = new Add("add", "(add name height weight {birthday})create a new element, and add it to collection.");
+        Show show = new Show("show", "print all collection's elements.");
         
         commands.put(exit.getName(), exit);
         commands.put(help.getName(), help);
         commands.put(add.getName(), add);
+        commands.put(show.getName(), show);
     }
     
     public static boolean execute(String[] args){

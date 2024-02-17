@@ -17,7 +17,7 @@ public class AskPerson {
         Id id = new Id();
         Name name = new Name(); //Поле не может быть null, Строка не может быть пустой
         CoordinatesField coordinates = new CoordinatesField(); //Поле не может быть null
-//        CreationDate creationDate = new CreationDate(); //Поле не может быть null, Значение этого поля должно генерироваться автоматически
+        CreationDate creationDate = new CreationDate(); //Поле не может быть null, Значение этого поля должно генерироваться автоматически
         Height height = new Height(); //Значение поля должно быть больше 0
         Birthday birthday = new Birthday(); //Поле может быть null
         Weight weight = new Weight(); //Значение поля должно быть больше 0
@@ -34,8 +34,8 @@ public class AskPerson {
         complexFields.add(location);
         complexFields.add(hairColor);
         
-//        toGenerate.add(id);
-//        toGenerate.add(creationDate);
+        toGenerate.add(id);
+        toGenerate.add(creationDate);
     }
     
     public static Person generatePerson(String[] args){
@@ -79,14 +79,19 @@ public class AskPerson {
         for(AbstractField field : complexFields){
             boolean end = false;
             do{
-                Object value = field.create(new String());
+                Object value = field.create("");
                 if(value != null){
                     field.set(person, value);
                     end = true;
                 }
             } while(!end);
         }
-       
+        
+        // Generate autogenerable fields
+        for(AbstractField field : toGenerate){
+            field.set(person, field.create(""));
+        }
+        
         if(Validator.validatePerson(person)){
             return person;
         }
