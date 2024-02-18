@@ -7,12 +7,9 @@ import java.io.File;
 
 public class Main {
     public static void main(String[] args){
-        System.out.println(args.length);
         if(args.length > 0){
-            System.out.println(args[0]);
             Invoker.setCurrMainFile(new File(args[0]));
         }
-        Invoker.setCurrMainFile(new File("example.txt"));
         while(true){
             String input = InputManager.ask("> ");
             if(input != null){

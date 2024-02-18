@@ -10,7 +10,6 @@ import java.time.format.DateTimeFormatter;
 public class PersonMappingStrategy extends ColumnPositionMappingStrategy{
     
     public PersonMappingStrategy(){
-        System.out.println("Дошёл до конструктора");
         this.setType(Person.class);
         String[] mapping = {"id","name","cordX","cordY","creationDate","height","birthday","weight","hairColor","locX","locY","locName"};
         this.setColumnMapping(mapping);
@@ -20,7 +19,7 @@ public class PersonMappingStrategy extends ColumnPositionMappingStrategy{
     CsvDataTypeMismatchException, CsvConstraintViolationException, CsvValidationException {
         
         boolean good = Validator.validateId(line[0]) && (line[1] != null) && Validator.validateCoordX(line[2]) && Validator.validateCoordY(line[3]);
-        good = good && Validator.validateBirthday(line[4]) && Validator.validateHeight(line[5]) && Validator.validateBirthday(line[6]) && Validator.validateWeight(line[7]);
+        good = good && ((line[4]==null) || Validator.validateBirthday(line[4])) && Validator.validateHeight(line[5]) && Validator.validateBirthday(line[6]) && Validator.validateWeight(line[7]);
         good = good && Validator.validateColor(line[8]) && Validator.validateLocX(line[9]) && Validator.validateLocY(line[10]);
         if(!good){
             return null;
