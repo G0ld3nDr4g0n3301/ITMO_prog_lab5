@@ -18,10 +18,19 @@ public class Validator {
     }
     
     public static boolean validateId(String input){
+        Integer id = null;
         try{
-            Integer.parseInt(input);
+            id = Integer.parseInt(input);
+            if(id <= 0){
+                return false;
+            }
         } catch(Exception e){
             return false;
+        }
+        for(Person p : CollectionManager.getCollection()){
+            if(p.getId() == id){
+                return false;
+            }
         }
         return true;
     }

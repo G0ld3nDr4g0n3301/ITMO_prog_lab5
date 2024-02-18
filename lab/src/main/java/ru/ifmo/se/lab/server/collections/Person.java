@@ -1,16 +1,27 @@
 package ru.ifmo.se.lab.server.collections;
 
 import java.time.LocalDate;
+import com.opencsv.bean.CsvBindByName;
+import com.opencsv.bean.CsvRecurse;
 
 public class Person {
+    @CsvBindByName
     private Integer id; //Поле не может быть null, Значение поля должно быть больше 0, Значение этого поля должно быть уникальным, Значение этого поля должно генерироваться автоматически
+    @CsvBindByName
     private String name; //Поле не может быть null, Строка не может быть пустой
+    @CsvRecurse
     private Coordinates coordinates; //Поле не может быть null
+    @CsvBindByName
     private LocalDate creationDate; //Поле не может быть null, Значение этого поля должно генерироваться автоматически
+    @CsvBindByName
     private long height; //Значение поля должно быть больше 0
+    @CsvBindByName
     private LocalDate birthday; //Поле может быть null
+    @CsvBindByName
     private int weight; //Значение поля должно быть больше 0
+    @CsvBindByName
     private Color hairColor; //Поле не может быть null
+    @CsvRecurse
     private Location location; //Поле не может быть null
     
     

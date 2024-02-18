@@ -16,23 +16,20 @@
 
         <packaging>jar</packaging>
 
+        <dependencies>
+            <!--  OpenCSV: CSV serialize -->
+            <dependency>
+                <groupId>com.opencsv</groupId>
+                <artifactId>opencsv</artifactId>
+                <version>5.9</version>
+            </dependency>
+        </dependencies>
 
-            <dependencyManagement>
-                <dependencies>
-                    <!--  Gson: Java to Json conversion -->
-                    <dependency>
-                        <groupId>com.google.code.gson</groupId>
-                        <artifactId>gson</artifactId>
-                        <version>2.2.2</version>
-                        <scope>compile</scope>
-                    </dependency>
-                </dependencies>
-            </dependencyManagement>
 
         <build>
             
             
-            <pluginManagement>
+            
                 <plugins>
                     <plugin>
                         <groupId>org.apache.maven.plugins</groupId>
@@ -46,8 +43,20 @@
                             </archive>
                         </configuration>
                     </plugin>
+                    <plugin>
+                        <artifactId>maven-shade-plugin</artifactId>
+                        <version>3.2.3</version>
+                        <executions>
+                            <execution>
+                                <phase>package</phase>
+                                <goals>
+                                    <goal>shade</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
                 </plugins>
-            </pluginManagement>
+            
             
             
         </build>
