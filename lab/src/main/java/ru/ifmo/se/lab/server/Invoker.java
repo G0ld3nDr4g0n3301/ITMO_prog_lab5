@@ -20,6 +20,7 @@ public class Invoker {
         Show show = new Show("show", "print all collection's elements.");
         ExecuteScript execScr = new ExecuteScript("execute_script","execute_script (filename) - executing a lines from a file,like it's normal CLI input.");
         Save save = new Save("save", "saves collection list in the file.");
+        Load load = new Load("load","loads collection from the file,specified in command line.");
         
         commands.put(exit.getName(), exit);
         commands.put(help.getName(), help);
@@ -27,6 +28,7 @@ public class Invoker {
         commands.put(show.getName(), show);
         commands.put(execScr.getName(), execScr);
         commands.put(save.getName(), save);
+        commands.put(load.getName(), load);
     }
     public static boolean execute(String[] args){
         if (!(commands.containsKey(args[0]))){
@@ -63,6 +65,9 @@ public class Invoker {
     }
     
     public static File getCurrMainFile(){
+        if (mainFileStack.empty()){
+            return null;
+        }
         return mainFileStack.peek();
     }
     

@@ -2,6 +2,7 @@ package ru.ifmo.se.lab.server;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.List;
 import ru.ifmo.se.lab.server.collections.Color;
 import ru.ifmo.se.lab.server.collections.Coordinates;
 import ru.ifmo.se.lab.server.collections.Location;
@@ -152,6 +153,18 @@ public class Validator {
             OutputManager.print("Wrong option for Color");
             return false;
         }
+    }
+    
+    public static boolean validateUniqueId(List<Person> list){
+        for(int i = 0; i<list.size(); i++){
+            int currId = list.get(i).getId();
+            for(int j = i+1; j < list.size();j++){
+                if(list.get(j).getId() == currId){
+                    return false;
+                }
+            }
+        }
+        return true;
     }
 }
 
