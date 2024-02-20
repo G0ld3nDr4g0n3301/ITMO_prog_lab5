@@ -22,8 +22,9 @@ public class Invoker {
         Save save = new Save("save", "saves collection list in the file.");
         Load load = new Load("load","loads collection from the file,specified in command line.");
         Info info = new Info("info", "Prints info about collection(type,init date,size.)");
-        Update update = new Update("update", "(update id {element}) - replace collection element id with new element.");
-        Remove remove = new Remove("remove", "(remove id) - removes element with this id.");
+        Update update = new Update("update", "(update id {element}) replace collection element id with new element.");
+        Remove remove = new Remove("remove", "(remove id) removes element with this id.");
+        Clear clear = new Clear("clear", "removes all the elements from collection.");
         
         commands.put(exit.getName(), exit);
         commands.put(help.getName(), help);
@@ -35,6 +36,7 @@ public class Invoker {
         commands.put(info.getName(), info);
         commands.put(update.getName(), update);
         commands.put(remove.getName(), remove);
+        commands.put(clear.getName(), clear);
     }
     public static boolean execute(String[] args){
         if (!(commands.containsKey(args[0]))){

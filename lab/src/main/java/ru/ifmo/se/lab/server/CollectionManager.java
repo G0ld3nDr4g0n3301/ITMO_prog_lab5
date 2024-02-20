@@ -40,4 +40,8 @@ public class CollectionManager {
     public static void remove(Person p){
         collection.remove(p);
     }
+    
+    public static void clear(){
+        collection.clear();
+    }
 }
