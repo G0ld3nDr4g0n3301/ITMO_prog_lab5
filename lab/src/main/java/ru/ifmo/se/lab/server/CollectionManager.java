@@ -27,4 +27,17 @@ public class CollectionManager {
     public static String getType(){
         return "ArrayList<Person>";
     }
+    
+    public static Person findPerson(int id){
+        for(Person p : collection){
+            if (p.getId() == id){
+                return p;
+            }
+        }
+        return null;
+    }
+    
+    public static void remove(Person p){
+        collection.remove(p);
+    }
 }
