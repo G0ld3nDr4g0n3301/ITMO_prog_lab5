@@ -18,7 +18,6 @@ public class PersonMappingStrategy extends ColumnPositionMappingStrategy{
     public Object populateNewBean(String[] line) throws CsvBeanIntrospectionException, CsvRequiredFieldEmptyException,
     CsvDataTypeMismatchException, CsvConstraintViolationException, CsvValidationException {
         boolean good = Validator.validateId(line[0]) && (line[1] != null) && Validator.validateCoordX(line[2]) && Validator.validateCoordY(line[3]);
-        System.out.print(good);
         good = good && Validator.validateBirthday(line[4]) && Validator.validateHeight(line[5]) && (line[6] == "" || Validator.validateBirthday(line[6])) && Validator.validateWeight(line[7]);
         good = good && Validator.validateColor(line[8]) && Validator.validateLocX(line[9]) && Validator.validateLocY(line[10]);
         if(!good){

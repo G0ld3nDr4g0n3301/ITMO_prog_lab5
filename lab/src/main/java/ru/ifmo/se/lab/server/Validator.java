@@ -22,6 +22,7 @@ public class Validator {
         Integer id = null;
         try{
             id = Integer.parseInt(input);
+            System.out.println(id);
             if(id <= 0){
                 return false;
             }
