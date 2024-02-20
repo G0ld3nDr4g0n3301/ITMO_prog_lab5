@@ -3,6 +3,7 @@ package ru.ifmo.se.lab.server;
 import java.util.ArrayList;
 import ru.ifmo.se.lab.server.collections.Person;
 import java.time.LocalDate;
+import ru.ifmo.se.lab.server.collections.Location;
 
 public class CollectionManager {
     private static ArrayList<Person> collection = new ArrayList<>();
@@ -43,5 +44,18 @@ public class CollectionManager {
     
     public static void clear(){
         collection.clear();
+    }
+    
+    public static Person findPerson(Location loc){
+        for(Person p : collection){
+            if(p.getLocation() == loc){
+                return p;
+            }
+        }
+        return null;
+    }
+    
+    public static void removeLast(){
+        collection.remove(collection.size() - 1);
     }
 }

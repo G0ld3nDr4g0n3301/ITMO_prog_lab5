@@ -3,7 +3,7 @@ package ru.ifmo.se.lab.server.collections;
 import ru.ifmo.se.lab.server.InputManager;
 import ru.ifmo.se.lab.server.Validator;
 
-class LocationField extends AbstractField<Person, Location>{
+public class LocationField extends AbstractField<Person, Location>{
     
     @Override
     public void set(Person p, Location l){
