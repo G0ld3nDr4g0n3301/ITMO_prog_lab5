@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import ru.ifmo.se.lab.server.collections.Person;
 import java.time.LocalDate;
 import java.util.List;
+import ru.ifmo.se.lab.server.collections.Color;
 import ru.ifmo.se.lab.server.collections.Location;
 
 public class CollectionManager {
@@ -62,5 +63,13 @@ public class CollectionManager {
     
     public static void remove(List<Person> removeList){
         collection.removeAll(removeList);
+    }
+    
+    public static List<Color> getHairColors(){
+        ArrayList<Color> colors = new ArrayList<>();
+        for(Person p : collection){
+            colors.add(p.getHairColor());
+        }
+        return colors;
     }
 }

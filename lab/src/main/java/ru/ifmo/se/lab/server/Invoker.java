@@ -28,6 +28,7 @@ public class Invoker {
         RemoveLoc removeLoc = new RemoveLoc("remove_by_location", "removes all elements with specified location.");
         RemoveLast removeLast = new RemoveLast("remove_last", "removes last collection element");
         RemoveLower removeLower = new RemoveLower("remove_lower", "remove_lower {element} - removes all the elements, that are lower than the given one");
+        PrintHairColor printColor = new PrintHairColor("hair", "prints all hair colors in collection(descending)");
         
         commands.put(exit.getName(), exit);
         commands.put(help.getName(), help);
@@ -43,6 +44,7 @@ public class Invoker {
         commands.put(clear.getName(), clear);
         commands.put(removeLoc.getName(), removeLoc);
         commands.put(removeLower.getName(), removeLower);
+        commands.put(printColor.getName(), printColor);
     }
     public static boolean execute(String[] args){
         if (!(commands.containsKey(args[0]))){
