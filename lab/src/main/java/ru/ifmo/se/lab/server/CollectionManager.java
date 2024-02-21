@@ -48,7 +48,7 @@ public class CollectionManager {
     
     public static Person findPerson(Location loc){
         for(Person p : collection){
-            if(p.getLocation() == loc){
+            if(p.getLocation().compareTo(loc) == 0){
                 return p;
             }
         }

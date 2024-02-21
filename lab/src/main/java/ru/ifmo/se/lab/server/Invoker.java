@@ -25,7 +25,7 @@ public class Invoker {
         Update update = new Update("update", "(update id {element}) replace collection element id with new element.");
         Remove remove = new Remove("remove_by_id", "(remove_by_id id) removes element with this id.");
         Clear clear = new Clear("clear", "removes all the elements from collection.");
-        RemoveLoc removeLoc = new RemoveLoc("remove_by_location", "removes all elements with specified location.");
+        RemoveLoc removeLoc = new RemoveLoc("remloc", "removes all elements with specified location.");
         RemoveLast removeLast = new RemoveLast("remove_last", "removes last collection element");
         
         commands.put(exit.getName(), exit);
@@ -40,7 +40,7 @@ public class Invoker {
         commands.put(remove.getName(), remove);
         commands.put(removeLast.getName(), removeLast);
         commands.put(clear.getName(), clear);
-        //commands.put(removeLoc.getName(), removeLoc); #TODO: Добавить локации сравнение
+        commands.put(removeLoc.getName(), removeLoc);
     }
     public static boolean execute(String[] args){
         if (!(commands.containsKey(args[0]))){

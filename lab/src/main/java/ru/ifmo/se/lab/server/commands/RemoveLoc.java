@@ -2,6 +2,7 @@ package ru.ifmo.se.lab.server.commands;
 
 import ru.ifmo.se.lab.server.CollectionManager;
 import ru.ifmo.se.lab.server.Command;
+import ru.ifmo.se.lab.server.OutputManager;
 import ru.ifmo.se.lab.server.collections.Location;
 import ru.ifmo.se.lab.server.collections.LocationField;
 import ru.ifmo.se.lab.server.collections.Person;
@@ -17,8 +18,10 @@ public class RemoveLoc extends Command{
     public boolean execute(String[] args){
         
         Location loc = new LocationField().create("");
-        for(Person person = CollectionManager.findPerson(loc); person != null; ){
+        Person person = CollectionManager.findPerson(loc);
+        while(person != null){
             CollectionManager.remove(person);
+            person = CollectionManager.findPerson(loc);
         }
         return true;
     }
