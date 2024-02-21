@@ -30,6 +30,7 @@ public class Invoker {
         RemoveLower removeLower = new RemoveLower("remove_lower", "remove_lower {element} - removes all the elements, that are lower than the given one");
         PrintHairColor printColor = new PrintHairColor("hair", "prints all hair colors in collection(descending)");
         CountHeight count = new CountHeight("count","count [height] - prints the number of objects with this height.");
+        AddIfMax addIf = new AddIfMax("addif", "addif [element] - adds new element, if it's greater than max element");
         
         commands.put(exit.getName(), exit);
         commands.put(help.getName(), help);
@@ -47,6 +48,8 @@ public class Invoker {
         commands.put(removeLower.getName(), removeLower);
         commands.put(printColor.getName(), printColor);
         commands.put(count.getName(), count);
+        commands.put(addIf.getName(), addIf);
+        
     }
     public static boolean execute(String[] args){
         if (!(commands.containsKey(args[0]))){
