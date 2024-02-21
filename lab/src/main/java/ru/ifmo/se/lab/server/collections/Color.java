@@ -1,7 +1,7 @@
 package ru.ifmo.se.lab.server.collections;
 
 
-public enum Color {
+public enum Color{
     RED,
     YELLOW,
     ORANGE,

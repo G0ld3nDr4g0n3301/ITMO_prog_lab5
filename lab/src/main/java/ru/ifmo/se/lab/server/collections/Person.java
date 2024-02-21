@@ -4,7 +4,7 @@ import java.time.LocalDate;
 import com.opencsv.bean.CsvBindByName;
 import com.opencsv.bean.CsvRecurse;
 
-public class Person {
+public class Person implements Comparable<Person>{
     @CsvBindByName
     private Integer id; //Поле не может быть null, Значение поля должно быть больше 0, Значение этого поля должно быть уникальным, Значение этого поля должно генерироваться автоматически
     @CsvBindByName
@@ -27,6 +27,16 @@ public class Person {
     
     public Person(){
         
+    }
+    
+    @Override
+    public int compareTo(Person p){
+        if(this.getId() > p.getId()){
+            return 1;
+        }else if(this.getId() == p.getId()){
+            return 0;
+        }
+        return -1;
     }
     
     public void setLocation(Location location){
