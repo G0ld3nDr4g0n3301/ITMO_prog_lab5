@@ -16,7 +16,14 @@ public class Location implements Comparable<Location> {
     public int compareTo(Location loc){
         boolean good = (this.locX - loc.locX) < ERROR;
         good = good && (this.locY - loc.locY) < ERROR;
-        good = good && (this.locName.compareTo(loc.getName()) == 0);
+        try{
+            good = good && (this.locName.compareTo(loc.getName()) == 0);
+        }catch (NullPointerException e){
+            if (!(this.locName == null && loc.getName() == null)){
+                good = false;
+            }
+        }
+        
         if(good){
             return 0;
         }
