@@ -3,6 +3,7 @@ package ru.ifmo.se.lab.server.serialization;
 import com.opencsv.bean.*;
 import ru.ifmo.se.lab.server.collections.*;
 import com.opencsv.exceptions.*;
+import java.io.IOException;
 import ru.ifmo.se.lab.server.Validator;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -21,7 +22,7 @@ public class PersonMappingStrategy extends ColumnPositionMappingStrategy{
         good = good && Validator.validateBirthday(line[4]) && Validator.validateHeight(line[5]) && (line[6] == "" || Validator.validateBirthday(line[6])) && Validator.validateWeight(line[7]);
         good = good && Validator.validateColor(line[8]) && Validator.validateLocX(line[9]) && Validator.validateLocY(line[10]);
         if(!good){
-            return null;
+            throw new CsvRequiredFieldEmptyException("the file contains wrong data.");
         }
         
         Person p = new Person();

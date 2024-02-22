@@ -1,6 +1,9 @@
 package ru.ifmo.se.lab.server.serialization;
 
 import com.opencsv.bean.*;
+import com.opencsv.bean.exceptionhandler.CsvExceptionHandler;
+import com.opencsv.bean.exceptionhandler.ExceptionHandlerIgnore;
+import com.opencsv.exceptions.CsvException;
 import java.util.ArrayList;
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -18,8 +21,10 @@ public class ReadPerson {
         
         try{
             PersonMappingStrategy strategy = new PersonMappingStrategy();
+            CsvExceptionHandler exceptionHandler = new ExceptionHandlerIgnore();
             
             CsvToBeanBuilder<Person> builder = new CsvToBeanBuilder<Person>(reader).withMappingStrategy(strategy);
+            builder.withExceptionHandler(exceptionHandler);
             CsvToBean<Person> csv = builder.build();
             List<Person> list = csv.parse();
             if(!Validator.validateUniqueId(list)){
