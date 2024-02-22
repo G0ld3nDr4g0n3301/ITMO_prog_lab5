@@ -5,19 +5,17 @@ import java.util.HashMap;
 import java.util.Set;
 
 public class Help extends Command {
-    private HashMap<String, Command> commands;
     
     public Help(String name, String description){
-        this.commands = Invoker.getCommands();
         this.name = name;
         this.description = description;
     }
     
     @Override
     public boolean execute(String[] args){
-        Set<String> commandSet = this.commands.keySet();
+        Set<String> commandSet = Invoker.getCommands().keySet();
         for(String key : commandSet){
-            OutputManager.print(key + " - " + this.commands.get(key).getDescription());
+            OutputManager.print(key + " - " + Invoker.getCommands().get(key).getDescription());
         }
         return true;
     }

@@ -102,8 +102,4 @@ public class AskPerson {
         OutputManager.print("Not enough args.");
         return null;
     }
-    
-    public static ArrayList<AbstractField> getFields(){
-        return simpleFields;
-    }
-}
+}    
