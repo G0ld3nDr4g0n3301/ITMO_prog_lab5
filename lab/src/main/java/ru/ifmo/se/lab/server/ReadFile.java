@@ -11,7 +11,6 @@ public class ReadFile{
     private Scanner scan;
     
     public ReadFile(String filename) throws FileNotFoundException{
-        
         this.reader = new FileReader(filename);
         this.scan = new Scanner(this.reader);
     }
@@ -31,4 +30,5 @@ public class ReadFile{
             OutputManager.print("Permission denied");
         }
     }
+    
 }

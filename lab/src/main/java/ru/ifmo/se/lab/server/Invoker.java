@@ -73,6 +73,9 @@ public class Invoker {
     }
     
     public static ReadFile getCurrReadFile(){
+        if(fileReadStack.empty()){
+            return null;
+        }
         return fileReadStack.peek();
     }
     
