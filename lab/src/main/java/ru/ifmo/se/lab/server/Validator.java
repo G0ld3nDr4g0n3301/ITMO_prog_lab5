@@ -8,8 +8,21 @@ import ru.ifmo.se.lab.server.collections.Coordinates;
 import ru.ifmo.se.lab.server.collections.Location;
 import ru.ifmo.se.lab.server.collections.Person;
 
+
+/**
+ * A bunch of different checks for given fields.
+ * 
+ * @author raistlin
+ */
+
 public class Validator {
     
+    /**
+     * Checks,if potential command is not "",and consists not only from spaces.
+     * 
+     * @param input Potential command
+     * @return Result of validation.
+     */
     public static boolean validateCommand(String input){
         if(input.length() == 0 || input.split(" ").length == 0){
             return false;
@@ -18,6 +31,12 @@ public class Validator {
         }
     }
     
+    /**
+     * Checks, if id is a unique positive number
+     * 
+     * @param input Potential id
+     * @return Result of validation.
+     */
     public static boolean validateId(String input){
         Integer id = null;
         try{
@@ -36,15 +55,12 @@ public class Validator {
         return true;
     }
     
-    public static boolean validateArg(String input){
-        try{
-            input.split("=");
-        } catch(Exception e){
-            return false;
-        }
-        return input.split(input).length == 2;
-    }
-    
+    /**
+     * Checks that all fields(except birthday) is not null.
+     * 
+     * @param p Person to validate
+     * @return result of validation
+     */
     public static boolean validatePerson(Person p){
         boolean good = p.getCoordinates() != null;
         good = good && p.getHairColor() != null;
@@ -58,6 +74,13 @@ public class Validator {
         return good;
     }
     
+    
+    /**
+     * Checks if height is greater than zero.
+     * 
+     * @param input Height
+     * @return result of validation
+     */
     public static boolean validateHeight(String input){
         try{
             if(Long.parseLong(input) <= 0){
@@ -70,6 +93,12 @@ public class Validator {
         return true;
     }
     
+    
+    /**
+     * Check if weight > 0
+     * @param input Weight
+     * @return result of validation
+     */
     public static boolean validateWeight(String input){
         try{
             if(Integer.parseInt(input) <= 0){
@@ -82,6 +111,13 @@ public class Validator {
         return true;
     }
     
+    
+    /**
+     * Checks if date is correct
+     * 
+     * @param input Date.
+     * @return result of validation
+     */
     public static boolean validateBirthday(String input){
         try{
             LocalDate.parse(input, DateTimeFormatter.ISO_DATE);
@@ -92,11 +128,22 @@ public class Validator {
         return true;
     }
     
-    
+    /**
+     * Checks if field Coordinates is not null.
+     * @param c coordinates
+     * @return result of validation
+     */
     public static boolean validateCoords(Coordinates c){
         return c != null;
     }
     
+    
+    /**
+     * Checks x > -92 and can be parsed to Double
+     * 
+     * @param x
+     * @return result of validation
+     */
     public static boolean validateCoordX(String x){
         try{
             Double newX = Double.parseDouble(x);
@@ -111,6 +158,13 @@ public class Validator {
         }
     }
     
+    
+    /**
+     * Checks if y can be parsed to Long
+     * 
+     * @param y
+     * @return result of validation
+     */
     public static boolean validateCoordY(String y){
         try{
             Long newY = Long.parseLong(y);
@@ -121,10 +175,22 @@ public class Validator {
         return true;
     }
     
+    /**
+     * Checks if Location is not null
+     * 
+     * @param loc
+     * @return result of validation
+     */
     public static boolean validateLoc(Location loc){
         return loc != null;
     }
     
+    /**
+     * Checks if x can be parsed to Float
+     * 
+     * @param x
+     * @return result of validation
+     */
     public static boolean validateLocX(String x){
         try{
             Float.parseFloat(x);
@@ -135,6 +201,12 @@ public class Validator {
         }
     }
     
+    /**
+     * Checks if y can be parsed to Double
+     * 
+     * @param y
+     * @return result of validation
+     */
     public static boolean validateLocY(String y){
         try{
             Double.parseDouble(y);
@@ -145,6 +217,13 @@ public class Validator {
         }
     }
 
+    
+    /**
+     * Checks if such color exists in enum Color
+     * 
+     * @param input
+     * @return result of validation
+     */
     public static boolean validateColor(String input){
         try{
             Color.valueOf(input);
@@ -155,6 +234,12 @@ public class Validator {
         }
     }
     
+    /**
+     * Checks,if all of the IDs in given List are unique
+     * 
+     * @param list
+     * @return result of validation
+     */
     public static boolean validateUniqueId(List<Person> list){
         for(int i = 0; i<list.size(); i++){
             int currId = list.get(i).getId();
