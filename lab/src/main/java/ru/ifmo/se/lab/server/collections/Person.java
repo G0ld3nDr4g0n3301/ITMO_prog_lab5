@@ -4,23 +4,63 @@ import java.time.LocalDate;
 import com.opencsv.bean.CsvBindByName;
 import com.opencsv.bean.CsvRecurse;
 
+/**
+ * Main class of the collection.
+ * @author raistlin
+ */
 public class Person implements Comparable<Person>{
+    
+    /**
+     * id of a person
+     */
     @CsvBindByName
     private Integer id; //Поле не может быть null, Значение поля должно быть больше 0, Значение этого поля должно быть уникальным, Значение этого поля должно генерироваться автоматически
+    
+    /**
+     * Name of a Person
+     */
     @CsvBindByName
     private String name; //Поле не может быть null, Строка не может быть пустой
+    
+    /**
+     * Coordinates(x,y) of a person
+     */
     @CsvRecurse
     private Coordinates coordinates; //Поле не может быть null
+    
+    /**
+     * Creation date of a person
+     */
     @CsvBindByName
     private LocalDate creationDate; //Поле не может быть null, Значение этого поля должно генерироваться автоматически
+    
+    /**
+     * height of a person
+     */
     @CsvBindByName
     private long height; //Значение поля должно быть больше 0
+    
+    /**
+     * birthday of a person(can be null)
+     */
     @CsvBindByName
     private LocalDate birthday; //Поле может быть null
+    
+    /**
+     * Weight of a person
+     */
     @CsvBindByName
     private int weight; //Значение поля должно быть больше 0
+    
+    /**
+     * Hair color of a person(enum)
+     */
     @CsvBindByName
     private Color hairColor; //Поле не может быть null
+    
+    /**
+     * Location of a person
+     */
     @CsvRecurse
     private Location location; //Поле не может быть null
     

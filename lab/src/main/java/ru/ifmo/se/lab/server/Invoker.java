@@ -5,10 +5,31 @@ import ru.ifmo.se.lab.server.commands.*;
 import java.util.Stack;
 import java.io.File;
 
+/**
+ * Invokes the commands using String argument
+ * 
+ * @author raistlin
+ */
 public class Invoker {
+
+    /**
+     * HashMap containing all the commands' classes.
+     */
     private static HashMap<String,Command> commands;
+    
+    /**
+     * If true - executing in FromFile mode,needed for correct work of InputManager.
+     */
     private static boolean fromFileMode = false;
+    
+    /**
+     * Stack of files the program interacts with.Needed for execute_script command.
+     */
     private static Stack<ReadFile> fileReadStack = new Stack<>();
+    
+    /**
+     * Stack of files from which we load the collection on startup.Command "save" writes the data into this files.
+     */
     private static Stack<File> mainFileStack = new Stack<>();
     
     static{
@@ -51,6 +72,12 @@ public class Invoker {
         commands.put(addIf.getName(), addIf);
         
     }
+    
+    /**
+     * Executes the command.
+     * @param args
+     * @return true, if no errors encountered during runtime of command.
+     */
     public static boolean execute(String[] args){
         if (!(commands.containsKey(args[0]))){
             OutputManager.print("Wrong command. Type \"help\" for command list");
@@ -60,18 +87,34 @@ public class Invoker {
         return true;
     }
     
+    /**
+     * Returns the hashMap of CommandName + CommandObject
+     * @return commands
+     */
     public static HashMap<String, Command> getCommands(){
         return commands;
     }
     
+    /**
+     * Returns true, if fromFile mode is set.
+     * @return 
+     */
     public static boolean getModeState(){
         return fromFileMode;
     }
     
+    /**
+     * Sets new fromFile mode state.
+     * @param fromFile 
+     */
     public static void setModeState(boolean fromFile){
         fromFileMode = fromFile;
     }
     
+    /**
+     * Returns the stack of files we currently working with
+     * @return null, if stack is empty
+     */
     public static ReadFile getCurrReadFile(){
         if(fileReadStack.empty()){
             return null;
@@ -79,15 +122,28 @@ public class Invoker {
         return fileReadStack.peek();
     }
     
+    /**
+     * Add a new file to fileRead stack.
+     * @param file 
+     */
     public static void setCurrReadFile(ReadFile file){
         fileReadStack.push(file);
     }
     
+    /**
+     * Remove file from fileRead stack
+     * @return file,that we're removing.
+     */
     public static ReadFile removeCurrReadFile(){
         fileReadStack.peek().close();
         return fileReadStack.pop();
     }
     
+    
+    /**
+     * Returns current main file,which was specified in command line.
+     * @return Current main file(into which we write our collection)
+     */
     public static File getCurrMainFile(){
         if (mainFileStack.empty()){
             return null;
@@ -95,10 +151,18 @@ public class Invoker {
         return mainFileStack.peek();
     }
     
+    /**
+     * Add a new file to mainFile stack(not used anywhere for now,but will be used in further versions)
+     * @param file 
+     */
     public static void setCurrMainFile(File file){
         mainFileStack.push(file);
     }
     
+    /**
+     * Remove file from MainFile stack
+     * @return file,that we're removing.
+     */
     public static File removeCurrMainFile(){
         return mainFileStack.pop();
     }
