@@ -7,6 +7,10 @@ import ru.ifmo.se.lab.server.Command;
 import ru.ifmo.se.lab.server.collections.AskPerson;
 import ru.ifmo.se.lab.server.collections.Person;
 
+/**
+ * removes all collection's elements, that are less than the given one.
+ * @author raistlin
+ */
 public class RemoveLower extends Command{
     
     public RemoveLower(String name,String desc){

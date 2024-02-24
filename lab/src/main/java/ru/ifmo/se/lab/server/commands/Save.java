@@ -8,6 +8,10 @@ import ru.ifmo.se.lab.server.OutputManager;
 import ru.ifmo.se.lab.server.serialization.WritePerson;
 import java.io.IOException;
 
+/**
+ * saves collection to Main file.
+ * @author raistlin
+ */
 public class Save extends Command {
     
     public Save(String name, String desc){

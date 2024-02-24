@@ -4,6 +4,10 @@ import ru.ifmo.se.lab.server.CollectionManager;
 import ru.ifmo.se.lab.server.Command;
 import ru.ifmo.se.lab.server.OutputManager;
 
+/**
+ * Prints info about collection(init date, size,type)
+ * @author raistlin
+ */
 public class Info extends Command {
     
     public Info(String name,String desc){

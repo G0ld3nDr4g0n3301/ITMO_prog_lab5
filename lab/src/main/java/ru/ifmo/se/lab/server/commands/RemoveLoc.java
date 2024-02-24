@@ -7,6 +7,10 @@ import ru.ifmo.se.lab.server.collections.Location;
 import ru.ifmo.se.lab.server.collections.LocationField;
 import ru.ifmo.se.lab.server.collections.Person;
 
+/**
+ * removes all persons with given location
+ * @author raistlin
+ */
 public class RemoveLoc extends Command{
     
     public RemoveLoc(String name, String desc){

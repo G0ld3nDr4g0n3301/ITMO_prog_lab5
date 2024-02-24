@@ -8,6 +8,10 @@ import ru.ifmo.se.lab.server.OutputManager;
 import ru.ifmo.se.lab.server.collections.AskPerson;
 import ru.ifmo.se.lab.server.collections.Person;
 
+/**
+ * Adds an element,if it's greater than the max one.
+ * @author raistlin
+ */
 public class AddIfMax extends Command{
     
     public AddIfMax(String name,String desc){

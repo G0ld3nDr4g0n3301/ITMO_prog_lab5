@@ -8,14 +8,31 @@ import ru.ifmo.se.lab.server.Validator;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
+/**
+ * Mapping strategy for serializing and deserializing Person object.
+ * @author raistlin
+ */
 public class PersonMappingStrategy extends ColumnPositionMappingStrategy{
     
+    /**
+     * sets necessary types,CSV header and column mapping.
+     */
     public PersonMappingStrategy(){
         this.setType(Person.class);
         String[] mapping = {"id","name","cordX","cordY","creationDate","height","birthday","weight","hairColor","locX","locY","locName"};
         this.setColumnMapping(mapping);
     }
     
+    /**
+     * Strategy for creating new Person object, different validations and comparisons.
+     * @param line line of a CSV file,which is one Person object
+     * @return Person object
+     * @throws CsvBeanIntrospectionException
+     * @throws CsvRequiredFieldEmptyException
+     * @throws CsvDataTypeMismatchException
+     * @throws CsvConstraintViolationException
+     * @throws CsvValidationException 
+     */
     public Object populateNewBean(String[] line) throws CsvBeanIntrospectionException, CsvRequiredFieldEmptyException,
     CsvDataTypeMismatchException, CsvConstraintViolationException, CsvValidationException {
         boolean good = Validator.validateId(line[0]) && (line[1] != null) && Validator.validateCoordX(line[2]) && Validator.validateCoordY(line[3]);

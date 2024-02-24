@@ -7,6 +7,10 @@ import ru.ifmo.se.lab.server.OutputManager;
 import ru.ifmo.se.lab.server.collections.AskPerson;
 import ru.ifmo.se.lab.server.collections.Person;
 
+/**
+ * replace person with given id,with another person 
+ * @author raistlin
+ */
 public class Update extends Command{
     
     

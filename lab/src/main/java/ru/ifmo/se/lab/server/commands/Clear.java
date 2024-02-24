@@ -3,6 +3,10 @@ package ru.ifmo.se.lab.server.commands;
 import ru.ifmo.se.lab.server.CollectionManager;
 import ru.ifmo.se.lab.server.Command;
 
+/**
+ * completely clears the collection
+ * @author raistlin
+ */
 public class Clear extends Command{
     
     public Clear(String name, String desc){

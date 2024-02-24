@@ -1,6 +1,7 @@
 package ru.ifmo.se.lab.server.commands;
 
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.EmptyStackException;
 import ru.ifmo.se.lab.server.Command;
@@ -9,6 +10,10 @@ import ru.ifmo.se.lab.server.OutputManager;
 import ru.ifmo.se.lab.server.ReadFile;
 import ru.ifmo.se.lab.server.Validator;
 
+/**
+ * execute given file, as if it's a bunch of user input lines.
+ * @author raistlin
+ */
 public class ExecuteScript extends Command{
     private static ArrayList<String> filenames = new ArrayList<>();
     
@@ -32,7 +37,7 @@ public class ExecuteScript extends Command{
         try{
             Invoker.setCurrReadFile(new ReadFile(args[1]));
             filenames.add(args[1]);
-        } catch(FileNotFoundException e){
+        } catch(IOException e){
             OutputManager.print("No such file.");
             Invoker.setModeState(false);
             Invoker.removeCurrReadFile();

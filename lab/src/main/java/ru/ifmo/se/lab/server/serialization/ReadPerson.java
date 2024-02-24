@@ -8,14 +8,26 @@ import java.util.ArrayList;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
+import java.io.IOException;
 import java.util.List;
 import ru.ifmo.se.lab.server.OutputManager;
 import ru.ifmo.se.lab.server.Validator;
 import ru.ifmo.se.lab.server.collections.Person;
 
+/**
+ * read CSV data from file, and parse it to list of Persons
+ * @author raistlin
+ */
 public class ReadPerson {
 
-    public static List<Person> read(File filename) throws FileNotFoundException,NullPointerException{
+    /**
+     * read data from CSV file and deserialize it.
+     * @param filename File with CSV data
+     * @return Collection of Persons
+     * @throws IOException
+     * @throws NullPointerException 
+     */
+    public static List<Person> read(File filename) throws IOException,NullPointerException{
         
         FileReader reader = new FileReader(filename);
         

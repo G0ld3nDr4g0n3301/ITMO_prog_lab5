@@ -5,6 +5,10 @@ import ru.ifmo.se.lab.server.Command;
 import ru.ifmo.se.lab.server.OutputManager;
 import ru.ifmo.se.lab.server.collections.Person;
 
+/**
+ * remove given person from the collection
+ * @author raistlin
+ */
 public class Remove extends Command{
     
     public Remove(String name, String desc){

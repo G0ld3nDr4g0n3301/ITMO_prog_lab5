@@ -8,9 +8,19 @@ import java.util.ArrayList;
 import java.io.File;
 import ru.ifmo.se.lab.server.collections.Person;
 
+/**
+ * Write collection to CSV format and save to file.(serialization)
+ * @author raistlin
+ */
 public class WritePerson {
     
-    
+    /**
+     * Serialize and write
+     * @param list collection of Persons
+     * @param filename Name of a file,where we'll save our CSV data
+     * @return true, if no exceptions encountered
+     * @throws IOException 
+     */
     public static Boolean write(ArrayList<Person> list,File filename) throws IOException{
         
         PrintWriter file = new PrintWriter(filename);

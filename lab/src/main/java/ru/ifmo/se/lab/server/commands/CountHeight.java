@@ -5,6 +5,10 @@ import ru.ifmo.se.lab.server.Command;
 import ru.ifmo.se.lab.server.OutputManager;
 import ru.ifmo.se.lab.server.collections.Person;
 
+/**
+ * Counts all persons with given height
+ * @author raistlin
+ */
 public class CountHeight extends Command{
     
     public CountHeight(String name,String desc){

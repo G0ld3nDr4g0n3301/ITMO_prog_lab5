@@ -5,6 +5,10 @@ import ru.ifmo.se.lab.server.Command;
 import ru.ifmo.se.lab.server.collections.AskPerson;
 import ru.ifmo.se.lab.server.collections.Person;
 
+/**
+ * Command for adding new person
+ * @author raistlin
+ */
 public class Add extends Command{
     
     public Add(String name, String desc){

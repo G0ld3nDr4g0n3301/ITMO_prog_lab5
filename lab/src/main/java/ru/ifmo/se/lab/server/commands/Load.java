@@ -12,6 +12,10 @@ import ru.ifmo.se.lab.server.OutputManager;
 import ru.ifmo.se.lab.server.collections.Person;
 import ru.ifmo.se.lab.server.serialization.ReadPerson;
 
+/**
+ * loads collection from file.
+ * @author raistlin
+ */
 public class Load extends Command{
     
     public Load(String name, String desc){
@@ -28,7 +32,7 @@ public class Load extends Command{
                 OutputManager.print("File is damaged, or contains wrong data.");
                 return false;
             }
-        } catch(FileNotFoundException e) {
+        } catch(IOException e) {
             OutputManager.print("Error in file reading.");
             return false;
         } catch(EmptyStackException | NullPointerException e){

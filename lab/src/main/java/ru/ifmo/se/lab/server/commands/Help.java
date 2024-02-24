@@ -4,6 +4,10 @@ import ru.ifmo.se.lab.server.*;
 import java.util.HashMap;
 import java.util.Set;
 
+/**
+ * Prints all available commands and their descriptions.
+ * @author raistlin
+ */
 public class Help extends Command {
     
     public Help(String name, String description){

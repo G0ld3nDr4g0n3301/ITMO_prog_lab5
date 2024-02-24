@@ -9,6 +9,10 @@ import ru.ifmo.se.lab.server.OutputManager;
 import ru.ifmo.se.lab.server.collections.Color;
 import ru.ifmo.se.lab.server.collections.Color;
 
+/**
+ * Prints all hair colors of collection's elements, in descending order
+ * @author raistlin
+ */
 public class PrintHairColor extends Command{
     
     public PrintHairColor(String name,String desc){

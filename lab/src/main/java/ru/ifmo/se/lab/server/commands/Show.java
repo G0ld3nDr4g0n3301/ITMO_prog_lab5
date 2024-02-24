@@ -5,6 +5,10 @@ import ru.ifmo.se.lab.server.Command;
 import ru.ifmo.se.lab.server.OutputManager;
 import ru.ifmo.se.lab.server.collections.Person;
 
+/**
+ * prints all elements of collection
+ * @author raistlin
+ */
 public class Show extends Command{
     
     public Show(String name, String desc){
