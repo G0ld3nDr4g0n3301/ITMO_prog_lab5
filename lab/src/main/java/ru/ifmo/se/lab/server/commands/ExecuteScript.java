@@ -40,7 +40,6 @@ public class ExecuteScript extends Command{
         } catch(IOException e){
             OutputManager.print("No such file.");
             Invoker.setModeState(false);
-            Invoker.removeCurrReadFile();
             return false;
         }
         boolean keepGoing = true;
