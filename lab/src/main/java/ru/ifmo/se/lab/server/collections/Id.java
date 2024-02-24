@@ -7,6 +7,10 @@ import ru.ifmo.se.lab.server.OutputManager;
 import ru.ifmo.se.lab.server.Validator;
 import ru.ifmo.se.lab.server.CollectionManager;
 
+/**
+ * id field of person
+ * @author raistlin
+ */
 public class Id extends AbstractField<Person, Integer> {
     
     @Override

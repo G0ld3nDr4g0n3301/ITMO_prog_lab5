@@ -2,15 +2,35 @@ package ru.ifmo.se.lab.server.collections;
 
 import com.opencsv.bean.CsvBindByName;
 
+/**
+ * Person's location(x,y,name)
+ * @author raistlin
+ */
 public class Location implements Comparable<Location> {
     
+    /**
+     * x value
+     */
     @CsvBindByName
     private Float locX;
+    
+    /**
+     * y value
+     */
     @CsvBindByName
     private Double locY;
+    
+    /**
+     * name of location(can be null)
+     */
     @CsvBindByName
     private String locName; //Поле может быть null
     
+    /**
+     * Checks if all the fields have the same value.
+     * @param loc another location
+     * @return 0 if OK
+     */
     @Override
     public int compareTo(Location loc){
         boolean good = this.locX.compareTo(loc.locX) == 0;
@@ -40,14 +60,26 @@ public class Location implements Comparable<Location> {
         return "\n\t x = " + locX + "\n\t y = " + locY + "\n\t name = " + locName;
     }
     
+    /**
+     * getter for x
+     * @return x
+     */
     public Float getLocX(){
         return this.locX;
     }
     
+    /**
+     * getter for y
+     * @return y
+     */
     public Double getLocY(){
         return this.locY;
     }
     
+    /**
+     * getter for name.
+     * @return name
+     */
     public String getName(){
         return this.locName;
     }

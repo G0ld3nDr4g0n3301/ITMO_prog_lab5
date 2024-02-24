@@ -4,6 +4,10 @@ import ru.ifmo.se.lab.server.InputManager;
 import ru.ifmo.se.lab.server.OutputManager;
 import ru.ifmo.se.lab.server.Validator;
 
+/**
+ * location field of person
+ * @author raistlin
+ */
 public class LocationField extends AbstractField<Person, Location>{
     
     @Override

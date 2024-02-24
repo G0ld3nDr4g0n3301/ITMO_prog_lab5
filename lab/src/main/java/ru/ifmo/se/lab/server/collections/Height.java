@@ -3,6 +3,10 @@ package ru.ifmo.se.lab.server.collections;
 import ru.ifmo.se.lab.server.InputManager;
 import ru.ifmo.se.lab.server.Validator;
 
+/**
+ * Height field of person.
+ * @author raistlin
+ */
 class Height extends AbstractField<Person,Long>{
     @Override
     public void set(Person p, Long h){

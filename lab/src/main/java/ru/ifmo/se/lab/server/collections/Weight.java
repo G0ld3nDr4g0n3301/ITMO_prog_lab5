@@ -3,6 +3,10 @@ package ru.ifmo.se.lab.server.collections;
 import ru.ifmo.se.lab.server.InputManager;
 import ru.ifmo.se.lab.server.Validator;
 
+/**
+ * weight field of person
+ * @author raistlin
+ */
 class Weight extends AbstractField<Person, Integer>{
 
     @Override

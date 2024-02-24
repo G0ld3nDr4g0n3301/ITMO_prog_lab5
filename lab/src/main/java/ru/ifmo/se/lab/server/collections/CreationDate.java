@@ -2,6 +2,10 @@ package ru.ifmo.se.lab.server.collections;
 
 import java.time.LocalDate;
 
+/**
+ * CreationDate field of Person(generated automatically)
+ * @author raistlin
+ */
 class CreationDate extends AbstractField<Person,LocalDate>{
     
     @Override

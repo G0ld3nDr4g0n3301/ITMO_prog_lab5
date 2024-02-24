@@ -5,6 +5,10 @@ import ru.ifmo.se.lab.server.Invoker;
 import ru.ifmo.se.lab.server.OutputManager;
 import ru.ifmo.se.lab.server.Validator;
 
+/**
+ * HairColor field of person
+ * @author raistlin
+ */
 class HairColor extends AbstractField<Person, Color>{
     
     @Override

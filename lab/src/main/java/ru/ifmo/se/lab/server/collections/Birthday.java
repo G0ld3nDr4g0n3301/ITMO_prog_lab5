@@ -5,6 +5,10 @@ import java.time.format.DateTimeFormatter;
 import ru.ifmo.se.lab.server.InputManager;
 import ru.ifmo.se.lab.server.Validator;
 
+/**
+ * Birthday field of Person.
+ * @author raistlin
+ */
 class Birthday extends AbstractField<Person, LocalDate>{
     
     @Override

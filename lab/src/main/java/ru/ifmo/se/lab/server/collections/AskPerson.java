@@ -6,11 +6,29 @@ import ru.ifmo.se.lab.server.Invoker;
 import ru.ifmo.se.lab.server.OutputManager;
 import ru.ifmo.se.lab.server.Validator;
 
-
+/**
+ * Class that can easily generate new person, based on user input
+ * @author raistlin
+ */
 public class AskPerson {
+    /**
+     * Array of simple fields, that must be entered in CL.
+     */
     private static ArrayList<AbstractField> simpleFields = new ArrayList<>();
+    
+    /**
+     * Array of fields, that can be null.
+     */
     private static ArrayList<AbstractField> canBeNullFields = new ArrayList<>();
-    private static ArrayList<AbstractField> complexFields = new ArrayList<>(); 
+    
+    /**
+     * Fields,that require another fields.
+     */
+    private static ArrayList<AbstractField> complexFields = new ArrayList<>();
+    
+    /**
+     * fields that should be generated automatically.
+     */
     private static ArrayList<AbstractField> toGenerate = new ArrayList<>();
     
     static {
@@ -39,6 +57,11 @@ public class AskPerson {
         toGenerate.add(creationDate);
     }
     
+    /**
+     * Method generates a new Person, based on user input
+     * @param args user input, splitted by " ".
+     * @return new person
+     */
     public static Person generatePerson(String[] args){
         Person person = new Person();
         

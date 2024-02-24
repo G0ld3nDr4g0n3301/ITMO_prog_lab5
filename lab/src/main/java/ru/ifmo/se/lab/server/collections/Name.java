@@ -2,6 +2,10 @@ package ru.ifmo.se.lab.server.collections;
 
 import ru.ifmo.se.lab.server.InputManager;
 
+/**
+ * Name field of person
+ * @author raistlin
+ */
 class Name extends AbstractField<Person, String>{
     
     @Override

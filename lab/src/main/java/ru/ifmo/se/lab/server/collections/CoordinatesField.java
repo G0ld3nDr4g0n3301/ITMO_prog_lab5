@@ -4,7 +4,10 @@ import ru.ifmo.se.lab.server.InputManager;
 import ru.ifmo.se.lab.server.OutputManager;
 import ru.ifmo.se.lab.server.Validator;
 
-
+/**
+ * Coordinates field of Person
+ * @author raistlin
+ */
 class CoordinatesField extends AbstractField<Person, Coordinates>{
 
     @Override

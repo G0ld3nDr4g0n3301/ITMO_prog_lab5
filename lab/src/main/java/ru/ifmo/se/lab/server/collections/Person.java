@@ -64,11 +64,18 @@ public class Person implements Comparable<Person>{
     @CsvRecurse
     private Location location; //Поле не может быть null
     
-    
+    /**
+     * Empty constructor needed for deserialization.
+     */
     public Person(){
         
     }
     
+    /**
+     * Compares persons by their ID's.
+     * @param p
+     * @return 0 if equals.
+     */
     @Override
     public int compareTo(Person p){
         if(this.getId() > p.getId()){
@@ -79,78 +86,152 @@ public class Person implements Comparable<Person>{
         return -1;
     }
     
+    /**
+     * set new location to person.
+     * @param location 
+     */
     public void setLocation(Location location){
         this.location = location;
     }
     
+    /**
+     * sets new hair color to person
+     * @param color 
+     */
     public void setHairColor(Color color){
         this.hairColor = color;
     }
     
+    /**
+     * sets new weight to person
+     * @param weight 
+     */
     public void setWeight(Integer weight){
         this.weight = weight;
     }
     
+    /**
+     * setter for birthday
+     * @param birthday 
+     */
     public void setBirthday(LocalDate birthday){
         this.birthday = birthday;
     }
     
+    /**
+     * setter for height
+     * @param height 
+     */
     public void setHeight(Long height){
         this.height = height;
     }
     
+    /**
+     * setter for creation date
+     * @param crDate 
+     */
     public void setCreationDate(LocalDate crDate){
         this.creationDate = crDate;
     }
     
+    /**
+     * setter for coordinates
+     * @param coordinates 
+     */
     public void setCoordinates(Coordinates coordinates){
         this.coordinates = coordinates;
     }
-    
+    /**
+     * setter for name
+     * @param name 
+     */
     public void setName(String name){
         this.name = name;
     }
     
+    /**
+     * setter for id
+     * @param id 
+     */
     public void setId(Integer id){
         this.id = id;
     }
     
+    /**
+     * getter for id
+     * @return 
+     */
     public Integer getId(){
         return id;
     }
     
+    /**
+     * getter for location
+     * @return 
+     */
     public Location getLocation(){
         return location;
     }
     
+    /**
+     * getter for hair color
+     * @return 
+     */
     public Color getHairColor(){
         return hairColor;
     }
     
+    /**
+     * getter for weight
+     * @return 
+     */
     public Integer getWeight(){
         return weight;
     }
     
+    /**
+     * getter for birthday
+     * @return 
+     */
     public LocalDate getBirthday(){
         return birthday;
     }
     
+    /**
+     * getter for height
+     * @return 
+     */
     public Long getHeight(){
         return height;
     }
     
+    /**
+     * getter for creation date
+     * @return 
+     */
     public LocalDate getCreationDate(){
         return creationDate;
     }
-    
+    /**
+     * getter for coordinates
+     * @return 
+     */
     public Coordinates getCoordinates(){
         return coordinates;
     }
     
+    /**
+     * getter for name
+     * @return 
+     */
     public String getName(){
         return name;
     }
     
+    /**
+     * defining how to print a person
+     * @return 
+     */
     @Override
     public String toString(){
         String str = "id = " + id;
