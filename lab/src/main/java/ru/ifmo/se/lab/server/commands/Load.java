@@ -38,8 +38,7 @@ public class Load extends Command{
         } catch(EmptyStackException | NullPointerException e){
             OutputManager.print("No input file specified.");
             return false;
-        } 
-        CollectionManager.clear();
+        }
         CollectionManager.addAll(newList);
         return true;
     }

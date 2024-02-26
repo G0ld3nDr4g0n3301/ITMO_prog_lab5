@@ -35,8 +35,8 @@ class HairColor extends AbstractField<Person, Color>{
             }
         }
         String input = InputManager.ask("Enter the hair color: ");
-        if(Validator.validateColor(input)){
-            return Color.valueOf(input);
+        if(Validator.validateColor(input.toUpperCase())){
+            return Color.valueOf(input.toUpperCase());
         }
         return null;
     }

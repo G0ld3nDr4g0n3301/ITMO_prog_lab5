@@ -79,11 +79,11 @@ public class Invoker {
      * @return true, if no errors encountered during runtime of command.
      */
     public static boolean execute(String[] args){
-        if (!(commands.containsKey(args[0]))){
+        if (!(commands.containsKey(args[0].toLowerCase()))){
             OutputManager.print("Wrong command. Type \"help\" for command list");
             return false;
         }
-        commands.get(args[0]).execute(args);
+        commands.get(args[0].toLowerCase()).execute(args);
         return true;
     }
     
