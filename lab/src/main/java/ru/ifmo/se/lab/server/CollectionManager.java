@@ -3,6 +3,7 @@ package ru.ifmo.se.lab.server;
 import java.util.ArrayList;
 import ru.ifmo.se.lab.server.collections.Person;
 import java.time.LocalDate;
+import java.util.Collections;
 import java.util.List;
 import ru.ifmo.se.lab.server.collections.Color;
 import ru.ifmo.se.lab.server.collections.Location;
@@ -35,6 +36,7 @@ public class CollectionManager {
      */
     public static void add(Person p){
         collection.add(p);
+        sort();
     }
     
     /**
@@ -129,5 +131,20 @@ public class CollectionManager {
             colors.add(p.getHairColor());
         }
         return colors;
+    }
+    
+    /**
+     * sorts the collection
+     */
+    public static void sort(){
+        Collections.sort(collection);
+    }
+    
+    /**
+     * adds all newList elements to collection
+     */
+    public static void addAll(List<Person> newList){
+        collection.addAll(newList);
+        sort();
     }
 }

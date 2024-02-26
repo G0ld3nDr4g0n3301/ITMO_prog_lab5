@@ -39,8 +39,8 @@ public class Load extends Command{
             OutputManager.print("No input file specified.");
             return false;
         } 
-        CollectionManager.getCollection().clear();
-        CollectionManager.getCollection().addAll(newList);
+        CollectionManager.clear();
+        CollectionManager.addAll(newList);
         return true;
     }
     
