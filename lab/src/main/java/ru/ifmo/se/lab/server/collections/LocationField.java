@@ -29,13 +29,13 @@ public class LocationField extends AbstractField<Person, Location>{
     public Location create(String input){
         Float newX = null;
         Double newY = null;
-        String x = InputManager.ask("Enter x for coordinates: ");
+        String x = InputManager.ask("Enter location X coordinate: ");
         if(Validator.validateLocX(x)){
             newX = Float.parseFloat(x);
         } else{
             return null;
         }
-        String y = InputManager.ask("Enter y for coordinates: ");
+        String y = InputManager.ask("Enter location Y coordinate: ");
         if(Validator.validateLocY(y)){
             newY = Double.parseDouble(y);
         } else{

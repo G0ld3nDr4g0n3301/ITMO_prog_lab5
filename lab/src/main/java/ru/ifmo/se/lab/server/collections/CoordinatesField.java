@@ -29,13 +29,13 @@ class CoordinatesField extends AbstractField<Person, Coordinates>{
     public Coordinates create(String input){
         Double newX = null;
         Long newY = null;
-        String x = InputManager.ask("Enter x for coordinates: ");
+        String x = InputManager.ask("Enter x coordinate: ");
         if(Validator.validateCoordX(x)){
             newX = Double.parseDouble(x);
         } else{
             return null;
         }
-        String y = InputManager.ask("Enter y for coordinates: ");
+        String y = InputManager.ask("Enter y coordinate: ");
         if(Validator.validateCoordY(y)){
             newY = Long.parseLong(y);
         } else{
