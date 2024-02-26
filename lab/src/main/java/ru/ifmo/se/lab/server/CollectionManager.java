@@ -97,7 +97,7 @@ public class CollectionManager {
      */
     public static Person findPerson(Location loc){
         for(Person p : collection){
-            if(p.getLocation().compareTo(loc) == 0){
+            if(p.getLocation().equals(loc)){
                 return p;
             }
         }

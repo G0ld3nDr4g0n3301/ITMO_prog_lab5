@@ -86,6 +86,29 @@ public class Person implements Comparable<Person>{
         return -1;
     }
     
+    @Override
+    public boolean equals(Object obj){
+        if(obj.hashCode() != this.hashCode()){
+            return false;
+        }
+        if(obj == this){
+            return true;
+        }
+        if(obj == null){
+            return false;
+        }
+        if(!(obj instanceof Person)){
+            return false;
+        }
+        Person obj2 = (Person) obj;
+        return this.compareTo(obj2) == 0 ? true : false;
+    }
+    
+    @Override
+    public int hashCode(){
+        return this.getId();
+    }
+    
     /**
      * set new location to person.
      * @param location 

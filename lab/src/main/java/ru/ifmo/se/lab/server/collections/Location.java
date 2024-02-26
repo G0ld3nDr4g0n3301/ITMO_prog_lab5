@@ -60,6 +60,29 @@ public class Location implements Comparable<Location> {
         return "\n\t x = " + locX + "\n\t y = " + locY + "\n\t name = " + locName;
     }
     
+    @Override
+    public int hashCode(){
+        return this.getLocX().intValue() * 3 + this.getLocY().intValue() * 7 + this.getName().length() * 13;
+    }
+    
+    @Override
+    public boolean equals(Object obj){
+        if(obj == null){
+            return false;
+        }
+        if(obj == this){
+            return true;
+        }
+        if(this.hashCode() != obj.hashCode()){
+            return false;
+        }
+        if(!(obj instanceof Location)){
+            return false;
+        }
+        Location obj2 = (Location) obj;
+        return (this.getLocX().compareTo(obj2.getLocX()) == 0 && (this.getLocY().compareTo(obj2.getLocY()) == 0 && this.getName().compareTo(obj2.getName()) == 0));
+    }
+    
     /**
      * getter for x
      * @return x
