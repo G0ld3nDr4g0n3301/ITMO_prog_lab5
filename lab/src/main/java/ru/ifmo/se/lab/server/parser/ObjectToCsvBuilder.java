@@ -1,13 +1,17 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package ru.ifmo.se.lab.server.parser;
 
-/**
- *
- * @author raistlin
- */
+import java.io.Writer;
+
 public class ObjectToCsvBuilder {
+    private MappingStrategy strategy;
+    private Class targetClass;
+    private Writer targetFile;
+    private String separator = ",";
+    
+    
+    public ObjectToCsvBuilder(Writer writer){
+        this.targetFile = writer;
+    }
+    
     
 }
