@@ -9,13 +9,20 @@ import java.util.List;
 public class ObjectToCsv {
     
     private Class targetClass;
-    private String separator;
+    private String separator = ",";
     private MappingStrategy strategy;
-    private Writer targetFile;
     
-    ObjectToCsv(Class clas, Writer file, String sep, MappingStrategy strat){
+    ObjectToCsv(Class clas, String sep, MappingStrategy strat) throws CsvNotEnoughArgsException{
+        
+        if(targetClass == null){
+            throw new CsvNotEnoughArgsException("Must specify target class!");
+        } else if (strategy == null){
+            throw new CsvNotEnoughArgsException("Must specify mapping strategy!");
+        }  else if (separator == null) {
+            throw new CsvNotEnoughArgsException("Must specify the separator!");
+        }
+        
         this.targetClass = clas;
-        this.targetFile = file;
         this.separator = sep;
         this.strategy = strat;
     }
