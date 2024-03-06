@@ -4,9 +4,10 @@ import java.io.Writer;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 public class ObjectToCsv {
-    private HashMap<String, HashMap<String,ArrayList>> classFieldMap;
+    
     private Class targetClass;
     private String separator;
     private MappingStrategy strategy;
@@ -17,14 +18,35 @@ public class ObjectToCsv {
         this.targetFile = file;
         this.separator = sep;
         this.strategy = strat;
-        this.init();
     }
     
-    private void init(){
-        this.classFieldMap = new CreateAnnotatedFieldsMap().collect(this.targetClass);
+    public String convert(List<Object> list) throws NoSuchFieldException, IllegalAccessException, CsvWrongStructureException{
+        String result = "";
+        for (Object obj : list){
+            result += this.convert(obj) + "\n";
+        }
+        return result;
     }
     
+    public String convert(Object obj) throws NoSuchFieldException, IllegalAccessException, CsvWrongStructureException{
+        String result = "\"";
+        List<String> data = FieldCollector.collect(obj, this);
+        for (String fieldValue : data){
+            result += fieldValue + "\"" + separator + "\"";
+        }
+        return result.substring(0,result.length() - 2);
+    }
     
+    public Class getTargetClass(){
+        return this.targetClass;
+    }
     
+    public MappingStrategy getMappingStrategy(){
+        return this.strategy;
+    }
+    
+    public String getSeparator(){
+        return this.separator;
+    }
     
 }
