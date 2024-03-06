@@ -6,6 +6,7 @@ import java.io.IOException;
 import java.util.List;
 import java.util.ArrayList;
 import java.io.File;
+import ru.ifmo.se.lab.server.OutputManager;
 import ru.ifmo.se.lab.server.collections.Person;
 import ru.ifmo.se.lab.server.parser.ObjectToCsv;
 
@@ -28,14 +29,15 @@ public class WritePerson {
         
         try{
             PersonMappingStrategy mappingStrategy = new PersonMappingStrategy();
-            
+            System.out.print(Person.class == null);
             String csvData = new ObjectToCsv(Person.class,",",mappingStrategy).convert(list);
+            System.out.println(csvData);
             file.write(csvData);
             file.close();
             return true;
         
         } catch(Exception e){
-        
+            System.out.println(e.getMessage());
             file.close();
             return false;
         }

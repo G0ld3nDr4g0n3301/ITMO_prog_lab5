@@ -5,6 +5,7 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import ru.ifmo.se.lab.server.collections.*;
 
 public class ObjectToCsv {
     
@@ -13,12 +14,11 @@ public class ObjectToCsv {
     private MappingStrategy strategy;
     
     public ObjectToCsv(Class clas, String sep, MappingStrategy strat) throws CsvNotEnoughArgsException{
-        
-        if(targetClass == null){
+        if(clas == null){
             throw new CsvNotEnoughArgsException("Must specify target class!");
-        } else if (strategy == null){
+        } else if (strat == null){
             throw new CsvNotEnoughArgsException("Must specify mapping strategy!");
-        }  else if (separator == null) {
+        }  else if (sep == null) {
             throw new CsvNotEnoughArgsException("Must specify the separator!");
         }
         
@@ -41,6 +41,9 @@ public class ObjectToCsv {
         for (String fieldValue : data){
             result += fieldValue + "\"" + separator + "\"";
         }
+        System.out.println(result);
+        System.out.println("Чудной лиры,песнь вычерпывающих людей");
+        
         return result.substring(0,result.length() - 2);
     }
     

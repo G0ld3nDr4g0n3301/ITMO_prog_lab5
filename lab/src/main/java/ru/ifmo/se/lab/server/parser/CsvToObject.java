@@ -11,11 +11,11 @@ public class CsvToObject {
     
     public CsvToObject(Class clas, String sep, MappingStrategy strat) throws CsvNotEnoughArgsException{
         
-        if(targetClass == null){
+        if(clas == null){
             throw new CsvNotEnoughArgsException("Must specify target class!");
-        } else if (strategy == null){
+        } else if (strat == null){
             throw new CsvNotEnoughArgsException("Must specify mapping strategy!");
-        }  else if (separator == null) {
+        }  else if (sep == null) {
             throw new CsvNotEnoughArgsException("Must specify the separator!");
         }
         
