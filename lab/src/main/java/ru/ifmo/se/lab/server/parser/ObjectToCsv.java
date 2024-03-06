@@ -12,7 +12,7 @@ public class ObjectToCsv {
     private String separator = ",";
     private MappingStrategy strategy;
     
-    ObjectToCsv(Class clas, String sep, MappingStrategy strat) throws CsvNotEnoughArgsException{
+    public ObjectToCsv(Class clas, String sep, MappingStrategy strat) throws CsvNotEnoughArgsException{
         
         if(targetClass == null){
             throw new CsvNotEnoughArgsException("Must specify target class!");

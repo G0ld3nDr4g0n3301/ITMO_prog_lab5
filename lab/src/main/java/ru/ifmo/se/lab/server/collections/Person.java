@@ -3,6 +3,7 @@ package ru.ifmo.se.lab.server.collections;
 import java.time.LocalDate;
 import com.opencsv.bean.CsvBindByName;
 import com.opencsv.bean.CsvRecurse;
+import ru.ifmo.se.lab.server.parser.CsvBind;
 
 /**
  * Main class of the collection.
@@ -13,55 +14,55 @@ public class Person implements Comparable<Person>{
     /**
      * id of a person
      */
-    @CsvBindByName
+    @CsvBind
     private Integer id; //Поле не может быть null, Значение поля должно быть больше 0, Значение этого поля должно быть уникальным, Значение этого поля должно генерироваться автоматически
     
     /**
      * Name of a Person
      */
-    @CsvBindByName
+    @CsvBind
     private String name; //Поле не может быть null, Строка не может быть пустой
     
     /**
      * Coordinates(x,y) of a person
      */
-    @CsvRecurse
+    @CsvBind
     private Coordinates coordinates; //Поле не может быть null
     
     /**
      * Creation date of a person
      */
-    @CsvBindByName
+    @CsvBind
     private LocalDate creationDate; //Поле не может быть null, Значение этого поля должно генерироваться автоматически
     
     /**
      * height of a person
      */
-    @CsvBindByName
+    @CsvBind
     private long height; //Значение поля должно быть больше 0
     
     /**
      * birthday of a person(can be null)
      */
-    @CsvBindByName
+    @CsvBind
     private LocalDate birthday; //Поле может быть null
     
     /**
      * Weight of a person
      */
-    @CsvBindByName
+    @CsvBind
     private int weight; //Значение поля должно быть больше 0
     
     /**
      * Hair color of a person(enum)
      */
-    @CsvBindByName
+    @CsvBind
     private Color hairColor; //Поле не может быть null
     
     /**
      * Location of a person
      */
-    @CsvRecurse
+    @CsvBind
     private Location location; //Поле не может быть null
     
     /**

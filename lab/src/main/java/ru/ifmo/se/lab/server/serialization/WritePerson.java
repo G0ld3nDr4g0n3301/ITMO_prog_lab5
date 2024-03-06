@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.ArrayList;
 import java.io.File;
 import ru.ifmo.se.lab.server.collections.Person;
+import ru.ifmo.se.lab.server.parser.ObjectToCsv;
 
 /**
  * Write collection to CSV format and save to file.(serialization)
@@ -26,12 +27,10 @@ public class WritePerson {
         PrintWriter file = new PrintWriter(filename);
         
         try{
-            String[] header = {"id","name","Coordinate X","Coordinate Y","Creation Date","Height","Birthday","Weight","Hair Color","Location X","Location Y","Location Name"};
             PersonMappingStrategy mappingStrategy = new PersonMappingStrategy();
             
-            StatefulBeanToCsvBuilder<Person> builder = new StatefulBeanToCsvBuilder(file).withMappingStrategy(mappingStrategy);
-            StatefulBeanToCsv writer = builder.build();
-            writer.write(list);
+            String csvData = new ObjectToCsv(Person.class,",",mappingStrategy).convert(list);
+            file.write(csvData);
             file.close();
             return true;
         

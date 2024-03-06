@@ -1,6 +1,7 @@
 package ru.ifmo.se.lab.server.collections;
 
 import com.opencsv.bean.CsvBindByName;
+import ru.ifmo.se.lab.server.parser.CsvBind;
 
 /**
  * Coordinates(x,y) of person.
@@ -11,13 +12,13 @@ public class Coordinates {
     /**
      * x value
      */
-    @CsvBindByName
+    @CsvBind
     private double cordX; //Значение поля должно быть больше -92
     
     /**
      * y value
      */
-    @CsvBindByName
+    @CsvBind
     private Long cordY; //Поле не может быть null
 
     /**

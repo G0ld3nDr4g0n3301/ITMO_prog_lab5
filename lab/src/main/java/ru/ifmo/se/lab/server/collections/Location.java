@@ -1,6 +1,7 @@
 package ru.ifmo.se.lab.server.collections;
 
 import com.opencsv.bean.CsvBindByName;
+import ru.ifmo.se.lab.server.parser.CsvBind;
 
 /**
  * Person's location(x,y,name)
@@ -11,19 +12,19 @@ public class Location implements Comparable<Location> {
     /**
      * x value
      */
-    @CsvBindByName
+    @CsvBind
     private Float locX;
     
     /**
      * y value
      */
-    @CsvBindByName
+    @CsvBind
     private Double locY;
     
     /**
      * name of location(can be null)
      */
-    @CsvBindByName
+    @CsvBind
     private String locName; //Поле может быть null
     
     /**

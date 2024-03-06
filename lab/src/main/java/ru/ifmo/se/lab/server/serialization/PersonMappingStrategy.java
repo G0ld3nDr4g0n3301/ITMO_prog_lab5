@@ -1,7 +1,7 @@
 package ru.ifmo.se.lab.server.serialization;
 
-import com.opencsv.bean.*;
 import ru.ifmo.se.lab.server.collections.*;
+import ru.ifmo.se.lab.server.parser.*;
 import com.opencsv.exceptions.*;
 import java.io.IOException;
 import ru.ifmo.se.lab.server.Validator;
@@ -12,15 +12,15 @@ import java.time.format.DateTimeFormatter;
  * Mapping strategy for serializing and deserializing Person object.
  * @author raistlin
  */
-public class PersonMappingStrategy extends ColumnPositionMappingStrategy{
+public class PersonMappingStrategy implements MappingStrategy{
+    
+    private String[] header = {"id","name","coordinates.cordX","coordinates.cordY","creationDate","height","birthday","weight","hairColor","location.locX","location.locY","location.locName"};
     
     /**
      * sets necessary types,CSV header and column mapping.
      */
     public PersonMappingStrategy(){
-        this.setType(Person.class);
-        String[] mapping = {"id","name","cordX","cordY","creationDate","height","birthday","weight","hairColor","locX","locY","locName"};
-        this.setColumnMapping(mapping);
+        
     }
     
     /**
@@ -33,13 +33,14 @@ public class PersonMappingStrategy extends ColumnPositionMappingStrategy{
      * @throws CsvConstraintViolationException
      * @throws CsvValidationException 
      */
-    public Object populateNewBean(String[] line) throws CsvBeanIntrospectionException, CsvRequiredFieldEmptyException,
-    CsvDataTypeMismatchException, CsvConstraintViolationException, CsvValidationException {
+    
+    @Override
+    public Object fillObject(String[] line) {
         boolean good = Validator.validateId(line[0]) && (line[1] != null) && Validator.validateCoordX(line[2]) && Validator.validateCoordY(line[3]);
         good = good && Validator.validateBirthday(line[4]) && Validator.validateHeight(line[5]) && (line[6] == "" || Validator.validateBirthday(line[6])) && Validator.validateWeight(line[7]);
         good = good && Validator.validateColor(line[8]) && Validator.validateLocX(line[9]) && Validator.validateLocY(line[10]);
         if(!good){
-            throw new CsvRequiredFieldEmptyException("the file contains wrong data.");
+            throw new CsvWrongDataException("the file contains wrong data.");
         }
         
         Person p = new Person();
@@ -75,5 +76,10 @@ public class PersonMappingStrategy extends ColumnPositionMappingStrategy{
         p.setName(name);
         
         return p;
+    }
+    
+    @Override
+    public String[] getHeader(){
+        return this.header;
     }
 }

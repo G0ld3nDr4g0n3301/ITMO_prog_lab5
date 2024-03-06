@@ -10,9 +10,11 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.List;
+import java.util.Scanner;
 import ru.ifmo.se.lab.server.OutputManager;
 import ru.ifmo.se.lab.server.Validator;
 import ru.ifmo.se.lab.server.collections.Person;
+import ru.ifmo.se.lab.server.parser.CsvToObject;
 
 /**
  * read CSV data from file, and parse it to list of Persons
@@ -30,15 +32,15 @@ public class ReadPerson {
     public static List<Person> read(File filename) throws IOException,NullPointerException{
         
         FileReader reader = new FileReader(filename);
+        Scanner scan = new Scanner(reader);
+        String csvData = "";
+        while (scan.hasNextLine()){
+            csvData += scan.nextLine() + "\n";
+        }
         
         try{
             PersonMappingStrategy strategy = new PersonMappingStrategy();
-            CsvExceptionHandler exceptionHandler = new ExceptionHandlerIgnore();
-            
-            CsvToBeanBuilder<Person> builder = new CsvToBeanBuilder<Person>(reader).withMappingStrategy(strategy);
-            builder.withExceptionHandler(exceptionHandler);
-            CsvToBean<Person> csv = builder.build();
-            List<Person> list = csv.parse();
+            List<Person> list = (List<Person>)(List<?>) new CsvToObject(Person.class,",",strategy).parse(csvData);
             if(!Validator.validateUniqueId(list)){
                 OutputManager.print("id is not unique!");
                 return null;
