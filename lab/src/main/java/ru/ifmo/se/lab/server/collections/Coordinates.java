@@ -42,6 +42,14 @@ public class Coordinates {
         this.cordY = y;
     }
     
+    public Double getX(){
+        return this.cordX;
+    }
+    
+    public Long getY(){
+        return this.cordY;
+    }
+    
     
     @Override
     public String toString(){

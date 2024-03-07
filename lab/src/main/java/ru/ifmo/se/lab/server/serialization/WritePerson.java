@@ -29,17 +29,18 @@ public class WritePerson {
         
         try{
             PersonMappingStrategy mappingStrategy = new PersonMappingStrategy();
-            System.out.print(Person.class == null);
-            String csvData = new ObjectToCsv(Person.class,",",mappingStrategy).convert(list);
+            ObjectToCsv csvParser = new ObjectToCsv(Person.class,",",mappingStrategy);
+            String csvData = csvParser.convert((List<Object>)(List<?>)list);
             System.out.println(csvData);
             file.write(csvData);
             file.close();
             return true;
         
         } catch(Exception e){
-            System.out.println(e.getMessage());
+            e.printStackTrace();
+            System.out.println("f");
             file.close();
             return false;
-        }
+        } 
     }
 }

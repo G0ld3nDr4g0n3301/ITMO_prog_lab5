@@ -21,13 +21,12 @@ public class ObjectToCsv {
         }  else if (sep == null) {
             throw new CsvNotEnoughArgsException("Must specify the separator!");
         }
-        
         this.targetClass = clas;
         this.separator = sep;
         this.strategy = strat;
     }
     
-    public String convert(List<Object> list) throws NoSuchFieldException, IllegalAccessException, CsvWrongStructureException{
+    public String convert(List<Object> list) throws CsvWrongStructureException{
         String result = "";
         for (Object obj : list){
             result += this.convert(obj) + "\n";
@@ -35,14 +34,14 @@ public class ObjectToCsv {
         return result;
     }
     
-    public String convert(Object obj) throws NoSuchFieldException, IllegalAccessException, CsvWrongStructureException{
+    private String convert(Object obj) throws CsvWrongStructureException{
         String result = "\"";
-        List<String> data = FieldCollector.collect(obj, this);
+        List<String> data = this.strategy.getObject(obj);
         for (String fieldValue : data){
             result += fieldValue + "\"" + separator + "\"";
         }
         System.out.println(result);
-        System.out.println("Чудной лиры,песнь вычерпывающих людей");
+        System.out.println("Песнь вычерпывающих людей");
         
         return result.substring(0,result.length() - 2);
     }

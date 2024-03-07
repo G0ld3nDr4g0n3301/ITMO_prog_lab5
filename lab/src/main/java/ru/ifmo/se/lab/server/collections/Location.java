@@ -26,6 +26,10 @@ public class Location implements Comparable<Location> {
      */
     @CsvBind
     private String locName; //Поле может быть null
+
+    
+  
+    
     
     /**
      * Checks if all the fields have the same value.

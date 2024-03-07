@@ -7,6 +7,8 @@ import java.io.IOException;
 import ru.ifmo.se.lab.server.Validator;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Mapping strategy for serializing and deserializing Person object.
@@ -15,6 +17,29 @@ import java.time.format.DateTimeFormatter;
 public class PersonMappingStrategy implements MappingStrategy{
     
     private String[] header = {"id","name","coordinates.cordX","coordinates.cordY","creationDate","height","birthday","weight","hairColor","location.locX","location.locY","location.locName"};
+    
+    @Override
+    public List<String> getObject(Object obj){
+        ArrayList<String> fields = new ArrayList<>();
+        Person pers = (Person) obj;
+        
+        fields.add(pers.getId().toString());
+        fields.add(pers.getName());
+        fields.add(pers.getCoordinates().getX().toString());
+        fields.add(pers.getCoordinates().getY().toString());
+        fields.add(pers.getCreationDate().toString());
+        fields.add(pers.getHeight().toString());
+        fields.add(pers.getBirthday().toString());
+        fields.add(pers.getWeight().toString());
+        fields.add(pers.getHairColor().toString());
+        fields.add(pers.getLocation().getLocX().toString());
+        fields.add(pers.getLocation().getLocY().toString());
+        fields.add(pers.getLocation().getName());
+        
+        
+        return fields;
+    }
+    
     
     /**
      * sets necessary types,CSV header and column mapping.
@@ -82,4 +107,6 @@ public class PersonMappingStrategy implements MappingStrategy{
     public String[] getHeader(){
         return this.header;
     }
+    
+    
 }
