@@ -1,6 +1,5 @@
 package ru.ifmo.se.lab.server.collections;
 
-import com.opencsv.bean.CsvBindByName;
 import ru.ifmo.se.lab.server.parser.CsvBind;
 
 /**

@@ -1,9 +1,5 @@
 package ru.ifmo.se.lab.server.serialization;
 
-import com.opencsv.bean.*;
-import com.opencsv.bean.exceptionhandler.CsvExceptionHandler;
-import com.opencsv.bean.exceptionhandler.ExceptionHandlerIgnore;
-import com.opencsv.exceptions.CsvException;
 import java.util.ArrayList;
 import java.io.File;
 import java.io.FileNotFoundException;

@@ -42,7 +42,7 @@ public class InputManager {
      * reloads scanner to prevent fatal error
      */
     public static void reloadScanner(){
-        System.out.print("\n");
+        OutputManager.print("\n");
         scan = new Scanner(System.in);
     }
     

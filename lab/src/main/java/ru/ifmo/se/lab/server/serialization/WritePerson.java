@@ -1,6 +1,5 @@
 package ru.ifmo.se.lab.server.serialization;
 
-import com.opencsv.bean.*;
 import java.io.PrintWriter;
 import java.io.IOException;
 import java.util.List;
@@ -31,14 +30,12 @@ public class WritePerson {
             PersonMappingStrategy mappingStrategy = new PersonMappingStrategy();
             ObjectToCsv csvParser = new ObjectToCsv(Person.class,",",mappingStrategy);
             String csvData = csvParser.convert((List<Object>)(List<?>)list);
-            System.out.println(csvData);
             file.write(csvData);
             file.close();
             return true;
         
         } catch(Exception e){
-            e.printStackTrace();
-            System.out.println("f");
+            OutputManager.print(e.getMessage());
             file.close();
             return false;
         } 

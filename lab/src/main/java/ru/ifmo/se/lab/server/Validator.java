@@ -31,6 +31,14 @@ public class Validator {
         }
     }
     
+    
+    public static boolean checkEmpty(String input){
+        if(input == ""){
+            return true;
+        }
+        return false;
+    }
+    
     /**
      * Checks, if id is a unique positive number
      * 
@@ -53,6 +61,23 @@ public class Validator {
             }
         }
         return true;
+    }
+    
+    /**
+     * Checks if obj == null
+     * @param obj
+     * @return true if obj is null
+     */
+    public static boolean checkNull(Object obj){
+        return obj == null;
+    }
+    
+    public static boolean checkNull(Object[] obj){
+        boolean res = false;
+        for (Object i : obj){
+            res = res || checkNull(i);
+        }
+        return res;
     }
     
     /**
@@ -119,6 +144,9 @@ public class Validator {
      * @return result of validation
      */
     public static boolean validateBirthday(String input){
+        if(input == null){
+            return true;
+        }
         try{
             LocalDate.parse(input, DateTimeFormatter.ISO_DATE);
         } catch( Exception e){

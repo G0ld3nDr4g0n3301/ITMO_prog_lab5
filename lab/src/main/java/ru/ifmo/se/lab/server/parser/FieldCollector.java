@@ -6,6 +6,10 @@ import java.util.HashMap;
 import java.util.List;
 import ru.ifmo.se.lab.server.collections.Person;
 
+/**
+ * @deprecated
+ * @author raistlin
+ */
 public class FieldCollector {
     
     static List<String> collect(Object obj, ObjectToCsv parser) throws NoSuchFieldException, CsvWrongStructureException, IllegalAccessException{

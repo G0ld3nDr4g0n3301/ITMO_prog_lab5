@@ -40,8 +40,6 @@ public class ObjectToCsv {
         for (String fieldValue : data){
             result += fieldValue + "\"" + separator + "\"";
         }
-        System.out.println(result);
-        System.out.println("Песнь вычерпывающих людей");
         
         return result.substring(0,result.length() - 2);
     }
