@@ -9,7 +9,10 @@ import ru.ifmo.se.lab.server.Validator;
  * @author raistlin
  */
 class CoordinatesField extends AbstractField<Person, Coordinates>{
-
+    private int stoppedOn = 0;
+    private Double newX = null;
+    private Long newY = null;
+    
     @Override
     public void set(Person p, Coordinates c){
         p.setCoordinates(c);
@@ -27,20 +30,30 @@ class CoordinatesField extends AbstractField<Person, Coordinates>{
     
     @Override
     public Coordinates create(String input){
-        Double newX = null;
-        Long newY = null;
-        String x = InputManager.ask("Enter x coordinate: ");
-        if(Validator.validateCoordX(x)){
-            newX = Double.parseDouble(x);
-        } else{
-            return null;
+        switch (this.stoppedOn) {
+            case 0: {
+                String x = InputManager.ask("Enter x coordinate: ");
+                if(Validator.validateCoordX(x)){
+                    newX = Double.parseDouble(x);
+                } else{
+                    return null;
+                }
+                this.stoppedOn += 1;
+            }
+            case 1: {
+                String y = InputManager.ask("Enter y coordinate: ");
+                if(Validator.validateCoordY(y)){
+                    newY = Long.parseLong(y);
+                } else{
+                    return null;
+                }
+                this.stoppedOn += 1;
+                break;
+            }
+            default: return null;
         }
-        String y = InputManager.ask("Enter y coordinate: ");
-        if(Validator.validateCoordY(y)){
-            newY = Long.parseLong(y);
-        } else{
-            return null;
-        }
+        
+        
         Coordinates coords = new Coordinates(newX,newY);
         if(Validator.validateCoords(coords)){
             return coords;

@@ -9,6 +9,10 @@ import ru.ifmo.se.lab.server.Validator;
  * @author raistlin
  */
 public class LocationField extends AbstractField<Person, Location>{
+    private Float newX = null;
+    private Double newY = null;
+    private int stoppedOn = 0;
+    
     
     @Override
     public void set(Person p, Location l){
@@ -27,20 +31,30 @@ public class LocationField extends AbstractField<Person, Location>{
     
     @Override
     public Location create(String input){
-        Float newX = null;
-        Double newY = null;
-        String x = InputManager.ask("Enter location X coordinate: ");
-        if(Validator.validateLocX(x)){
-            newX = Float.parseFloat(x);
-        } else{
-            return null;
+        switch (this.stoppedOn) {
+            case 0: {
+                String x = InputManager.ask("Enter location X coordinate: ");
+                if(Validator.validateLocX(x)){
+                    newX = Float.parseFloat(x);
+                } else{
+                    return null;
+                }
+                this.stoppedOn += 1;
+            }
+            case 1: {
+                String y = InputManager.ask("Enter location Y coordinate: ");
+                if(Validator.validateLocY(y)){
+                    newY = Double.parseDouble(y);
+                } else{
+                    return null;
+                }
+                this.stoppedOn += 1;
+                break;
+            }
+            default: return null;
         }
-        String y = InputManager.ask("Enter location Y coordinate: ");
-        if(Validator.validateLocY(y)){
-            newY = Double.parseDouble(y);
-        } else{
-            return null;
-        }
+        
+        
         String name = InputManager.ask("Enter the name of Location: ");
         if(name == ""){
             name = null;
