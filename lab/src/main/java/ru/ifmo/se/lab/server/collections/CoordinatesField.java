@@ -25,7 +25,8 @@ class CoordinatesField extends AbstractField<Person, Coordinates>{
     
     @Override
     public String ask(){
-        return "";
+        this.stoppedOn = 0;
+        return null;
     }
     
     @Override

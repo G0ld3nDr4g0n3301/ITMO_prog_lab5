@@ -105,6 +105,7 @@ public class AskPerson {
             do{
                 Object value = field.create("");
                 if(value != null){
+                    field.ask();
                     field.set(person, value);
                     end = true;
                 }

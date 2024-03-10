@@ -26,6 +26,7 @@ public class LocationField extends AbstractField<Person, Location>{
     
     @Override
     public String ask(){
+        this.stoppedOn = 0;
         return "";
     }
     

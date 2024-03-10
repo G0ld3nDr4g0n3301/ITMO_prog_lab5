@@ -31,7 +31,10 @@ public class ReadPerson {
         Scanner scan = new Scanner(reader);
         String csvData = "";
         while (scan.hasNextLine()){
-            csvData += scan.nextLine() + "\n";
+            String line = scan.nextLine();
+            if(!(line == "")){
+                csvData += line + "\n";
+            }
         }
         
         try{
