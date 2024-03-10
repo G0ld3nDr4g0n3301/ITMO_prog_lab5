@@ -40,6 +40,7 @@ public class Load extends Command{
             return false;
         }
         CollectionManager.addAll(newList);
+        OutputManager.print("Data retrieved.");
         return true;
     }
     

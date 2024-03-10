@@ -67,7 +67,7 @@ public class PersonMappingStrategy implements MappingStrategy{
      */
     
     @Override
-    public Object fillObject(String[] old_line) {
+    public Object fillObject(String[] old_line) throws CsvWrongDataException{
         String[] line = old_line;
         
         for(int i = 0; i< line.length; i++){
