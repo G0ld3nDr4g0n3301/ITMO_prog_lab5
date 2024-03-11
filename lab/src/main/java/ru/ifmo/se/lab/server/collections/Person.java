@@ -72,7 +72,7 @@ public class Person implements Comparable<Person>{
     
     /**
      * Compares persons by their ID's.
-     * @param p
+     * @param p Another person
      * @return 0 if equals.
      */
     @Override
@@ -110,7 +110,7 @@ public class Person implements Comparable<Person>{
     
     /**
      * set new location to person.
-     * @param location 
+     * @param location .
      */
     public void setLocation(Location location){
         this.location = location;
@@ -118,7 +118,7 @@ public class Person implements Comparable<Person>{
     
     /**
      * sets new hair color to person
-     * @param color 
+     * @param color .
      */
     public void setHairColor(Color color){
         this.hairColor = color;
@@ -126,7 +126,7 @@ public class Person implements Comparable<Person>{
     
     /**
      * sets new weight to person
-     * @param weight 
+     * @param weight .
      */
     public void setWeight(Integer weight){
         this.weight = weight;
@@ -134,7 +134,7 @@ public class Person implements Comparable<Person>{
     
     /**
      * setter for birthday
-     * @param birthday 
+     * @param birthday .
      */
     public void setBirthday(LocalDate birthday){
         this.birthday = birthday;
@@ -142,7 +142,7 @@ public class Person implements Comparable<Person>{
     
     /**
      * setter for height
-     * @param height 
+     * @param height .
      */
     public void setHeight(Long height){
         this.height = height;
@@ -150,7 +150,7 @@ public class Person implements Comparable<Person>{
     
     /**
      * setter for creation date
-     * @param crDate 
+     * @param crDate .
      */
     public void setCreationDate(LocalDate crDate){
         this.creationDate = crDate;
@@ -158,14 +158,14 @@ public class Person implements Comparable<Person>{
     
     /**
      * setter for coordinates
-     * @param coordinates 
+     * @param coordinates .
      */
     public void setCoordinates(Coordinates coordinates){
         this.coordinates = coordinates;
     }
     /**
      * setter for name
-     * @param name 
+     * @param name .
      */
     public void setName(String name){
         this.name = name;
@@ -173,7 +173,7 @@ public class Person implements Comparable<Person>{
     
     /**
      * setter for id
-     * @param id 
+     * @param id .
      */
     public void setId(Integer id){
         this.id = id;
@@ -181,7 +181,7 @@ public class Person implements Comparable<Person>{
     
     /**
      * getter for id
-     * @return 
+     * @return id
      */
     public Integer getId(){
         return id;
@@ -189,7 +189,7 @@ public class Person implements Comparable<Person>{
     
     /**
      * getter for location
-     * @return 
+     * @return location
      */
     public Location getLocation(){
         return location;
@@ -197,7 +197,7 @@ public class Person implements Comparable<Person>{
     
     /**
      * getter for hair color
-     * @return 
+     * @return hair color
      */
     public Color getHairColor(){
         return hairColor;
@@ -205,7 +205,7 @@ public class Person implements Comparable<Person>{
     
     /**
      * getter for weight
-     * @return 
+     * @return weight
      */
     public Integer getWeight(){
         return weight;
@@ -213,7 +213,7 @@ public class Person implements Comparable<Person>{
     
     /**
      * getter for birthday
-     * @return 
+     * @return birthday
      */
     public LocalDate getBirthday(){
         return birthday;
@@ -221,7 +221,7 @@ public class Person implements Comparable<Person>{
     
     /**
      * getter for height
-     * @return 
+     * @return height
      */
     public Long getHeight(){
         return height;
@@ -229,14 +229,14 @@ public class Person implements Comparable<Person>{
     
     /**
      * getter for creation date
-     * @return 
+     * @return creation date
      */
     public LocalDate getCreationDate(){
         return creationDate;
     }
     /**
      * getter for coordinates
-     * @return 
+     * @return coordinates
      */
     public Coordinates getCoordinates(){
         return coordinates;
@@ -244,16 +244,13 @@ public class Person implements Comparable<Person>{
     
     /**
      * getter for name
-     * @return 
+     * @return name
      */
     public String getName(){
         return name;
     }
     
-    /**
-     * defining how to print a person
-     * @return 
-     */
+    
     @Override
     public String toString(){
         String str = "id = " + id;

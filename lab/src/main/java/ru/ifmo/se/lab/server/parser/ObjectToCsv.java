@@ -7,10 +7,25 @@ import java.util.HashMap;
 import java.util.List;
 import ru.ifmo.se.lab.server.collections.*;
 
+/**
+ * Used to convert Java Object into CSV String
+ * @author raistlin
+ */
 public class ObjectToCsv {
     
+    /**
+     * Class, which fields will be serialized String.
+     */
     private Class targetClass;
+    
+    /**
+     * CSV separator. Can be any string.
+     */
     private String separator = ",";
+    
+    /**
+     * How to map the fields?
+     */
     private MappingStrategy strategy;
     
     public ObjectToCsv(Class clas, String sep, MappingStrategy strat) throws CsvNotEnoughArgsException{
@@ -26,6 +41,12 @@ public class ObjectToCsv {
         this.strategy = strat;
     }
     
+    /**
+     * Transforms List of Objects into CSV String.
+     * @param list list of objects
+     * @return CSV of object list.
+     * @throws CsvWrongStructureException 
+     */
     public String convert(List<Object> list) throws CsvWrongStructureException{
         String result = "";
         for (Object obj : list){
@@ -34,6 +55,12 @@ public class ObjectToCsv {
         return result;
     }
     
+    /**
+     * Overloaded version of convert(List). Converts single object into CSV line.
+     * @param obj Source object
+     * @return CSV line of Object
+     * @throws CsvWrongStructureException 
+     */
     private String convert(Object obj) throws CsvWrongStructureException{
         String result = "\"";
         List<String> data = this.strategy.getObject(obj);
@@ -44,14 +71,26 @@ public class ObjectToCsv {
         return result.substring(0,result.length() - 2);
     }
     
+    /**
+     * getter for target Class
+     * @return targetClass
+     */
     public Class getTargetClass(){
         return this.targetClass;
     }
     
+    /**
+     * getter for strategy
+     * @return strategy
+     */
     public MappingStrategy getMappingStrategy(){
         return this.strategy;
     }
     
+    /**
+     * getter for separator.
+     * @return separator
+     */
     public String getSeparator(){
         return this.separator;
     }

@@ -22,7 +22,7 @@ public class Coordinates {
 
     /**
      * setter for x
-     * @param x 
+     * @param x .
      */
     public void setX(Double x){
         this.cordX = x;
@@ -30,7 +30,7 @@ public class Coordinates {
     
     /**
      * setter for y
-     * @param y 
+     * @param y .
      */
     public void setY(Long y){
         this.cordY = y;
@@ -41,10 +41,18 @@ public class Coordinates {
         this.cordY = y;
     }
     
+    /**
+     * Getter for x
+     * @return x
+     */
     public Double getX(){
         return this.cordX;
     }
     
+    /**
+     * getter for y
+     * @return y
+     */
     public Long getY(){
         return this.cordY;
     }

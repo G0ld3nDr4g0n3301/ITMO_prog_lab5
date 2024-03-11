@@ -10,8 +10,8 @@ public abstract class AbstractField<T,S> {
     
     /**
      * Set new value to the field of parent class.
-     * @param objToChange
-     * @param newValue 
+     * @param objToChange .
+     * @param newValue .
      */
     public abstract void set(T objToChange,S newValue);
     
@@ -23,8 +23,8 @@ public abstract class AbstractField<T,S> {
     
     /**
      * creates value of field from it's string equivalent.
-     * @param input
-     * @return 
+     * @param input .
+     * @return .
      */
     public abstract S create(String input);
     

@@ -18,11 +18,6 @@ public class PersonMappingStrategy implements MappingStrategy{
     private String[] header = {"id","name","coordinates.cordX","coordinates.cordY","creationDate","height","birthday","weight","hairColor","location.locX","location.locY","location.locName"};
     
     
-    /**
-     * Gets all the object's fields and converts into string array
-     * @param obj
-     * @return Array of string fields.
-     */
     @Override
     public List<String> getObject(Object obj){
         ArrayList<String> fields = new ArrayList<>();
@@ -60,11 +55,7 @@ public class PersonMappingStrategy implements MappingStrategy{
         
     }
     
-    /**
-     * Strategy for creating new Person object, different validations and comparisons.
-     * @param line line of a CSV file,which is one Person object
-     * @return Person object
-     */
+   
     
     @Override
     public Object fillObject(String[] old_line) throws CsvWrongDataException{

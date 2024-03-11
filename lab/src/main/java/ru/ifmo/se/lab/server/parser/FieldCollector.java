@@ -7,11 +7,21 @@ import java.util.List;
 import ru.ifmo.se.lab.server.collections.Person;
 
 /**
+ * Collects target class fields that are binded with CsvBind annotation.
  * @deprecated
  * @author raistlin
  */
 public class FieldCollector {
     
+    /**
+     * Collects object's fields into a string.
+     * @param obj Object to collect data from
+     * @param parser Parser to use for parsing
+     * @return List of object's fields.
+     * @throws NoSuchFieldException
+     * @throws CsvWrongStructureException
+     * @throws IllegalAccessException 
+     */
     static List<String> collect(Object obj, ObjectToCsv parser) throws NoSuchFieldException, CsvWrongStructureException, IllegalAccessException{
         
         ArrayList<String> fieldData = new ArrayList<>();

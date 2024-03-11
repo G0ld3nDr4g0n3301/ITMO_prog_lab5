@@ -20,7 +20,7 @@ public class WritePerson {
      * @param list collection of Persons
      * @param filename Name of a file,where we'll save our CSV data
      * @return true, if no exceptions encountered
-     * @throws IOException 
+     * @throws IOException if error in file reading
      */
     public static Boolean write(ArrayList<Person> list,File filename) throws IOException{
         
