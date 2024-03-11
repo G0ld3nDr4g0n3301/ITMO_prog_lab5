@@ -89,8 +89,11 @@ public class PersonMappingStrategy implements MappingStrategy{
         Double locY = Double.parseDouble(line[10]);
         Location location = null;
         
-        location = new Location(locX,locY,line[11]);
-        
+        if(line.length == 12){
+            location = new Location(locX,locY,line[11]);
+        } else {
+            location = new Location(locX, locY, null);
+        }
         p.setId(id);
         p.setBirthday(birthday);
         p.setCoordinates(coord);
