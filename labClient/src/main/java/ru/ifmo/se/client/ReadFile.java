@@ -44,7 +44,7 @@ public class ReadFile{
         try{
             this.reader.close();
         }catch(IOException e){
-            CLIOutputManager.print("Permission denied");
+            System.out.println("Permission denied");
         }
     }
     

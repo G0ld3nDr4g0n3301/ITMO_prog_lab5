@@ -9,7 +9,8 @@ public class Main {
         try {
             ConnectionManager.initSocket();
         } catch (IOException e){
-            // TODO: handle
+            System.out.println(e.getMessage());
+            System.exit(0);
         }
         try {
             while(true){

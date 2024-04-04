@@ -13,7 +13,7 @@ public class GetCLInput {
      * @return answer
      */
     public static String ask(java.util.Scanner scan,String question){
-        CLIOutputManager.print(question);
+        System.out.println(question);
         if (scan.hasNextLine()){
             return scan.nextLine();
         } else{

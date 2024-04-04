@@ -81,7 +81,7 @@ public class Invoker {
      */
     public static boolean execute(String[] args){
         if (!(commands.containsKey(args[0].toLowerCase()))){
-            CLIOutputManager.print("Wrong command. Type \"help\" for command list");
+            System.out.println("Wrong command. Type \"help\" for command list");
             return false;
         }
         Serializable request = commands.get(args[0].toLowerCase()).execute(args);
@@ -92,23 +92,23 @@ public class Invoker {
             ConnectionManager.send(request);
             Request<String> answer = ConnectionManager.recieve();
             if (answer == null) {
-                CLIOutputManager.print("Error in package reading");
+                System.out.println("Error in package reading");
                 return false;
             }
             switch (answer.getStatusCode()) {
                 case 200:
-                    CLIOutputManager.print("Operation performed successfully.");
+                    System.out.println("Operation performed successfully.");
                     break;
                 case 404:
-                    CLIOutputManager.print("Error encountered");
-                    CLIOutputManager.print(answer.getArgs());
+                    System.out.println("Error encountered");
+                    System.out.println(answer.getArgs());
                     break;
                 case 400:
-                    CLIOutputManager.print("Operation performed successfully");
-                    CLIOutputManager.print(answer.getArgs());
+                    System.out.println("Operation performed successfully");
+                    System.out.println(answer.getArgs());
                     break;
                 default:
-                    CLIOutputManager.print("Unknown status code");
+                    System.out.println("Unknown status code");
                     return false;
             }
         } catch (IOException e) {

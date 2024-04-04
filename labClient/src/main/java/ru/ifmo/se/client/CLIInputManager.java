@@ -42,7 +42,7 @@ public class CLIInputManager {
      * reloads scanner to prevent fatal error
      */
     public static void reloadScanner(){
-        CLIOutputManager.print("\n");
+        System.out.println("\n");
         scan = new Scanner(System.in);
     }
     

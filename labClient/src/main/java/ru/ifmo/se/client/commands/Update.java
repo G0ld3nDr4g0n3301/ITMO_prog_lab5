@@ -6,7 +6,6 @@ import java.util.Arrays;
 import java.util.List;
 
 import ru.ifmo.se.client.Command;
-import ru.ifmo.se.client.CLIOutputManager;
 import ru.ifmo.se.client.collections.AskPerson;
 import ru.ifmo.se.client.collections.Person;
 import ru.ifmo.se.client.net.Commands;
@@ -32,23 +31,23 @@ public class Update extends Command{
     @Override
     public Serializable execute(String[] args){
         if(args.length < 5){
-            CLIOutputManager.print("Not enough arguments.");
+            System.out.println("Not enough arguments.");
             return null;
         }
         Integer id = null;
         try{
             id = Integer.parseInt(args[1]);
         } catch(NullPointerException e){
-            CLIOutputManager.print("Not enough arguments.");
+            System.out.println("Not enough arguments.");
             return null;
         } catch (NumberFormatException e){
-            CLIOutputManager.print("id must be a number");
+            System.out.println("id must be a number");
             return null;
         }
         args = Arrays.copyOfRange(args, 1, args.length - 1);
         Person newPerson = AskPerson.generatePerson(args);
         if(newPerson == null){
-            CLIOutputManager.print("Error in creating new Person. Try again.");
+            System.out.println("Error in creating new Person. Try again.");
             return null;
         }
         

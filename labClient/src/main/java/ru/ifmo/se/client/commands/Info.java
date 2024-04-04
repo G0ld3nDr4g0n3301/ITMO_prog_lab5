@@ -6,7 +6,6 @@ import ru.ifmo.se.client.net.Request;
 
 import java.io.Serializable;
 
-import ru.ifmo.se.client.CLIOutputManager;
 
 /**
  * Prints info about collection(init date, size,type)

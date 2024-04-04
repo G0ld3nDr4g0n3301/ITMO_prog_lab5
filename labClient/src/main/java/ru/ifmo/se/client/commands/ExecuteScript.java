@@ -5,7 +5,6 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import ru.ifmo.se.client.Command;
 import ru.ifmo.se.client.Invoker;
-import ru.ifmo.se.client.CLIOutputManager;
 import ru.ifmo.se.client.ReadFile;
 import ru.ifmo.se.client.Validator;
 import ru.ifmo.se.client.net.Commands;
@@ -27,11 +26,11 @@ public class ExecuteScript extends Command{
     public Serializable execute(String[] args){
         
         if (args.length == 1){
-            CLIOutputManager.print("Specify the filename.");
+            System.out.println("Specify the filename.");
             return null;
         }
         if (filenames.contains(args[1])){
-            CLIOutputManager.print("Script execution recursion is prohibited.");
+            System.out.println("Script execution recursion is prohibited.");
             return null;
         }
         Invoker.setModeState(true);
@@ -39,7 +38,7 @@ public class ExecuteScript extends Command{
             Invoker.setCurrReadFile(new ReadFile(args[1]));
             filenames.add(args[1]);
         } catch(IOException e){
-            CLIOutputManager.print("No such file.");
+            System.out.println("No such file.");
             Invoker.setModeState(false);
             return null;
         }
@@ -53,7 +52,7 @@ public class ExecuteScript extends Command{
             if(Validator.validateCommand(line)){
                 Invoker.execute(line.split(" "));
             } else {
-                CLIOutputManager.print("Not aproppriate command found.");
+                System.out.println("Not aproppriate command found.");
                 Invoker.removeCurrReadFile();
                 Invoker.setModeState(false);
                 return null;

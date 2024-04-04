@@ -3,7 +3,6 @@ package ru.ifmo.se.client.collections;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import ru.ifmo.se.client.Invoker;
-import ru.ifmo.se.client.CLIOutputManager;
 import ru.ifmo.se.client.Validator;
 
 /**
@@ -71,15 +70,15 @@ public class AskPerson {
                 String input = args[i+1];
                 AbstractField field = simpleFields.get(i);
                 if(!field.validate(input)){
-                    CLIOutputManager.print("Wrong input format for field " + field);
+                    System.out.println("Wrong input format for field " + field);
                     return null;
                 }
                 field.set(person, field.create(input));
             } catch(NullPointerException e){
-                CLIOutputManager.print("Not enough arguments.");
+                System.out.println("Not enough arguments.");
                 return null;
             } catch(Exception e){
-                CLIOutputManager.print("Wrong input");
+                System.out.println("Wrong input");
                 return null;
             }
         }
@@ -91,7 +90,7 @@ public class AskPerson {
                     String input = args[simpleFields.size() + i + 1];
                     AbstractField field = canBeNullFields.get(i);
                     if(!field.validate(input)){
-                        CLIOutputManager.print("Wrong input format for field " + field);
+                        System.out.println("Wrong input format for field " + field);
                         return null;
                     }
                     field.set(person, field.create(input)); 
@@ -123,7 +122,7 @@ public class AskPerson {
         if(Validator.validatePerson(person)){
             return person;
         }
-        CLIOutputManager.print("Not enough args.");
+        System.out.println("Not enough args.");
         return null;
     }
 }    

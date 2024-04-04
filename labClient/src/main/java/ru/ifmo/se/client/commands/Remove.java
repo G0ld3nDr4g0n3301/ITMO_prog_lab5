@@ -4,7 +4,6 @@ import ru.ifmo.se.client.Command;
 
 import java.io.Serializable;
 
-import ru.ifmo.se.client.CLIOutputManager;
 import ru.ifmo.se.client.net.Commands;
 import ru.ifmo.se.client.net.Request;
 
@@ -30,10 +29,10 @@ public class Remove extends Command{
         try{
             id = Integer.parseInt(args[1]);
         } catch(ArrayIndexOutOfBoundsException e){
-            CLIOutputManager.print("Not enough arguments.");
+            System.out.println("Not enough arguments.");
             return null;
         }catch (NumberFormatException e){
-            CLIOutputManager.print("id must be a number");
+            System.out.println("id must be a number");
             return null;
         }
         Request<Integer> request = new Request<>(Commands.REMOVE_BY_ID);

@@ -1,7 +1,6 @@
 package ru.ifmo.se.client.collections;
 
 import ru.ifmo.se.client.CLIInputManager;
-import ru.ifmo.se.client.CLIOutputManager;
 import ru.ifmo.se.client.Validator;
 
 /**

@@ -69,7 +69,7 @@ public class Validator {
         good = good && p.getName() != null;
         good = good && p.getWeight() != null;
         if(!good){
-            CLIOutputManager.print("Wrong person credentials.");
+            System.out.println("Wrong person credentials.");
         }
         return good;
     }
@@ -87,7 +87,7 @@ public class Validator {
                 throw new Exception();
             }
         } catch (Exception e){
-            CLIOutputManager.print("Wrong options for height(must be >0)");
+            System.out.println("Wrong options for height(must be >0)");
             return false;
         }
         return true;
@@ -105,7 +105,7 @@ public class Validator {
                 throw new Exception();
             }
         } catch (Exception e){
-            CLIOutputManager.print("Wrong options for weight(must be >0)");
+            System.out.println("Wrong options for weight(must be >0)");
             return false;
         }
         return true;
@@ -125,7 +125,7 @@ public class Validator {
         try{
             LocalDate.parse(input, DateTimeFormatter.ISO_DATE);
         } catch( Exception e){
-            CLIOutputManager.print("Wrong date format. Correct one is yyyy-mm-dd");
+            System.out.println("Wrong date format. Correct one is yyyy-mm-dd");
             return false;
         }
         return true;
@@ -156,7 +156,7 @@ public class Validator {
                 throw new Exception();
             }
         } catch( Exception e){
-            CLIOutputManager.print("Incorrect input for x(must be greater than -92).");
+            System.out.println("Incorrect input for x(must be greater than -92).");
             return false;
         }
     }
@@ -172,7 +172,7 @@ public class Validator {
         try{
             Long newY = Long.parseLong(y);
         } catch (Exception e){
-            CLIOutputManager.print("Wrong input in coordinate y");
+            System.out.println("Wrong input in coordinate y");
             return false;
         }
         return true;
@@ -199,7 +199,7 @@ public class Validator {
             Float.parseFloat(x);
             return true;
         } catch(Exception e){
-            CLIOutputManager.print("Wrong input for x.");
+            System.out.println("Wrong input for x.");
             return false;
         }
     }
@@ -215,7 +215,7 @@ public class Validator {
             Double.parseDouble(y);
             return true;
         } catch(Exception e){
-            CLIOutputManager.print("Wrong input for y.");
+            System.out.println("Wrong input for y.");
             return false;
         }
     }
@@ -232,7 +232,7 @@ public class Validator {
             Color.valueOf(input);
             return true;
         } catch (Exception e){
-            CLIOutputManager.print("Wrong option for Color");
+            System.out.println("Wrong option for Color");
             return false;
         }
     }
