@@ -2,6 +2,7 @@ package ru.ifmo.se.lab.server.commands;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.EmptyStackException;
 import java.util.List;
@@ -10,6 +11,8 @@ import ru.ifmo.se.lab.server.Command;
 import ru.ifmo.se.lab.server.Invoker;
 import ru.ifmo.se.lab.server.OutputManager;
 import ru.ifmo.se.lab.server.collections.Person;
+import ru.ifmo.se.lab.server.net.Commands;
+import ru.ifmo.se.lab.server.net.Request;
 import ru.ifmo.se.lab.server.serialization.ReadPerson;
 
 /**
@@ -24,23 +27,24 @@ public class Load extends Command{
     }
     
     @Override
-    public boolean execute(String[] args){
+    public Request execute(Serializable args){
         List<Person> newList = null;
+        Request<String> request = new Request<>(Commands.RESPONSE);
         try{
             newList = ReadPerson.read(Invoker.getCurrMainFile());
             if(newList == null){
                 OutputManager.print("File is damaged, or contains wrong data.");
-                return false;
+                return null;
             }
         } catch(IOException e) {
             OutputManager.print("Error in file reading.");
-            return false;
+            return null;
         } catch(EmptyStackException | NullPointerException e){
             OutputManager.print("No input file specified.");
-            return false;
+            return null;
         }
         CollectionManager.addAll(newList);
-        return true;
+        return new Request<>(Commands.ADD);
     }
     
     @Override

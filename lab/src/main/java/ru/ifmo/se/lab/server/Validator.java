@@ -7,6 +7,8 @@ import ru.ifmo.se.lab.server.collections.Color;
 import ru.ifmo.se.lab.server.collections.Coordinates;
 import ru.ifmo.se.lab.server.collections.Location;
 import ru.ifmo.se.lab.server.collections.Person;
+import ru.ifmo.se.lab.server.net.Commands;
+import ru.ifmo.se.lab.server.net.Request;
 
 
 /**
@@ -23,12 +25,12 @@ public class Validator {
      * @param input Potential command
      * @return Result of validation.
      */
-    public static boolean validateCommand(String input){
-        if(input.length() == 0 || input.split(" ").length == 0){
+    public static boolean validateCommand(Request request){
+        Commands type = request.getCommandType();
+        if (Invoker.getClientForbidden().contains(type)) {
             return false;
-        } else{
-            return true;
         }
+        return true;
     }
     
     

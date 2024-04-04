@@ -1,9 +1,14 @@
 package ru.ifmo.se.lab.server;
 
+import java.util.EnumSet;
 import java.util.HashMap;
 import ru.ifmo.se.lab.server.commands.*;
+import ru.ifmo.se.lab.server.net.Commands;
+import ru.ifmo.se.lab.server.net.Request;
+
 import java.util.Stack;
 import java.io.File;
+import java.io.Serializable;
 
 /**
  * Invokes the commands using String argument
@@ -15,7 +20,9 @@ public class Invoker {
     /**
      * HashMap containing all the commands' classes.
      */
-    private static HashMap<String,Command> commands;
+    private static HashMap<Commands,Command> commands;
+
+    private static EnumSet<Commands> clientForbidden;
     
     /**
      * If true - executing in FromFile mode,needed for correct work of InputManager.
@@ -39,7 +46,7 @@ public class Invoker {
         Help help = new Help("help", "print this screen");
         Add add = new Add("add", "(add name height weight {birthday})create a new element, and add it to collection.");
         Show show = new Show("show", "print all collection's elements.");
-        ExecuteScript execScr = new ExecuteScript("execute_script","execute_script (filename) - executing a lines from a file,like it's normal CLI input.");
+        Show execScr = new Show("execute_script","execute_script (filename) - executing a lines from a file,like it's normal CLI input.");
         Save save = new Save("save", "saves collection list in the file.");
         Load load = new Load("load","loads collection from the file,specified in command line.");
         Info info = new Info("info", "Prints info about collection(type,init date,size.)");
@@ -53,24 +60,28 @@ public class Invoker {
         CountHeight count = new CountHeight("count","count [height] - prints the number of objects with this height.");
         AddIfMax addIf = new AddIfMax("addif", "addif [element] - adds new element, if it's greater than max element");
         
-        commands.put(exit.getName(), exit);
-        commands.put(help.getName(), help);
-        commands.put(add.getName(), add);
-        commands.put(show.getName(), show);
-        commands.put(execScr.getName(), execScr);
-        commands.put(save.getName(), save);
-        commands.put(load.getName(), load);
-        commands.put(info.getName(), info);
-        commands.put(update.getName(), update);
-        commands.put(remove.getName(), remove);
-        commands.put(removeLast.getName(), removeLast);
-        commands.put(clear.getName(), clear);
-        commands.put(removeLoc.getName(), removeLoc);
-        commands.put(removeLower.getName(), removeLower);
-        commands.put(printColor.getName(), printColor);
-        commands.put(count.getName(), count);
-        commands.put(addIf.getName(), addIf);
+        commands.put(Commands.EXIT, exit);
+        commands.put(Commands.HELP, help);
+        commands.put(Commands.ADD, add);
+        commands.put(Commands.SHOW, show);
+        commands.put(Commands.EXEC, execScr);
+        commands.put(Commands.SAVE, save);
+        commands.put(Commands.LOAD, load);
+        commands.put(Commands.INFO, info);
+        commands.put(Commands.UPDATE, update);
+        commands.put(Commands.REMOVE_BY_ID, remove);
+        commands.put(Commands.REMOVE_LAST, removeLast);
+        commands.put(Commands.CLEAR, clear);
+        commands.put(Commands.REMOVE_BY_LOC, removeLoc);
+        commands.put(Commands.REMOVE_LOWER, removeLower);
+        commands.put(Commands.HAIR, printColor);
+        commands.put(Commands.COUNT, count);
+        commands.put(Commands.ADDIF, addIf);
         
+        clientForbidden.add(Commands.EXEC);
+        clientForbidden.add(Commands.SAVE);
+        clientForbidden.add(Commands.LOAD);
+        clientForbidden.add(Commands.RESPONSE);
     }
     
     /**
@@ -78,20 +89,31 @@ public class Invoker {
      * @param args
      * @return true, if no errors encountered during runtime of command.
      */
-    public static boolean execute(String[] args){
-        if (!(commands.containsKey(args[0].toLowerCase()))){
-            OutputManager.print("Wrong command. Type \"help\" for command list");
-            return false;
+    public static Request execute(Commands type, Integer code, Serializable args){
+        if (!(commands.containsKey(type))){
+            System.out.println("Wrong command. Type \"help\" for command list");
+            return null;
         }
-        commands.get(args[0].toLowerCase()).execute(args);
-        return true;
+        switch (code) {
+            case 300:
+                Request request = commands.get(type).execute(args);
+                return request;
+
+            default:
+                return null;
+        }
+
+    }
+
+    public static EnumSet<Commands> getClientForbidden(){
+        return clientForbidden;
     }
     
     /**
      * Returns the hashMap of CommandName + CommandObject
      * @return commands
      */
-    public static HashMap<String, Command> getCommands(){
+    public static HashMap<Commands, Command> getCommands(){
         return commands;
     }
     

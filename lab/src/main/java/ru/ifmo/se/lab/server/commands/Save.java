@@ -5,8 +5,10 @@ import ru.ifmo.se.lab.server.CollectionManager;
 import ru.ifmo.se.lab.server.Command;
 import ru.ifmo.se.lab.server.Invoker;
 import ru.ifmo.se.lab.server.OutputManager;
+import ru.ifmo.se.lab.server.net.Request;
 import ru.ifmo.se.lab.server.serialization.WritePerson;
 import java.io.IOException;
+import java.io.Serializable;
 
 /**
  * saves collection to Main file.
@@ -20,7 +22,7 @@ public class Save extends Command {
     }
     
     @Override
-    public boolean execute(String[] args){
+    public Request execute(Serializable args){
         try{
             File currFile = Invoker.getCurrMainFile();
             if(currFile == null){

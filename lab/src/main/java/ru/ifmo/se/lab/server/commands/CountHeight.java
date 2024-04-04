@@ -1,9 +1,12 @@
 package ru.ifmo.se.lab.server.commands;
 
+import java.io.Serializable;
+
 import ru.ifmo.se.lab.server.CollectionManager;
 import ru.ifmo.se.lab.server.Command;
 import ru.ifmo.se.lab.server.OutputManager;
 import ru.ifmo.se.lab.server.collections.Person;
+import ru.ifmo.se.lab.server.net.Request;
 
 /**
  * Counts all persons with given height
@@ -22,7 +25,7 @@ public class CountHeight extends Command{
     }
     
     @Override
-    public boolean execute(String[] args){
+    public Request execute(Serializable args){
         if(args.length < 2){
             OutputManager.print("Not enough arguments");
             return false;

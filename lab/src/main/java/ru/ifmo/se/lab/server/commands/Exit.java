@@ -1,6 +1,11 @@
 package ru.ifmo.se.lab.server.commands;
 
+import java.io.Serializable;
+
 import ru.ifmo.se.lab.server.Command;
+import ru.ifmo.se.lab.server.net.Commands;
+import ru.ifmo.se.lab.server.net.ConnectionManager;
+import ru.ifmo.se.lab.server.net.Request;
 
 
 /**
@@ -15,8 +20,10 @@ public class Exit extends Command {
     }
    
     @Override
-    public boolean execute(String[] args){
+    public Request execute(Serializable args){
         System.exit(0);
-        return true;
+        Request request = new Request<>(Commands.RESPONSE);
+        request.setStatusCode(200);
+        return request;
     }
 }

@@ -1,10 +1,13 @@
 package ru.ifmo.se.lab.server.commands;
 
+import java.io.Serializable;
+
 import ru.ifmo.se.lab.server.CollectionManager;
 import ru.ifmo.se.lab.server.Command;
 import ru.ifmo.se.lab.server.OutputManager;
 import ru.ifmo.se.lab.server.collections.AskPerson;
 import ru.ifmo.se.lab.server.collections.Person;
+import ru.ifmo.se.lab.server.net.Request;
 
 /**
  * Command for adding new person
@@ -18,7 +21,7 @@ public class Add extends Command{
     }
     
     @Override
-    public boolean execute(String[] args){
+    public Request execute(Serializable args){
         Person person = AskPerson.generatePerson(args);
         if(person == null){
             return false;
