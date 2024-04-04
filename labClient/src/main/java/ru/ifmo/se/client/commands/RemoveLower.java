@@ -1,11 +1,11 @@
 package ru.ifmo.se.client.commands;
 
-import java.util.ArrayList;
-import java.util.List;
-import ru.ifmo.se.client.CollectionManager;
+import java.io.Serializable;
 import ru.ifmo.se.client.Command;
 import ru.ifmo.se.client.collections.AskPerson;
 import ru.ifmo.se.client.collections.Person;
+import ru.ifmo.se.client.net.Commands;
+import ru.ifmo.se.client.net.Request;
 
 /**
  * removes all collection's elements, that are less than the given one.
@@ -24,19 +24,13 @@ public class RemoveLower extends Command{
     }
     
     @Override
-    public boolean execute(String[] args){
+    public Serializable execute(String[] args){
         Person person = AskPerson.generatePerson(args);
         if (person == null){
-            return false;
+            return null;
         }
-        ArrayList<Person> removeList = new ArrayList<Person>();
         
-        for(Person p : CollectionManager.getCollection()){
-            if(p.compareTo(person) < 0){
-                removeList.add(p);
-            }
-        }
-        CollectionManager.remove(removeList);
-        return true;
+        Request<Person> request = new Request<>(Commands.REMOVE_LOWER);
+        return request;
     }
 }

@@ -1,8 +1,10 @@
 package ru.ifmo.se.client.commands;
 
 import ru.ifmo.se.client.*;
-import java.util.HashMap;
-import java.util.Set;
+import ru.ifmo.se.client.net.Commands;
+import ru.ifmo.se.client.net.Request;
+
+import java.io.Serializable;
 
 /**
  * Prints all available commands and their descriptions.
@@ -16,12 +18,8 @@ public class Help extends Command {
     }
     
     @Override
-    public boolean execute(String[] args){
-        Set<String> commandSet = Invoker.getCommands().keySet();
-        for(String key : commandSet){
-            CLIOutputManager.print(key + " - " + Invoker.getCommands().get(key).getDescription());
-        }
-        return true;
+    public Serializable execute(String[] args){
+        return new Request<>(Commands.HELP);
     }
     
     

@@ -2,8 +2,13 @@ package ru.ifmo.se.client;
 
 import java.util.HashMap;
 import ru.ifmo.se.client.commands.*;
+import ru.ifmo.se.client.net.ConnectionManager;
+import ru.ifmo.se.client.net.Request;
+
 import java.util.Stack;
 import java.io.File;
+import java.io.IOException;
+import java.io.Serializable;
 
 /**
  * Invokes the commands using String argument
@@ -79,8 +84,38 @@ public class Invoker {
             CLIOutputManager.print("Wrong command. Type \"help\" for command list");
             return false;
         }
-        commands.get(args[0].toLowerCase()).execute(args);
+        Serializable request = commands.get(args[0].toLowerCase()).execute(args);
+        if (request == null) {
+            return false;
+        }
+        try {
+            ConnectionManager.send(request);
+            Request<String> answer = ConnectionManager.recieve();
+            if (answer == null) {
+                CLIOutputManager.print("Error in package reading");
+                return false;
+            }
+            switch (answer.getStatusCode()) {
+                case 200:
+                    CLIOutputManager.print("Operation performed successfully.");
+                    break;
+                case 404:
+                    CLIOutputManager.print("Error encountered");
+                    CLIOutputManager.print(answer.getArgs());
+                    break;
+                case 400:
+                    CLIOutputManager.print("Operation performed successfully");
+                    CLIOutputManager.print(answer.getArgs());
+                    break;
+                default:
+                    CLIOutputManager.print("Unknown status code");
+                    return false;
+            }
+        } catch (IOException e) {
+            // TODO: handle
+        }
         return true;
+
     }
     
     /**

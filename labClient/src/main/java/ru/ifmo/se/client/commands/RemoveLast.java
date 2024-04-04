@@ -1,7 +1,10 @@
 package ru.ifmo.se.client.commands;
 
-import ru.ifmo.se.client.CollectionManager;
+import java.io.Serializable;
+
 import ru.ifmo.se.client.Command;
+import ru.ifmo.se.client.net.Commands;
+import ru.ifmo.se.client.net.Request;
 
 /**
  * remove last element from collection
@@ -20,8 +23,7 @@ public class RemoveLast extends Command{
     }
     
     @Override
-    public boolean execute(String[] args){
-        CollectionManager.removeLast();
-        return true;
+    public Serializable execute(String[] args){
+        return new Request<>(Commands.REMOVE_LAST);
     }
 }

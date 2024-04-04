@@ -1,9 +1,12 @@
 package ru.ifmo.se.client.commands;
 
-import ru.ifmo.se.client.CollectionManager;
 import ru.ifmo.se.client.Command;
+
+import java.io.Serializable;
+
 import ru.ifmo.se.client.CLIOutputManager;
-import ru.ifmo.se.client.collections.Person;
+import ru.ifmo.se.client.net.Commands;
+import ru.ifmo.se.client.net.Request;
 
 /**
  * Counts all persons with given height
@@ -22,18 +25,11 @@ public class CountHeight extends Command{
     }
     
     @Override
-    public boolean execute(String[] args){
+    public Serializable execute(String[] args){
         if(args.length < 2){
             CLIOutputManager.print("Not enough arguments");
-            return false;
+            return null;
         }
-        int count = 0;
-        for(Person p : CollectionManager.getCollection()){
-            if(p.getHeight().toString().compareTo(args[1]) == 0){
-                ++count;
-            }
-        }
-        CLIOutputManager.print(count);
-        return true;
+        return new Request<>(Commands.COUNT);
     }
 }

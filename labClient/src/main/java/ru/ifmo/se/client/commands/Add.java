@@ -1,10 +1,13 @@
 package ru.ifmo.se.client.commands;
 
-import ru.ifmo.se.client.CollectionManager;
 import ru.ifmo.se.client.Command;
-import ru.ifmo.se.client.CLIOutputManager;
+
+import java.io.Serializable;
+
 import ru.ifmo.se.client.collections.AskPerson;
 import ru.ifmo.se.client.collections.Person;
+import ru.ifmo.se.client.net.Commands;
+import ru.ifmo.se.client.net.Request;
 
 /**
  * Command for adding new person
@@ -18,13 +21,14 @@ public class Add extends Command{
     }
     
     @Override
-    public boolean execute(String[] args){
+    public Serializable execute(String[] args){
         Person person = AskPerson.generatePerson(args);
         if(person == null){
-            return false;
+            return null;
         }
-        CollectionManager.add(person);
-        CLIOutputManager.print("Successfully saved person into collection!");
-        return true;
+        Request<Person> request = new Request<>(Commands.ADD);
+        request.setArgument(person);
+
+        return request;
     }
 }

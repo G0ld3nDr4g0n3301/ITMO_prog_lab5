@@ -1,14 +1,15 @@
 package ru.ifmo.se.client.commands;
 
-import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.EmptyStackException;
 import ru.ifmo.se.client.Command;
 import ru.ifmo.se.client.Invoker;
 import ru.ifmo.se.client.CLIOutputManager;
 import ru.ifmo.se.client.ReadFile;
 import ru.ifmo.se.client.Validator;
+import ru.ifmo.se.client.net.Commands;
+import ru.ifmo.se.client.net.Request;
 
 /**
  * execute given file, as if it's a bunch of user input lines.
@@ -23,15 +24,15 @@ public class ExecuteScript extends Command{
     }
     
     @Override
-    public boolean execute(String[] args){
+    public Serializable execute(String[] args){
         
         if (args.length == 1){
             CLIOutputManager.print("Specify the filename.");
-            return false;
+            return null;
         }
         if (filenames.contains(args[1])){
             CLIOutputManager.print("Script execution recursion is prohibited.");
-            return false;
+            return null;
         }
         Invoker.setModeState(true);
         try{
@@ -40,7 +41,7 @@ public class ExecuteScript extends Command{
         } catch(IOException e){
             CLIOutputManager.print("No such file.");
             Invoker.setModeState(false);
-            return false;
+            return null;
         }
         boolean keepGoing = true;
         String line = null;
@@ -55,12 +56,12 @@ public class ExecuteScript extends Command{
                 CLIOutputManager.print("Not aproppriate command found.");
                 Invoker.removeCurrReadFile();
                 Invoker.setModeState(false);
-                return false;
+                return null;
             }
             
         }
         Invoker.removeCurrReadFile();
         Invoker.setModeState(false);
-        return true;
+        return new Request<>(Commands.EXEC);
     }
 }

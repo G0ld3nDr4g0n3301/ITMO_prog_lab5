@@ -2,7 +2,7 @@ package ru.ifmo.se.client.net;
 
 import java.io.Serializable;
 
-public abstract class Request<T extends Serializable> implements Serializable{
+public class Request<T extends Serializable> implements Serializable{
     
     private Commands commandType;
 
@@ -22,6 +22,14 @@ public abstract class Request<T extends Serializable> implements Serializable{
 
     public void setArgument(T argument){
         this.arg = argument;
+    }
+
+    public Integer getStatusCode(){
+        return this.statusCode;
+    }
+
+    public T getArgs(){
+        return this.arg;
     }
 
 

@@ -1,7 +1,11 @@
 package ru.ifmo.se.client.commands;
 
-import ru.ifmo.se.client.CollectionManager;
 import ru.ifmo.se.client.Command;
+import ru.ifmo.se.client.net.Commands;
+import ru.ifmo.se.client.net.Request;
+
+import java.io.Serializable;
+
 import ru.ifmo.se.client.CLIOutputManager;
 
 /**
@@ -21,10 +25,7 @@ public class Info extends Command {
     }
     
     @Override
-    public boolean execute(String[] args){
-        CLIOutputManager.print(CollectionManager.getType());
-        CLIOutputManager.print(CollectionManager.getInitDate());
-        CLIOutputManager.print(CollectionManager.getSize());
-        return true;
+    public Serializable execute(String[] args){
+        return new Request<>(Commands.INFO);
     }
 }

@@ -1,9 +1,12 @@
 package ru.ifmo.se.client.commands;
 
-import ru.ifmo.se.client.CollectionManager;
 import ru.ifmo.se.client.Command;
+
+import java.io.Serializable;
+
 import ru.ifmo.se.client.CLIOutputManager;
-import ru.ifmo.se.client.collections.Person;
+import ru.ifmo.se.client.net.Commands;
+import ru.ifmo.se.client.net.Request;
 
 /**
  * remove given person from the collection
@@ -22,23 +25,19 @@ public class Remove extends Command{
     }
     
     @Override
-    public boolean execute(String[] args){
+    public Serializable execute(String[] args){
         Integer id = null;
         try{
             id = Integer.parseInt(args[1]);
         } catch(ArrayIndexOutOfBoundsException e){
             CLIOutputManager.print("Not enough arguments.");
-            return false;
+            return null;
         }catch (NumberFormatException e){
             CLIOutputManager.print("id must be a number");
-            return false;
+            return null;
         }
-        Person person = CollectionManager.findPerson(id);
-        if(person == null) {
-            CLIOutputManager.print("No such id in collection.");
-            return false;
-        }
-        CollectionManager.remove(person);
-        return true;
+        Request<Integer> request = new Request<>(Commands.REMOVE_BY_ID);
+        request.setArgument(id);
+        return request;
     }
 }

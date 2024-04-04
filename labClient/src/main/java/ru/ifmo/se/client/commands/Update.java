@@ -1,11 +1,16 @@
 package ru.ifmo.se.client.commands;
 
+import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Arrays;
-import ru.ifmo.se.client.CollectionManager;
+import java.util.List;
+
 import ru.ifmo.se.client.Command;
 import ru.ifmo.se.client.CLIOutputManager;
 import ru.ifmo.se.client.collections.AskPerson;
 import ru.ifmo.se.client.collections.Person;
+import ru.ifmo.se.client.net.Commands;
+import ru.ifmo.se.client.net.Request;
 
 /**
  * replace person with given id,with another person 
@@ -25,35 +30,32 @@ public class Update extends Command{
     }
     
     @Override
-    public boolean execute(String[] args){
+    public Serializable execute(String[] args){
         if(args.length < 5){
             CLIOutputManager.print("Not enough arguments.");
-            return false;
+            return null;
         }
         Integer id = null;
         try{
             id = Integer.parseInt(args[1]);
         } catch(NullPointerException e){
             CLIOutputManager.print("Not enough arguments.");
-            return false;
+            return null;
         } catch (NumberFormatException e){
             CLIOutputManager.print("id must be a number");
-            return false;
-        }
-        Person person = CollectionManager.findPerson(id);
-        if(person == null) {
-            CLIOutputManager.print("No such id in collection.");
-            return false;
+            return null;
         }
         args = Arrays.copyOfRange(args, 1, args.length - 1);
         Person newPerson = AskPerson.generatePerson(args);
         if(newPerson == null){
             CLIOutputManager.print("Error in creating new Person. Try again.");
-            return false;
+            return null;
         }
-        CollectionManager.remove(person);
-        newPerson.setId(id);
-        CollectionManager.add(newPerson);
-        return true;
+        
+        Request<ArrayList<Serializable>> request = new Request<>(Commands.UPDATE);
+        ArrayList<Serializable> arguments = new ArrayList<>();
+        arguments.add(id, newPerson);
+        request.setArgument(arguments);
+        return request;
     }
 }

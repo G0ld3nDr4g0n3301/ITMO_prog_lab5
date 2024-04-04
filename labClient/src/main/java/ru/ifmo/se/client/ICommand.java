@@ -1,5 +1,7 @@
 package ru.ifmo.se.client;
 
+import java.io.Serializable;
+
 /**
  * Interface with a single method for executing commands.
  * @author raistlin
@@ -11,5 +13,5 @@ public interface ICommand {
      * @param args
      * @return true, if no exceptions encountered
      */
-    public boolean execute(String[] args);
+    public Serializable execute(String[] args);
 }

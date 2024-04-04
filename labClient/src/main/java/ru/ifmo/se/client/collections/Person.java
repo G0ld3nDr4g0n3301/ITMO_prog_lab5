@@ -1,18 +1,19 @@
 package ru.ifmo.se.client.collections;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 
 /**
  * Main class of the collection.
  * @author raistlin
  */
-public class Person implements Comparable<Person>{
+public class Person implements Comparable<Person>,Serializable{
     
     /**
      * id of a person
      */
     
-    private Integer id; //Поле не может быть null, Значение поля должно быть больше 0, Значение этого поля должно быть уникальным, Значение этого поля должно генерироваться автоматически
+    private transient Integer id; //Поле не может быть null, Значение поля должно быть больше 0, Значение этого поля должно быть уникальным, Значение этого поля должно генерироваться автоматически
     
     /**
      * Name of a Person
@@ -30,7 +31,7 @@ public class Person implements Comparable<Person>{
      * Creation date of a person
      */
     
-    private LocalDate creationDate; //Поле не может быть null, Значение этого поля должно генерироваться автоматически
+    private transient LocalDate creationDate; //Поле не может быть null, Значение этого поля должно генерироваться автоматически
     
     /**
      * height of a person

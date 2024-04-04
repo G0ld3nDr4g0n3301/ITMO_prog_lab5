@@ -1,9 +1,9 @@
 package ru.ifmo.se.client.commands;
 
-import ru.ifmo.se.client.CollectionManager;
 import ru.ifmo.se.client.Command;
-import ru.ifmo.se.client.CLIOutputManager;
-import ru.ifmo.se.client.collections.Person;
+import java.io.Serializable;
+import ru.ifmo.se.client.net.Commands;
+import ru.ifmo.se.client.net.Request;
 
 /**
  * prints all elements of collection
@@ -17,12 +17,7 @@ public class Show extends Command{
     }
     
     @Override
-    public boolean execute(String[] args){
-        for(Person p : CollectionManager.getCollection()){
-            CLIOutputManager.print("------------------------------------");
-            CLIOutputManager.print(p);
-            CLIOutputManager.print("------------------------------------");
-        }
-        return true;
+    public Serializable execute(String[] args){
+        return new Request<>(Commands.SHOW);
     }
 }

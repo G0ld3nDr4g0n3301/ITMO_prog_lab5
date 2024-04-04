@@ -1,11 +1,12 @@
 package ru.ifmo.se.client.collections;
 
+import java.io.Serializable;
 
 /**
  * Coordinates(x,y) of person.
  * @author raistlin
  */
-public class Coordinates {
+public class Coordinates implements Serializable{
     
     /**
      * x value

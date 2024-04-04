@@ -1,11 +1,11 @@
 package ru.ifmo.se.client.commands;
 
-import ru.ifmo.se.client.CollectionManager;
 import ru.ifmo.se.client.Command;
-import ru.ifmo.se.client.CLIOutputManager;
+import java.io.Serializable;
 import ru.ifmo.se.client.collections.Location;
 import ru.ifmo.se.client.collections.LocationField;
-import ru.ifmo.se.client.collections.Person;
+import ru.ifmo.se.client.net.Commands;
+import ru.ifmo.se.client.net.Request;
 
 /**
  * removes all persons with given location
@@ -19,14 +19,11 @@ public class RemoveLoc extends Command{
     }
     
     @Override
-    public boolean execute(String[] args){
+    public Serializable execute(String[] args){
         
         Location loc = new LocationField().create("");
-        Person person = CollectionManager.findPerson(loc);
-        while(person != null){
-            CollectionManager.remove(person);
-            person = CollectionManager.findPerson(loc);
-        }
-        return true;
+        Request<Location> request = new Request<>(Commands.REMOVE_BY_LOC);
+        request.setArgument(loc);
+        return request;
     }
 }

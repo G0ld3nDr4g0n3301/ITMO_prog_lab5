@@ -1,11 +1,12 @@
 package ru.ifmo.se.client.collections;
 
+import java.io.Serializable;
 
 /**
  * Person's location(x,y,name)
  * @author raistlin
  */
-public class Location implements Comparable<Location> {
+public class Location implements Comparable<Location>, Serializable{
     
     /**
      * x value

@@ -1,6 +1,12 @@
 package ru.ifmo.se.client.commands;
 
+import java.io.IOException;
+import java.io.Serializable;
+
 import ru.ifmo.se.client.Command;
+import ru.ifmo.se.client.net.Commands;
+import ru.ifmo.se.client.net.ConnectionManager;
+import ru.ifmo.se.client.net.Request;
 
 
 /**
@@ -15,8 +21,23 @@ public class Exit extends Command {
     }
    
     @Override
-    public boolean execute(String[] args){
-        System.exit(0);
-        return true;
+    public Serializable execute(String[] args){
+        try {
+            Request request = new Request<>(Commands.EXIT);
+            ConnectionManager.send(request);
+            ConnectionManager.recieve();
+            System.exit(0);
+        } catch (IOException e) {
+            // TODO: handle
+            try {
+                ConnectionManager.close();
+            } catch (IOException ex){
+                // TODO: handle
+            }
+            System.exit(0);
+
+            return null;
+        } 
+        return null;
     }
 }
