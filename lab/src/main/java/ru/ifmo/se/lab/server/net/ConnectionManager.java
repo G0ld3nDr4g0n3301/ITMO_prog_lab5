@@ -4,33 +4,63 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.Serializable;
+import java.net.InetSocketAddress;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.nio.channels.ServerSocketChannel;
+import java.nio.channels.SocketChannel;
+import ru.ifmo.se.lab.server.Invoker;
+import ru.ifmo.se.lab.server.Validator;
 
 public class ConnectionManager{
     
     public static Integer port = 7777;
-    private static ServerSocket socket = null;
-    private static Socket clientSocket = null;
+    private static ServerSocketChannel socket = null;
+    private static SocketChannel channel = null;
     public static Integer timeout = 40;
     private static ObjectInputStream in;
     private static ObjectOutputStream out;
     
-    public static void initSocket() throws IOException{
-        if (socket != null && !socket.isClosed()){
-            socket.close();
+    public static void initSocket() throws IOException {
+        socket = ServerSocketChannel.open();
+        socket.socket().bind(new InetSocketAddress(port));
+        socket.configureBlocking(true);
+        channel = socket.accept();
+        System.out.println("Connection Established.");
+        in = new ObjectInputStream(channel.socket().getInputStream());
+        out = new ObjectOutputStream(channel.socket().getOutputStream());
+        run();
+    }
+    
+    public static void run() throws IOException{
+        while(true){    
+            Serializable pack = ConnectionManager.recieve();
+            Request input = (Request) pack;
+            if(input != null){
+                if(Validator.validateCommand(input)){
+                    Request output = Invoker.execute(input.getCommandType(), input.getStatusCode(), input.getArgs());
+                    if (output == null) {
+                        Request<String> error = new Request<>(404);
+                        error.setArgument("Error in program");
+                        try {
+                            ConnectionManager.send(error);
+                        } catch (IOException e) {
+                            // lol
+                        }
+                    } else {
+                        try {
+                            ConnectionManager.send(output);
+                        } catch (IOException e){
+                            // kek
+                        }
+                    }
+                }
+            }
         }
-        socket = new ServerSocket(port);
-        clientSocket = socket.accept();
-        in = new ObjectInputStream(clientSocket.getInputStream());
-        out = new ObjectOutputStream(clientSocket.getOutputStream());
     }
 
     public static void close() throws IOException{
-        if (!socket.isClosed()) {
-            socket.close();
-        }
+        socket.close();
     }
 
     public static <T extends Serializable> boolean send(T request) throws IOException{
@@ -58,10 +88,10 @@ public class ConnectionManager{
     }
 
     public static Socket getClientSocket(){
-        return clientSocket;
+        return channel.socket();
     }
 
-    public static ServerSocket getServerSocket(){
+    public static ServerSocketChannel getServerSocket(){
         return socket;
     }
 

@@ -22,7 +22,7 @@ public class Invoker {
      */
     private static HashMap<Commands,Command> commands;
 
-    private static EnumSet<Commands> clientForbidden;
+    private static EnumSet<Commands> clientForbidden = EnumSet.noneOf(Commands.class);
     
     /**
      * If true - executing in FromFile mode,needed for correct work of InputManager.

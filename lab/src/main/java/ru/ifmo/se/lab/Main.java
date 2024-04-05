@@ -23,30 +23,7 @@ public class Main {
         } catch (IOException e ) {
             System.out.println("Can't accept a connection");
         }
-        while(true){
-            Serializable pack = ConnectionManager.recieve();
-            Request input = (Request) pack;
-            if(input != null){
-                if(Validator.validateCommand(input)){
-                    Request output = Invoker.execute(input.getCommandType(), input.getStatusCode(), input.getArgs());
-                    if (output == null) {
-                        Request<String> error = new Request<>(404);
-                        error.setArgument("Error in program");
-                        try {
-                            ConnectionManager.send(error);
-                        } catch (IOException e) {
-                            // lol
-                        }
-                    } else {
-                        try {
-                            ConnectionManager.send(output);
-                        } catch (IOException e){
-                            // kek
-                        }
-                    }
-                }
-            }
-        }
+        
     }
 
 }
