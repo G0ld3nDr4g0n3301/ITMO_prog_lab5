@@ -84,13 +84,13 @@ public class Invoker {
             System.out.println("Wrong command. Type \"help\" for command list");
             return false;
         }
-        Serializable request = commands.get(args[0].toLowerCase()).execute(args);
+        Request request = commands.get(args[0].toLowerCase()).execute(args);
         if (request == null) {
             return false;
         }
         try {
             ConnectionManager.send(request);
-            Request<String> answer = ConnectionManager.recieve();
+            Request answer = ConnectionManager.recieve();
             if (answer == null) {
                 System.out.println("Error in package reading");
                 return false;
@@ -101,11 +101,11 @@ public class Invoker {
                     break;
                 case 404:
                     System.out.println("Error encountered");
-                    System.out.println(answer.getArgs());
+                    System.out.println(answer.getMsg());
                     break;
                 case 400:
                     System.out.println("Operation performed successfully");
-                    System.out.println(answer.getArgs());
+                    System.out.println(answer.getMsg());
                     break;
                 default:
                     System.out.println("Unknown status code");

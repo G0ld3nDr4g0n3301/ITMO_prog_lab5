@@ -24,13 +24,13 @@ public class AddIfMax extends Command{
     }
     
     @Override
-    public Serializable execute(String[] args){
+    public Request execute(String[] args){
         Person person = AskPerson.generatePerson(args);
         if(person == null){
             return null;
         }
-        Request<Person> request = new Request<>(Commands.ADDIF);
-        request.setArgument(person);
+        Request request = new Request(Commands.ADDIF);
+        request.setPerson(person);
         return request;
     }
 }

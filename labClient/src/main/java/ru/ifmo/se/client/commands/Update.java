@@ -29,7 +29,7 @@ public class Update extends Command{
     }
     
     @Override
-    public Serializable execute(String[] args){
+    public Request execute(String[] args){
         if(args.length < 5){
             System.out.println("Not enough arguments.");
             return null;
@@ -51,10 +51,9 @@ public class Update extends Command{
             return null;
         }
         
-        Request<ArrayList<Serializable>> request = new Request<>(Commands.UPDATE);
-        ArrayList<Serializable> arguments = new ArrayList<>();
-        arguments.add(id, newPerson);
-        request.setArgument(arguments);
+        Request request = new Request(Commands.UPDATE);
+        request.setId(id);
+        request.setPerson(newPerson);
         return request;
     }
 }

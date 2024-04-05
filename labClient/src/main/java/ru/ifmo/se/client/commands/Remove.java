@@ -24,7 +24,7 @@ public class Remove extends Command{
     }
     
     @Override
-    public Serializable execute(String[] args){
+    public Request execute(String[] args){
         Integer id = null;
         try{
             id = Integer.parseInt(args[1]);
@@ -35,8 +35,8 @@ public class Remove extends Command{
             System.out.println("id must be a number");
             return null;
         }
-        Request<Integer> request = new Request<>(Commands.REMOVE_BY_ID);
-        request.setArgument(id);
+        Request request = new Request(Commands.REMOVE_BY_ID);
+        request.setId(id);
         return request;
     }
 }

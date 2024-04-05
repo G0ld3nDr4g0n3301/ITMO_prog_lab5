@@ -21,9 +21,9 @@ public class Exit extends Command {
     }
    
     @Override
-    public Serializable execute(String[] args){
+    public Request execute(String[] args){
         try {
-            Request request = new Request<>(Commands.EXIT);
+            Request request = new Request(Commands.EXIT);
             ConnectionManager.send(request);
             ConnectionManager.recieve();
             System.exit(0);

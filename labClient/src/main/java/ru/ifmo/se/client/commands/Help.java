@@ -18,8 +18,8 @@ public class Help extends Command {
     }
     
     @Override
-    public Serializable execute(String[] args){
-        return new Request<>(Commands.HELP);
+    public Request execute(String[] args){
+        return new Request(Commands.HELP);
     }
     
     

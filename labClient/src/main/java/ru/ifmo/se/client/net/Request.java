@@ -1,8 +1,10 @@
 package ru.ifmo.se.client.net;
 
 import java.io.Serializable;
+import ru.ifmo.se.client.collections.Location;
+import ru.ifmo.se.client.collections.Person;
 
-public class Request<T extends Serializable> implements Serializable{
+public class Request implements Serializable{
     
     private Commands commandType;
 
@@ -10,26 +12,77 @@ public class Request<T extends Serializable> implements Serializable{
      * status code 200 means Successfully performed an operation. 300 means "execute the command". 400 means "Your request has been performed, and please, execute this command". 404 means error in execution.
      */
     private Integer statusCode;
-    private T arg;
+    private Person person = null;
+    private String msg = null;
+    private Integer id = null;
+    private Location loc = null;
 
     {
         this.statusCode = 300;
     }
-
-    public Request(Commands commandType) {
-        this.commandType = commandType;
+    
+    public Person getPerson(){
+        return this.person;
     }
 
-    public void setArgument(T argument){
-        this.arg = argument;
+    public Integer getId(){
+        return this.id;
+    }
+    
+    public Location getLoc(){
+        return this.loc;
+    }
+    
+    public void setLoc(Location loc){
+        this.loc = loc;
+    }
+    
+    public void setId(Integer id) {
+        this.id = id;
+    }
+    
+    public void setPerson(Person person) {
+        this.person = person;
+    }
+    
+    public Request(Commands commandType){
+        this.commandType = commandType;
+    }
+    
+    public Request(Commands commandType, Integer code) {
+        this.commandType = commandType;
+        this.statusCode = code;
+    }
+
+    public Request(Integer code){
+        this.commandType = Commands.RESPONSE;
+        this.statusCode = code;
+    }
+
+    public Request(Integer code, String msg){
+        this.commandType = Commands.RESPONSE;
+        this.statusCode = code;
+        this.msg = msg;
+    }
+
+    public void setMsg(String msg){
+        this.msg = msg;
     }
 
     public Integer getStatusCode(){
         return this.statusCode;
     }
 
-    public T getArgs(){
-        return this.arg;
+    public String getMsg(){
+        return this.msg;
+    }
+
+    public Commands getCommandType(){
+        return this.commandType;
+    }
+
+    public void setStatusCode(Integer code){
+        this.statusCode = code;
     }
 
 

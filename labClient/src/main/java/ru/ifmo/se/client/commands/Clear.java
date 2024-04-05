@@ -23,8 +23,8 @@ public class Clear extends Command{
     }
     
     @Override
-    public Serializable execute(String[] args){
-        Request request = new Request<>(Commands.CLEAR);
+    public Request execute(String[] args){
+        Request request = new Request(Commands.CLEAR);
         return request;
     }
 }

@@ -19,11 +19,11 @@ public class RemoveLoc extends Command{
     }
     
     @Override
-    public Serializable execute(String[] args){
+    public Request execute(String[] args){
         
         Location loc = new LocationField().create("");
-        Request<Location> request = new Request<>(Commands.REMOVE_BY_LOC);
-        request.setArgument(loc);
+        Request request = new Request(Commands.REMOVE_BY_LOC);
+        request.setLoc(loc);
         return request;
     }
 }

@@ -24,13 +24,14 @@ public class RemoveLower extends Command{
     }
     
     @Override
-    public Serializable execute(String[] args){
+    public Request execute(String[] args){
         Person person = AskPerson.generatePerson(args);
         if (person == null){
             return null;
         }
         
-        Request<Person> request = new Request<>(Commands.REMOVE_LOWER);
+        Request request = new Request(Commands.REMOVE_LOWER);
+        request.setPerson(person);
         return request;
     }
 }

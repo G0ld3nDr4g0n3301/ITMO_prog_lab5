@@ -24,11 +24,11 @@ public class CountHeight extends Command{
     }
     
     @Override
-    public Serializable execute(String[] args){
+    public Request execute(String[] args){
         if(args.length < 2){
             System.out.println("Not enough arguments");
             return null;
         }
-        return new Request<>(Commands.COUNT);
+        return new Request(Commands.COUNT);
     }
 }

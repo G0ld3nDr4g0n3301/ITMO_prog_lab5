@@ -23,7 +23,7 @@ public class ExecuteScript extends Command{
     }
     
     @Override
-    public Serializable execute(String[] args){
+    public Request execute(String[] args){
         
         if (args.length == 1){
             System.out.println("Specify the filename.");
@@ -61,6 +61,6 @@ public class ExecuteScript extends Command{
         }
         Invoker.removeCurrReadFile();
         Invoker.setModeState(false);
-        return new Request<>(Commands.EXEC);
+        return new Request(Commands.EXEC);
     }
 }

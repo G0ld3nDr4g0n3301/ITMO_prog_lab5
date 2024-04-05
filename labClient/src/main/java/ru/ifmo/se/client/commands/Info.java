@@ -24,7 +24,7 @@ public class Info extends Command {
     }
     
     @Override
-    public Serializable execute(String[] args){
-        return new Request<>(Commands.INFO);
+    public Request execute(String[] args){
+        return new Request(Commands.INFO);
     }
 }

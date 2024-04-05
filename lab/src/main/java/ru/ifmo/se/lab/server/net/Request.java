@@ -33,6 +33,22 @@ public class Request implements Serializable{
         return this.loc;
     }
     
+    public void setLoc(Location loc){
+        this.loc = loc;
+    }
+    
+    public void setId(Integer id) {
+        this.id = id;
+    }
+    
+    public void setPerson(Person person) {
+        this.person = person;
+    }
+    
+    public Request(Commands commandType){
+        this.commandType = commandType;
+    }
+    
     public Request(Commands commandType, Integer code) {
         this.commandType = commandType;
         this.statusCode = code;

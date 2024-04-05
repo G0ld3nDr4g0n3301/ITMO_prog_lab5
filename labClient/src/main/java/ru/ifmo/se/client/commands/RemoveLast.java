@@ -23,7 +23,7 @@ public class RemoveLast extends Command{
     }
     
     @Override
-    public Serializable execute(String[] args){
-        return new Request<>(Commands.REMOVE_LAST);
+    public Request execute(String[] args){
+        return new Request(Commands.REMOVE_LAST);
     }
 }

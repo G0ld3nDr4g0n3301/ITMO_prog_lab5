@@ -22,7 +22,7 @@ public class PrintHairColor extends Command{
     }
     
     @Override
-    public Serializable execute(String[] args){
-        return new Request<>(Commands.HAIR);
+    public Request execute(String[] args){
+        return new Request(Commands.HAIR);
     }
 }
