@@ -1,13 +1,9 @@
 package ru.ifmo.se.client.net;
 
 import java.io.BufferedInputStream;
+import java.io.DataInputStream;
+import java.io.DataOutputStream;
 import java.io.IOException;
-import java.io.InputStream;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
-import java.io.OutputStream;
-import java.io.Serializable;
-import java.net.InetAddress;
 import java.net.InetSocketAddress;
 import java.net.Socket;
 
@@ -17,14 +13,14 @@ public class ConnectionManager{
     public static String host = "localhost";
     private static Socket socket = null;
     public static Integer timeout = 40;
-    private static ObjectInputStream in;
-    private static ObjectOutputStream out;
+    private static DataInputStream in;
+    private static DataOutputStream out;
     
     public static void initSocket() throws IOException{
         socket = new Socket();
         socket.connect(new InetSocketAddress(host, port), timeout);
-        in = new ObjectInputStream(new BufferedInputStream(socket.getInputStream()));
-        out = new ObjectOutputStream(socket.getOutputStream());
+        in = new DataInputStream(new BufferedInputStream(socket.getInputStream()));
+        out = new DataOutputStream(socket.getOutputStream());
         out.flush();
     }
 
@@ -36,8 +32,9 @@ public class ConnectionManager{
 
     public static boolean send(Request request) throws IOException{
         System.out.println(request);
+
         if (socket != null){
-            out.writeObject(request);
+            out.write(Serialize.serializeRequest(request));
             return true;
         }
         System.out.println("You should run initSocket() method before using sockets.");
@@ -50,11 +47,9 @@ public class ConnectionManager{
             return null;
         }
         try {
-            Object obj = in.readObject();
-            Request request = (Request) obj;
+            Request request = Deserialize.deserializeRequest(in.readAllBytes());
             return request;
-        } catch (IOException | ClassCastException | ClassNotFoundException e) {
-            // TODO: handle
+        } catch (IOException | ClassCastException e) {
             return null;
         }
     }

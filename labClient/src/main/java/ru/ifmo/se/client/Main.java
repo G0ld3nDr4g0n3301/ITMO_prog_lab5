@@ -1,12 +1,21 @@
 package ru.ifmo.se.client;
 
 import java.io.IOException;
+import java.io.Serializable;
 
+import ru.ifmo.se.client.collections.Location;
+import ru.ifmo.se.client.collections.Person;
+import ru.ifmo.se.client.net.Commands;
 import ru.ifmo.se.client.net.ConnectionManager;
 
 public class Main {
     public static void main(String[] args) {
         try {
+            System.out.println(Integer.class instanceof Serializable);
+            System.out.println(String.class instanceof Serializable);
+            System.out.println(Location.class instanceof Serializable);
+            System.out.println(Person.class instanceof Serializable);
+            System.out.println(Commands.class instanceof Serializable);
             ConnectionManager.initSocket();
         } catch (IOException e){
             System.out.println(e.getMessage());

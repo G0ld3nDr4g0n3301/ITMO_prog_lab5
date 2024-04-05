@@ -112,7 +112,7 @@ public class Invoker {
                     return false;
             }
         } catch (IOException e) {
-            // TODO: handle
+            System.out.println(e);
         }
         return true;
 

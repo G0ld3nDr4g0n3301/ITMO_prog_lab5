@@ -6,6 +6,8 @@ import ru.ifmo.se.lab.server.collections.Person;
 
 public class Request implements Serializable{
     
+    private static final long serialVersionUID = 4234661872345L;
+
     private Commands commandType;
 
     /**

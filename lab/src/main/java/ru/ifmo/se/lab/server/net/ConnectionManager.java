@@ -1,11 +1,11 @@
 package ru.ifmo.se.lab.server.net;
 
+import java.io.DataInputStream;
+import java.io.DataOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
-import java.io.Serializable;
 import java.net.InetSocketAddress;
-import java.net.ServerSocket;
 import java.net.Socket;
 import java.nio.channels.ServerSocketChannel;
 import java.nio.channels.SocketChannel;
@@ -18,8 +18,8 @@ public class ConnectionManager{
     private static ServerSocketChannel socket = null;
     private static SocketChannel channel = null;
     public static Integer timeout = 40;
-    private static ObjectInputStream in;
-    private static ObjectOutputStream out;
+    private static DataInputStream in;
+    private static DataOutputStream out;
     
     public static void initSocket() throws IOException {
         socket = ServerSocketChannel.open();
@@ -31,16 +31,16 @@ public class ConnectionManager{
             System.out.println(e.getMessage());
         }
         System.out.println("Connection Established.");
-        out = new ObjectOutputStream(channel.socket().getOutputStream());
+        out = new DataOutputStream(channel.socket().getOutputStream());
         out.flush();
-        in = new ObjectInputStream(channel.socket().getInputStream());
+        in = new DataInputStream(channel.socket().getInputStream());
         run();
     }
     
     public static void run() throws IOException{
         System.out.println("LOL I WON!");
         while(true){    
-            Request input = ConnectionManager.<Request>recieve();
+            Request input = ConnectionManager.recieve();
             System.out.println(input);
             if(input != null){
                 if(Validator.validateCommand(input)){
@@ -70,9 +70,12 @@ public class ConnectionManager{
         socket.close();
     }
 
+    
     public static boolean send(Request request) throws IOException{
+        System.out.println(request);
+
         if (socket != null){
-            out.writeObject(request);
+            out.write(Serialize.serializeRequest(request));
             return true;
         }
         System.out.println("You should run initSocket() method before using sockets.");
@@ -85,14 +88,13 @@ public class ConnectionManager{
             return null;
         }
         try {
-            Object obj = in.readObject();
-            Request request = (Request) obj;
+            Request request = Deserialize.deserializeRequest(in.readAllBytes());
             return request;
-        } catch (IOException | ClassCastException | ClassNotFoundException e) {
-            // TODO: handle
+        } catch (IOException | ClassCastException e) {
             return null;
         }
     }
+    
 
     public static Socket getClientSocket(){
         return channel.socket();

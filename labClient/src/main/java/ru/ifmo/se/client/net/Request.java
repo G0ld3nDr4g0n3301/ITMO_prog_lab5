@@ -6,6 +6,8 @@ import ru.ifmo.se.client.collections.Person;
 
 public class Request implements Serializable{
     
+    private static final long serialVersionUID = 4234661872345L;
+
     private Commands commandType;
 
     /**
@@ -85,6 +87,24 @@ public class Request implements Serializable{
         this.statusCode = code;
     }
 
-
+    @Override
+    public String toString(){
+        String result = "";
+        result += this.commandType.toString() + "\n";
+        result += this.statusCode.toString() + "\n";
+        if (this.person != null){
+            result += this.person.toString() + "\n";
+        }
+        if (this.msg != null) {
+            result += this.msg + "\n";
+        }
+        if(this.loc != null) {
+        result += this.loc + "\n";
+        }
+        if (this.id != null) {
+        result += this.id.toString() + "\n";
+        }
+        return result;
+    }
 
 }
