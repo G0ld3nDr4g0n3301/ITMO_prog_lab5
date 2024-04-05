@@ -21,6 +21,7 @@ public class Main {
         try{
             ConnectionManager.initSocket();
         } catch (IOException e ) {
+            System.out.println(e.getMessage());
             System.out.println("Can't accept a connection");
         }
         

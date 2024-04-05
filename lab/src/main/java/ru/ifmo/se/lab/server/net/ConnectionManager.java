@@ -14,7 +14,7 @@ import ru.ifmo.se.lab.server.Validator;
 
 public class ConnectionManager{
     
-    public static Integer port = 7777;
+    public static Integer port = 777;
     private static ServerSocketChannel socket = null;
     private static SocketChannel channel = null;
     public static Integer timeout = 40;
@@ -25,14 +25,20 @@ public class ConnectionManager{
         socket = ServerSocketChannel.open();
         socket.socket().bind(new InetSocketAddress(port));
         socket.configureBlocking(true);
+        try {
         channel = socket.accept();
+        } catch (IOException e) {
+            System.out.println(e.getMessage());
+        }
         System.out.println("Connection Established.");
-        in = new ObjectInputStream(channel.socket().getInputStream());
         out = new ObjectOutputStream(channel.socket().getOutputStream());
+        out.flush();
+        in = new ObjectInputStream(channel.socket().getInputStream());
         run();
     }
     
     public static void run() throws IOException{
+        System.out.println("LOL I WON");
         while(true){    
             Serializable pack = ConnectionManager.recieve();
             Request input = (Request) pack;

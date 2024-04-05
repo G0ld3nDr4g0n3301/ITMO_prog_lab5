@@ -1,27 +1,31 @@
 package ru.ifmo.se.client.net;
 
+import java.io.BufferedInputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.io.OutputStream;
 import java.io.Serializable;
+import java.net.InetAddress;
+import java.net.InetSocketAddress;
 import java.net.Socket;
 
 public class ConnectionManager{
     
-    public static Integer port = 7777;
-    public static String host = "127.0.0.1";
+    public static Integer port = 777;
+    public static String host = "localhost";
     private static Socket socket = null;
     public static Integer timeout = 40;
     private static ObjectInputStream in;
     private static ObjectOutputStream out;
     
     public static void initSocket() throws IOException{
-        if (socket != null && socket.isClosed() == false){
-            socket.close();
-        }
-        socket = new Socket(host,port);
+        socket = new Socket();
+        socket.connect(new InetSocketAddress(host, port), timeout);
         in = new ObjectInputStream(socket.getInputStream());
         out = new ObjectOutputStream(socket.getOutputStream());
+        out.flush();
     }
 
     public static void close() throws IOException{

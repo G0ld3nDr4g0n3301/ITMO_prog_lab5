@@ -13,6 +13,7 @@ public class Main {
             System.exit(0);
         }
         try {
+            System.out.println("HEh");
             while(true){
                 String input = CLIInputManager.ask("> ");
                 if(input != null){
