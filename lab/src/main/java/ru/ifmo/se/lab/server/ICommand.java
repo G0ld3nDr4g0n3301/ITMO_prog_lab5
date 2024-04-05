@@ -15,5 +15,5 @@ public interface ICommand {
      * @param args
      * @return true, if no exceptions encountered
      */
-    public Request execute(Serializable args);
+    public Request execute(Request args);
 }

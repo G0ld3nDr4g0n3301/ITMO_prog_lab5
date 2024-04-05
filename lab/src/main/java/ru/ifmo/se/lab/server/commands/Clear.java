@@ -24,8 +24,8 @@ public class Clear extends Command{
     }
     
     @Override
-    public Request execute(Serializable args){
+    public Request execute(Request args){
         CollectionManager.clear();
-        return new Request<>(200);
+        return new Request(200);
     }
 }

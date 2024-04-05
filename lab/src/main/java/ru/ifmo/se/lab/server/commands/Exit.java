@@ -21,14 +21,15 @@ public class Exit extends Command {
     }
    
     @Override
-    public Request execute(Serializable args){
+    public Request execute(Request args){
         try {
-            ConnectionManager.send(new Request<>(200));
+            ConnectionManager.send(new Request(200));
+            ConnectionManager.close();
         } catch (IOException e) {
             // i'm lost
         }
 
         System.exit(0);
-        return new Request<>(200);
+        return new Request(200);
     }
 }

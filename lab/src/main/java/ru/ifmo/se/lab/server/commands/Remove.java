@@ -25,12 +25,12 @@ public class Remove extends Command{
     }
     
     @Override
-    public Request<String> execute(Serializable arguments){
-        Integer id = (Integer) arguments;
+    public Request execute(Request arguments){
+        Integer id = arguments.getId();
         Person person = CollectionManager.findPerson(id);
-        Request<String> request = new Request<>(404);
+        Request request = new Request(404);
         if(person == null) {
-            request.setArgument("No such id in collection.");
+            request.setMsg("No such id in collection.");
             request.setStatusCode(404);
             return request;
         }

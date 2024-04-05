@@ -27,7 +27,7 @@ public class Load extends Command{
     }
     
     @Override
-    public Request execute(Serializable args){
+    public Request execute(Request args){
         List<Person> newList = null;
         try{
             newList = ReadPerson.read(Invoker.getCurrMainFile());

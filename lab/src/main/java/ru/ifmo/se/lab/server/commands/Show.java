@@ -20,13 +20,13 @@ public class Show extends Command{
     }
     
     @Override
-    public Request execute(Serializable args){
+    public Request execute(Request args){
         String answer = "";
         for(Person p : CollectionManager.getCollection()){
             answer += "------------------------------------";
             answer += p;
             answer += "------------------------------------";
         }
-        return new Request<>(400, answer);
+        return new Request(400, answer);
     }
 }

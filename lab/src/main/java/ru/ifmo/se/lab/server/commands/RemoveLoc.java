@@ -22,7 +22,7 @@ public class RemoveLoc extends Command{
     }
     
     @Override
-    public Request execute(Serializable args){
+    public Request execute(Request args){
         
         Location loc = new LocationField().create("");
         Person person = CollectionManager.findPerson(loc);
@@ -30,6 +30,6 @@ public class RemoveLoc extends Command{
             CollectionManager.remove(person);
             person = CollectionManager.findPerson(loc);
         }
-        return new Request<>(200);
+        return new Request(200);
     }
 }

@@ -27,8 +27,8 @@ public class Info extends Command {
     }
     
     @Override
-    public Request<String> execute(Serializable args){
+    public Request execute(Request args){
         String info = CollectionManager.getType().toString() + "\n" + CollectionManager.getInitDate().toString() + "\n" + CollectionManager.getSize();
-        return new Request<String>(400,info);
+        return new Request(400,info);
     }
 }

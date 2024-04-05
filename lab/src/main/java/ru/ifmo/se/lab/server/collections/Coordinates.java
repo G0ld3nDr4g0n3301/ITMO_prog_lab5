@@ -1,12 +1,13 @@
 package ru.ifmo.se.lab.server.collections;
 
+import java.io.Serializable;
 import ru.ifmo.se.lab.server.parser.CsvBind;
 
 /**
  * Coordinates(x,y) of person.
  * @author raistlin
  */
-public class Coordinates {
+public class Coordinates implements Serializable {
     
     /**
      * x value

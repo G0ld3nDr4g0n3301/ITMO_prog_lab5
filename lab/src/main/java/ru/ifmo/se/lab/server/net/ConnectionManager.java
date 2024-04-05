@@ -38,16 +38,16 @@ public class ConnectionManager{
     }
     
     public static void run() throws IOException{
-        System.out.println("LOL I WON");
+        System.out.println("LOL I WON!");
         while(true){    
-            Serializable pack = ConnectionManager.recieve();
-            Request input = (Request) pack;
+            Request input = ConnectionManager.<Request>recieve();
+            System.out.println(input);
             if(input != null){
                 if(Validator.validateCommand(input)){
-                    Request output = Invoker.execute(input.getCommandType(), input.getStatusCode(), input.getArgs());
+                    Request output = Invoker.execute(input);
                     if (output == null) {
-                        Request<String> error = new Request<>(404);
-                        error.setArgument("Error in program");
+                        Request error = new Request(404);
+                        error.setMsg("Error in program");
                         try {
                             ConnectionManager.send(error);
                         } catch (IOException e) {
@@ -66,10 +66,11 @@ public class ConnectionManager{
     }
 
     public static void close() throws IOException{
+        out.flush();
         socket.close();
     }
 
-    public static <T extends Serializable> boolean send(T request) throws IOException{
+    public static boolean send(Request request) throws IOException{
         if (socket != null){
             out.writeObject(request);
             return true;
@@ -78,14 +79,14 @@ public class ConnectionManager{
         return false;
     }
 
-    public static <T extends Serializable> T recieve() {
+    public static Request recieve() {
         if (socket == null ){
             System.out.println("run initSocket() first.");
             return null;
         }
         try {
             Object obj = in.readObject();
-            T request = (T) obj;
+            Request request = (Request) obj;
             return request;
         } catch (IOException | ClassCastException | ClassNotFoundException e) {
             // TODO: handle

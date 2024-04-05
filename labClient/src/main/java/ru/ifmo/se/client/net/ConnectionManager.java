@@ -23,7 +23,7 @@ public class ConnectionManager{
     public static void initSocket() throws IOException{
         socket = new Socket();
         socket.connect(new InetSocketAddress(host, port), timeout);
-        in = new ObjectInputStream(socket.getInputStream());
+        in = new ObjectInputStream(new BufferedInputStream(socket.getInputStream()));
         out = new ObjectOutputStream(socket.getOutputStream());
         out.flush();
     }
@@ -34,7 +34,8 @@ public class ConnectionManager{
         }
     }
 
-    public static <T extends Serializable> boolean send(T request) throws IOException{
+    public static boolean send(Request request) throws IOException{
+        System.out.println(request);
         if (socket != null){
             out.writeObject(request);
             return true;
@@ -43,14 +44,14 @@ public class ConnectionManager{
         return false;
     }
 
-    public static <T extends Serializable> T recieve() {
+    public static Request recieve() {
         if (socket == null ){
             System.out.println("run initSocket() first.");
             return null;
         }
         try {
             Object obj = in.readObject();
-            T request = (T) obj;
+            Request request = (Request) obj;
             return request;
         } catch (IOException | ClassCastException | ClassNotFoundException e) {
             // TODO: handle

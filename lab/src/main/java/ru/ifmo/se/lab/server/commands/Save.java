@@ -22,17 +22,17 @@ public class Save extends Command {
     }
     
     @Override
-    public Request execute(Serializable args){
+    public Request execute(Request args){
         try{
             File currFile = Invoker.getCurrMainFile();
             if(currFile == null){
-                return new Request<>(404, "You must specify file,when executing this program.");
+                return new Request(404, "You must specify file,when executing this program.");
             }
             WritePerson.write(CollectionManager.getCollection(), currFile);
         }catch(IOException e){
-            return new Request<>(404, "Error in file writing");
+            return new Request(404, "Error in file writing");
         }
-        return new Request<>(200);
+        return new Request(200);
     }
     
     @Override

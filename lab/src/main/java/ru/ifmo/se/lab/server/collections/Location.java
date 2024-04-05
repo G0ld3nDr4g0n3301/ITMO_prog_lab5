@@ -1,12 +1,13 @@
 package ru.ifmo.se.lab.server.collections;
 
+import java.io.Serializable;
 import ru.ifmo.se.lab.server.parser.CsvBind;
 
 /**
  * Person's location(x,y,name)
  * @author raistlin
  */
-public class Location implements Comparable<Location> {
+public class Location implements Serializable,Comparable<Location> {
     
     /**
      * x value

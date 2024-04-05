@@ -17,7 +17,7 @@ public class Main {
         if(args.length > 0){
             Invoker.setCurrMainFile(new File(args[0]));
         }
-        new Load(null,null).execute(args);
+        new Load(null,null).execute(new Request(200));
         try{
             ConnectionManager.initSocket();
         } catch (IOException e ) {

@@ -22,13 +22,13 @@ public class Add extends Command{
     }
     
     @Override
-    public Request execute(Serializable args){
-        Person person = (Person) args;
+    public Request execute(Request args){
+        Person person = args.getPerson();
         if(person == null){
             return null;
         }
         CollectionManager.add(person);
-        Request request = new Request<>(Commands.RESPONSE, 200);
+        Request request = new Request(Commands.RESPONSE, 200);
         return request;
     }
 }

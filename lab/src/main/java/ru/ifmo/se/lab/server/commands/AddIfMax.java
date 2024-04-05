@@ -28,20 +28,20 @@ public class AddIfMax extends Command{
     }
     
     @Override
-    public Request execute(Serializable args){
-        Person person = (Person) args;
+    public Request execute(Request args){
+        Person person = args.getPerson();
         if(person == null){
             return null;
         }
         ArrayList<Person> collection = CollectionManager.getCollection();
-        Request request = new Request<>(Commands.RESPONSE, null);
+        Request request = new Request(Commands.RESPONSE, null);
         if(person.compareTo(collection.get(collection.size() - 1)) > 0){
             CollectionManager.add(person);
             request.setStatusCode(200);
             OutputManager.print("Adding element to collection...");
         } else {
             request.setStatusCode(400);
-            request.setArgument("Element is less than max element of collection.");
+            request.setMsg("Element is less than max element of collection.");
         }
         return request;
     }

@@ -26,18 +26,18 @@ public class CountHeight extends Command{
     }
     
     @Override
-    public Request execute(Serializable args){
-        ArrayList<String> arguments = (ArrayList<String>) args;
-        if(arguments.size() < 1){
-            Request<String> request = new Request<>(404, "Not enough arguments");
+    public Request execute(Request args){
+        String arguments = args.getMsg();
+        if(arguments == null){
+            Request request = new Request(404, "Not enough arguments");
             return request;
         }
-        int count = 0;
+        Integer count = 0;
         for(Person p : CollectionManager.getCollection()){
-            if(p.getHeight().toString().compareTo(arguments.get(0)) == 0){
+            if(p.getHeight().toString().compareTo(arguments) == 0){
                 ++count;
             }
         }
-        return new Request<Integer>(400, count);
+        return new Request(400, count.toString());
     }
 }

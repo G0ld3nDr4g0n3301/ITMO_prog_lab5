@@ -89,14 +89,14 @@ public class Invoker {
      * @param args
      * @return true, if no errors encountered during runtime of command.
      */
-    public static Request execute(Commands type, Integer code, Serializable args){
-        if (!(commands.containsKey(type))){
+    public static Request execute(Request args){
+        if (!(commands.containsKey(args.getCommandType()))){
             System.out.println("Wrong command. Type \"help\" for command list");
             return null;
         }
-        switch (code) {
+        switch (args.getStatusCode()) {
             case 300:
-                Request request = commands.get(type).execute(args);
+                Request request = commands.get(args.getCommandType()).execute(args);
                 return request;
 
             default:

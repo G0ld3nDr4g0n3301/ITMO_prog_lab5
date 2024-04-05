@@ -1,5 +1,6 @@
 package ru.ifmo.se.lab.server.collections;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 import ru.ifmo.se.lab.server.parser.CsvBind;
 
@@ -7,13 +8,13 @@ import ru.ifmo.se.lab.server.parser.CsvBind;
  * Main class of the collection.
  * @author raistlin
  */
-public class Person implements Comparable<Person>{
+public class Person implements Serializable,Comparable<Person>{
     
     /**
      * id of a person
      */
     @CsvBind
-    private Integer id; //Поле не может быть null, Значение поля должно быть больше 0, Значение этого поля должно быть уникальным, Значение этого поля должно генерироваться автоматически
+    private transient Integer id; //Поле не может быть null, Значение поля должно быть больше 0, Значение этого поля должно быть уникальным, Значение этого поля должно генерироваться автоматически
     
     /**
      * Name of a Person
@@ -31,7 +32,7 @@ public class Person implements Comparable<Person>{
      * Creation date of a person
      */
     @CsvBind
-    private LocalDate creationDate; //Поле не может быть null, Значение этого поля должно генерироваться автоматически
+    private transient LocalDate creationDate; //Поле не может быть null, Значение этого поля должно генерироваться автоматически
     
     /**
      * height of a person

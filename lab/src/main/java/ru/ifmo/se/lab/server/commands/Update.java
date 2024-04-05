@@ -24,30 +24,22 @@ public class Update extends Command{
     }
     
     @Override
-    public Request execute(Serializable arguments){
-        Serializable[] args = (Serializable[]) arguments;
-        if(args.length < 2){
-            return new Request<String>(404, "Not enough arguments.");
+    public Request execute(Request arguments){
+        if(arguments.getId() == null || arguments.getPerson() == null){
+            return new Request(404, "Not enough arguments.");
         }
-        Integer id = null;
-        try{
-            id = (Integer) args[0];
-        } catch(NullPointerException e){
-            return new Request<String>(404, "Not enough arguments.");
-        } catch (NumberFormatException e){
-            return new Request<String>(404, "id must be a number");
-        }
+        Integer id = arguments.getId();
         Person person = CollectionManager.findPerson(id);
         if(person == null) {
-            return new Request<String>(404,"No such id in collection.");
+            return new Request(404,"No such id in collection.");
         }
-        Person newPerson = (Person) args[1];
+        Person newPerson = arguments.getPerson();
         if(newPerson == null){
-            return new Request<String>(404, "Error in creating new Person. Try again.");
+            return new Request(404, "Error in creating new Person. Try again.");
         }
         CollectionManager.remove(person);
         newPerson.setId(id);
         CollectionManager.add(newPerson);
-        return new Request<>(200);
+        return new Request(200);
     }
 }

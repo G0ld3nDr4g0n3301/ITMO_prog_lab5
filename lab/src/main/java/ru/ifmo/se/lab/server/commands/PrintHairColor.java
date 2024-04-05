@@ -25,10 +25,13 @@ public class PrintHairColor extends Command{
     }
     
     @Override
-    public Request<ArrayList<Color>> execute(Serializable args){
+    public Request execute(Request args){
         ArrayList<Color> hairColors = (ArrayList<Color>) CollectionManager.getHairColors();
         hairColors.sort(Comparator.reverseOrder());
-        Request<ArrayList<Color>> request = new Request<>(400, hairColors);
-        return request;
+        String colors = "";
+        for (Color c : hairColors) {
+            colors += c.toString() + "\n";
+        }
+        return new Request(400, colors);
     }
 }

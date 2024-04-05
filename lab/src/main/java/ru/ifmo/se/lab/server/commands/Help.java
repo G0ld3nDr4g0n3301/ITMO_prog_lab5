@@ -20,14 +20,14 @@ public class Help extends Command {
     }
     
     @Override
-    public Request execute(Serializable args){
+    public Request execute(Request args){
         Set<Commands> commandSet = Invoker.getCommands().keySet();
         String answer = "";
         for(Commands key : commandSet){
             answer += Invoker.getCommands().get(key).getName() + " - " + Invoker.getCommands().get(key).getDescription();
         }
         
-        return new Request<String>(400, answer);
+        return new Request(400, answer);
     }
     
     
