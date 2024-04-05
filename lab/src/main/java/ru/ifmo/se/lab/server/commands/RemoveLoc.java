@@ -30,6 +30,6 @@ public class RemoveLoc extends Command{
             CollectionManager.remove(person);
             person = CollectionManager.findPerson(loc);
         }
-        return true;
+        return new Request<>(200);
     }
 }

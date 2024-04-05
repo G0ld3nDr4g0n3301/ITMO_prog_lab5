@@ -1,6 +1,7 @@
 package ru.ifmo.se.lab.server.commands;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 
 import ru.ifmo.se.lab.server.CollectionManager;
 import ru.ifmo.se.lab.server.Command;
@@ -26,17 +27,17 @@ public class CountHeight extends Command{
     
     @Override
     public Request execute(Serializable args){
-        if(args.length < 2){
-            OutputManager.print("Not enough arguments");
-            return false;
+        ArrayList<String> arguments = (ArrayList<String>) args;
+        if(arguments.size() < 1){
+            Request<String> request = new Request<>(404, "Not enough arguments");
+            return request;
         }
         int count = 0;
         for(Person p : CollectionManager.getCollection()){
-            if(p.getHeight().toString().compareTo(args[1]) == 0){
+            if(p.getHeight().toString().compareTo(arguments.get(0)) == 0){
                 ++count;
             }
         }
-        OutputManager.print(count);
-        return true;
+        return new Request<Integer>(400, count);
     }
 }

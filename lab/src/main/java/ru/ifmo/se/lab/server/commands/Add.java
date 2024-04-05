@@ -7,6 +7,7 @@ import ru.ifmo.se.lab.server.Command;
 import ru.ifmo.se.lab.server.OutputManager;
 import ru.ifmo.se.lab.server.collections.AskPerson;
 import ru.ifmo.se.lab.server.collections.Person;
+import ru.ifmo.se.lab.server.net.Commands;
 import ru.ifmo.se.lab.server.net.Request;
 
 /**
@@ -22,12 +23,12 @@ public class Add extends Command{
     
     @Override
     public Request execute(Serializable args){
-        Person person = AskPerson.generatePerson(args);
+        Person person = (Person) args;
         if(person == null){
-            return false;
+            return null;
         }
         CollectionManager.add(person);
-        OutputManager.print("Successfully saved person into collection!");
-        return true;
+        Request request = new Request<>(Commands.RESPONSE, 200);
+        return request;
     }
 }

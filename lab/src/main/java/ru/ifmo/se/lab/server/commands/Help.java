@@ -22,12 +22,12 @@ public class Help extends Command {
     @Override
     public Request execute(Serializable args){
         Set<Commands> commandSet = Invoker.getCommands().keySet();
+        String answer = "";
         for(Commands key : commandSet){
-            OutputManager.print(Invoker.getCommands().get(key).getName() + " - " + Invoker.getCommands().get(key).getDescription());
+            answer += Invoker.getCommands().get(key).getName() + " - " + Invoker.getCommands().get(key).getDescription();
         }
-        Request request = new Request<>(Commands.RESPONSE);
-        request.setStatusCode(200); 
-        return request;
+        
+        return new Request<String>(400, answer);
     }
     
     

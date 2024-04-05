@@ -26,15 +26,13 @@ public class Save extends Command {
         try{
             File currFile = Invoker.getCurrMainFile();
             if(currFile == null){
-                OutputManager.print("You must specify file,when executing this program.");
-                return false;
+                return new Request<>(404, "You must specify file,when executing this program.");
             }
             WritePerson.write(CollectionManager.getCollection(), currFile);
         }catch(IOException e){
-            OutputManager.print("Error in file writing");
-            return false;
+            return new Request<>(404, "Error in file writing");
         }
-        return true;
+        return new Request<>(200);
     }
     
     @Override

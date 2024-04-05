@@ -25,6 +25,6 @@ public class RemoveLast extends Command{
     @Override
     public Request execute(Serializable args){
         CollectionManager.removeLast();
-        return true;
+        return new Request<>(200);
     }
 }

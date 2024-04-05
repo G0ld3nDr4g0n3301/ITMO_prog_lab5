@@ -30,7 +30,7 @@ public class Main {
                 if(Validator.validateCommand(input)){
                     Request output = Invoker.execute(input.getCommandType(), input.getStatusCode(), input.getArgs());
                     if (output == null) {
-                        Request<String> error = new Request<>(Commands.RESPONSE);
+                        Request<String> error = new Request<>(404);
                         error.setArgument("Error in program");
                         try {
                             ConnectionManager.send(error);

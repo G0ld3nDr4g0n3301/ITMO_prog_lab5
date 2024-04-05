@@ -27,11 +27,8 @@ public class Info extends Command {
     }
     
     @Override
-    public Request<Serializable[]> execute(Serializable args){
-        Request<Serializable[]> request = new Request<>(Commands.RESPONSE);
-        Serializable[] info = {CollectionManager.getType(), CollectionManager.getInitDate(), CollectionManager.getSize()};
-        request.setArgument(info);
-        request.setStatusCode(400);
-        return request;
+    public Request<String> execute(Serializable args){
+        String info = CollectionManager.getType().toString() + "\n" + CollectionManager.getInitDate().toString() + "\n" + CollectionManager.getSize();
+        return new Request<String>(400,info);
     }
 }

@@ -28,7 +28,7 @@ public class Remove extends Command{
     public Request<String> execute(Serializable arguments){
         Integer id = (Integer) arguments;
         Person person = CollectionManager.findPerson(id);
-        Request<String> request = new Request<>(Commands.RESPONSE);
+        Request<String> request = new Request<>(404);
         if(person == null) {
             request.setArgument("No such id in collection.");
             request.setStatusCode(404);

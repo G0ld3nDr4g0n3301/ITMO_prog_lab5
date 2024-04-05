@@ -27,9 +27,9 @@ public class RemoveLower extends Command{
     
     @Override
     public Request execute(Serializable args){
-        Person person = AskPerson.generatePerson(args);
+        Person person = (Person) args;
         if (person == null){
-            return false;
+            return null;
         }
         ArrayList<Person> removeList = new ArrayList<Person>();
         
@@ -39,6 +39,6 @@ public class RemoveLower extends Command{
             }
         }
         CollectionManager.remove(removeList);
-        return true;
+        return new Request<>(200);
     }
 }

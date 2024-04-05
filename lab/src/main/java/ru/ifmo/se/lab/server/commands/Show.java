@@ -21,11 +21,12 @@ public class Show extends Command{
     
     @Override
     public Request execute(Serializable args){
+        String answer = "";
         for(Person p : CollectionManager.getCollection()){
-            OutputManager.print("------------------------------------");
-            OutputManager.print(p);
-            OutputManager.print("------------------------------------");
+            answer += "------------------------------------";
+            answer += p;
+            answer += "------------------------------------";
         }
-        return true;
+        return new Request<>(400, answer);
     }
 }

@@ -29,7 +29,6 @@ public class Load extends Command{
     @Override
     public Request execute(Serializable args){
         List<Person> newList = null;
-        Request<String> request = new Request<>(Commands.RESPONSE);
         try{
             newList = ReadPerson.read(Invoker.getCurrMainFile());
             if(newList == null){
@@ -44,7 +43,7 @@ public class Load extends Command{
             return null;
         }
         CollectionManager.addAll(newList);
-        return new Request<>(Commands.ADD);
+        return null;
     }
     
     @Override

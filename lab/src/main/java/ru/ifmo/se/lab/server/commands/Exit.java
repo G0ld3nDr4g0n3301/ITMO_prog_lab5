@@ -1,5 +1,6 @@
 package ru.ifmo.se.lab.server.commands;
 
+import java.io.IOException;
 import java.io.Serializable;
 
 import ru.ifmo.se.lab.server.Command;
@@ -21,9 +22,13 @@ public class Exit extends Command {
    
     @Override
     public Request execute(Serializable args){
+        try {
+            ConnectionManager.send(new Request<>(200));
+        } catch (IOException e) {
+            // i'm lost
+        }
+
         System.exit(0);
-        Request request = new Request<>(Commands.RESPONSE);
-        request.setStatusCode(200);
-        return request;
+        return new Request<>(200);
     }
 }

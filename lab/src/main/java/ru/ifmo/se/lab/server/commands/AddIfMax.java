@@ -8,6 +8,7 @@ import ru.ifmo.se.lab.server.Command;
 import ru.ifmo.se.lab.server.OutputManager;
 import ru.ifmo.se.lab.server.collections.AskPerson;
 import ru.ifmo.se.lab.server.collections.Person;
+import ru.ifmo.se.lab.server.net.Commands;
 import ru.ifmo.se.lab.server.net.Request;
 
 /**
@@ -28,17 +29,20 @@ public class AddIfMax extends Command{
     
     @Override
     public Request execute(Serializable args){
-        Person person = AskPerson.generatePerson(args);
+        Person person = (Person) args;
         if(person == null){
-            return false;
+            return null;
         }
         ArrayList<Person> collection = CollectionManager.getCollection();
+        Request request = new Request<>(Commands.RESPONSE, null);
         if(person.compareTo(collection.get(collection.size() - 1)) > 0){
             CollectionManager.add(person);
+            request.setStatusCode(200);
             OutputManager.print("Adding element to collection...");
         } else {
-            OutputManager.print("Element is less than max element of collection.");
+            request.setStatusCode(400);
+            request.setArgument("Element is less than max element of collection.");
         }
-        return true;
+        return request;
     }
 }
