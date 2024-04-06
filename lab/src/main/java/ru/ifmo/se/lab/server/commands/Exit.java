@@ -23,7 +23,6 @@ public class Exit extends Command {
     @Override
     public Request execute(Request args){
         try {
-            ConnectionManager.send(new Request(200));
             ConnectionManager.close();
         } catch (IOException e) {
             // i'm lost

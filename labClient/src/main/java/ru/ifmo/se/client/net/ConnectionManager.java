@@ -4,6 +4,8 @@ import java.io.BufferedInputStream;
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.net.InetSocketAddress;
 import java.net.Socket;
 
@@ -13,15 +15,14 @@ public class ConnectionManager{
     public static String host = "localhost";
     private static Socket socket = null;
     public static Integer timeout = 40;
-    private static DataInputStream in;
     private static DataOutputStream out;
+    private static DataInputStream in;
     
     public static void initSocket() throws IOException{
         socket = new Socket();
-        socket.connect(new InetSocketAddress(host, port), timeout);
-        in = new DataInputStream(new BufferedInputStream(socket.getInputStream()));
+        socket.connect(new InetSocketAddress(host, port));
         out = new DataOutputStream(socket.getOutputStream());
-        out.flush();
+        in = new DataInputStream(new BufferedInputStream(socket.getInputStream()));
     }
 
     public static void close() throws IOException{
@@ -33,8 +34,10 @@ public class ConnectionManager{
     public static boolean send(Request request) throws IOException{
         System.out.println(request);
 
+
         if (socket != null){
             out.write(Serialize.serializeRequest(request));
+            out.flush();
             return true;
         }
         System.out.println("You should run initSocket() method before using sockets.");
