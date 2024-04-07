@@ -57,15 +57,16 @@ public class ConnectionManager{
         }
         try {
             int length = 0;
-            ByteBuffer bytes = ByteBuffer.allocate(512);
             ByteBuffer header = ByteBuffer.allocate(4);
                 header = ByteBuffer.wrap(in.readNBytes(4));
                 length = header.getInt();
+                ByteBuffer bytes = ByteBuffer.allocate(length+50);
                 bytes.put(in.readNBytes(length));
                 System.out.println(length);
             System.out.println(Arrays.toString(bytes.array()));
             bytes.flip();
             Request request = Deserialize.deserializeRequest(bytes.array());
+            System.out.println(request);
             return request;
             } catch (IOException e) {
                 // TODO Auto-generated catch block

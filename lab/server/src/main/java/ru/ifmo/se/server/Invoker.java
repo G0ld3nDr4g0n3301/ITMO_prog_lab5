@@ -96,10 +96,13 @@ public class Invoker {
         }
         switch (args.getStatusCode()) {
             case 300:
+                System.out.println(args.getCommandType());
                 Request request = commands.get(args.getCommandType()).execute(args);
+                System.out.println(request);
                 return request;
 
             default:
+                System.out.println("Unknown command type");
                 return null;
         }
 

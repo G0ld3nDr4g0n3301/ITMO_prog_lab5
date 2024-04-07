@@ -123,13 +123,14 @@ public class ConnectionManager{
             ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
             ObjectOutputStream objectOutputStream = new ObjectOutputStream(byteArrayOutputStream);
             ByteBuffer tempHeader = ByteBuffer.wrap(byteArrayOutputStream.toByteArray());
-            ByteBuffer buffer = ByteBuffer.allocate(512);
             byteArrayOutputStream.reset();
             objectOutputStream.writeObject(key.attachment());
             objectOutputStream.flush();
             objectOutputStream.close();
             System.out.println("here comes the sun");
             System.out.println(byteArrayOutputStream.size() + 4);
+
+            ByteBuffer buffer = ByteBuffer.allocate(byteArrayOutputStream.size() + 8);
             buffer.putInt(byteArrayOutputStream.size() + 4);
             buffer.put(tempHeader);
             buffer.put(byteArrayOutputStream.toByteArray());
@@ -170,7 +171,7 @@ public class ConnectionManager{
                 System.out.println("package is null!");
                 System.exit(0);
             }
-            return rq;
+            return Invoker.execute(rq);
 
         } catch (IOException e) {
             System.out.println(e);

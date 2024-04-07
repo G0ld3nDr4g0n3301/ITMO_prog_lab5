@@ -28,6 +28,7 @@ public class Info extends Command {
     
     @Override
     public Request execute(Request args){
+        System.out.println("info is executed");
         String info = CollectionManager.getType().toString() + "\n" + CollectionManager.getInitDate().toString() + "\n" + CollectionManager.getSize();
         return new Request(400,info);
     }
