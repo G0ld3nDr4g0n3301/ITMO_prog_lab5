@@ -3,10 +3,10 @@
 
 
 	<groupId>se.ifmo.ru</groupId>
-	<artifactId>lab</artifactId>
+	<artifactId>client</artifactId>
 	<version>0.0.1</version>
 
-	<name>lab5</name>
+	<name>client</name>
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -14,19 +14,18 @@
                 <maven.compiler.target>17</maven.compiler.target>
         </properties>
 
-        <packaging>pom</packaging>
+        <packaging>jar</packaging>
 
+	
+        <dependencies>
+                <dependency>
+		<groupId>se.ifmo.ru</groupId>
+        <artifactId>common</artifactId>
+        <version>${project.version}</version>
+    </dependency>  
+        </dependencies>
 
-
-	<modules>
-		<module>client</module>
-		<module>server</module>
-		<module>common</module>
-	</modules>
-
-        
         <build>
-
 
                 <plugins>
                     <plugin>
@@ -36,7 +35,7 @@
                         <configuration>
                             <archive>
                                 <manifest>
-                                    <mainClass>ru.ifmo.se.server.Main</mainClass>
+                                    <mainClass>ru.ifmo.se.client.Main</mainClass>
                                 </manifest>
                             </archive>
                         </configuration>
@@ -52,9 +51,9 @@
                         </configuration>
                     </plugin>
                 </plugins>
-            
-            
-            
+
+
+
         </build>
 
 
