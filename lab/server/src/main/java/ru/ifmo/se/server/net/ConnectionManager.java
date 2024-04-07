@@ -2,13 +2,11 @@ package ru.ifmo.se.server.net;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
-import java.io.DataInputStream;
-import java.io.DataOutputStream;
 import java.io.IOException;
+import java.io.ObjectInput;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.InetSocketAddress;
-import java.net.Socket;
 import java.nio.ByteBuffer;
 import java.nio.channels.SelectionKey;
 import java.nio.channels.Selector;
@@ -19,7 +17,6 @@ import java.util.Arrays;
 
 import ru.ifmo.se.common.net.Request;
 import ru.ifmo.se.server.Invoker;
-import ru.ifmo.se.server.Validator;
 
 
 public class ConnectionManager{
@@ -41,7 +38,12 @@ public class ConnectionManager{
         out.flush();
         in = new DataInputStream(channel.socket().getInputStream()); */
         while (true) {
-            run();
+            try {
+                run();
+            } catch (IOException e) {
+                System.out.println(e);
+                System.out.println("lol, error");
+            }
         }
     }
     
@@ -62,13 +64,18 @@ public class ConnectionManager{
                 Request request;
                 SocketChannel client = (SocketChannel) key.channel();
                 request = recieve(key);
+                System.out.println("Recieved user request");
                 Request answerRequest = Invoker.execute(request);
+                System.out.println("Got a request!");
                 SelectionKey keyNew = client.register(selector, SelectionKey.OP_WRITE);
+                System.out.println("Marked as writable");
                 keyNew.attach(request);
+                System.out.println("attached!");
 
-            } else if (key.isWritable()) {
+        //    } else if (key.isWritable()) {
+                System.out.println("WRITING");
                 send(key);
-                SocketChannel client = (SocketChannel) key.channel();
+                client = (SocketChannel) key.channel();
                 client.register(selector, SelectionKey.OP_READ);
             }
         }
@@ -115,14 +122,23 @@ public class ConnectionManager{
 
             ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
             ObjectOutputStream objectOutputStream = new ObjectOutputStream(byteArrayOutputStream);
+            ByteBuffer tempHeader = ByteBuffer.wrap(byteArrayOutputStream.toByteArray());
+            ByteBuffer buffer = ByteBuffer.allocate(512);
+            byteArrayOutputStream.reset();
             objectOutputStream.writeObject(key.attachment());
+            objectOutputStream.flush();
             objectOutputStream.close();
-            ByteBuffer buffer = ByteBuffer.wrap(byteArrayOutputStream.toByteArray());
+            System.out.println("here comes the sun");
+            System.out.println(byteArrayOutputStream.size() + 4);
+            buffer.putInt(byteArrayOutputStream.size() + 4);
+            buffer.put(tempHeader);
+            buffer.put(byteArrayOutputStream.toByteArray());
 
+            System.out.println(Arrays.toString(buffer.array()));
             
-            while (buffer.hasRemaining()) {
+                System.out.println("MAMA I AM WRITING TO THE OUTPUT STREAM!!!");
+                buffer.flip();
                 client.write(buffer);
-            }
             return true;
         }
         System.out.println("You should run initSocket() method before using sockets.");
@@ -135,26 +151,25 @@ public class ConnectionManager{
             return null;
         }
         try {
-            System.out.println("First");
             SocketChannel client = (SocketChannel) key.channel();
             client.configureBlocking(false);
-            System.out.println("Second!");
-            ArrayList<ByteBuffer> bufferList = new ArrayList<>();
-
-            ByteBuffer header = ByteBuffer.allocate(5);
-            client.read(header);
+            
             
             ByteBuffer buffer = ByteBuffer.allocate(512*3);
             client.read(buffer);
+            
+            //ByteBuffer header = ByteBuffer.allocate(5);
             ByteBuffer bigBuffer = ByteBuffer.allocate(512*4);
-            bigBuffer.put(header.array());
+            //bigBuffer.put(header.array());
             bigBuffer.put(buffer.array());
-        
-        
-            System.out.println(Arrays.toString(bigBuffer.array()));
+            
             //ObjectInputStream oi = new ObjectInputStream(bi);
             Request rq = Deserialize.deserializeRequest(bigBuffer.array());
             System.out.println(rq);
+            if (rq == null) {
+                System.out.println("package is null!");
+                System.exit(0);
+            }
             return rq;
 
         } catch (IOException e) {
