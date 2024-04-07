@@ -4,6 +4,8 @@ import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.ObjectOutputStream;
 
+import ru.ifmo.se.common.net.Request;
+
 public class Serialize {
     
     public static byte[] serializeRequest(Request r) {
@@ -15,6 +17,7 @@ public class Serialize {
                 return byte_out.toByteArray();
             }
         } catch (IOException e) {
+            System.out.println(e);
             return null;
         }
     }

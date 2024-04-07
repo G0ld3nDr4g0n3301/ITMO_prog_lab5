@@ -17,8 +17,10 @@ import java.nio.channels.SocketChannel;
 import java.util.ArrayList;
 import java.util.Arrays;
 
+import ru.ifmo.se.common.net.Request;
 import ru.ifmo.se.server.Invoker;
 import ru.ifmo.se.server.Validator;
+
 
 public class ConnectionManager{
     
@@ -51,6 +53,9 @@ public class ConnectionManager{
             if(key.isAcceptable()) {
                 ServerSocketChannel tempServerChannel = (ServerSocketChannel) key.channel();
                 SocketChannel client = tempServerChannel.accept();
+                if (client == null) {
+                    continue;
+                }
                 client.configureBlocking(false);
                 client.register(selector, SelectionKey.OP_READ);
             } else if (key.isReadable()) {

@@ -1,5 +1,6 @@
 package ru.ifmo.se.server.collections;
 
+import ru.ifmo.se.common.collections.Person;
 import ru.ifmo.se.server.InputManager;
 
 /**

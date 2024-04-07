@@ -9,6 +9,8 @@ import java.io.ObjectOutputStream;
 import java.net.InetSocketAddress;
 import java.net.Socket;
 
+import ru.ifmo.se.common.net.Request;
+
 public class ConnectionManager{
     
     public static Integer port = 777;

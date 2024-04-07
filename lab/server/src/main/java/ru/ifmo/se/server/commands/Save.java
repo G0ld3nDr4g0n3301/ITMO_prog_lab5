@@ -5,7 +5,7 @@ import ru.ifmo.se.server.CollectionManager;
 import ru.ifmo.se.server.Command;
 import ru.ifmo.se.server.Invoker;
 import ru.ifmo.se.server.OutputManager;
-import ru.ifmo.se.server.net.Request;
+import ru.ifmo.se.common.net.Request;
 import ru.ifmo.se.server.serialization.WritePerson;
 import java.io.IOException;
 import java.io.Serializable;

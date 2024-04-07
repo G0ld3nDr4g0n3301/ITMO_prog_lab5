@@ -1,6 +1,7 @@
 package ru.ifmo.se.server.serialization;
 
 import ru.ifmo.se.server.collections.*;
+import ru.ifmo.se.common.collections.*;
 import ru.ifmo.se.server.parser.*;
 import java.io.IOException;
 import ru.ifmo.se.server.Validator;

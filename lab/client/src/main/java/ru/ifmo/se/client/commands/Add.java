@@ -5,9 +5,9 @@ import ru.ifmo.se.client.Command;
 import java.io.Serializable;
 
 import ru.ifmo.se.client.collections.AskPerson;
-import ru.ifmo.se.client.collections.Person;
-import ru.ifmo.se.client.net.Commands;
-import ru.ifmo.se.client.net.Request;
+import ru.ifmo.se.common.collections.Person;
+import ru.ifmo.se.common.net.Commands;
+import ru.ifmo.se.common.net.Request;
 
 /**
  * Command for adding new person

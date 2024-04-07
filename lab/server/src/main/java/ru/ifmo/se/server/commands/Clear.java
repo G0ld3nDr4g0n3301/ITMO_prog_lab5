@@ -4,8 +4,8 @@ import java.io.Serializable;
 
 import ru.ifmo.se.server.CollectionManager;
 import ru.ifmo.se.server.Command;
-import ru.ifmo.se.server.net.Commands;
-import ru.ifmo.se.server.net.Request;
+import ru.ifmo.se.common.net.Commands;
+import ru.ifmo.se.common.net.Request;
 
 /**
  * completely clears the collection

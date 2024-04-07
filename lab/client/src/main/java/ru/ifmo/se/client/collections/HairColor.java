@@ -3,6 +3,8 @@ package ru.ifmo.se.client.collections;
 import ru.ifmo.se.client.CLIInputManager;
 import ru.ifmo.se.client.Invoker;
 import ru.ifmo.se.client.Validator;
+import ru.ifmo.se.common.collections.Color;
+import ru.ifmo.se.common.collections.Person;
 
 /**
  * HairColor field of person

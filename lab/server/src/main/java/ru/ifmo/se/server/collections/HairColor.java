@@ -1,5 +1,7 @@
 package ru.ifmo.se.server.collections;
 
+import ru.ifmo.se.common.collections.Color;
+import ru.ifmo.se.common.collections.Person;
 import ru.ifmo.se.server.InputManager;
 import ru.ifmo.se.server.Invoker;
 import ru.ifmo.se.server.OutputManager;

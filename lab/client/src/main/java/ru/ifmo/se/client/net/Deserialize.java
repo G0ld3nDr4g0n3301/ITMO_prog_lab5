@@ -4,6 +4,8 @@ import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 
+import ru.ifmo.se.common.net.Request;
+
 public class Deserialize {
 
     public static Request deserializeRequest(byte[] bytes) {

@@ -5,10 +5,10 @@ import java.io.Serializable;
 import ru.ifmo.se.server.CollectionManager;
 import ru.ifmo.se.server.Command;
 import ru.ifmo.se.server.OutputManager;
-import ru.ifmo.se.server.collections.Location;
+import ru.ifmo.se.common.collections.Location;
 import ru.ifmo.se.server.collections.LocationField;
-import ru.ifmo.se.server.collections.Person;
-import ru.ifmo.se.server.net.Request;
+import ru.ifmo.se.common.collections.Person;
+import ru.ifmo.se.common.net.Request;
 
 /**
  * removes all persons with given location

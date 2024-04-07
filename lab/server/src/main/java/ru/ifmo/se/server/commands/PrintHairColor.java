@@ -4,8 +4,8 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Comparator;
 import ru.ifmo.se.server.CollectionManager;
-import ru.ifmo.se.server.collections.Color;
-import ru.ifmo.se.server.net.Request;
+import ru.ifmo.se.common.collections.Color;
+import ru.ifmo.se.common.net.Request;
 import ru.ifmo.se.server.Command;
 
 /**

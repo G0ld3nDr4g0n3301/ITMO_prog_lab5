@@ -1,12 +1,12 @@
 package ru.ifmo.se.server;
 
 import java.util.ArrayList;
-import ru.ifmo.se.server.collections.Person;
+import ru.ifmo.se.common.collections.Person;
 import java.time.LocalDate;
 import java.util.Collections;
 import java.util.List;
-import ru.ifmo.se.server.collections.Color;
-import ru.ifmo.se.server.collections.Location;
+import ru.ifmo.se.common.collections.Color;
+import ru.ifmo.se.common.collections.Location;
 
 /**
  * A bunch of methods to manage the main collection

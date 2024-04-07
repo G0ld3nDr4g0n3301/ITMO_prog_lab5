@@ -1,5 +1,7 @@
 package ru.ifmo.se.client.collections;
 
+import ru.ifmo.se.common.collections.Person;
+
 /**
  * id field of person
  * @author raistlin

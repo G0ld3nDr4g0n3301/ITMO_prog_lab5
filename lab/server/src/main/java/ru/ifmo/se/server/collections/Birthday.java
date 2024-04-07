@@ -2,6 +2,8 @@ package ru.ifmo.se.server.collections;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+
+import ru.ifmo.se.common.collections.Person;
 import ru.ifmo.se.server.InputManager;
 import ru.ifmo.se.server.Validator;
 

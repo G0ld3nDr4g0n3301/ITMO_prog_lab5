@@ -2,6 +2,8 @@ package ru.ifmo.se.server.collections;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
+
+import ru.ifmo.se.common.collections.Person;
 import ru.ifmo.se.server.Invoker;
 import ru.ifmo.se.server.OutputManager;
 import ru.ifmo.se.server.Validator;

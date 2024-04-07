@@ -4,9 +4,9 @@ import java.io.IOException;
 import java.io.Serializable;
 
 import ru.ifmo.se.client.Command;
-import ru.ifmo.se.client.net.Commands;
+import ru.ifmo.se.common.net.Commands;
 import ru.ifmo.se.client.net.ConnectionManager;
-import ru.ifmo.se.client.net.Request;
+import ru.ifmo.se.common.net.Request;
 
 
 /**

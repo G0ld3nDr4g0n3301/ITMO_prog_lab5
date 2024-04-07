@@ -6,7 +6,7 @@ import java.util.List;
 import java.util.ArrayList;
 import java.io.File;
 import ru.ifmo.se.server.OutputManager;
-import ru.ifmo.se.server.collections.Person;
+import ru.ifmo.se.common.collections.Person;
 import ru.ifmo.se.server.parser.ObjectToCsv;
 
 /**

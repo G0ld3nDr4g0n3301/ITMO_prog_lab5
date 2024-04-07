@@ -1,7 +1,7 @@
 package ru.ifmo.se.client;
 
 import java.io.Serializable;
-import ru.ifmo.se.client.net.Request;
+import ru.ifmo.se.common.net.Request;
 
 /**
  * Interface with a single method for executing commands.

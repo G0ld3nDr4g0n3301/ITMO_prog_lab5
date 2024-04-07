@@ -4,6 +4,7 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import ru.ifmo.se.client.Invoker;
 import ru.ifmo.se.client.Validator;
+import ru.ifmo.se.common.collections.Person;
 
 /**
  * Class that can easily generate new person, based on user input

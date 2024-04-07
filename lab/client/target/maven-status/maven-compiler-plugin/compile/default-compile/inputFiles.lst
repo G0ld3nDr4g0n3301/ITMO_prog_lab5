@@ -1,4 +1,3 @@
-/home/raistlin/coding/itmo/progLabs/ITMO_prog_lab5/lab/client/src/main/java/ru/ifmo/se/client/collections/Person.java
 /home/raistlin/coding/itmo/progLabs/ITMO_prog_lab5/lab/client/src/main/java/ru/ifmo/se/client/Main.java
 /home/raistlin/coding/itmo/progLabs/ITMO_prog_lab5/lab/client/src/main/java/ru/ifmo/se/client/commands/Help.java
 /home/raistlin/coding/itmo/progLabs/ITMO_prog_lab5/lab/client/src/main/java/ru/ifmo/se/client/net/Deserialize.java
@@ -6,7 +5,6 @@
 /home/raistlin/coding/itmo/progLabs/ITMO_prog_lab5/lab/client/src/main/java/ru/ifmo/se/client/commands/Exit.java
 /home/raistlin/coding/itmo/progLabs/ITMO_prog_lab5/lab/client/src/main/java/ru/ifmo/se/client/collections/Weight.java
 /home/raistlin/coding/itmo/progLabs/ITMO_prog_lab5/lab/client/src/main/java/ru/ifmo/se/client/collections/Id.java
-/home/raistlin/coding/itmo/progLabs/ITMO_prog_lab5/lab/client/src/main/java/ru/ifmo/se/client/net/Commands.java
 /home/raistlin/coding/itmo/progLabs/ITMO_prog_lab5/lab/client/src/main/java/ru/ifmo/se/client/net/ConnectionManager.java
 /home/raistlin/coding/itmo/progLabs/ITMO_prog_lab5/lab/client/src/main/java/ru/ifmo/se/client/collections/Birthday.java
 /home/raistlin/coding/itmo/progLabs/ITMO_prog_lab5/lab/client/src/main/java/ru/ifmo/se/client/commands/PrintHairColor.java
@@ -15,6 +13,8 @@
 /home/raistlin/coding/itmo/progLabs/ITMO_prog_lab5/lab/client/src/main/java/ru/ifmo/se/client/commands/Remove.java
 /home/raistlin/coding/itmo/progLabs/ITMO_prog_lab5/lab/client/src/main/java/ru/ifmo/se/client/commands/Add.java
 /home/raistlin/coding/itmo/progLabs/ITMO_prog_lab5/lab/client/src/main/java/ru/ifmo/se/client/ICommand.java
+/home/raistlin/coding/itmo/progLabs/ITMO_prog_lab5/lab/client/src/main/java/ru/ifmo/se/common/collections/Location.java
+/home/raistlin/coding/itmo/progLabs/ITMO_prog_lab5/lab/client/src/main/java/ru/ifmo/se/common/net/Request.java
 /home/raistlin/coding/itmo/progLabs/ITMO_prog_lab5/lab/client/src/main/java/ru/ifmo/se/client/Validator.java
 /home/raistlin/coding/itmo/progLabs/ITMO_prog_lab5/lab/client/src/main/java/ru/ifmo/se/client/collections/AskPerson.java
 /home/raistlin/coding/itmo/progLabs/ITMO_prog_lab5/lab/client/src/main/java/ru/ifmo/se/client/Command.java
@@ -28,16 +28,16 @@
 /home/raistlin/coding/itmo/progLabs/ITMO_prog_lab5/lab/client/src/main/java/ru/ifmo/se/client/commands/Info.java
 /home/raistlin/coding/itmo/progLabs/ITMO_prog_lab5/lab/client/src/main/java/ru/ifmo/se/client/net/Serialize.java
 /home/raistlin/coding/itmo/progLabs/ITMO_prog_lab5/lab/client/src/main/java/ru/ifmo/se/client/ReadFile.java
-/home/raistlin/coding/itmo/progLabs/ITMO_prog_lab5/lab/client/src/main/java/ru/ifmo/se/client/collections/Coordinates.java
-/home/raistlin/coding/itmo/progLabs/ITMO_prog_lab5/lab/client/src/main/java/ru/ifmo/se/client/collections/Location.java
+/home/raistlin/coding/itmo/progLabs/ITMO_prog_lab5/lab/client/src/main/java/ru/ifmo/se/common/collections/Color.java
 /home/raistlin/coding/itmo/progLabs/ITMO_prog_lab5/lab/client/src/main/java/ru/ifmo/se/client/commands/Update.java
+/home/raistlin/coding/itmo/progLabs/ITMO_prog_lab5/lab/client/src/main/java/ru/ifmo/se/common/collections/Person.java
 /home/raistlin/coding/itmo/progLabs/ITMO_prog_lab5/lab/client/src/main/java/ru/ifmo/se/client/CLIInputManager.java
-/home/raistlin/coding/itmo/progLabs/ITMO_prog_lab5/lab/client/src/main/java/ru/ifmo/se/client/collections/Color.java
+/home/raistlin/coding/itmo/progLabs/ITMO_prog_lab5/lab/client/src/main/java/ru/ifmo/se/common/collections/Coordinates.java
 /home/raistlin/coding/itmo/progLabs/ITMO_prog_lab5/lab/client/src/main/java/ru/ifmo/se/client/commands/CountHeight.java
 /home/raistlin/coding/itmo/progLabs/ITMO_prog_lab5/lab/client/src/main/java/ru/ifmo/se/client/Invoker.java
 /home/raistlin/coding/itmo/progLabs/ITMO_prog_lab5/lab/client/src/main/java/ru/ifmo/se/client/commands/Show.java
-/home/raistlin/coding/itmo/progLabs/ITMO_prog_lab5/lab/client/src/main/java/ru/ifmo/se/client/net/Request.java
 /home/raistlin/coding/itmo/progLabs/ITMO_prog_lab5/lab/client/src/main/java/ru/ifmo/se/client/collections/AbstractField.java
 /home/raistlin/coding/itmo/progLabs/ITMO_prog_lab5/lab/client/src/main/java/ru/ifmo/se/client/commands/RemoveLoc.java
 /home/raistlin/coding/itmo/progLabs/ITMO_prog_lab5/lab/client/src/main/java/ru/ifmo/se/client/commands/ExecuteScript.java
 /home/raistlin/coding/itmo/progLabs/ITMO_prog_lab5/lab/client/src/main/java/ru/ifmo/se/client/GetCLInput.java
+/home/raistlin/coding/itmo/progLabs/ITMO_prog_lab5/lab/client/src/main/java/ru/ifmo/se/common/net/Commands.java

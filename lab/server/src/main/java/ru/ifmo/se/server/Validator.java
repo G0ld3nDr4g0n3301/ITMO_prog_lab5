@@ -3,12 +3,12 @@ package ru.ifmo.se.server;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
-import ru.ifmo.se.server.collections.Color;
-import ru.ifmo.se.server.collections.Coordinates;
-import ru.ifmo.se.server.collections.Location;
-import ru.ifmo.se.server.collections.Person;
-import ru.ifmo.se.server.net.Commands;
-import ru.ifmo.se.server.net.Request;
+import ru.ifmo.se.common.collections.Color;
+import ru.ifmo.se.common.collections.Coordinates;
+import ru.ifmo.se.common.collections.Location;
+import ru.ifmo.se.common.collections.Person;
+import ru.ifmo.se.common.net.Commands;
+import ru.ifmo.se.common.net.Request;
 
 
 /**

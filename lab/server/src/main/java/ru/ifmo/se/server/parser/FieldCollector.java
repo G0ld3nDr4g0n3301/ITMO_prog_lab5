@@ -4,7 +4,7 @@ import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-import ru.ifmo.se.server.collections.Person;
+import ru.ifmo.se.common.collections.Person;
 
 /**
  * Collects target class fields that are binded with CsvBind annotation.

@@ -4,6 +4,7 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import ru.ifmo.se.client.CLIInputManager;
 import ru.ifmo.se.client.Validator;
+import ru.ifmo.se.common.collections.Person;
 
 /**
  * Birthday field of Person.

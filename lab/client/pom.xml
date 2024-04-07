@@ -17,13 +17,6 @@
         <packaging>jar</packaging>
 
 	
-        <dependencies>
-                <dependency>
-		<groupId>se.ifmo.ru</groupId>
-        <artifactId>common</artifactId>
-        <version>${project.version}</version>
-    </dependency>  
-        </dependencies>
 
         <build>
 

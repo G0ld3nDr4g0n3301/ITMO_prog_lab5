@@ -9,7 +9,7 @@ import java.util.List;
 import java.util.Scanner;
 import ru.ifmo.se.server.OutputManager;
 import ru.ifmo.se.server.Validator;
-import ru.ifmo.se.server.collections.Person;
+import ru.ifmo.se.common.collections.Person;
 import ru.ifmo.se.server.parser.CsvToObject;
 
 /**

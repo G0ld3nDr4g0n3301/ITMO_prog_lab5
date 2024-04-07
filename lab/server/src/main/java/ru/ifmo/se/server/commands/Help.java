@@ -1,8 +1,8 @@
 package ru.ifmo.se.server.commands;
 
 import ru.ifmo.se.server.*;
-import ru.ifmo.se.server.net.Commands;
-import ru.ifmo.se.server.net.Request;
+import ru.ifmo.se.common.net.Commands;
+import ru.ifmo.se.common.net.Request;
 
 import java.io.Serializable;
 import java.util.HashMap;

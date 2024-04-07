@@ -3,7 +3,7 @@ package ru.ifmo.se.client;
 import java.util.HashMap;
 import ru.ifmo.se.client.commands.*;
 import ru.ifmo.se.client.net.ConnectionManager;
-import ru.ifmo.se.client.net.Request;
+import ru.ifmo.se.common.net.Request;
 
 import java.util.Stack;
 import java.io.File;

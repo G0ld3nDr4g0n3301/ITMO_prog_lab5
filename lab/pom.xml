@@ -21,7 +21,6 @@
 	<modules>
 		<module>client</module>
 		<module>server</module>
-		<module>common</module>
 	</modules>
 
         

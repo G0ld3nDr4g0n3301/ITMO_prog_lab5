@@ -7,8 +7,8 @@ import ru.ifmo.se.client.Command;
 import ru.ifmo.se.client.Invoker;
 import ru.ifmo.se.client.ReadFile;
 import ru.ifmo.se.client.Validator;
-import ru.ifmo.se.client.net.Commands;
-import ru.ifmo.se.client.net.Request;
+import ru.ifmo.se.common.net.Commands;
+import ru.ifmo.se.common.net.Request;
 
 /**
  * execute given file, as if it's a bunch of user input lines.

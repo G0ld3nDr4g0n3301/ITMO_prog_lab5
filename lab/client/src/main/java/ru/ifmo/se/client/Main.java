@@ -3,9 +3,9 @@ package ru.ifmo.se.client;
 import java.io.IOException;
 import java.io.Serializable;
 
-import ru.ifmo.se.client.collections.Location;
-import ru.ifmo.se.client.collections.Person;
-import ru.ifmo.se.client.net.Commands;
+import ru.ifmo.se.common.collections.Location;
+import ru.ifmo.se.common.collections.Person;
+import ru.ifmo.se.common.net.Commands;
 import ru.ifmo.se.client.net.ConnectionManager;
 
 public class Main {
@@ -31,6 +31,7 @@ public class Main {
                     }
                 }
             }
+        
         } finally {
             try {
                 ConnectionManager.close();

@@ -2,6 +2,8 @@ package ru.ifmo.se.client.collections;
 
 import ru.ifmo.se.client.CLIInputManager;
 import ru.ifmo.se.client.Validator;
+import ru.ifmo.se.common.collections.Coordinates;
+import ru.ifmo.se.common.collections.Person;
 
 /**
  * Coordinates field of Person

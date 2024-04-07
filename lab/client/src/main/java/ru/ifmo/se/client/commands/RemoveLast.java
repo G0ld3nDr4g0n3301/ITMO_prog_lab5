@@ -3,8 +3,8 @@ package ru.ifmo.se.client.commands;
 import java.io.Serializable;
 
 import ru.ifmo.se.client.Command;
-import ru.ifmo.se.client.net.Commands;
-import ru.ifmo.se.client.net.Request;
+import ru.ifmo.se.common.net.Commands;
+import ru.ifmo.se.common.net.Request;
 
 /**
  * remove last element from collection

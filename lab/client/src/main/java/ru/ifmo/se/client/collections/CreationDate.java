@@ -2,6 +2,8 @@ package ru.ifmo.se.client.collections;
 
 import java.time.LocalDate;
 
+import ru.ifmo.se.common.collections.Person;
+
 /**
  * CreationDate field of Person(generated automatically)
  * @author raistlin

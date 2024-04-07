@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import ru.ifmo.se.server.collections.*;
+import ru.ifmo.se.common.collections.*;
 
 /**
  * Used to convert Java Object into CSV String

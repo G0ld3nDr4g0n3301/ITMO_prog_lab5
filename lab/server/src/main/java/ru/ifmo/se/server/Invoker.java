@@ -3,8 +3,8 @@ package ru.ifmo.se.server;
 import java.util.EnumSet;
 import java.util.HashMap;
 import ru.ifmo.se.server.commands.*;
-import ru.ifmo.se.server.net.Commands;
-import ru.ifmo.se.server.net.Request;
+import ru.ifmo.se.common.net.Commands;
+import ru.ifmo.se.common.net.Request;
 
 import java.util.Stack;
 import java.io.File;
