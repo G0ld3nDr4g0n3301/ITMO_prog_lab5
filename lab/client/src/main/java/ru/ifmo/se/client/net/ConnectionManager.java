@@ -38,10 +38,10 @@ public class ConnectionManager{
     }
 
     public static boolean send(Request request) throws IOException{
-        System.out.println(request);
 
 
         if (socket != null){
+            System.out.println(Arrays.toString(Serialize.serializeRequest(request)));
             out.write(Serialize.serializeRequest(request));
             out.flush();
             return true;
@@ -62,11 +62,8 @@ public class ConnectionManager{
                 length = header.getInt();
                 ByteBuffer bytes = ByteBuffer.allocate(length+50);
                 bytes.put(in.readNBytes(length));
-                System.out.println(length);
-            System.out.println(Arrays.toString(bytes.array()));
             bytes.flip();
             Request request = Deserialize.deserializeRequest(bytes.array());
-            System.out.println(request);
             return request;
             } catch (IOException e) {
                 // TODO Auto-generated catch block

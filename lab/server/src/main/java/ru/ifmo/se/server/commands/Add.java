@@ -1,11 +1,9 @@
 package ru.ifmo.se.server.commands;
 
-import java.io.Serializable;
-
 import ru.ifmo.se.server.CollectionManager;
 import ru.ifmo.se.server.Command;
-import ru.ifmo.se.server.OutputManager;
-import ru.ifmo.se.server.collections.AskPerson;
+import ru.ifmo.se.server.collections.Id;
+import ru.ifmo.se.server.collections.CreationDate;
 import ru.ifmo.se.common.collections.Person;
 import ru.ifmo.se.common.net.Commands;
 import ru.ifmo.se.common.net.Request;
@@ -27,6 +25,8 @@ public class Add extends Command{
         if(person == null){
             return null;
         }
+        person.setId(new Id().create(null));
+        person.setCreationDate(new CreationDate().create(null));
         CollectionManager.add(person);
         Request request = new Request(Commands.RESPONSE, 200);
         return request;

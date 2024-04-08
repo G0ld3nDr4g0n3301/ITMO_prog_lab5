@@ -24,7 +24,7 @@ public class Help extends Command {
         Set<Commands> commandSet = Invoker.getCommands().keySet();
         String answer = "";
         for(Commands key : commandSet){
-            answer += Invoker.getCommands().get(key).getName() + " - " + Invoker.getCommands().get(key).getDescription();
+            answer += Invoker.getCommands().get(key).getName() + " - " + Invoker.getCommands().get(key).getDescription() + "\n";
         }
         
         return new Request(400, answer);

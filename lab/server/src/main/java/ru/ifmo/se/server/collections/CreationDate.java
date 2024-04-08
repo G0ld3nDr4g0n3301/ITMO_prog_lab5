@@ -8,7 +8,7 @@ import ru.ifmo.se.common.collections.Person;
  * CreationDate field of Person(generated automatically)
  * @author raistlin
  */
-class CreationDate extends AbstractField<Person,LocalDate>{
+public class CreationDate extends AbstractField<Person,LocalDate>{
     
     @Override
     public void set(Person p, LocalDate ld){

@@ -239,5 +239,14 @@ public class Validator {
     }
     
 
+    public static boolean validateInt(String input) {
+        try {
+            Integer.valueOf(input);
+            return true;
+        } catch (Exception e) {
+            return false;
+        }
+    }
+
 }
 

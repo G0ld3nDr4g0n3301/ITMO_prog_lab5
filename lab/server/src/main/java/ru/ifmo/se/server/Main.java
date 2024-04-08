@@ -20,6 +20,9 @@ public class Main {
         new Load(null,null).execute(new Request(200));
         try{
             ConnectionManager.initSocket();
+            while (true) {
+                ConnectionManager.run();
+            }
         } catch (IOException e ) {
             System.out.println(e.getMessage());
             System.out.println("Can't accept a connection");

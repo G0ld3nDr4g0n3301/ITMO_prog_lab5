@@ -25,7 +25,6 @@ public class Exit extends Command {
         try {
             Request request = new Request(Commands.EXIT);
             ConnectionManager.send(request);
-            ConnectionManager.recieve();
             System.exit(0);
         } catch (IOException e) {
             // TODO: handle

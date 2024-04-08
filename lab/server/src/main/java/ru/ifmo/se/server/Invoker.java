@@ -90,7 +90,10 @@ public class Invoker {
      * @return true, if no errors encountered during runtime of command.
      */
     public static Request execute(Request args){
+        System.out.println(args);
         if (!(commands.containsKey(args.getCommandType()))){
+            System.out.println(commands.containsKey(args.getCommandType()));
+            System.out.println(args.getCommandType());
             System.out.println("Wrong command. Type \"help\" for command list");
             return null;
         }

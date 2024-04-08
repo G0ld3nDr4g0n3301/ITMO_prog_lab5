@@ -23,9 +23,9 @@ public class Show extends Command{
     public Request execute(Request args){
         String answer = "";
         for(Person p : CollectionManager.getCollection()){
-            answer += "------------------------------------";
-            answer += p;
-            answer += "------------------------------------";
+            answer += "------------------------------------" + "\n";
+            answer += p + "\n";
+            answer += "------------------------------------" + "\n";
         }
         return new Request(400, answer);
     }

@@ -3,6 +3,9 @@ package ru.ifmo.se.client.commands;
 import ru.ifmo.se.client.Command;
 
 import java.io.Serializable;
+import java.util.Arrays;
+
+import ru.ifmo.se.client.Validator;
 
 import ru.ifmo.se.common.net.Commands;
 import ru.ifmo.se.common.net.Request;
@@ -29,6 +32,12 @@ public class CountHeight extends Command{
             System.out.println("Not enough arguments");
             return null;
         }
-        return new Request(Commands.COUNT);
+        if (!Validator.validateInt(args[1])) {
+            System.out.println("ID must be a number.");
+            return null;
+        }
+        Request req = new Request(Commands.COUNT);
+        req.setId(Integer.valueOf(args[1]));
+        return req;
     }
 }

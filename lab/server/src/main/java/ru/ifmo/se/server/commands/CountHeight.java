@@ -27,14 +27,14 @@ public class CountHeight extends Command{
     
     @Override
     public Request execute(Request args){
-        String arguments = args.getMsg();
+        Integer arguments = args.getId();
         if(arguments == null){
             Request request = new Request(404, "Not enough arguments");
             return request;
         }
         Integer count = 0;
         for(Person p : CollectionManager.getCollection()){
-            if(p.getHeight().toString().compareTo(arguments) == 0){
+            if(p.getHeight().toString().compareTo(arguments.toString()) == 0){
                 ++count;
             }
         }

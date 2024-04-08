@@ -22,13 +22,6 @@ public class Exit extends Command {
    
     @Override
     public Request execute(Request args){
-        try {
-            ConnectionManager.close();
-        } catch (IOException e) {
-            // i'm lost
-        }
-
-        System.exit(0);
-        return new Request(200);
+        return null;
     }
 }

@@ -32,19 +32,7 @@ public class ConnectionManager{
         socket.configureBlocking(false);
         selector = Selector.open();
         socket.register(selector, SelectionKey.OP_ACCEPT);
-/*
-        System.out.println("Connection Established.");
-        out = new DataOutputStream(channel.socket().getOutputStream());
-        out.flush();
-        in = new DataInputStream(channel.socket().getInputStream()); */
-        while (true) {
-            try {
-                run();
-            } catch (IOException e) {
-                System.out.println(e);
-                System.out.println("lol, error");
-            }
-        }
+
     }
     
     public static void run() throws IOException{
@@ -64,16 +52,11 @@ public class ConnectionManager{
                 Request request;
                 SocketChannel client = (SocketChannel) key.channel();
                 request = recieve(key);
-                System.out.println("Recieved user request");
                 Request answerRequest = Invoker.execute(request);
-                System.out.println("Got a request!");
                 SelectionKey keyNew = client.register(selector, SelectionKey.OP_WRITE);
-                System.out.println("Marked as writable");
-                keyNew.attach(request);
-                System.out.println("attached!");
+                keyNew.attach(answerRequest);
 
         //    } else if (key.isWritable()) {
-                System.out.println("WRITING");
                 send(key);
                 client = (SocketChannel) key.channel();
                 client.register(selector, SelectionKey.OP_READ);
@@ -127,19 +110,13 @@ public class ConnectionManager{
             objectOutputStream.writeObject(key.attachment());
             objectOutputStream.flush();
             objectOutputStream.close();
-            System.out.println("here comes the sun");
-            System.out.println(byteArrayOutputStream.size() + 4);
 
             ByteBuffer buffer = ByteBuffer.allocate(byteArrayOutputStream.size() + 8);
             buffer.putInt(byteArrayOutputStream.size() + 4);
             buffer.put(tempHeader);
             buffer.put(byteArrayOutputStream.toByteArray());
-
-            System.out.println(Arrays.toString(buffer.array()));
-            
-                System.out.println("MAMA I AM WRITING TO THE OUTPUT STREAM!!!");
-                buffer.flip();
-                client.write(buffer);
+            buffer.flip();
+            client.write(buffer);
             return true;
         }
         System.out.println("You should run initSocket() method before using sockets.");
@@ -165,13 +142,12 @@ public class ConnectionManager{
             bigBuffer.put(buffer.array());
             
             //ObjectInputStream oi = new ObjectInputStream(bi);
+            System.out.println(Arrays.toString(bigBuffer.array()));
             Request rq = Deserialize.deserializeRequest(bigBuffer.array());
-            System.out.println(rq);
             if (rq == null) {
                 System.out.println("package is null!");
-                System.exit(0);
             }
-            return Invoker.execute(rq);
+            return rq;
 
         } catch (IOException e) {
             System.out.println(e);
