@@ -3,6 +3,7 @@ package ru.ifmo.se.server.commands;
 import java.io.Serializable;
 import ru.ifmo.se.server.CollectionManager;
 import ru.ifmo.se.server.Command;
+import ru.ifmo.se.server.Validator;
 import ru.ifmo.se.server.collections.CreationDate;
 import ru.ifmo.se.common.collections.Person;
 import ru.ifmo.se.common.net.Request;
@@ -38,9 +39,13 @@ public class Update extends Command{
         if(newPerson == null){
             return new Request(404, "Error in creating new Person. Try again.");
         }
-        CollectionManager.remove(person);
+        
         newPerson.setId(id);
         newPerson.setCreationDate(new CreationDate().create(null));
+        if (!Validator.validatePerson(person)) {
+            return null;
+        }
+        CollectionManager.remove(person);
         CollectionManager.add(newPerson);
         return new Request(200);
     }

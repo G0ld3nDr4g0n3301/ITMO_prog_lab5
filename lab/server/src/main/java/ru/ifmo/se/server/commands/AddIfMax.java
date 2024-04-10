@@ -6,6 +6,7 @@ import java.util.Comparator;
 import ru.ifmo.se.server.CollectionManager;
 import ru.ifmo.se.server.Command;
 import ru.ifmo.se.server.OutputManager;
+import ru.ifmo.se.server.Validator;
 import ru.ifmo.se.server.collections.AskPerson;
 import ru.ifmo.se.server.collections.CreationDate;
 import ru.ifmo.se.server.collections.Id;
@@ -36,6 +37,9 @@ public class AddIfMax extends Command{
         person.setCreationDate(new CreationDate().create(null));
         ArrayList<Person> collection = CollectionManager.getCollection();
         Request request = new Request(Commands.RESPONSE, null);
+        if (!Validator.validatePerson(person)) {
+            return null;
+        }
         if(collection.size() == 0 || person.compareTo(collection.get(collection.size() - 1)) > 0){
             CollectionManager.add(person);
             request.setStatusCode(200);
@@ -44,6 +48,7 @@ public class AddIfMax extends Command{
             request.setStatusCode(400);
             request.setMsg("Element is less than max element of collection.");
         }
+        
         return request;
     }
 }

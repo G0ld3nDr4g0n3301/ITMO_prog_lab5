@@ -44,7 +44,7 @@ public class Update extends Command{
             System.out.println("id must be a number");
             return null;
         }
-        args = Arrays.copyOfRange(args, 1, args.length - 1);
+        args = Arrays.copyOfRange(args, 1, args.length);
         Person newPerson = AskPerson.generatePerson(args);
         if(newPerson == null){
             System.out.println("Error in creating new Person. Try again.");

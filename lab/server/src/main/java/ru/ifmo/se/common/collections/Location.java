@@ -66,7 +66,7 @@ public class Location implements Comparable<Location>, Serializable{
     
     @Override
     public int hashCode(){
-        return this.getLocX().intValue() * 3 + this.getLocY().intValue() * 7 + this.getName().length() * 13;
+        return this.getLocX().intValue() * 3 + this.getLocY().intValue() * 7;
     }
     
     @Override
@@ -84,7 +84,7 @@ public class Location implements Comparable<Location>, Serializable{
             return false;
         }
         Location obj2 = (Location) obj;
-        return (this.getLocX().compareTo(obj2.getLocX()) == 0 && (this.getLocY().compareTo(obj2.getLocY()) == 0 && this.getName().compareTo(obj2.getName()) == 0));
+        return (this.getLocX().compareTo(obj2.getLocX()) == 0 && (this.getLocY().compareTo(obj2.getLocY()) == 0 && this.getName() == obj2.getName()));
     }
     
     /**

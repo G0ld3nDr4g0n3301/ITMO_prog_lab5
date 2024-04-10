@@ -13,10 +13,12 @@
 /home/raistlin/coding/itmo/progLabs/ITMO_prog_lab5/lab/server/src/main/java/ru/ifmo/se/server/collections/HairColor.java
 /home/raistlin/coding/itmo/progLabs/ITMO_prog_lab5/lab/server/src/main/java/ru/ifmo/se/server/commands/Show.java
 /home/raistlin/coding/itmo/progLabs/ITMO_prog_lab5/lab/server/src/main/java/ru/ifmo/se/server/collections/Id.java
+/home/raistlin/coding/itmo/progLabs/ITMO_prog_lab5/lab/server/src/main/java/ru/ifmo/se/server/net/Sender.java
 /home/raistlin/coding/itmo/progLabs/ITMO_prog_lab5/lab/server/src/main/java/ru/ifmo/se/server/commands/RemoveLast.java
 /home/raistlin/coding/itmo/progLabs/ITMO_prog_lab5/lab/server/src/main/java/ru/ifmo/se/server/OutputManager.java
 /home/raistlin/coding/itmo/progLabs/ITMO_prog_lab5/lab/server/src/main/java/ru/ifmo/se/server/commands/Clear.java
 /home/raistlin/coding/itmo/progLabs/ITMO_prog_lab5/lab/server/src/main/java/ru/ifmo/se/server/commands/Help.java
+/home/raistlin/coding/itmo/progLabs/ITMO_prog_lab5/lab/server/src/main/java/ru/ifmo/se/server/net/Reciever.java
 /home/raistlin/coding/itmo/progLabs/ITMO_prog_lab5/lab/server/src/main/java/ru/ifmo/se/common/collections/Location.java
 /home/raistlin/coding/itmo/progLabs/ITMO_prog_lab5/lab/server/src/main/java/ru/ifmo/se/server/collections/LocationField.java
 /home/raistlin/coding/itmo/progLabs/ITMO_prog_lab5/lab/server/src/main/java/ru/ifmo/se/server/commands/Load.java

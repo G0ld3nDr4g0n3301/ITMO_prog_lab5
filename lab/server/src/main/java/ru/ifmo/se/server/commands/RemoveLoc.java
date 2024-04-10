@@ -5,6 +5,7 @@ import java.io.Serializable;
 import ru.ifmo.se.server.CollectionManager;
 import ru.ifmo.se.server.Command;
 import ru.ifmo.se.server.OutputManager;
+import ru.ifmo.se.server.Validator;
 import ru.ifmo.se.common.collections.Location;
 import ru.ifmo.se.server.collections.LocationField;
 import ru.ifmo.se.common.collections.Person;
@@ -24,7 +25,13 @@ public class RemoveLoc extends Command{
     @Override
     public Request execute(Request args){
         
-        Location loc = new LocationField().create("");
+        Location loc = args.getLoc();
+        if (loc == null) {
+            return new Request(404, "No location specified");
+        }
+        if (!Validator.validateLoc(loc)) {
+            return new Request(404,"Incorrect location");
+        }
         Person person = CollectionManager.findPerson(loc);
         while(person != null){
             CollectionManager.remove(person);
