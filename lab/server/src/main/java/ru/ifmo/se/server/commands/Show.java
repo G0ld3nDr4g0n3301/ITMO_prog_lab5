@@ -22,7 +22,7 @@ public class Show extends Command{
     @Override
     public Request execute(Request args){
         String answer = "";
-        for(Person p : CollectionManager.getCollection()){
+        for(Person p : CollectionManager.sortLoc(CollectionManager.getCollection())){
             answer += "------------------------------------" + "\n";
             answer += p + "\n";
             answer += "------------------------------------" + "\n";

@@ -1,6 +1,7 @@
 package ru.ifmo.se.server.net;
 
 import java.io.ByteArrayInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.net.SocketException;
@@ -30,18 +31,14 @@ public class Reciever {
             ByteBuffer bigBuffer = ByteBuffer.allocate(512*4);
             //bigBuffer.put(header.array());
             bigBuffer.put(buffer.array());
-            try{
             //ByteArrayInputStream bi = new ByteArrayInputStream(bigBuffer.array());
             //ObjectInputStream oi = new ObjectInputStream(bi);
-            System.out.println(Arrays.toString(bigBuffer.array()));
             Request rq =  Deserialize.deserializeRequest(bigBuffer.array());
             if (rq == null) {
                 System.out.println("package is null!");
+                throw new SocketException();
             }
             return rq;
-        } catch (Exception e){
-            System.out.println(e);
-            return null;
-        }
+        
     }
 }

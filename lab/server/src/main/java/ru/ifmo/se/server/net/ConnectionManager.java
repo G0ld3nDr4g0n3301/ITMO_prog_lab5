@@ -1,6 +1,7 @@
 package ru.ifmo.se.server.net;
 
 import java.io.IOException;
+import java.io.StreamCorruptedException;
 import java.net.InetSocketAddress;
 import java.net.SocketException;
 import java.nio.channels.SelectionKey;
@@ -56,21 +57,17 @@ public class ConnectionManager{
                     Request answerRequest = Invoker.execute(request);
                     SelectionKey keyNew = client.register(selector, SelectionKey.OP_WRITE);
                     keyNew.attach(answerRequest);
-                    System.out.println(key.isReadable());
-                    System.out.println(key.isAcceptable());
-                    System.out.println(key.isConnectable());
-                    System.out.println(key.isWritable());
                 
                     //SocketChannel client = (SocketChannel) key.channel();
                     Sender.send(key);
                     client = (SocketChannel) key.channel();
                     client.register(selector, SelectionKey.OP_READ);
                 } 
-            } catch (SocketException e) {
+            } catch (SocketException | StreamCorruptedException e) {
                 new Save("","").execute(new Request(Commands.SAVE));
                 key.cancel();
                 return false;
-            }
+            } 
             }
         return true;
         

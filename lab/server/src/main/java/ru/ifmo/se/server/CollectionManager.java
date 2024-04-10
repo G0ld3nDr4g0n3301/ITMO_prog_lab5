@@ -4,7 +4,10 @@ import java.util.ArrayList;
 import ru.ifmo.se.common.collections.Person;
 import java.time.LocalDate;
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
+import java.util.stream.Collectors;
+
 import ru.ifmo.se.common.collections.Color;
 import ru.ifmo.se.common.collections.Location;
 
@@ -146,5 +149,14 @@ public class CollectionManager {
     public static void addAll(List<Person> newList){
         collection.addAll(newList);
         sort();
+    }
+
+    public static List<Person> sortLoc(List<Person> persons) {
+        List<Person> res = new ArrayList<>();
+        res = persons.stream()
+            .sorted(Comparator.comparing(Person::getLocation))
+            .collect(Collectors.toList());
+        System.out.println(res);
+        return res;
     }
 }
