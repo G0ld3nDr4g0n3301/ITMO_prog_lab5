@@ -50,6 +50,14 @@ public class Location implements Comparable<Location>, Serializable{
         if(good){
             return 0;
         }
+
+        if(this.locX.compareTo(loc.locX) > 0){
+            return 1;
+        } else if (this.locY.compareTo(loc.locY) < 0){
+            return -1;
+        } else if (this.locName == loc.locName) {
+            return 0;
+        }
         return 1;
     }
     
