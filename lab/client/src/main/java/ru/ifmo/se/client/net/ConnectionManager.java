@@ -1,8 +1,12 @@
 package ru.ifmo.se.client.net;
 
+import java.io.ByteArrayInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.io.OutputStream;
 import java.net.Socket;
 import java.nio.ByteBuffer;
 import java.util.Arrays;
@@ -15,13 +19,13 @@ public class ConnectionManager{
     public static String host = "localhost";
     private static Socket socket = null;
     public static Integer timeout = 40;
-    private static DataOutputStream out;
+    private static OutputStream out;
     private static InputStream in;
     
     public static void initSocket() throws IOException{
         socket = new Socket(host, port);
         //socket.connect(new InetSocketAddress(host, port));
-        out = new DataOutputStream(socket.getOutputStream());
+        out = socket.getOutputStream();
         in = socket.getInputStream();
     }
 
@@ -35,7 +39,8 @@ public class ConnectionManager{
 
 
         if (socket != null){
-            System.out.println(Arrays.toString(Serialize.serializeRequest(request)));
+            System.out.println("Sending...");
+
             out.write(Serialize.serializeRequest(request));
             out.flush();
             return true;
@@ -45,6 +50,7 @@ public class ConnectionManager{
     }
 
     public static Request recieve() {
+        System.out.println("Recieving");
         if (socket == null ){
             System.out.println("run initSocket() first.");
             return null;
@@ -52,11 +58,18 @@ public class ConnectionManager{
         try {
             int length = 0;
             ByteBuffer header = ByteBuffer.allocate(4);
-                header = ByteBuffer.wrap(in.readNBytes(4));
-                length = header.getInt();
-                ByteBuffer bytes = ByteBuffer.allocate(length+50);
-                bytes.put(in.readNBytes(length));
+            System.out.println("about to get header");
+
+            header = ByteBuffer.wrap(in.readNBytes(4));
+            length = header.getInt();
+            ByteBuffer bytes = ByteBuffer.allocate(length+50);
+            System.out.println("about to get remaining bytes");
+            bytes.put(in.readNBytes(length));
             bytes.flip();
+
+
+
+            System.out.println("deserializing...");
             Request request = Deserialize.deserializeRequest(bytes.array());
             return request;
             } catch (IOException e) {

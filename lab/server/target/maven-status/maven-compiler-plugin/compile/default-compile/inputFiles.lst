@@ -32,6 +32,7 @@
 /home/raistlin/coding/itmo/progLabs/ITMO_prog_lab5/lab/server/src/main/java/ru/ifmo/se/server/commands/RemoveLoc.java
 /home/raistlin/coding/itmo/progLabs/ITMO_prog_lab5/lab/server/src/main/java/ru/ifmo/se/server/commands/Remove.java
 /home/raistlin/coding/itmo/progLabs/ITMO_prog_lab5/lab/server/src/main/java/ru/ifmo/se/server/commands/Update.java
+/home/raistlin/coding/itmo/progLabs/ITMO_prog_lab5/lab/server/src/main/java/ru/ifmo/se/server/commands/EmergencySave.java
 /home/raistlin/coding/itmo/progLabs/ITMO_prog_lab5/lab/server/src/main/java/ru/ifmo/se/common/net/Request.java
 /home/raistlin/coding/itmo/progLabs/ITMO_prog_lab5/lab/server/src/main/java/ru/ifmo/se/common/collections/Person.java
 /home/raistlin/coding/itmo/progLabs/ITMO_prog_lab5/lab/server/src/main/java/ru/ifmo/se/server/collections/CoordinatesField.java

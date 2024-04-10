@@ -2,7 +2,6 @@ package ru.ifmo.se.server.parser;
 
 import java.util.ArrayList;
 import java.util.List;
-import ru.ifmo.se.server.OutputManager;
 
 /**
  * Converts CSV String into List of objects.
@@ -53,7 +52,7 @@ public class CsvToObject {
             try{
                 result.add(this.strategy.fillObject(line.substring(1, line.length() - 1).split("\"" + this.separator + "\"")));
             } catch (CsvWrongDataException e){
-                OutputManager.print("Can't parse data in line " + i);
+                System.out.println("Can't parse data in line " + i);
             } finally {
                 i += 1;
             }

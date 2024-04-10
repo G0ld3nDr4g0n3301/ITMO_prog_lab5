@@ -3,6 +3,7 @@ package ru.ifmo.se.server.net;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.ObjectOutputStream;
+import java.net.SocketException;
 import java.nio.ByteBuffer;
 import java.nio.channels.SelectionKey;
 import java.nio.channels.SocketChannel;
@@ -10,7 +11,7 @@ import java.nio.channels.SocketChannel;
 public class Sender {
     
 
-    public static boolean send(SelectionKey key) throws IOException{
+    public static boolean send(SelectionKey key) throws SocketException,IOException{
 
         SocketChannel client = (SocketChannel) key.channel();
         client.configureBlocking(false);
@@ -29,6 +30,8 @@ public class Sender {
         buffer.put(byteArrayOutputStream.toByteArray());
         buffer.flip();
         client.write(buffer);
+
+
         return true;
     }
 }

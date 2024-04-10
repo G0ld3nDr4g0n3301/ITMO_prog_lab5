@@ -8,9 +8,11 @@ import java.nio.channels.Selector;
 import java.nio.channels.ServerSocketChannel;
 import java.nio.channels.SocketChannel;
 
+import ru.ifmo.se.common.net.Commands;
 import ru.ifmo.se.common.net.Request;
 import ru.ifmo.se.server.CollectionManager;
 import ru.ifmo.se.server.Invoker;
+import ru.ifmo.se.server.commands.Save;
 
 
 public class ConnectionManager{
@@ -31,37 +33,47 @@ public class ConnectionManager{
 
 
     public static boolean run() throws IOException{
-        selector.select();
-        for (SelectionKey key : selector.selectedKeys()) {
+        
+            selector.select();
+            for (SelectionKey key : selector.selectedKeys()) {
+                try {
+                if(key.isAcceptable()) {
+                    ServerSocketChannel tempServerChannel = (ServerSocketChannel) key.channel();
+                    SocketChannel client = tempServerChannel.accept();
+                    if (client == null) {
+                        continue;
+                    }
+                    client.configureBlocking(false);
+                    client.register(selector, SelectionKey.OP_READ);
 
-            if(key.isAcceptable()) {
-                ServerSocketChannel tempServerChannel = (ServerSocketChannel) key.channel();
-                SocketChannel client = tempServerChannel.accept();
-                if (client == null) {
-                    continue;
-                }
-                client.configureBlocking(false);
-                client.register(selector, SelectionKey.OP_READ);
-                selector.selectedKeys().remove(key);
-            } else if (key.isReadable()) {
-                Request request;
-                SocketChannel client = (SocketChannel) key.channel();
-                request = Reciever.recieve(key);
-                if (request == null) {
-                    selector.selectedKeys().remove(key);
-                    return false;
-                }
-                Request answerRequest = Invoker.execute(request);
-                selector.selectedKeys().remove(key);
-                SelectionKey keyNew = client.register(selector, SelectionKey.OP_WRITE);
-                keyNew.attach(answerRequest);
-                Sender.send(key);
-                client = (SocketChannel) key.channel();
-                client.register(selector, SelectionKey.OP_READ);
-                selector.selectedKeys().remove(key);
+                } else if (key.isReadable()) {
+                    Request request;
+                    SocketChannel client = (SocketChannel) key.channel();
+                    request = Reciever.recieve(key);
+                    if (request == null) {
+                        return false;
+                    }
+                    Request answerRequest = Invoker.execute(request);
+                    SelectionKey keyNew = client.register(selector, SelectionKey.OP_WRITE);
+                    keyNew.attach(answerRequest);
+                    System.out.println(key.isReadable());
+                    System.out.println(key.isAcceptable());
+                    System.out.println(key.isConnectable());
+                    System.out.println(key.isWritable());
+                
+                    //SocketChannel client = (SocketChannel) key.channel();
+                    Sender.send(key);
+                    client = (SocketChannel) key.channel();
+                    client.register(selector, SelectionKey.OP_READ);
+                } 
+            } catch (SocketException e) {
+                new Save("","").execute(new Request(Commands.SAVE));
+                key.cancel();
+                return false;
             }
-        }
+            }
         return true;
+        
     
     }
     
