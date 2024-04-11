@@ -3,6 +3,8 @@ package ru.ifmo.se.server.commands;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Comparator;
+import java.util.List;
+
 import ru.ifmo.se.server.CollectionManager;
 import ru.ifmo.se.common.collections.Color;
 import ru.ifmo.se.common.net.Request;
@@ -26,7 +28,7 @@ public class PrintHairColor extends Command{
     
     @Override
     public Request execute(Request args){
-        ArrayList<Color> hairColors = (ArrayList<Color>) CollectionManager.getHairColors();
+        List<Color> hairColors = CollectionManager.getHairColors();
         hairColors.sort(Comparator.reverseOrder());
         String colors = "";
         for (Color c : hairColors) {

@@ -32,12 +32,15 @@ public class CountHeight extends Command{
             Request request = new Request(404, "Not enough arguments");
             return request;
         }
-        Integer count = 0;
-        for(Person p : CollectionManager.getCollection()){
+        Long count = null;
+        /* for(Person p : CollectionManager.getCollection()){
             if(p.getHeight().toString().compareTo(arguments.toString()) == 0){
                 ++count;
             }
-        }
+        } */
+        count = CollectionManager.getCollection().stream()
+        .filter((Person p) -> p.getHeight().toString().compareTo(arguments.toString()) == 0)
+        .count();
         return new Request(400, count.toString());
     }
 }

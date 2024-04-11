@@ -2,6 +2,8 @@ package ru.ifmo.se.server.collections;
 
 
 import java.util.ArrayList;
+import java.util.List;
+
 import ru.ifmo.se.server.InputManager;
 import ru.ifmo.se.server.OutputManager;
 import ru.ifmo.se.server.Validator;
@@ -31,7 +33,7 @@ public class Id extends AbstractField<Person, Integer> {
     
     @Override
     public Integer create(String Uselessinput){
-        ArrayList<Person> collection = CollectionManager.getCollection();
+        List<Person> collection = CollectionManager.getCollection();
         if(collection.size() == 0){
             return 1;
         }

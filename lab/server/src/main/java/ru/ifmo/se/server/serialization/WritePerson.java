@@ -22,7 +22,7 @@ public class WritePerson {
      * @return true, if no exceptions encountered
      * @throws IOException if error in file reading
      */
-    public static Boolean write(ArrayList<Person> list,File filename) throws IOException{
+    public static Boolean write(List<Person> list,File filename) throws IOException{
         
         PrintWriter file = new PrintWriter(filename);
         

@@ -1,6 +1,9 @@
 package ru.ifmo.se.server.commands;
 
 import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
+
 import ru.ifmo.se.server.CollectionManager;
 import ru.ifmo.se.server.Command;
 import ru.ifmo.se.server.Validator;
@@ -33,15 +36,18 @@ public class RemoveLower extends Command{
         }
         person.setCreationDate(new CreationDate().create(""));
         person.setId(new Id().create(""));
-        ArrayList<Person> removeList = new ArrayList<Person>();
+        List<Person> removeList = new ArrayList<Person>();
         if (!Validator.validatePerson(person)) {
             return null;
         }
-        for(Person p : CollectionManager.getCollection()){
+  /*      for(Person p : CollectionManager.getCollection()){
             if(p.compareTo(person) < 0){
                 removeList.add(p);
             }
-        }
+        } */
+        removeList = CollectionManager.getCollection().stream()
+        .filter((Person p) -> p.compareTo(person) < 0)
+        .collect(Collectors.toList());
         CollectionManager.remove(removeList);
         return new Request(200);
     }

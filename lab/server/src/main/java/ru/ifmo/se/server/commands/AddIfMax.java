@@ -3,6 +3,8 @@ package ru.ifmo.se.server.commands;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Comparator;
+import java.util.List;
+
 import ru.ifmo.se.server.CollectionManager;
 import ru.ifmo.se.server.Command;
 import ru.ifmo.se.server.OutputManager;
@@ -35,7 +37,7 @@ public class AddIfMax extends Command{
         Person person = args.getPerson();
         person.setId(new Id().create(null));
         person.setCreationDate(new CreationDate().create(null));
-        ArrayList<Person> collection = CollectionManager.getCollection();
+        List<Person> collection = CollectionManager.getCollection();
         Request request = new Request(Commands.RESPONSE, null);
         if (!Validator.validatePerson(person)) {
             return null;

@@ -6,6 +6,7 @@ import java.time.LocalDate;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
+import java.util.stream.Collector;
 import java.util.stream.Collectors;
 
 import ru.ifmo.se.common.collections.Color;
@@ -19,7 +20,7 @@ public class CollectionManager {
     /**
      * Main collection
      */
-    private static ArrayList<Person> collection = new ArrayList<>();
+    private static List<Person> collection = new ArrayList<>();
     /**
      * Date of initialization of collection
      */
@@ -29,7 +30,7 @@ public class CollectionManager {
      * Returns the main collections
      * @return 
      */
-    public static ArrayList<Person> getCollection(){
+    public static List<Person> getCollection(){
         return collection;
     }
     
@@ -63,7 +64,7 @@ public class CollectionManager {
      * @return 
      */
     public static String getType(){
-        return "ArrayList<Person>";
+        return collection.getClass().descriptorString();
     }
     
     /**
@@ -72,10 +73,11 @@ public class CollectionManager {
      * @return first match in collection
      */
     public static Person findPerson(int id){
-        for(Person p : collection){
-            if (p.getId() == id){
+        List<Person> list = collection.stream()
+        .filter((Person p) -> p.getId() == id)
+        .collect(Collectors.toList());
+        for(Person p : list){
                 return p;
-            }
         }
         return null;
     }
@@ -101,10 +103,11 @@ public class CollectionManager {
      * @return first match in collection
      */
     public static Person findPerson(Location loc){
-        for(Person p : collection){
-            if(p.getLocation().equals(loc)){
+        List<Person> list = collection.stream()
+        .filter((Person p) -> p.getLocation().equals(loc))
+        .collect(Collectors.toList());
+        for(Person p : list){
                 return p;
-            }
         }
         return null;
     }
@@ -113,7 +116,9 @@ public class CollectionManager {
      * removes last element of collection
      */
     public static void removeLast(){
-        collection.remove(collection.size() - 1);
+        collection = collection.stream()
+        .filter((Person p) -> collection.indexOf(p) != collection.size() - 1)
+        .collect(Collectors.toList());
     }
     
     /**
@@ -121,7 +126,10 @@ public class CollectionManager {
      * @param removeList 
      */
     public static void remove(List<Person> removeList){
-        collection.removeAll(removeList);
+        collection = collection.stream()
+        .filter((Person p) -> !removeList.contains(p))
+        .collect(Collectors.toList());
+//        collection.removeAll(removeList);
     }
     
     /**
@@ -130,10 +138,11 @@ public class CollectionManager {
      */
     public static List<Color> getHairColors(){
         ArrayList<Color> colors = new ArrayList<>();
-        
-        for(Person p : collection){
-            colors.add(p.getHairColor());
-        }
+        collection.stream()
+        .forEachOrdered((Person p) -> colors.add(p.getHairColor()));
+//        for(Person p : collection){
+//            colors.add(p.getHairColor());
+//        }
         return colors;
     }
     
@@ -141,6 +150,9 @@ public class CollectionManager {
      * sorts the collection
      */
     public static void sort(){
+        collection = collection.stream()
+        .sorted()
+        .collect(Collectors.toList());
         Collections.sort(collection);
     }
     
