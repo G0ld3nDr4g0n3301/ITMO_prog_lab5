@@ -154,7 +154,7 @@ public class CollectionManager {
     public static List<Person> sortLoc(List<Person> persons) {
         List<Person> res = new ArrayList<>();
         res = persons.stream()
-            .sorted(Comparator.comparing(Person::getLocation))
+            .sorted((Person p1, Person p2) -> p1.getLocation().compareTo(p2.getLocation()))
             .collect(Collectors.toList());
         System.out.println(res);
         return res;
