@@ -130,6 +130,7 @@ public class CollectionManager {
      */
     public static List<Color> getHairColors(){
         ArrayList<Color> colors = new ArrayList<>();
+        
         for(Person p : collection){
             colors.add(p.getHairColor());
         }
@@ -147,7 +148,8 @@ public class CollectionManager {
      * adds all newList elements to collection
      */
     public static void addAll(List<Person> newList){
-        collection.addAll(newList);
+        newList.stream()
+        .forEachOrdered(collection::add);
         sort();
     }
 
