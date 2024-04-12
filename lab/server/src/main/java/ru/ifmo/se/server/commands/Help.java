@@ -7,12 +7,15 @@ import ru.ifmo.se.common.net.Request;
 import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Set;
+import java.util.logging.Logger;
 
 /**
  * Prints all available commands and their descriptions.
  * @author raistlin
  */
 public class Help extends Command {
+
+    private static final Logger logger = Logger.getLogger(Help.class.getName());
     
     public Help(String name, String description){
         this.name = name;
@@ -26,7 +29,7 @@ public class Help extends Command {
         for(Commands key : commandSet){
             answer += Invoker.getCommands().get(key).getName() + " - " + Invoker.getCommands().get(key).getDescription() + "\n";
         }
-        
+        logger.info("Got the commands.");
         return new Request(400, answer);
     }
     

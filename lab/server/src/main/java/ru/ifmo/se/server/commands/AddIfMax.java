@@ -1,6 +1,7 @@
 package ru.ifmo.se.server.commands;
 
 import java.io.Serializable;
+import java.util.logging.Logger;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
@@ -22,6 +23,9 @@ import ru.ifmo.se.common.net.Request;
  */
 public class AddIfMax extends Command{
     
+
+    private static final Logger logger = Logger.getLogger(AddIfMax.class.getName());
+    
     public AddIfMax(String name,String desc){
         this.name = name;
         this.description = desc;
@@ -35,20 +39,23 @@ public class AddIfMax extends Command{
     @Override
     public Request execute(Request args){
         Person person = args.getPerson();
-        person.setId(new Id().create(null));
-        person.setCreationDate(new CreationDate().create(null));
-        List<Person> collection = CollectionManager.getCollection();
-        Request request = new Request(Commands.RESPONSE, null);
-        if (!Validator.validatePerson(person)) {
+        if (person == null){
+            logger.warning("No person specified");
             return null;
         }
-        if(collection.size() == 0 || person.compareTo(collection.get(collection.size() - 1)) > 0){
-            CollectionManager.add(person);
+        person.setId(new Id().create(null));
+        person.setCreationDate(new CreationDate().create(null));
+        Request request = new Request(Commands.RESPONSE, null);
+        if (!Validator.validatePerson(person)) {
+            logger.warning("person info is incorrect");
+            return null;
+        }
+        if(CollectionManager.addIfMax(person)){
             request.setStatusCode(200);
-            OutputManager.print("Adding element to collection...");
+            logger.info("added an element");
         } else {
             request.setStatusCode(400);
-            request.setMsg("Element is less than max element of collection.");
+            logger.info("Element wasn't added");
         }
         
         return request;

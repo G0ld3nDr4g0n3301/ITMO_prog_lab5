@@ -2,6 +2,7 @@ package ru.ifmo.se.server.commands;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Logger;
 import java.util.stream.Collectors;
 
 import ru.ifmo.se.server.CollectionManager;
@@ -18,6 +19,8 @@ import ru.ifmo.se.common.net.Request;
  */
 public class RemoveLower extends Command{
     
+    private static final Logger logger = Logger.getLogger(RemoveLower.class.getName());
+
     public RemoveLower(String name,String desc){
         this.name = name;
         this.description = desc;
@@ -32,23 +35,21 @@ public class RemoveLower extends Command{
     public Request execute(Request args){
         Person person = args.getPerson();
         if (person == null){
+            logger.warning("No person specified in request");
             return null;
         }
         person.setCreationDate(new CreationDate().create(""));
         person.setId(new Id().create(""));
         List<Person> removeList = new ArrayList<Person>();
         if (!Validator.validatePerson(person)) {
+            logger.warning("Given person contains malicious data");
             return null;
         }
-  /*      for(Person p : CollectionManager.getCollection()){
-            if(p.compareTo(person) < 0){
-                removeList.add(p);
-            }
-        } */
         removeList = CollectionManager.getCollection().stream()
         .filter((Person p) -> p.compareTo(person) < 0)
         .collect(Collectors.toList());
         CollectionManager.remove(removeList);
+        logger.info("Successfully removed persons from list");
         return new Request(200);
     }
 }

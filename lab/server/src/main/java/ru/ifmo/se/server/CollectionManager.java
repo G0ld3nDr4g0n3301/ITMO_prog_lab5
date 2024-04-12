@@ -6,6 +6,7 @@ import java.time.LocalDate;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
+import java.util.Set;
 import java.util.stream.Collector;
 import java.util.stream.Collectors;
 
@@ -49,6 +50,14 @@ public class CollectionManager {
      */
     public static LocalDate getInitDate(){
         return initDate;
+    }
+
+    public static boolean addIfMax(Person p){
+        if (collection.stream().allMatch(p1 -> p1.compareTo(p) < 0)){
+            add(p);
+            return true;
+        }
+        return false;
     }
     
     /**

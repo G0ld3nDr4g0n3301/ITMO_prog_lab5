@@ -6,6 +6,8 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.EmptyStackException;
 import java.util.List;
+import java.util.logging.Logger;
+
 import ru.ifmo.se.server.CollectionManager;
 import ru.ifmo.se.server.Command;
 import ru.ifmo.se.server.Invoker;
@@ -21,6 +23,8 @@ import ru.ifmo.se.server.serialization.ReadPerson;
  */
 public class Load extends Command{
     
+    private static final Logger logger = Logger.getLogger(Load.class.getName());
+    
     public Load(String name, String desc){
         this.name= name;
         this.description = desc;
@@ -32,17 +36,18 @@ public class Load extends Command{
         try{
             newList = ReadPerson.read(Invoker.getCurrMainFile());
             if(newList == null){
-                OutputManager.print("File is damaged, or contains wrong data.");
+                logger.warning("File is damaged, or contains wrong data.");
                 return null;
             }
         } catch(IOException e) {
-            OutputManager.print("Error in file reading.");
+            logger.warning("Error in file reading.");
             return null;
         } catch(EmptyStackException | NullPointerException e){
-            OutputManager.print("No input file specified.");
+            logger.warning("No input file specified.");
             return null;
         }
         CollectionManager.addAll(newList);
+        logger.info("Successfully loaded collection from file");
         return null;
     }
     

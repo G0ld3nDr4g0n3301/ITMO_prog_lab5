@@ -1,6 +1,7 @@
 package ru.ifmo.se.server.commands;
 
 import java.io.Serializable;
+import java.util.logging.Logger;
 
 import ru.ifmo.se.server.CollectionManager;
 import ru.ifmo.se.server.Command;
@@ -13,6 +14,8 @@ import ru.ifmo.se.common.net.Request;
  * @author raistlin
  */
 public class Show extends Command{
+
+    private static final Logger logger = Logger.getLogger(Show.class.getName());
     
     public Show(String name, String desc){
         this.name = name;
@@ -27,6 +30,7 @@ public class Show extends Command{
             answer += p + "\n";
             answer += "------------------------------------" + "\n";
         }
+        logger.info("got the collection elements");
         return new Request(400, answer);
     }
 }

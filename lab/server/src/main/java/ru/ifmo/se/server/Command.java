@@ -1,10 +1,14 @@
 package ru.ifmo.se.server;
 
+import java.util.logging.Logger;
+
 /**
  * Abstract class for commands.
  * @author raistlin
  */
 public abstract class Command implements ICommand {
+
+
     /**
      * name of command
      */
@@ -29,5 +33,7 @@ public abstract class Command implements ICommand {
     public String getDescription(){
         return this.description;
     }
+
+
     
 }

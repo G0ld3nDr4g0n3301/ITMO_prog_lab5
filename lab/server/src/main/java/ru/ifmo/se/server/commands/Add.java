@@ -6,6 +6,7 @@ import ru.ifmo.se.server.Validator;
 import ru.ifmo.se.server.collections.Id;
 import ru.ifmo.se.server.collections.CreationDate;
 
+import java.util.logging.Logger;
 
 import ru.ifmo.se.common.collections.Person;
 import ru.ifmo.se.common.net.Commands;
@@ -17,6 +18,10 @@ import ru.ifmo.se.common.net.Request;
  */
 public class Add extends Command{
     
+
+    private static final Logger logger = Logger.getLogger(Add.class.getName());
+
+    
     public Add(String name, String desc){
         this.name = name;
         this.description = desc;
@@ -26,16 +31,18 @@ public class Add extends Command{
     public Request execute(Request args){
         Person person = args.getPerson();
         if(person == null){
+            logger.warning("No person specified in request");
             return null;
         }
         person.setId(new Id().create(null));
         person.setCreationDate(new CreationDate().create(null));
         if (!Validator.validatePerson(person)) {
+            logger.warning("Given person contains malicious data");
             return null;
         }
         CollectionManager.add(person);
         Request request = new Request(Commands.RESPONSE, 200);
-        
+        logger.info("Successfully added person to collection");
         return request;
     }
 }
