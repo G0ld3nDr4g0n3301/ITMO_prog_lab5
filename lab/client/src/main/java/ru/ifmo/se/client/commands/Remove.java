@@ -1,8 +1,10 @@
 package ru.ifmo.se.client.commands;
 
 import ru.ifmo.se.client.Command;
+import ru.ifmo.se.client.LogFile;
 
 import java.io.Serializable;
+import java.util.logging.Logger;
 
 import ru.ifmo.se.common.net.Commands;
 import ru.ifmo.se.common.net.Request;
@@ -13,6 +15,12 @@ import ru.ifmo.se.common.net.Request;
  */
 public class Remove extends Command{
     
+    private static final Logger logger = Logger.getLogger(Add.class.getName());
+
+    static {
+            logger.addHandler(LogFile.getHandler());
+    }
+
     public Remove(String name, String desc){
         this.name = name;
         this.description = desc;
@@ -37,6 +45,7 @@ public class Remove extends Command{
         }
         Request request = new Request(Commands.REMOVE_BY_ID);
         request.setId(id);
+        logger.info("Sending REMOVE request");
         return request;
     }
 }

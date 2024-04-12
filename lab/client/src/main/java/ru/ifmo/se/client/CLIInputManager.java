@@ -1,12 +1,22 @@
 package ru.ifmo.se.client;
 
 import java.util.Scanner;
+import java.util.logging.Handler;
+import java.util.logging.Logger;
 
 /**
  * Responsible for getting user input(from CLI or from file)
  * @author raistlin
  */
 public class CLIInputManager {
+
+
+    private static final Logger logger;
+
+    static {
+        logger = Logger.getLogger(CLIInputManager.class.getName());
+    }
+
     /**
      * scanner to get CL input
      */
@@ -35,6 +45,7 @@ public class CLIInputManager {
             reloadScanner();
             return null;
         }
+        logger.info("got input " + input);
         return input;
     }
     

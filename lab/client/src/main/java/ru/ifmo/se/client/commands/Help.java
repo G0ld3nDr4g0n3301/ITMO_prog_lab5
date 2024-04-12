@@ -5,6 +5,7 @@ import ru.ifmo.se.common.net.Commands;
 import ru.ifmo.se.common.net.Request;
 
 import java.io.Serializable;
+import java.util.logging.Logger;
 
 /**
  * Prints all available commands and their descriptions.
@@ -12,6 +13,12 @@ import java.io.Serializable;
  */
 public class Help extends Command {
     
+    private static final Logger logger = Logger.getLogger(Add.class.getName());
+
+    static {
+            logger.addHandler(LogFile.getHandler());
+    }
+
     public Help(String name, String description){
         this.name = name;
         this.description = description;
@@ -19,6 +26,7 @@ public class Help extends Command {
     
     @Override
     public Request execute(String[] args){
+        logger.info("Sending HELP request");
         return new Request(Commands.HELP);
     }
     

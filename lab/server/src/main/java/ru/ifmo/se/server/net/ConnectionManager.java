@@ -21,6 +21,8 @@ import ru.ifmo.se.server.commands.Save;
 public class ConnectionManager{
 
     private static final Logger logger = Logger.getLogger(ConnectionManager.class.getName());
+
+    private static int usersConnected = 0;
     
     static {
         logger.addHandler(LogFile.getHandler());
@@ -40,6 +42,10 @@ public class ConnectionManager{
 
     }
 
+    public static int getUsersConnected() {
+        return usersConnected;
+    }
+
 
     public static boolean run() throws IOException{
         
@@ -54,6 +60,7 @@ public class ConnectionManager{
                     }
                     client.configureBlocking(false);
                     client.register(selector, SelectionKey.OP_READ);
+                    usersConnected += 1;
                     logger.info("Added new key");
                 } else if (key.isReadable()) {
                     Request request;
@@ -64,6 +71,7 @@ public class ConnectionManager{
                     }
                     Request answerRequest = Invoker.execute(request);
                     SelectionKey keyNew = client.register(selector, SelectionKey.OP_WRITE);
+                    answerRequest.setId(usersConnected);
                     keyNew.attach(answerRequest);
                 
                     //SocketChannel client = (SocketChannel) key.channel();
@@ -73,6 +81,7 @@ public class ConnectionManager{
                 } 
             } catch (SocketException | StreamCorruptedException e) {
                 logger.warning("client disconnected");
+                usersConnected -= 1;
                 new Save("","").execute(new Request(Commands.SAVE));
                 key.cancel();
                 return false;

@@ -6,6 +6,7 @@ import ru.ifmo.se.client.net.ConnectionManager;
 import ru.ifmo.se.common.net.Request;
 
 import java.util.Stack;
+import java.util.logging.Logger;
 import java.io.File;
 import java.io.IOException;
 import java.io.Serializable;
@@ -16,6 +17,12 @@ import java.io.Serializable;
  * @author raistlin
  */
 public class Invoker {
+    
+    private static final Logger logger;
+
+    static {
+        logger = Logger.getLogger(Invoker.class.getName());
+    }
 
     /**
      * HashMap containing all the commands' classes.
@@ -36,6 +43,8 @@ public class Invoker {
      * Stack of files from which we load the collection on startup.Command "save" writes the data into this files.
      */
     private static Stack<File> mainFileStack = new Stack<>();
+
+    private static int usersConnected = 1;
     
     static{
         commands = new HashMap<>();
@@ -94,6 +103,16 @@ public class Invoker {
             if (answer == null) {
                 System.out.println("Error in package reading");
                 return false;
+            }
+            int diff = answer.getId() - usersConnected;
+            if (diff != 0){
+                if (diff < 0) {
+                    diff = -diff;
+                    logger.info("Disconnected " + diff + "users!");
+                } else {
+                    logger.info("connected new " + diff + " users!");
+                }
+                usersConnected = answer.getId();
             }
             switch (answer.getStatusCode()) {
                 case 200:

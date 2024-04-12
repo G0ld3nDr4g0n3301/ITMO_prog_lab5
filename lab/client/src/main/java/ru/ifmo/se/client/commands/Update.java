@@ -4,8 +4,10 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.logging.Logger;
 
 import ru.ifmo.se.client.Command;
+import ru.ifmo.se.client.LogFile;
 import ru.ifmo.se.client.collections.AskPerson;
 import ru.ifmo.se.common.collections.Person;
 import ru.ifmo.se.common.net.Commands;
@@ -17,6 +19,11 @@ import ru.ifmo.se.common.net.Request;
  */
 public class Update extends Command{
     
+    private static final Logger logger = Logger.getLogger(Add.class.getName());
+
+    static {
+            logger.addHandler(LogFile.getHandler());
+    }
     
     public Update(String name,String desc){
         this.name = name;
@@ -54,6 +61,7 @@ public class Update extends Command{
         Request request = new Request(Commands.UPDATE);
         request.setId(id);
         request.setPerson(newPerson);
+        logger.info("Sending UPDATE request");
         return request;
     }
 }

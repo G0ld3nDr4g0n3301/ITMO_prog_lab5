@@ -24,7 +24,7 @@ public class Add extends Command{
 
     private static final Logger logger = Logger.getLogger(Add.class.getName());
 
-    {
+    static {
             logger.addHandler(LogFile.getHandler());
     }
     

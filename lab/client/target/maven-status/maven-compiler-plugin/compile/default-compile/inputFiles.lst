@@ -7,6 +7,7 @@
 /home/g0ld3n_dr4g0n/Desktop/lab5/lab/client/src/main/java/ru/ifmo/se/client/commands/CountHeight.java
 /home/g0ld3n_dr4g0n/Desktop/lab5/lab/client/src/main/java/ru/ifmo/se/client/commands/Exit.java
 /home/g0ld3n_dr4g0n/Desktop/lab5/lab/client/src/main/java/ru/ifmo/se/client/commands/ExecuteScript.java
+/home/g0ld3n_dr4g0n/Desktop/lab5/lab/client/src/main/java/ru/ifmo/se/client/LogFile.java
 /home/g0ld3n_dr4g0n/Desktop/lab5/lab/client/src/main/java/ru/ifmo/se/client/commands/Update.java
 /home/g0ld3n_dr4g0n/Desktop/lab5/lab/client/src/main/java/ru/ifmo/se/client/commands/Info.java
 /home/g0ld3n_dr4g0n/Desktop/lab5/lab/client/src/main/java/ru/ifmo/se/client/ICommand.java
