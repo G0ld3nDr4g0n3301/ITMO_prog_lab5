@@ -179,7 +179,6 @@ public class CollectionManager {
         res = persons.stream()
             .sorted((Person p1, Person p2) -> p1.getLocation().compareTo(p2.getLocation()))
             .collect(Collectors.toList());
-        System.out.println(res);
         return res;
     }
 }

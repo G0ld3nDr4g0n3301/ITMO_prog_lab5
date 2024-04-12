@@ -9,6 +9,7 @@ import java.nio.ByteBuffer;
 import java.nio.channels.SelectionKey;
 import java.nio.channels.SocketChannel;
 import java.util.Arrays;
+import java.util.logging.Logger;
 
 import ru.ifmo.se.common.net.Commands;
 import ru.ifmo.se.common.net.Request;
@@ -18,6 +19,7 @@ import ru.ifmo.se.server.commands.Save;
 public class Reciever {
 
     
+    private static final Logger logger = Logger.getLogger(Reciever.class.getName());
     
     public static Request recieve(SelectionKey key) throws SocketException, IOException {
             SocketChannel client = (SocketChannel) key.channel();
@@ -35,9 +37,10 @@ public class Reciever {
             //ObjectInputStream oi = new ObjectInputStream(bi);
             Request rq =  Deserialize.deserializeRequest(bigBuffer.array());
             if (rq == null) {
-                System.out.println("package is null!");
+                logger.warning("package is null!");
                 throw new SocketException();
             }
+            logger.info("Recieved a package");
             return rq;
         
     }

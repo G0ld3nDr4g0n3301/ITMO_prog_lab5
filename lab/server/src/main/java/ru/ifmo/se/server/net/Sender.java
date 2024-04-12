@@ -7,9 +7,11 @@ import java.net.SocketException;
 import java.nio.ByteBuffer;
 import java.nio.channels.SelectionKey;
 import java.nio.channels.SocketChannel;
+import java.util.logging.Logger;
 
 public class Sender {
     
+    private static final Logger logger = Logger.getLogger(Sender.class.getName());
 
     public static boolean send(SelectionKey key) throws SocketException,IOException{
 
@@ -31,7 +33,7 @@ public class Sender {
         buffer.flip();
         client.write(buffer);
 
-
+        logger.info("package sent");
         return true;
     }
 }

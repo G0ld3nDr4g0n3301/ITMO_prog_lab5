@@ -18,25 +18,10 @@ public class InputManager {
      * @return user input
      */
     public static String ask(String question){
-        if(!Invoker.getModeState()){
-            return CLAsk(question);
-        }
         return askFile();
     }
     
-    /**
-     * get user input through Command Line.If got EOF - restarts scanner(to prevent fatal error)
-     * @param question
-     * @return user input
-     */
-    public static String CLAsk(String question){
-        String input = GetCLInput.ask(scan, question);
-        if(input == null){
-            reloadScanner();
-            return null;
-        }
-        return input;
-    }
+   
     
     /**
      * reloads scanner to prevent fatal error

@@ -13,7 +13,6 @@
 /home/g0ld3n_dr4g0n/Desktop/lab5/lab/server/src/main/java/ru/ifmo/se/common/collections/Location.java
 /home/g0ld3n_dr4g0n/Desktop/lab5/lab/server/src/main/java/ru/ifmo/se/server/parser/CsvBindByName.java
 /home/g0ld3n_dr4g0n/Desktop/lab5/lab/server/src/main/java/ru/ifmo/se/server/collections/AbstractField.java
-/home/g0ld3n_dr4g0n/Desktop/lab5/lab/server/src/main/java/ru/ifmo/se/server/GetCLInput.java
 /home/g0ld3n_dr4g0n/Desktop/lab5/lab/server/src/main/java/ru/ifmo/se/server/parser/CsvWrongStructureException.java
 /home/g0ld3n_dr4g0n/Desktop/lab5/lab/server/src/main/java/ru/ifmo/se/server/parser/ObjectToCsv.java
 /home/g0ld3n_dr4g0n/Desktop/lab5/lab/server/src/main/java/ru/ifmo/se/server/parser/CsvToObject.java

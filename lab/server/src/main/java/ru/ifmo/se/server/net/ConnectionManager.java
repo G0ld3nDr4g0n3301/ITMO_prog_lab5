@@ -8,6 +8,7 @@ import java.nio.channels.SelectionKey;
 import java.nio.channels.Selector;
 import java.nio.channels.ServerSocketChannel;
 import java.nio.channels.SocketChannel;
+import java.util.logging.Logger;
 
 import ru.ifmo.se.common.net.Commands;
 import ru.ifmo.se.common.net.Request;
@@ -17,6 +18,8 @@ import ru.ifmo.se.server.commands.Save;
 
 
 public class ConnectionManager{
+
+    private static final Logger logger = Logger.getLogger(ConnectionManager.class.getName());
     
     public static Integer port = 777;
     private static ServerSocketChannel socket;
@@ -46,7 +49,7 @@ public class ConnectionManager{
                     }
                     client.configureBlocking(false);
                     client.register(selector, SelectionKey.OP_READ);
-
+                    logger.info("Added new key");
                 } else if (key.isReadable()) {
                     Request request;
                     SocketChannel client = (SocketChannel) key.channel();
@@ -64,6 +67,7 @@ public class ConnectionManager{
                     client.register(selector, SelectionKey.OP_READ);
                 } 
             } catch (SocketException | StreamCorruptedException e) {
+                logger.warning("client disconnected");
                 new Save("","").execute(new Request(Commands.SAVE));
                 key.cancel();
                 return false;

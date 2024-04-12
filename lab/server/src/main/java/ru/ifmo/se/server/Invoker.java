@@ -7,6 +7,7 @@ import ru.ifmo.se.common.net.Commands;
 import ru.ifmo.se.common.net.Request;
 
 import java.util.Stack;
+import java.util.logging.Logger;
 import java.io.File;
 import java.io.Serializable;
 
@@ -16,6 +17,8 @@ import java.io.Serializable;
  * @author raistlin
  */
 public class Invoker {
+
+    private static final Logger logger = Logger.getLogger(Invoker.class.getName());
 
     /**
      * HashMap containing all the commands' classes.
@@ -90,18 +93,13 @@ public class Invoker {
      * @return true, if no errors encountered during runtime of command.
      */
     public static Request execute(Request args){
-        System.out.println(args);
         if (!(commands.containsKey(args.getCommandType()))){
-            System.out.println(commands.containsKey(args.getCommandType()));
-            System.out.println(args.getCommandType());
-            System.out.println("Wrong command. Type \"help\" for command list");
+            logger.warning("Wrong command. Type \"help\" for command list");
             return null;
         }
         switch (args.getStatusCode()) {
             case 300:
-                System.out.println(args.getCommandType());
                 Request request = commands.get(args.getCommandType()).execute(args);
-                System.out.println(request);
                 return request;
 
             default:
