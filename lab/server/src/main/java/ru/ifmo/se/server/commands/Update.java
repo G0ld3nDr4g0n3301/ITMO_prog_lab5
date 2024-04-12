@@ -5,6 +5,7 @@ import java.util.logging.Logger;
 
 import ru.ifmo.se.server.CollectionManager;
 import ru.ifmo.se.server.Command;
+import ru.ifmo.se.server.LogFile;
 import ru.ifmo.se.server.Validator;
 import ru.ifmo.se.server.collections.CreationDate;
 import ru.ifmo.se.common.collections.Person;
@@ -18,6 +19,10 @@ public class Update extends Command{
 
     private static final Logger logger = Logger.getLogger(Update.class.getName());
     
+    
+    static {
+        logger.addHandler(LogFile.getHandler());
+    }
     
     public Update(String name,String desc){
         this.name = name;

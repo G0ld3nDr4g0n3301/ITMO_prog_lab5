@@ -8,6 +8,7 @@ import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Set;
 import java.util.logging.Logger;
+import ru.ifmo.se.server.LogFile;
 
 /**
  * Prints all available commands and their descriptions.
@@ -16,6 +17,10 @@ import java.util.logging.Logger;
 public class Help extends Command {
 
     private static final Logger logger = Logger.getLogger(Help.class.getName());
+    
+    static {
+        logger.addHandler(LogFile.getHandler());
+    }
     
     public Help(String name, String description){
         this.name = name;

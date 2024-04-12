@@ -14,12 +14,17 @@ import java.util.logging.Logger;
 import ru.ifmo.se.common.net.Commands;
 import ru.ifmo.se.common.net.Request;
 import ru.ifmo.se.server.Invoker;
+import ru.ifmo.se.server.LogFile;
 import ru.ifmo.se.server.commands.Save;
 
 public class Reciever {
 
     
     private static final Logger logger = Logger.getLogger(Reciever.class.getName());
+    
+    static {
+        logger.addHandler(LogFile.getHandler());
+    }
     
     public static Request recieve(SelectionKey key) throws SocketException, IOException {
             SocketChannel client = (SocketChannel) key.channel();

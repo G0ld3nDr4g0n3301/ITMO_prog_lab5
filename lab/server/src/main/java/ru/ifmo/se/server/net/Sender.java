@@ -9,10 +9,16 @@ import java.nio.channels.SelectionKey;
 import java.nio.channels.SocketChannel;
 import java.util.logging.Logger;
 
+import ru.ifmo.se.server.LogFile;
+
 public class Sender {
     
     private static final Logger logger = Logger.getLogger(Sender.class.getName());
 
+    static {
+        logger.addHandler(LogFile.getHandler());
+    }
+    
     public static boolean send(SelectionKey key) throws SocketException,IOException{
 
         SocketChannel client = (SocketChannel) key.channel();

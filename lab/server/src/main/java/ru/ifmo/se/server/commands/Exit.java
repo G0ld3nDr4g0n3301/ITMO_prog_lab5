@@ -5,6 +5,7 @@ import java.io.Serializable;
 import java.util.logging.Logger;
 
 import ru.ifmo.se.server.Command;
+import ru.ifmo.se.server.LogFile;
 import ru.ifmo.se.common.net.Commands;
 import ru.ifmo.se.server.net.ConnectionManager;
 import ru.ifmo.se.common.net.Request;
@@ -17,6 +18,10 @@ import ru.ifmo.se.common.net.Request;
 public class Exit extends Command {
 
     private static final Logger logger = Logger.getLogger(Exit.class.getName());
+    
+    static {
+        logger.addHandler(LogFile.getHandler());
+    }
     
     public Exit(String name, String descr){
         this.name = name;

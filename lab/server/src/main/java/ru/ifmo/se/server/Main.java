@@ -17,6 +17,11 @@ import ru.ifmo.se.common.net.Request;
 public class Main {
 
     private static final Logger logger = Logger.getLogger(Main.class.getName());
+
+    static {
+        logger.addHandler(LogFile.getHandler());
+    }
+    
     public static void main(String[] args){
         if(args.length > 0){
             Invoker.setCurrMainFile(new File(args[0]));

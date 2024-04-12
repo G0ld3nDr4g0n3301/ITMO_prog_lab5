@@ -20,6 +20,10 @@ public class Invoker {
 
     private static final Logger logger = Logger.getLogger(Invoker.class.getName());
 
+    static {
+        logger.addHandler(LogFile.getHandler());
+    }
+    
     /**
      * HashMap containing all the commands' classes.
      */

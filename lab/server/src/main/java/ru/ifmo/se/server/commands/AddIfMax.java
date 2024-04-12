@@ -8,6 +8,7 @@ import java.util.List;
 
 import ru.ifmo.se.server.CollectionManager;
 import ru.ifmo.se.server.Command;
+import ru.ifmo.se.server.LogFile;
 import ru.ifmo.se.server.OutputManager;
 import ru.ifmo.se.server.Validator;
 import ru.ifmo.se.server.collections.AskPerson;
@@ -25,6 +26,10 @@ public class AddIfMax extends Command{
     
 
     private static final Logger logger = Logger.getLogger(AddIfMax.class.getName());
+    
+    {
+        logger.addHandler(LogFile.getHandler());
+    }
     
     public AddIfMax(String name,String desc){
         this.name = name;

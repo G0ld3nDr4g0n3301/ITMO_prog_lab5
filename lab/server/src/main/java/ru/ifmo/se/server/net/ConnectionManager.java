@@ -14,12 +14,17 @@ import ru.ifmo.se.common.net.Commands;
 import ru.ifmo.se.common.net.Request;
 import ru.ifmo.se.server.CollectionManager;
 import ru.ifmo.se.server.Invoker;
+import ru.ifmo.se.server.LogFile;
 import ru.ifmo.se.server.commands.Save;
 
 
 public class ConnectionManager{
 
     private static final Logger logger = Logger.getLogger(ConnectionManager.class.getName());
+    
+    static {
+        logger.addHandler(LogFile.getHandler());
+    }
     
     public static Integer port = 777;
     private static ServerSocketChannel socket;

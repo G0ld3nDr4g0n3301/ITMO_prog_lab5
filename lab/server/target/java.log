@@ -1,0 +1,208 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE log SYSTEM "logger.dtd">
+<log>
+<record>
+  <date>2024-04-12T10:48:33.238034478Z</date>
+  <millis>1712918913238</millis>
+  <nanos>34478</nanos>
+  <sequence>0</sequence>
+  <logger>ru.ifmo.se.server.commands.Load</logger>
+  <level>INFO</level>
+  <class>ru.ifmo.se.server.commands.Load</class>
+  <method>execute</method>
+  <thread>1</thread>
+  <message>Successfully loaded collection from file</message>
+</record>
+<record>
+  <date>2024-04-12T10:48:33.604607389Z</date>
+  <millis>1712918913604</millis>
+  <nanos>607389</nanos>
+  <sequence>1</sequence>
+  <logger>ru.ifmo.se.server.Main</logger>
+  <level>INFO</level>
+  <class>ru.ifmo.se.server.Main</class>
+  <method>main</method>
+  <thread>1</thread>
+  <message>initialized socket</message>
+</record>
+<record>
+  <date>2024-04-12T10:48:44.051172664Z</date>
+  <millis>1712918924051</millis>
+  <nanos>172664</nanos>
+  <sequence>2</sequence>
+  <logger>ru.ifmo.se.server.net.ConnectionManager</logger>
+  <level>INFO</level>
+  <class>ru.ifmo.se.server.net.ConnectionManager</class>
+  <method>run</method>
+  <thread>1</thread>
+  <message>Added new key</message>
+</record>
+<record>
+  <date>2024-04-12T10:48:53.002198752Z</date>
+  <millis>1712918933002</millis>
+  <nanos>198752</nanos>
+  <sequence>3</sequence>
+  <logger>ru.ifmo.se.server.net.Reciever</logger>
+  <level>INFO</level>
+  <class>ru.ifmo.se.server.net.Reciever</class>
+  <method>recieve</method>
+  <thread>1</thread>
+  <message>Recieved a package</message>
+</record>
+<record>
+  <date>2024-04-12T10:48:53.008087482Z</date>
+  <millis>1712918933008</millis>
+  <nanos>87482</nanos>
+  <sequence>4</sequence>
+  <logger>ru.ifmo.se.server.commands.Add</logger>
+  <level>INFO</level>
+  <class>ru.ifmo.se.server.commands.Add</class>
+  <method>execute</method>
+  <thread>1</thread>
+  <message>Successfully added person to collection</message>
+</record>
+<record>
+  <date>2024-04-12T10:48:53.017994123Z</date>
+  <millis>1712918933017</millis>
+  <nanos>994123</nanos>
+  <sequence>5</sequence>
+  <logger>ru.ifmo.se.server.net.Sender</logger>
+  <level>INFO</level>
+  <class>ru.ifmo.se.server.net.Sender</class>
+  <method>send</method>
+  <thread>1</thread>
+  <message>package sent</message>
+</record>
+<record>
+  <date>2024-04-12T10:49:01.513215782Z</date>
+  <millis>1712918941513</millis>
+  <nanos>215782</nanos>
+  <sequence>6</sequence>
+  <logger>ru.ifmo.se.server.net.Reciever</logger>
+  <level>INFO</level>
+  <class>ru.ifmo.se.server.net.Reciever</class>
+  <method>recieve</method>
+  <thread>1</thread>
+  <message>Recieved a package</message>
+</record>
+<record>
+  <date>2024-04-12T10:49:01.523103149Z</date>
+  <millis>1712918941523</millis>
+  <nanos>103149</nanos>
+  <sequence>7</sequence>
+  <logger>ru.ifmo.se.server.commands.Add</logger>
+  <level>INFO</level>
+  <class>ru.ifmo.se.server.commands.Add</class>
+  <method>execute</method>
+  <thread>1</thread>
+  <message>Successfully added person to collection</message>
+</record>
+<record>
+  <date>2024-04-12T10:49:01.531301737Z</date>
+  <millis>1712918941531</millis>
+  <nanos>301737</nanos>
+  <sequence>8</sequence>
+  <logger>ru.ifmo.se.server.net.Sender</logger>
+  <level>INFO</level>
+  <class>ru.ifmo.se.server.net.Sender</class>
+  <method>send</method>
+  <thread>1</thread>
+  <message>package sent</message>
+</record>
+<record>
+  <date>2024-04-12T10:49:04.057526846Z</date>
+  <millis>1712918944057</millis>
+  <nanos>526846</nanos>
+  <sequence>9</sequence>
+  <logger>ru.ifmo.se.server.net.Reciever</logger>
+  <level>INFO</level>
+  <class>ru.ifmo.se.server.net.Reciever</class>
+  <method>recieve</method>
+  <thread>1</thread>
+  <message>Recieved a package</message>
+</record>
+<record>
+  <date>2024-04-12T10:49:04.061510168Z</date>
+  <millis>1712918944061</millis>
+  <nanos>510168</nanos>
+  <sequence>10</sequence>
+  <logger>ru.ifmo.se.server.commands.Exit</logger>
+  <level>INFO</level>
+  <class>ru.ifmo.se.server.commands.Exit</class>
+  <method>execute</method>
+  <thread>1</thread>
+  <message>client disconnected</message>
+</record>
+<record>
+  <date>2024-04-12T10:49:04.066397751Z</date>
+  <millis>1712918944066</millis>
+  <nanos>397751</nanos>
+  <sequence>11</sequence>
+  <logger>ru.ifmo.se.server.net.Sender</logger>
+  <level>INFO</level>
+  <class>ru.ifmo.se.server.net.Sender</class>
+  <method>send</method>
+  <thread>1</thread>
+  <message>package sent</message>
+</record>
+<record>
+  <date>2024-04-12T10:49:04.070452452Z</date>
+  <millis>1712918944070</millis>
+  <nanos>452452</nanos>
+  <sequence>12</sequence>
+  <logger>ru.ifmo.se.server.net.ConnectionManager</logger>
+  <level>WARNING</level>
+  <class>ru.ifmo.se.server.net.ConnectionManager</class>
+  <method>run</method>
+  <thread>1</thread>
+  <message>client disconnected</message>
+</record>
+<record>
+  <date>2024-04-12T10:49:04.156185181Z</date>
+  <millis>1712918944156</millis>
+  <nanos>185181</nanos>
+  <sequence>13</sequence>
+  <logger>ru.ifmo.se.server.commands.Save</logger>
+  <level>INFO</level>
+  <class>ru.ifmo.se.server.commands.Save</class>
+  <method>execute</method>
+  <thread>1</thread>
+  <message>successfully saved collection to file</message>
+</record>
+<record>
+  <date>2024-04-12T10:49:07.695742568Z</date>
+  <millis>1712918947695</millis>
+  <nanos>742568</nanos>
+  <sequence>14</sequence>
+  <logger>ru.ifmo.se.server.commands.EmergencySave</logger>
+  <level>INFO</level>
+  <class>ru.ifmo.se.server.commands.EmergencySave</class>
+  <method>save</method>
+  <thread>13</thread>
+  <message>emergency save...</message>
+</record>
+<record>
+  <date>2024-04-12T10:49:07.701466697Z</date>
+  <millis>1712918947701</millis>
+  <nanos>466697</nanos>
+  <sequence>15</sequence>
+  <logger>ru.ifmo.se.server.commands.Save</logger>
+  <level>INFO</level>
+  <class>ru.ifmo.se.server.commands.Save</class>
+  <method>execute</method>
+  <thread>13</thread>
+  <message>successfully saved collection to file</message>
+</record>
+<record>
+  <date>2024-04-12T10:49:07.703598767Z</date>
+  <millis>1712918947703</millis>
+  <nanos>598767</nanos>
+  <sequence>16</sequence>
+  <logger>ru.ifmo.se.server.commands.EmergencySave</logger>
+  <level>INFO</level>
+  <class>ru.ifmo.se.server.commands.EmergencySave</class>
+  <method>save</method>
+  <thread>13</thread>
+  <message>saved successfully</message>
+</record>
+</log>

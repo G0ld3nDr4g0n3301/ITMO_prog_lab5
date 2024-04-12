@@ -27,6 +27,7 @@
 /home/g0ld3n_dr4g0n/Desktop/lab5/lab/server/src/main/java/ru/ifmo/se/server/parser/MappingStrategy.java
 /home/g0ld3n_dr4g0n/Desktop/lab5/lab/server/src/main/java/ru/ifmo/se/server/serialization/PersonMappingStrategy.java
 /home/g0ld3n_dr4g0n/Desktop/lab5/lab/server/src/main/java/ru/ifmo/se/server/parser/CsvNotEnoughArgsException.java
+/home/g0ld3n_dr4g0n/Desktop/lab5/lab/server/src/main/java/ru/ifmo/se/server/LogFile.java
 /home/g0ld3n_dr4g0n/Desktop/lab5/lab/server/src/main/java/ru/ifmo/se/server/commands/Exit.java
 /home/g0ld3n_dr4g0n/Desktop/lab5/lab/server/src/main/java/ru/ifmo/se/server/collections/Height.java
 /home/g0ld3n_dr4g0n/Desktop/lab5/lab/server/src/main/java/ru/ifmo/se/server/ICommand.java

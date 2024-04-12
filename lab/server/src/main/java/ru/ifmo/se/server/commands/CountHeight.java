@@ -6,6 +6,7 @@ import java.util.logging.Logger;
 
 import ru.ifmo.se.server.CollectionManager;
 import ru.ifmo.se.server.Command;
+import ru.ifmo.se.server.LogFile;
 import ru.ifmo.se.server.OutputManager;
 import ru.ifmo.se.common.collections.Person;
 import ru.ifmo.se.common.net.Request;
@@ -17,6 +18,10 @@ import ru.ifmo.se.common.net.Request;
 public class CountHeight extends Command{
 
     private static final Logger logger = Logger.getLogger(CountHeight.class.getName());
+    
+    static {
+        logger.addHandler(LogFile.getHandler());
+    }
     
     public CountHeight(String name,String desc){
         this.name = name;
