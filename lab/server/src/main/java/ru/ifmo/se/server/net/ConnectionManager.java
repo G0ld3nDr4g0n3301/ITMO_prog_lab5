@@ -8,6 +8,7 @@ import java.nio.channels.SelectionKey;
 import java.nio.channels.Selector;
 import java.nio.channels.ServerSocketChannel;
 import java.nio.channels.SocketChannel;
+import java.util.Iterator;
 import java.util.logging.Logger;
 
 import ru.ifmo.se.common.net.Commands;
@@ -50,12 +51,17 @@ public class ConnectionManager{
     public static boolean run() throws IOException{
         
             selector.select();
-            for (SelectionKey key : selector.selectedKeys()) {
+            Iterator<SelectionKey> keys = selector.selectedKeys().iterator();
+            while (keys.hasNext()) {
+                SelectionKey key = keys.next();
+                keys.remove();
+
                 try {
                 if(key.isAcceptable()) {
                     ServerSocketChannel tempServerChannel = (ServerSocketChannel) key.channel();
                     SocketChannel client = tempServerChannel.accept();
                     if (client == null) {
+                        System.out.println("NULLLLLL");
                         continue;
                     }
                     client.configureBlocking(false);
@@ -71,7 +77,9 @@ public class ConnectionManager{
                     }
                     Request answerRequest = Invoker.execute(request);
                     SelectionKey keyNew = client.register(selector, SelectionKey.OP_WRITE);
-                    answerRequest.setId(usersConnected);
+                    if(answerRequest != null){
+                        answerRequest.setId(usersConnected);
+                    }
                     keyNew.attach(answerRequest);
                 
                     //SocketChannel client = (SocketChannel) key.channel();
@@ -82,7 +90,9 @@ public class ConnectionManager{
             } catch (SocketException | StreamCorruptedException e) {
                 logger.warning("client disconnected");
                 usersConnected -= 1;
-                new Save("","").execute(new Request(Commands.SAVE));
+                if (usersConnected == 0) {
+                    new Save("","").execute(new Request(Commands.SAVE));
+                }
                 key.cancel();
                 return false;
             } 
