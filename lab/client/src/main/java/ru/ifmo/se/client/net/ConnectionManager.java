@@ -8,9 +8,14 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.OutputStream;
 import java.net.Socket;
+import java.nio.BufferOverflowException;
+import java.nio.BufferUnderflowException;
 import java.nio.ByteBuffer;
 import java.util.Arrays;
+import java.util.logging.Logger;
 
+import ru.ifmo.se.client.EmergencyExit;
+import ru.ifmo.se.client.LogFile;
 import ru.ifmo.se.common.net.Request;
 
 public class ConnectionManager{
@@ -21,6 +26,12 @@ public class ConnectionManager{
     public static Integer timeout = 40;
     private static OutputStream out;
     private static InputStream in;
+    private static final Logger logger = Logger.getLogger(ConnectionManager.class.getName());
+
+    static {
+        logger.addHandler(LogFile.getHandler());
+    }
+
     
     public static void initSocket() throws IOException{
         socket = new Socket(host, port);
@@ -72,11 +83,14 @@ public class ConnectionManager{
             System.out.println("deserializing...");
             Request request = Deserialize.deserializeRequest(bytes.array());
             return request;
-            } catch (IOException e) {
-                // TODO Auto-generated catch block
-                e.printStackTrace();
-                return null;
-            }
+        } catch (BufferUnderflowException e) {
+            logger.warning("SERVER DISCONNECTED!!!(That might be either your connection problem, or server-side issue)");
+            EmergencyExit.execute();
+            return null;
+        } catch (IOException e){
+            System.out.println(e);
+            return null;
+        }
     }
 
     public static Socket getSocket(){

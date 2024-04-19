@@ -2,9 +2,9 @@
 <!DOCTYPE log SYSTEM "logger.dtd">
 <log>
 <record>
-  <date>2024-04-19T09:39:23.389498837Z</date>
-  <millis>1713519563389</millis>
-  <nanos>498837</nanos>
+  <date>2024-04-19T09:49:10.746158620Z</date>
+  <millis>1713520150746</millis>
+  <nanos>158620</nanos>
   <sequence>0</sequence>
   <logger>ru.ifmo.se.server.commands.Load</logger>
   <level>INFO</level>
@@ -14,9 +14,9 @@
   <message>Successfully loaded collection from file</message>
 </record>
 <record>
-  <date>2024-04-19T09:39:23.440415383Z</date>
-  <millis>1713519563440</millis>
-  <nanos>415383</nanos>
+  <date>2024-04-19T09:49:10.901780664Z</date>
+  <millis>1713520150901</millis>
+  <nanos>780664</nanos>
   <sequence>1</sequence>
   <logger>ru.ifmo.se.server.Main</logger>
   <level>INFO</level>
@@ -26,9 +26,9 @@
   <message>initialized socket</message>
 </record>
 <record>
-  <date>2024-04-19T09:39:38.871973399Z</date>
-  <millis>1713519578871</millis>
-  <nanos>973399</nanos>
+  <date>2024-04-19T09:49:13.706099906Z</date>
+  <millis>1713520153706</millis>
+  <nanos>99906</nanos>
   <sequence>2</sequence>
   <logger>ru.ifmo.se.server.net.ConnectionManager</logger>
   <level>INFO</level>
@@ -38,9 +38,9 @@
   <message>Added new key</message>
 </record>
 <record>
-  <date>2024-04-19T09:39:41.637954218Z</date>
-  <millis>1713519581637</millis>
-  <nanos>954218</nanos>
+  <date>2024-04-19T09:49:16.231949324Z</date>
+  <millis>1713520156231</millis>
+  <nanos>949324</nanos>
   <sequence>3</sequence>
   <logger>ru.ifmo.se.server.net.Reciever</logger>
   <level>INFO</level>
@@ -50,21 +50,21 @@
   <message>Recieved a package</message>
 </record>
 <record>
-  <date>2024-04-19T09:39:41.639908051Z</date>
-  <millis>1713519581639</millis>
-  <nanos>908051</nanos>
+  <date>2024-04-19T09:49:16.258027601Z</date>
+  <millis>1713520156258</millis>
+  <nanos>27601</nanos>
   <sequence>4</sequence>
-  <logger>ru.ifmo.se.server.commands.Exit</logger>
+  <logger>ru.ifmo.se.server.commands.Info</logger>
   <level>INFO</level>
-  <class>ru.ifmo.se.server.commands.Exit</class>
+  <class>ru.ifmo.se.server.commands.Info</class>
   <method>execute</method>
   <thread>1</thread>
-  <message>client disconnected</message>
+  <message>got the info</message>
 </record>
 <record>
-  <date>2024-04-19T09:39:41.643638477Z</date>
-  <millis>1713519581643</millis>
-  <nanos>638477</nanos>
+  <date>2024-04-19T09:49:16.265483934Z</date>
+  <millis>1713520156265</millis>
+  <nanos>483934</nanos>
   <sequence>5</sequence>
   <logger>ru.ifmo.se.server.net.Sender</logger>
   <level>INFO</level>
@@ -74,34 +74,10 @@
   <message>package sent</message>
 </record>
 <record>
-  <date>2024-04-19T09:39:41.921161830Z</date>
-  <millis>1713519581921</millis>
-  <nanos>161830</nanos>
+  <date>2024-04-19T09:49:19.472361412Z</date>
+  <millis>1713520159472</millis>
+  <nanos>361412</nanos>
   <sequence>6</sequence>
-  <logger>ru.ifmo.se.server.net.ConnectionManager</logger>
-  <level>WARNING</level>
-  <class>ru.ifmo.se.server.net.ConnectionManager</class>
-  <method>run</method>
-  <thread>1</thread>
-  <message>client disconnected</message>
-</record>
-<record>
-  <date>2024-04-19T09:39:41.964844554Z</date>
-  <millis>1713519581964</millis>
-  <nanos>844554</nanos>
-  <sequence>7</sequence>
-  <logger>ru.ifmo.se.server.commands.Save</logger>
-  <level>INFO</level>
-  <class>ru.ifmo.se.server.commands.Save</class>
-  <method>execute</method>
-  <thread>1</thread>
-  <message>successfully saved collection to file</message>
-</record>
-<record>
-  <date>2024-04-19T09:40:45.435198410Z</date>
-  <millis>1713519645435</millis>
-  <nanos>198410</nanos>
-  <sequence>8</sequence>
   <logger>ru.ifmo.se.server.commands.EmergencySave</logger>
   <level>INFO</level>
   <class>ru.ifmo.se.server.commands.EmergencySave</class>
@@ -110,10 +86,10 @@
   <message>emergency save...</message>
 </record>
 <record>
-  <date>2024-04-19T09:40:45.439629288Z</date>
-  <millis>1713519645439</millis>
-  <nanos>629288</nanos>
-  <sequence>9</sequence>
+  <date>2024-04-19T09:49:19.490390487Z</date>
+  <millis>1713520159490</millis>
+  <nanos>390487</nanos>
+  <sequence>7</sequence>
   <logger>ru.ifmo.se.server.commands.Save</logger>
   <level>INFO</level>
   <class>ru.ifmo.se.server.commands.Save</class>
@@ -122,10 +98,10 @@
   <message>successfully saved collection to file</message>
 </record>
 <record>
-  <date>2024-04-19T09:40:45.441318649Z</date>
-  <millis>1713519645441</millis>
-  <nanos>318649</nanos>
-  <sequence>10</sequence>
+  <date>2024-04-19T09:49:19.491873503Z</date>
+  <millis>1713520159491</millis>
+  <nanos>873503</nanos>
+  <sequence>8</sequence>
   <logger>ru.ifmo.se.server.commands.EmergencySave</logger>
   <level>INFO</level>
   <class>ru.ifmo.se.server.commands.EmergencySave</class>
