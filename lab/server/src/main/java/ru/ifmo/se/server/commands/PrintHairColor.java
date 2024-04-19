@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 import java.util.logging.Logger;
+import java.util.stream.Collectors;
 
 import ru.ifmo.se.server.CollectionManager;
 import ru.ifmo.se.common.collections.Color;
@@ -36,8 +37,9 @@ public class PrintHairColor extends Command{
     
     @Override
     public Request execute(Request args){
-        List<Color> hairColors = CollectionManager.getHairColors();
-        hairColors.sort(Comparator.reverseOrder());
+        List<Color> hairColors = CollectionManager.getHairColors().stream()
+        .sorted(Comparator.reverseOrder())
+        .collect(Collectors.toList());
         String colors = "";
         for (Color c : hairColors) {
             colors += c.toString() + "\n";
