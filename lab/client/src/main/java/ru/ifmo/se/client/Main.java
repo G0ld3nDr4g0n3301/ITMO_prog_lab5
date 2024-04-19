@@ -2,27 +2,35 @@ package ru.ifmo.se.client;
 
 import java.io.IOException;
 import java.io.Serializable;
+import java.util.logging.Logger;
 
 import ru.ifmo.se.common.collections.Location;
 import ru.ifmo.se.common.collections.Person;
 import ru.ifmo.se.common.net.Commands;
 import ru.ifmo.se.client.net.ConnectionManager;
+import sun.misc.Signal;
 
 public class Main {
+
+    private static final Logger logger = Logger.getLogger(ConnectionManager.class.getName());
+
+    static {
+        logger.addHandler(LogFile.getHandler());
+        Signal.handle(new Signal("INT"), signal -> EmergencyExit.execute());
+    }
+
     public static void main(String[] args) {
-        try {
-            System.out.println(Integer.class instanceof Serializable);
-            System.out.println(String.class instanceof Serializable);
-            System.out.println(Location.class instanceof Serializable);
-            System.out.println(Person.class instanceof Serializable);
-            System.out.println(Commands.class instanceof Serializable);
-            ConnectionManager.initSocket();
-        } catch (IOException e){
-            System.out.println(e.getMessage());
+        boolean isConnected = false;
+        for (int tries = 0; tries < 5 && !isConnected; tries++) {
+            logger.info("Server doesn't respond.Retrying, try "+ tries +"...");
+            isConnected = connect();
+        }
+        if (!isConnected) {
+            logger.warning("server is unreachable");
             System.exit(0);
         }
+        logger.info("Connected!");
         try {
-            System.out.println("HEh");
             while(true){
                 String input = CLIInputManager.ask("> ");
                 if(input != null){
@@ -40,4 +48,15 @@ public class Main {
             }
         }
 }
+
+    private static boolean connect() {
+        try {
+            Thread.sleep(200);
+            ConnectionManager.initSocket();
+            return true;
+        } catch (IOException | InterruptedException e){
+            System.out.println(e.getMessage());
+        }
+        return false;
+    }
 }

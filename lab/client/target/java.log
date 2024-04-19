@@ -2,183 +2,27 @@
 <!DOCTYPE log SYSTEM "logger.dtd">
 <log>
 <record>
-  <date>2024-04-13T04:40:17.493221941Z</date>
-  <millis>1712983217493</millis>
-  <nanos>221941</nanos>
-  <sequence>1</sequence>
-  <logger>ru.ifmo.se.client.commands.Add</logger>
+  <date>2024-04-19T09:39:38.448485123Z</date>
+  <millis>1713519578448</millis>
+  <nanos>485123</nanos>
+  <sequence>0</sequence>
+  <logger>ru.ifmo.se.client.net.ConnectionManager</logger>
   <level>INFO</level>
-  <class>ru.ifmo.se.client.commands.Info</class>
-  <method>execute</method>
+  <class>ru.ifmo.se.client.Main</class>
+  <method>main</method>
   <thread>1</thread>
-  <message>Sending INFO request</message>
+  <message>Server doesn't respond.Retrying, try 0...</message>
 </record>
 <record>
-  <date>2024-04-13T04:40:17.493221941Z</date>
-  <millis>1712983217493</millis>
-  <nanos>221941</nanos>
+  <date>2024-04-19T09:39:38.869608986Z</date>
+  <millis>1713519578869</millis>
+  <nanos>608986</nanos>
   <sequence>1</sequence>
-  <logger>ru.ifmo.se.client.commands.Add</logger>
+  <logger>ru.ifmo.se.client.net.ConnectionManager</logger>
   <level>INFO</level>
-  <class>ru.ifmo.se.client.commands.Info</class>
-  <method>execute</method>
+  <class>ru.ifmo.se.client.Main</class>
+  <method>main</method>
   <thread>1</thread>
-  <message>Sending INFO request</message>
-</record>
-<record>
-  <date>2024-04-13T04:40:17.493221941Z</date>
-  <millis>1712983217493</millis>
-  <nanos>221941</nanos>
-  <sequence>1</sequence>
-  <logger>ru.ifmo.se.client.commands.Add</logger>
-  <level>INFO</level>
-  <class>ru.ifmo.se.client.commands.Info</class>
-  <method>execute</method>
-  <thread>1</thread>
-  <message>Sending INFO request</message>
-</record>
-<record>
-  <date>2024-04-13T04:40:17.493221941Z</date>
-  <millis>1712983217493</millis>
-  <nanos>221941</nanos>
-  <sequence>1</sequence>
-  <logger>ru.ifmo.se.client.commands.Add</logger>
-  <level>INFO</level>
-  <class>ru.ifmo.se.client.commands.Info</class>
-  <method>execute</method>
-  <thread>1</thread>
-  <message>Sending INFO request</message>
-</record>
-<record>
-  <date>2024-04-13T04:40:17.493221941Z</date>
-  <millis>1712983217493</millis>
-  <nanos>221941</nanos>
-  <sequence>1</sequence>
-  <logger>ru.ifmo.se.client.commands.Add</logger>
-  <level>INFO</level>
-  <class>ru.ifmo.se.client.commands.Info</class>
-  <method>execute</method>
-  <thread>1</thread>
-  <message>Sending INFO request</message>
-</record>
-<record>
-  <date>2024-04-13T04:40:17.493221941Z</date>
-  <millis>1712983217493</millis>
-  <nanos>221941</nanos>
-  <sequence>1</sequence>
-  <logger>ru.ifmo.se.client.commands.Add</logger>
-  <level>INFO</level>
-  <class>ru.ifmo.se.client.commands.Info</class>
-  <method>execute</method>
-  <thread>1</thread>
-  <message>Sending INFO request</message>
-</record>
-<record>
-  <date>2024-04-13T04:40:17.493221941Z</date>
-  <millis>1712983217493</millis>
-  <nanos>221941</nanos>
-  <sequence>1</sequence>
-  <logger>ru.ifmo.se.client.commands.Add</logger>
-  <level>INFO</level>
-  <class>ru.ifmo.se.client.commands.Info</class>
-  <method>execute</method>
-  <thread>1</thread>
-  <message>Sending INFO request</message>
-</record>
-<record>
-  <date>2024-04-13T04:40:17.493221941Z</date>
-  <millis>1712983217493</millis>
-  <nanos>221941</nanos>
-  <sequence>1</sequence>
-  <logger>ru.ifmo.se.client.commands.Add</logger>
-  <level>INFO</level>
-  <class>ru.ifmo.se.client.commands.Info</class>
-  <method>execute</method>
-  <thread>1</thread>
-  <message>Sending INFO request</message>
-</record>
-<record>
-  <date>2024-04-13T04:40:17.493221941Z</date>
-  <millis>1712983217493</millis>
-  <nanos>221941</nanos>
-  <sequence>1</sequence>
-  <logger>ru.ifmo.se.client.commands.Add</logger>
-  <level>INFO</level>
-  <class>ru.ifmo.se.client.commands.Info</class>
-  <method>execute</method>
-  <thread>1</thread>
-  <message>Sending INFO request</message>
-</record>
-<record>
-  <date>2024-04-13T04:40:17.493221941Z</date>
-  <millis>1712983217493</millis>
-  <nanos>221941</nanos>
-  <sequence>1</sequence>
-  <logger>ru.ifmo.se.client.commands.Add</logger>
-  <level>INFO</level>
-  <class>ru.ifmo.se.client.commands.Info</class>
-  <method>execute</method>
-  <thread>1</thread>
-  <message>Sending INFO request</message>
-</record>
-<record>
-  <date>2024-04-13T04:40:17.493221941Z</date>
-  <millis>1712983217493</millis>
-  <nanos>221941</nanos>
-  <sequence>1</sequence>
-  <logger>ru.ifmo.se.client.commands.Add</logger>
-  <level>INFO</level>
-  <class>ru.ifmo.se.client.commands.Info</class>
-  <method>execute</method>
-  <thread>1</thread>
-  <message>Sending INFO request</message>
-</record>
-<record>
-  <date>2024-04-13T04:40:17.493221941Z</date>
-  <millis>1712983217493</millis>
-  <nanos>221941</nanos>
-  <sequence>1</sequence>
-  <logger>ru.ifmo.se.client.commands.Add</logger>
-  <level>INFO</level>
-  <class>ru.ifmo.se.client.commands.Info</class>
-  <method>execute</method>
-  <thread>1</thread>
-  <message>Sending INFO request</message>
-</record>
-<record>
-  <date>2024-04-13T04:40:17.493221941Z</date>
-  <millis>1712983217493</millis>
-  <nanos>221941</nanos>
-  <sequence>1</sequence>
-  <logger>ru.ifmo.se.client.commands.Add</logger>
-  <level>INFO</level>
-  <class>ru.ifmo.se.client.commands.Info</class>
-  <method>execute</method>
-  <thread>1</thread>
-  <message>Sending INFO request</message>
-</record>
-<record>
-  <date>2024-04-13T04:40:17.493221941Z</date>
-  <millis>1712983217493</millis>
-  <nanos>221941</nanos>
-  <sequence>1</sequence>
-  <logger>ru.ifmo.se.client.commands.Add</logger>
-  <level>INFO</level>
-  <class>ru.ifmo.se.client.commands.Info</class>
-  <method>execute</method>
-  <thread>1</thread>
-  <message>Sending INFO request</message>
-</record>
-<record>
-  <date>2024-04-13T04:40:17.493221941Z</date>
-  <millis>1712983217493</millis>
-  <nanos>221941</nanos>
-  <sequence>1</sequence>
-  <logger>ru.ifmo.se.client.commands.Add</logger>
-  <level>INFO</level>
-  <class>ru.ifmo.se.client.commands.Info</class>
-  <method>execute</method>
-  <thread>1</thread>
-  <message>Sending INFO request</message>
+  <message>Connected!</message>
 </record>
 </log>
