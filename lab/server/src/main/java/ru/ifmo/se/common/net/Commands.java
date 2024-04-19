@@ -1,6 +1,7 @@
 package ru.ifmo.se.common.net;
 
-
+/**
+ * Enum that represents a command.**/
 public enum Commands {
     ADD,
     EXEC,

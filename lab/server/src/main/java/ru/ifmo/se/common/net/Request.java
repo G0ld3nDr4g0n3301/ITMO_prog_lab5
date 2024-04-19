@@ -6,8 +6,14 @@ import ru.ifmo.se.common.collections.Person;
 
 public class Request implements Serializable{
     
+    /**
+     * serial id for serialization.
+     */
     private static final long serialVersionUID = 4234661872345L;
 
+    /**
+     * Type of the command to be executed
+     */
     private Commands commandType;
 
     /**
@@ -20,33 +26,65 @@ public class Request implements Serializable{
     private Location loc = null;
 
     {
+        // by default code is 300
         this.statusCode = 300;
     }
     
+    /**
+     * get person attached to request
+     * @return attached person
+     */
     public Person getPerson(){
         return this.person;
     }
 
+
+    /**
+     * get integer attached to request
+     * @return attached integer
+     */
     public Integer getId(){
         return this.id;
     }
     
+
+    /**
+     * get location attached to request
+     * @return attached location
+     */
     public Location getLoc(){
         return this.loc;
     }
     
+
+    /**
+     * Attach a location to request
+     * @param loc location to attach
+     */
     public void setLoc(Location loc){
         this.loc = loc;
     }
     
+
+
+    /**
+     * Attach a integer to request
+     * @param id integer to attach
+     */
     public void setId(Integer id) {
         this.id = id;
     }
     
+
+    /**
+     * Attach a person to request
+     * @param person person to attach
+     */
     public void setPerson(Person person) {
         this.person = person;
     }
     
+
     public Request(Commands commandType){
         this.commandType = commandType;
     }
@@ -67,22 +105,43 @@ public class Request implements Serializable{
         this.msg = msg;
     }
 
+    /**
+     * attaches a string to request
+     * @param msg string to attach
+     */
     public void setMsg(String msg){
         this.msg = msg;
     }
 
+    /**
+     * get request status code
+     * @return status code
+     */
     public Integer getStatusCode(){
         return this.statusCode;
     }
 
+    /**
+     * gets a string, attached to request
+     * @return attached string
+     */
     public String getMsg(){
         return this.msg;
     }
 
+
+    /**
+     * returns type of a command to execute
+     * @return command type
+     */
     public Commands getCommandType(){
         return this.commandType;
     }
 
+    /**
+     * set a status code to request
+     * @param code status code
+     */
     public void setStatusCode(Integer code){
         this.statusCode = code;
     }
