@@ -2,75 +2,64 @@
 <!DOCTYPE log SYSTEM "logger.dtd">
 <log>
 <record>
-  <date>2024-04-21T08:03:01.934065434Z</date>
-  <millis>1713686581934</millis>
-  <nanos>65434</nanos>
+  <date>2024-04-21T19:15:58.081927725Z</date>
+  <millis>1713726958081</millis>
+  <nanos>927725</nanos>
   <sequence>0</sequence>
   <logger>ru.ifmo.se.server.commands.Load</logger>
-  <level>INFO</level>
+  <level>WARNING</level>
   <class>ru.ifmo.se.server.commands.Load</class>
   <method>execute</method>
   <thread>1</thread>
-  <message>Successfully loaded collection from file</message>
+  <message>No input file specified.</message>
 </record>
 <record>
-  <date>2024-04-21T08:03:02.017461353Z</date>
-  <millis>1713686582017</millis>
-  <nanos>461353</nanos>
+  <date>2024-04-21T19:15:58.170837970Z</date>
+  <millis>1713726958170</millis>
+  <nanos>837970</nanos>
   <sequence>1</sequence>
   <logger>ru.ifmo.se.server.Main</logger>
-  <level>INFO</level>
+  <level>WARNING</level>
   <class>ru.ifmo.se.server.Main</class>
   <method>main</method>
   <thread>1</thread>
-  <message>initialized socket</message>
-</record>
-<record>
-  <date>2024-04-21T08:03:02.190021546Z</date>
-  <millis>1713686582190</millis>
-  <nanos>21546</nanos>
-  <sequence>2</sequence>
-  <logger>ru.ifmo.se.server.net.ConnectionManager</logger>
-  <level>INFO</level>
-  <class>ru.ifmo.se.server.net.ConnectionManager</class>
-  <method>run</method>
-  <thread>1</thread>
-  <message>Added new key</message>
-</record>
-<record>
-  <date>2024-04-21T08:03:06.960131127Z</date>
-  <millis>1713686586960</millis>
-  <nanos>131127</nanos>
-  <sequence>3</sequence>
-  <logger>ru.ifmo.se.server.commands.EmergencySave</logger>
-  <level>INFO</level>
-  <class>ru.ifmo.se.server.commands.EmergencySave</class>
-  <method>save</method>
-  <thread>14</thread>
-  <message>emergency save...</message>
-</record>
-<record>
-  <date>2024-04-21T08:03:06.976156680Z</date>
-  <millis>1713686586976</millis>
-  <nanos>156680</nanos>
-  <sequence>4</sequence>
-  <logger>ru.ifmo.se.server.commands.Save</logger>
-  <level>INFO</level>
-  <class>ru.ifmo.se.server.commands.Save</class>
-  <method>execute</method>
-  <thread>14</thread>
-  <message>successfully saved collection to file</message>
-</record>
-<record>
-  <date>2024-04-21T08:03:06.977104506Z</date>
-  <millis>1713686586977</millis>
-  <nanos>104506</nanos>
-  <sequence>5</sequence>
-  <logger>ru.ifmo.se.server.commands.EmergencySave</logger>
-  <level>INFO</level>
-  <class>ru.ifmo.se.server.commands.EmergencySave</class>
-  <method>save</method>
-  <thread>14</thread>
-  <message>saved successfully</message>
+  <message>Can't accept a connection</message>
+  <exception>
+    <message>java.net.BindException: Permission denied</message>
+    <frame>
+      <class>sun.nio.ch.Net</class>
+      <method>bind0</method>
+    </frame>
+    <frame>
+      <class>sun.nio.ch.Net</class>
+      <method>bind</method>
+      <line>555</line>
+    </frame>
+    <frame>
+      <class>sun.nio.ch.ServerSocketChannelImpl</class>
+      <method>netBind</method>
+      <line>337</line>
+    </frame>
+    <frame>
+      <class>sun.nio.ch.ServerSocketChannelImpl</class>
+      <method>bind</method>
+      <line>294</line>
+    </frame>
+    <frame>
+      <class>java.nio.channels.ServerSocketChannel</class>
+      <method>bind</method>
+      <line>224</line>
+    </frame>
+    <frame>
+      <class>ru.ifmo.se.server.net.ConnectionManager</class>
+      <method>initSocket</method>
+      <line>39</line>
+    </frame>
+    <frame>
+      <class>ru.ifmo.se.server.Main</class>
+      <method>main</method>
+      <line>32</line>
+    </frame>
+  </exception>
 </record>
 </log>

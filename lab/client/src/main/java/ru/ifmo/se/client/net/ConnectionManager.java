@@ -20,7 +20,7 @@ import ru.ifmo.se.common.net.Request;
 
 public class ConnectionManager{
     
-    public static Integer port = 777;
+    public static Integer port = 32444;
     public static String host = "localhost";
     private static Socket socket = null;
     public static Integer timeout = 40;

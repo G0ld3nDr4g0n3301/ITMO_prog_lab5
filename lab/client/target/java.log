@@ -2,9 +2,9 @@
 <!DOCTYPE log SYSTEM "logger.dtd">
 <log>
 <record>
-  <date>2024-04-21T08:03:01.746838892Z</date>
-  <millis>1713686581746</millis>
-  <nanos>838892</nanos>
+  <date>2024-04-21T19:57:28.490965470Z</date>
+  <millis>1713729448490</millis>
+  <nanos>965470</nanos>
   <sequence>0</sequence>
   <logger>ru.ifmo.se.client.net.ConnectionManager</logger>
   <level>INFO</level>
@@ -14,9 +14,9 @@
   <message>Server doesn't respond.Retrying, try 0...</message>
 </record>
 <record>
-  <date>2024-04-21T08:03:02.189252376Z</date>
-  <millis>1713686582189</millis>
-  <nanos>252376</nanos>
+  <date>2024-04-21T19:57:28.776856471Z</date>
+  <millis>1713729448776</millis>
+  <nanos>856471</nanos>
   <sequence>1</sequence>
   <logger>ru.ifmo.se.client.net.ConnectionManager</logger>
   <level>INFO</level>
@@ -26,9 +26,9 @@
   <message>Connected!</message>
 </record>
 <record>
-  <date>2024-04-21T08:03:02.189252376Z</date>
-  <millis>1713686582189</millis>
-  <nanos>252376</nanos>
+  <date>2024-04-21T19:57:28.776856471Z</date>
+  <millis>1713729448776</millis>
+  <nanos>856471</nanos>
   <sequence>1</sequence>
   <logger>ru.ifmo.se.client.net.ConnectionManager</logger>
   <level>INFO</level>
@@ -38,387 +38,903 @@
   <message>Connected!</message>
 </record>
 <record>
-  <date>2024-04-21T08:03:09.771051126Z</date>
-  <millis>1713686589771</millis>
-  <nanos>51126</nanos>
+  <date>2024-04-21T19:57:32.678640050Z</date>
+  <millis>1713729452678</millis>
+  <nanos>640050</nanos>
   <sequence>3</sequence>
   <logger>ru.ifmo.se.client.commands.Add</logger>
   <level>INFO</level>
-  <class>ru.ifmo.se.client.commands.Help</class>
+  <class>ru.ifmo.se.client.commands.Info</class>
   <method>execute</method>
   <thread>1</thread>
-  <message>Sending HELP request</message>
+  <message>Sending INFO request</message>
 </record>
 <record>
-  <date>2024-04-21T08:03:09.771051126Z</date>
-  <millis>1713686589771</millis>
-  <nanos>51126</nanos>
+  <date>2024-04-21T19:57:32.678640050Z</date>
+  <millis>1713729452678</millis>
+  <nanos>640050</nanos>
   <sequence>3</sequence>
   <logger>ru.ifmo.se.client.commands.Add</logger>
   <level>INFO</level>
-  <class>ru.ifmo.se.client.commands.Help</class>
+  <class>ru.ifmo.se.client.commands.Info</class>
   <method>execute</method>
   <thread>1</thread>
-  <message>Sending HELP request</message>
+  <message>Sending INFO request</message>
 </record>
 <record>
-  <date>2024-04-21T08:03:09.771051126Z</date>
-  <millis>1713686589771</millis>
-  <nanos>51126</nanos>
+  <date>2024-04-21T19:57:32.678640050Z</date>
+  <millis>1713729452678</millis>
+  <nanos>640050</nanos>
   <sequence>3</sequence>
   <logger>ru.ifmo.se.client.commands.Add</logger>
   <level>INFO</level>
-  <class>ru.ifmo.se.client.commands.Help</class>
+  <class>ru.ifmo.se.client.commands.Info</class>
   <method>execute</method>
   <thread>1</thread>
-  <message>Sending HELP request</message>
+  <message>Sending INFO request</message>
 </record>
 <record>
-  <date>2024-04-21T08:03:09.771051126Z</date>
-  <millis>1713686589771</millis>
-  <nanos>51126</nanos>
+  <date>2024-04-21T19:57:32.678640050Z</date>
+  <millis>1713729452678</millis>
+  <nanos>640050</nanos>
   <sequence>3</sequence>
   <logger>ru.ifmo.se.client.commands.Add</logger>
   <level>INFO</level>
-  <class>ru.ifmo.se.client.commands.Help</class>
+  <class>ru.ifmo.se.client.commands.Info</class>
   <method>execute</method>
   <thread>1</thread>
-  <message>Sending HELP request</message>
+  <message>Sending INFO request</message>
 </record>
 <record>
-  <date>2024-04-21T08:03:09.771051126Z</date>
-  <millis>1713686589771</millis>
-  <nanos>51126</nanos>
+  <date>2024-04-21T19:57:32.678640050Z</date>
+  <millis>1713729452678</millis>
+  <nanos>640050</nanos>
   <sequence>3</sequence>
   <logger>ru.ifmo.se.client.commands.Add</logger>
   <level>INFO</level>
-  <class>ru.ifmo.se.client.commands.Help</class>
+  <class>ru.ifmo.se.client.commands.Info</class>
   <method>execute</method>
   <thread>1</thread>
-  <message>Sending HELP request</message>
+  <message>Sending INFO request</message>
 </record>
 <record>
-  <date>2024-04-21T08:03:09.771051126Z</date>
-  <millis>1713686589771</millis>
-  <nanos>51126</nanos>
+  <date>2024-04-21T19:57:32.678640050Z</date>
+  <millis>1713729452678</millis>
+  <nanos>640050</nanos>
   <sequence>3</sequence>
   <logger>ru.ifmo.se.client.commands.Add</logger>
   <level>INFO</level>
-  <class>ru.ifmo.se.client.commands.Help</class>
+  <class>ru.ifmo.se.client.commands.Info</class>
   <method>execute</method>
   <thread>1</thread>
-  <message>Sending HELP request</message>
+  <message>Sending INFO request</message>
 </record>
 <record>
-  <date>2024-04-21T08:03:09.771051126Z</date>
-  <millis>1713686589771</millis>
-  <nanos>51126</nanos>
+  <date>2024-04-21T19:57:32.678640050Z</date>
+  <millis>1713729452678</millis>
+  <nanos>640050</nanos>
   <sequence>3</sequence>
   <logger>ru.ifmo.se.client.commands.Add</logger>
   <level>INFO</level>
-  <class>ru.ifmo.se.client.commands.Help</class>
+  <class>ru.ifmo.se.client.commands.Info</class>
   <method>execute</method>
   <thread>1</thread>
-  <message>Sending HELP request</message>
+  <message>Sending INFO request</message>
 </record>
 <record>
-  <date>2024-04-21T08:03:09.771051126Z</date>
-  <millis>1713686589771</millis>
-  <nanos>51126</nanos>
+  <date>2024-04-21T19:57:32.678640050Z</date>
+  <millis>1713729452678</millis>
+  <nanos>640050</nanos>
   <sequence>3</sequence>
   <logger>ru.ifmo.se.client.commands.Add</logger>
   <level>INFO</level>
-  <class>ru.ifmo.se.client.commands.Help</class>
+  <class>ru.ifmo.se.client.commands.Info</class>
   <method>execute</method>
   <thread>1</thread>
-  <message>Sending HELP request</message>
+  <message>Sending INFO request</message>
 </record>
 <record>
-  <date>2024-04-21T08:03:09.771051126Z</date>
-  <millis>1713686589771</millis>
-  <nanos>51126</nanos>
+  <date>2024-04-21T19:57:32.678640050Z</date>
+  <millis>1713729452678</millis>
+  <nanos>640050</nanos>
   <sequence>3</sequence>
   <logger>ru.ifmo.se.client.commands.Add</logger>
   <level>INFO</level>
-  <class>ru.ifmo.se.client.commands.Help</class>
+  <class>ru.ifmo.se.client.commands.Info</class>
   <method>execute</method>
   <thread>1</thread>
-  <message>Sending HELP request</message>
+  <message>Sending INFO request</message>
 </record>
 <record>
-  <date>2024-04-21T08:03:09.771051126Z</date>
-  <millis>1713686589771</millis>
-  <nanos>51126</nanos>
+  <date>2024-04-21T19:57:32.678640050Z</date>
+  <millis>1713729452678</millis>
+  <nanos>640050</nanos>
   <sequence>3</sequence>
   <logger>ru.ifmo.se.client.commands.Add</logger>
   <level>INFO</level>
-  <class>ru.ifmo.se.client.commands.Help</class>
+  <class>ru.ifmo.se.client.commands.Info</class>
   <method>execute</method>
   <thread>1</thread>
-  <message>Sending HELP request</message>
+  <message>Sending INFO request</message>
 </record>
 <record>
-  <date>2024-04-21T08:03:09.771051126Z</date>
-  <millis>1713686589771</millis>
-  <nanos>51126</nanos>
+  <date>2024-04-21T19:57:32.678640050Z</date>
+  <millis>1713729452678</millis>
+  <nanos>640050</nanos>
   <sequence>3</sequence>
   <logger>ru.ifmo.se.client.commands.Add</logger>
   <level>INFO</level>
-  <class>ru.ifmo.se.client.commands.Help</class>
+  <class>ru.ifmo.se.client.commands.Info</class>
   <method>execute</method>
   <thread>1</thread>
-  <message>Sending HELP request</message>
+  <message>Sending INFO request</message>
 </record>
 <record>
-  <date>2024-04-21T08:03:09.771051126Z</date>
-  <millis>1713686589771</millis>
-  <nanos>51126</nanos>
+  <date>2024-04-21T19:57:32.678640050Z</date>
+  <millis>1713729452678</millis>
+  <nanos>640050</nanos>
   <sequence>3</sequence>
   <logger>ru.ifmo.se.client.commands.Add</logger>
   <level>INFO</level>
-  <class>ru.ifmo.se.client.commands.Help</class>
+  <class>ru.ifmo.se.client.commands.Info</class>
   <method>execute</method>
   <thread>1</thread>
-  <message>Sending HELP request</message>
+  <message>Sending INFO request</message>
 </record>
 <record>
-  <date>2024-04-21T08:03:09.771051126Z</date>
-  <millis>1713686589771</millis>
-  <nanos>51126</nanos>
+  <date>2024-04-21T19:57:32.678640050Z</date>
+  <millis>1713729452678</millis>
+  <nanos>640050</nanos>
   <sequence>3</sequence>
   <logger>ru.ifmo.se.client.commands.Add</logger>
   <level>INFO</level>
-  <class>ru.ifmo.se.client.commands.Help</class>
+  <class>ru.ifmo.se.client.commands.Info</class>
   <method>execute</method>
   <thread>1</thread>
-  <message>Sending HELP request</message>
+  <message>Sending INFO request</message>
 </record>
 <record>
-  <date>2024-04-21T08:03:09.771051126Z</date>
-  <millis>1713686589771</millis>
-  <nanos>51126</nanos>
+  <date>2024-04-21T19:57:32.678640050Z</date>
+  <millis>1713729452678</millis>
+  <nanos>640050</nanos>
   <sequence>3</sequence>
   <logger>ru.ifmo.se.client.commands.Add</logger>
   <level>INFO</level>
-  <class>ru.ifmo.se.client.commands.Help</class>
+  <class>ru.ifmo.se.client.commands.Info</class>
   <method>execute</method>
   <thread>1</thread>
-  <message>Sending HELP request</message>
+  <message>Sending INFO request</message>
 </record>
 <record>
-  <date>2024-04-21T08:03:09.771051126Z</date>
-  <millis>1713686589771</millis>
-  <nanos>51126</nanos>
+  <date>2024-04-21T19:57:32.678640050Z</date>
+  <millis>1713729452678</millis>
+  <nanos>640050</nanos>
   <sequence>3</sequence>
   <logger>ru.ifmo.se.client.commands.Add</logger>
   <level>INFO</level>
-  <class>ru.ifmo.se.client.commands.Help</class>
+  <class>ru.ifmo.se.client.commands.Info</class>
   <method>execute</method>
   <thread>1</thread>
-  <message>Sending HELP request</message>
+  <message>Sending INFO request</message>
 </record>
 <record>
-  <date>2024-04-21T08:03:09.801693223Z</date>
-  <millis>1713686589801</millis>
-  <nanos>693223</nanos>
-  <sequence>4</sequence>
-  <logger>ru.ifmo.se.client.net.ConnectionManager</logger>
-  <level>WARNING</level>
-  <class>ru.ifmo.se.client.net.ConnectionManager</class>
-  <method>recieve</method>
-  <thread>1</thread>
-  <message>SERVER DISCONNECTED!!!(That might be either your connection problem, or server-side issue)</message>
-</record>
-<record>
-  <date>2024-04-21T08:03:09.801693223Z</date>
-  <millis>1713686589801</millis>
-  <nanos>693223</nanos>
-  <sequence>4</sequence>
-  <logger>ru.ifmo.se.client.net.ConnectionManager</logger>
-  <level>WARNING</level>
-  <class>ru.ifmo.se.client.net.ConnectionManager</class>
-  <method>recieve</method>
-  <thread>1</thread>
-  <message>SERVER DISCONNECTED!!!(That might be either your connection problem, or server-side issue)</message>
-</record>
-<record>
-  <date>2024-04-21T08:03:09.805914525Z</date>
-  <millis>1713686589805</millis>
-  <nanos>914525</nanos>
+  <date>2024-04-21T19:57:34.876708356Z</date>
+  <millis>1713729454876</millis>
+  <nanos>708356</nanos>
   <sequence>5</sequence>
   <logger>ru.ifmo.se.client.commands.Add</logger>
   <level>INFO</level>
-  <class>ru.ifmo.se.client.commands.Exit</class>
+  <class>ru.ifmo.se.client.commands.Show</class>
   <method>execute</method>
   <thread>1</thread>
-  <message>executing EXIT</message>
+  <message>Sending SHOW request</message>
 </record>
 <record>
-  <date>2024-04-21T08:03:09.805914525Z</date>
-  <millis>1713686589805</millis>
-  <nanos>914525</nanos>
+  <date>2024-04-21T19:57:34.876708356Z</date>
+  <millis>1713729454876</millis>
+  <nanos>708356</nanos>
   <sequence>5</sequence>
   <logger>ru.ifmo.se.client.commands.Add</logger>
   <level>INFO</level>
-  <class>ru.ifmo.se.client.commands.Exit</class>
+  <class>ru.ifmo.se.client.commands.Show</class>
   <method>execute</method>
   <thread>1</thread>
-  <message>executing EXIT</message>
+  <message>Sending SHOW request</message>
 </record>
 <record>
-  <date>2024-04-21T08:03:09.805914525Z</date>
-  <millis>1713686589805</millis>
-  <nanos>914525</nanos>
+  <date>2024-04-21T19:57:34.876708356Z</date>
+  <millis>1713729454876</millis>
+  <nanos>708356</nanos>
   <sequence>5</sequence>
   <logger>ru.ifmo.se.client.commands.Add</logger>
   <level>INFO</level>
-  <class>ru.ifmo.se.client.commands.Exit</class>
+  <class>ru.ifmo.se.client.commands.Show</class>
   <method>execute</method>
   <thread>1</thread>
-  <message>executing EXIT</message>
+  <message>Sending SHOW request</message>
 </record>
 <record>
-  <date>2024-04-21T08:03:09.805914525Z</date>
-  <millis>1713686589805</millis>
-  <nanos>914525</nanos>
+  <date>2024-04-21T19:57:34.876708356Z</date>
+  <millis>1713729454876</millis>
+  <nanos>708356</nanos>
   <sequence>5</sequence>
   <logger>ru.ifmo.se.client.commands.Add</logger>
   <level>INFO</level>
-  <class>ru.ifmo.se.client.commands.Exit</class>
+  <class>ru.ifmo.se.client.commands.Show</class>
   <method>execute</method>
   <thread>1</thread>
-  <message>executing EXIT</message>
+  <message>Sending SHOW request</message>
 </record>
 <record>
-  <date>2024-04-21T08:03:09.805914525Z</date>
-  <millis>1713686589805</millis>
-  <nanos>914525</nanos>
+  <date>2024-04-21T19:57:34.876708356Z</date>
+  <millis>1713729454876</millis>
+  <nanos>708356</nanos>
   <sequence>5</sequence>
   <logger>ru.ifmo.se.client.commands.Add</logger>
   <level>INFO</level>
-  <class>ru.ifmo.se.client.commands.Exit</class>
+  <class>ru.ifmo.se.client.commands.Show</class>
   <method>execute</method>
   <thread>1</thread>
-  <message>executing EXIT</message>
+  <message>Sending SHOW request</message>
 </record>
 <record>
-  <date>2024-04-21T08:03:09.805914525Z</date>
-  <millis>1713686589805</millis>
-  <nanos>914525</nanos>
+  <date>2024-04-21T19:57:34.876708356Z</date>
+  <millis>1713729454876</millis>
+  <nanos>708356</nanos>
   <sequence>5</sequence>
   <logger>ru.ifmo.se.client.commands.Add</logger>
   <level>INFO</level>
-  <class>ru.ifmo.se.client.commands.Exit</class>
+  <class>ru.ifmo.se.client.commands.Show</class>
   <method>execute</method>
   <thread>1</thread>
-  <message>executing EXIT</message>
+  <message>Sending SHOW request</message>
 </record>
 <record>
-  <date>2024-04-21T08:03:09.805914525Z</date>
-  <millis>1713686589805</millis>
-  <nanos>914525</nanos>
+  <date>2024-04-21T19:57:34.876708356Z</date>
+  <millis>1713729454876</millis>
+  <nanos>708356</nanos>
   <sequence>5</sequence>
   <logger>ru.ifmo.se.client.commands.Add</logger>
   <level>INFO</level>
-  <class>ru.ifmo.se.client.commands.Exit</class>
+  <class>ru.ifmo.se.client.commands.Show</class>
   <method>execute</method>
   <thread>1</thread>
-  <message>executing EXIT</message>
+  <message>Sending SHOW request</message>
 </record>
 <record>
-  <date>2024-04-21T08:03:09.805914525Z</date>
-  <millis>1713686589805</millis>
-  <nanos>914525</nanos>
+  <date>2024-04-21T19:57:34.876708356Z</date>
+  <millis>1713729454876</millis>
+  <nanos>708356</nanos>
   <sequence>5</sequence>
   <logger>ru.ifmo.se.client.commands.Add</logger>
   <level>INFO</level>
-  <class>ru.ifmo.se.client.commands.Exit</class>
+  <class>ru.ifmo.se.client.commands.Show</class>
   <method>execute</method>
   <thread>1</thread>
-  <message>executing EXIT</message>
+  <message>Sending SHOW request</message>
 </record>
 <record>
-  <date>2024-04-21T08:03:09.805914525Z</date>
-  <millis>1713686589805</millis>
-  <nanos>914525</nanos>
+  <date>2024-04-21T19:57:34.876708356Z</date>
+  <millis>1713729454876</millis>
+  <nanos>708356</nanos>
   <sequence>5</sequence>
   <logger>ru.ifmo.se.client.commands.Add</logger>
   <level>INFO</level>
-  <class>ru.ifmo.se.client.commands.Exit</class>
+  <class>ru.ifmo.se.client.commands.Show</class>
   <method>execute</method>
   <thread>1</thread>
-  <message>executing EXIT</message>
+  <message>Sending SHOW request</message>
 </record>
 <record>
-  <date>2024-04-21T08:03:09.805914525Z</date>
-  <millis>1713686589805</millis>
-  <nanos>914525</nanos>
+  <date>2024-04-21T19:57:34.876708356Z</date>
+  <millis>1713729454876</millis>
+  <nanos>708356</nanos>
   <sequence>5</sequence>
   <logger>ru.ifmo.se.client.commands.Add</logger>
   <level>INFO</level>
-  <class>ru.ifmo.se.client.commands.Exit</class>
+  <class>ru.ifmo.se.client.commands.Show</class>
   <method>execute</method>
   <thread>1</thread>
-  <message>executing EXIT</message>
+  <message>Sending SHOW request</message>
 </record>
 <record>
-  <date>2024-04-21T08:03:09.805914525Z</date>
-  <millis>1713686589805</millis>
-  <nanos>914525</nanos>
+  <date>2024-04-21T19:57:34.876708356Z</date>
+  <millis>1713729454876</millis>
+  <nanos>708356</nanos>
   <sequence>5</sequence>
   <logger>ru.ifmo.se.client.commands.Add</logger>
   <level>INFO</level>
-  <class>ru.ifmo.se.client.commands.Exit</class>
+  <class>ru.ifmo.se.client.commands.Show</class>
   <method>execute</method>
   <thread>1</thread>
-  <message>executing EXIT</message>
+  <message>Sending SHOW request</message>
 </record>
 <record>
-  <date>2024-04-21T08:03:09.805914525Z</date>
-  <millis>1713686589805</millis>
-  <nanos>914525</nanos>
+  <date>2024-04-21T19:57:34.876708356Z</date>
+  <millis>1713729454876</millis>
+  <nanos>708356</nanos>
   <sequence>5</sequence>
   <logger>ru.ifmo.se.client.commands.Add</logger>
   <level>INFO</level>
-  <class>ru.ifmo.se.client.commands.Exit</class>
+  <class>ru.ifmo.se.client.commands.Show</class>
   <method>execute</method>
   <thread>1</thread>
-  <message>executing EXIT</message>
+  <message>Sending SHOW request</message>
 </record>
 <record>
-  <date>2024-04-21T08:03:09.805914525Z</date>
-  <millis>1713686589805</millis>
-  <nanos>914525</nanos>
+  <date>2024-04-21T19:57:34.876708356Z</date>
+  <millis>1713729454876</millis>
+  <nanos>708356</nanos>
   <sequence>5</sequence>
   <logger>ru.ifmo.se.client.commands.Add</logger>
   <level>INFO</level>
-  <class>ru.ifmo.se.client.commands.Exit</class>
+  <class>ru.ifmo.se.client.commands.Show</class>
   <method>execute</method>
   <thread>1</thread>
-  <message>executing EXIT</message>
+  <message>Sending SHOW request</message>
 </record>
 <record>
-  <date>2024-04-21T08:03:09.805914525Z</date>
-  <millis>1713686589805</millis>
-  <nanos>914525</nanos>
+  <date>2024-04-21T19:57:34.876708356Z</date>
+  <millis>1713729454876</millis>
+  <nanos>708356</nanos>
   <sequence>5</sequence>
   <logger>ru.ifmo.se.client.commands.Add</logger>
   <level>INFO</level>
-  <class>ru.ifmo.se.client.commands.Exit</class>
+  <class>ru.ifmo.se.client.commands.Show</class>
   <method>execute</method>
   <thread>1</thread>
-  <message>executing EXIT</message>
+  <message>Sending SHOW request</message>
 </record>
 <record>
-  <date>2024-04-21T08:03:09.805914525Z</date>
-  <millis>1713686589805</millis>
-  <nanos>914525</nanos>
+  <date>2024-04-21T19:57:34.876708356Z</date>
+  <millis>1713729454876</millis>
+  <nanos>708356</nanos>
   <sequence>5</sequence>
   <logger>ru.ifmo.se.client.commands.Add</logger>
   <level>INFO</level>
-  <class>ru.ifmo.se.client.commands.Exit</class>
+  <class>ru.ifmo.se.client.commands.Show</class>
   <method>execute</method>
   <thread>1</thread>
-  <message>executing EXIT</message>
+  <message>Sending SHOW request</message>
+</record>
+<record>
+  <date>2024-04-21T19:57:42.021116714Z</date>
+  <millis>1713729462021</millis>
+  <nanos>116714</nanos>
+  <sequence>13</sequence>
+  <logger>ru.ifmo.se.client.commands.Add</logger>
+  <level>INFO</level>
+  <class>ru.ifmo.se.client.commands.Add</class>
+  <method>execute</method>
+  <thread>1</thread>
+  <message>Sending ADD request</message>
+</record>
+<record>
+  <date>2024-04-21T19:57:42.021116714Z</date>
+  <millis>1713729462021</millis>
+  <nanos>116714</nanos>
+  <sequence>13</sequence>
+  <logger>ru.ifmo.se.client.commands.Add</logger>
+  <level>INFO</level>
+  <class>ru.ifmo.se.client.commands.Add</class>
+  <method>execute</method>
+  <thread>1</thread>
+  <message>Sending ADD request</message>
+</record>
+<record>
+  <date>2024-04-21T19:57:42.021116714Z</date>
+  <millis>1713729462021</millis>
+  <nanos>116714</nanos>
+  <sequence>13</sequence>
+  <logger>ru.ifmo.se.client.commands.Add</logger>
+  <level>INFO</level>
+  <class>ru.ifmo.se.client.commands.Add</class>
+  <method>execute</method>
+  <thread>1</thread>
+  <message>Sending ADD request</message>
+</record>
+<record>
+  <date>2024-04-21T19:57:42.021116714Z</date>
+  <millis>1713729462021</millis>
+  <nanos>116714</nanos>
+  <sequence>13</sequence>
+  <logger>ru.ifmo.se.client.commands.Add</logger>
+  <level>INFO</level>
+  <class>ru.ifmo.se.client.commands.Add</class>
+  <method>execute</method>
+  <thread>1</thread>
+  <message>Sending ADD request</message>
+</record>
+<record>
+  <date>2024-04-21T19:57:42.021116714Z</date>
+  <millis>1713729462021</millis>
+  <nanos>116714</nanos>
+  <sequence>13</sequence>
+  <logger>ru.ifmo.se.client.commands.Add</logger>
+  <level>INFO</level>
+  <class>ru.ifmo.se.client.commands.Add</class>
+  <method>execute</method>
+  <thread>1</thread>
+  <message>Sending ADD request</message>
+</record>
+<record>
+  <date>2024-04-21T19:57:42.021116714Z</date>
+  <millis>1713729462021</millis>
+  <nanos>116714</nanos>
+  <sequence>13</sequence>
+  <logger>ru.ifmo.se.client.commands.Add</logger>
+  <level>INFO</level>
+  <class>ru.ifmo.se.client.commands.Add</class>
+  <method>execute</method>
+  <thread>1</thread>
+  <message>Sending ADD request</message>
+</record>
+<record>
+  <date>2024-04-21T19:57:42.021116714Z</date>
+  <millis>1713729462021</millis>
+  <nanos>116714</nanos>
+  <sequence>13</sequence>
+  <logger>ru.ifmo.se.client.commands.Add</logger>
+  <level>INFO</level>
+  <class>ru.ifmo.se.client.commands.Add</class>
+  <method>execute</method>
+  <thread>1</thread>
+  <message>Sending ADD request</message>
+</record>
+<record>
+  <date>2024-04-21T19:57:42.021116714Z</date>
+  <millis>1713729462021</millis>
+  <nanos>116714</nanos>
+  <sequence>13</sequence>
+  <logger>ru.ifmo.se.client.commands.Add</logger>
+  <level>INFO</level>
+  <class>ru.ifmo.se.client.commands.Add</class>
+  <method>execute</method>
+  <thread>1</thread>
+  <message>Sending ADD request</message>
+</record>
+<record>
+  <date>2024-04-21T19:57:42.021116714Z</date>
+  <millis>1713729462021</millis>
+  <nanos>116714</nanos>
+  <sequence>13</sequence>
+  <logger>ru.ifmo.se.client.commands.Add</logger>
+  <level>INFO</level>
+  <class>ru.ifmo.se.client.commands.Add</class>
+  <method>execute</method>
+  <thread>1</thread>
+  <message>Sending ADD request</message>
+</record>
+<record>
+  <date>2024-04-21T19:57:42.021116714Z</date>
+  <millis>1713729462021</millis>
+  <nanos>116714</nanos>
+  <sequence>13</sequence>
+  <logger>ru.ifmo.se.client.commands.Add</logger>
+  <level>INFO</level>
+  <class>ru.ifmo.se.client.commands.Add</class>
+  <method>execute</method>
+  <thread>1</thread>
+  <message>Sending ADD request</message>
+</record>
+<record>
+  <date>2024-04-21T19:57:42.021116714Z</date>
+  <millis>1713729462021</millis>
+  <nanos>116714</nanos>
+  <sequence>13</sequence>
+  <logger>ru.ifmo.se.client.commands.Add</logger>
+  <level>INFO</level>
+  <class>ru.ifmo.se.client.commands.Add</class>
+  <method>execute</method>
+  <thread>1</thread>
+  <message>Sending ADD request</message>
+</record>
+<record>
+  <date>2024-04-21T19:57:42.021116714Z</date>
+  <millis>1713729462021</millis>
+  <nanos>116714</nanos>
+  <sequence>13</sequence>
+  <logger>ru.ifmo.se.client.commands.Add</logger>
+  <level>INFO</level>
+  <class>ru.ifmo.se.client.commands.Add</class>
+  <method>execute</method>
+  <thread>1</thread>
+  <message>Sending ADD request</message>
+</record>
+<record>
+  <date>2024-04-21T19:57:42.021116714Z</date>
+  <millis>1713729462021</millis>
+  <nanos>116714</nanos>
+  <sequence>13</sequence>
+  <logger>ru.ifmo.se.client.commands.Add</logger>
+  <level>INFO</level>
+  <class>ru.ifmo.se.client.commands.Add</class>
+  <method>execute</method>
+  <thread>1</thread>
+  <message>Sending ADD request</message>
+</record>
+<record>
+  <date>2024-04-21T19:57:42.021116714Z</date>
+  <millis>1713729462021</millis>
+  <nanos>116714</nanos>
+  <sequence>13</sequence>
+  <logger>ru.ifmo.se.client.commands.Add</logger>
+  <level>INFO</level>
+  <class>ru.ifmo.se.client.commands.Add</class>
+  <method>execute</method>
+  <thread>1</thread>
+  <message>Sending ADD request</message>
+</record>
+<record>
+  <date>2024-04-21T19:57:42.021116714Z</date>
+  <millis>1713729462021</millis>
+  <nanos>116714</nanos>
+  <sequence>13</sequence>
+  <logger>ru.ifmo.se.client.commands.Add</logger>
+  <level>INFO</level>
+  <class>ru.ifmo.se.client.commands.Add</class>
+  <method>execute</method>
+  <thread>1</thread>
+  <message>Sending ADD request</message>
+</record>
+<record>
+  <date>2024-04-21T19:57:47.300083912Z</date>
+  <millis>1713729467300</millis>
+  <nanos>83912</nanos>
+  <sequence>15</sequence>
+  <logger>ru.ifmo.se.client.commands.Add</logger>
+  <level>INFO</level>
+  <class>ru.ifmo.se.client.commands.Info</class>
+  <method>execute</method>
+  <thread>1</thread>
+  <message>Sending INFO request</message>
+</record>
+<record>
+  <date>2024-04-21T19:57:47.300083912Z</date>
+  <millis>1713729467300</millis>
+  <nanos>83912</nanos>
+  <sequence>15</sequence>
+  <logger>ru.ifmo.se.client.commands.Add</logger>
+  <level>INFO</level>
+  <class>ru.ifmo.se.client.commands.Info</class>
+  <method>execute</method>
+  <thread>1</thread>
+  <message>Sending INFO request</message>
+</record>
+<record>
+  <date>2024-04-21T19:57:47.300083912Z</date>
+  <millis>1713729467300</millis>
+  <nanos>83912</nanos>
+  <sequence>15</sequence>
+  <logger>ru.ifmo.se.client.commands.Add</logger>
+  <level>INFO</level>
+  <class>ru.ifmo.se.client.commands.Info</class>
+  <method>execute</method>
+  <thread>1</thread>
+  <message>Sending INFO request</message>
+</record>
+<record>
+  <date>2024-04-21T19:57:47.300083912Z</date>
+  <millis>1713729467300</millis>
+  <nanos>83912</nanos>
+  <sequence>15</sequence>
+  <logger>ru.ifmo.se.client.commands.Add</logger>
+  <level>INFO</level>
+  <class>ru.ifmo.se.client.commands.Info</class>
+  <method>execute</method>
+  <thread>1</thread>
+  <message>Sending INFO request</message>
+</record>
+<record>
+  <date>2024-04-21T19:57:47.300083912Z</date>
+  <millis>1713729467300</millis>
+  <nanos>83912</nanos>
+  <sequence>15</sequence>
+  <logger>ru.ifmo.se.client.commands.Add</logger>
+  <level>INFO</level>
+  <class>ru.ifmo.se.client.commands.Info</class>
+  <method>execute</method>
+  <thread>1</thread>
+  <message>Sending INFO request</message>
+</record>
+<record>
+  <date>2024-04-21T19:57:47.300083912Z</date>
+  <millis>1713729467300</millis>
+  <nanos>83912</nanos>
+  <sequence>15</sequence>
+  <logger>ru.ifmo.se.client.commands.Add</logger>
+  <level>INFO</level>
+  <class>ru.ifmo.se.client.commands.Info</class>
+  <method>execute</method>
+  <thread>1</thread>
+  <message>Sending INFO request</message>
+</record>
+<record>
+  <date>2024-04-21T19:57:47.300083912Z</date>
+  <millis>1713729467300</millis>
+  <nanos>83912</nanos>
+  <sequence>15</sequence>
+  <logger>ru.ifmo.se.client.commands.Add</logger>
+  <level>INFO</level>
+  <class>ru.ifmo.se.client.commands.Info</class>
+  <method>execute</method>
+  <thread>1</thread>
+  <message>Sending INFO request</message>
+</record>
+<record>
+  <date>2024-04-21T19:57:47.300083912Z</date>
+  <millis>1713729467300</millis>
+  <nanos>83912</nanos>
+  <sequence>15</sequence>
+  <logger>ru.ifmo.se.client.commands.Add</logger>
+  <level>INFO</level>
+  <class>ru.ifmo.se.client.commands.Info</class>
+  <method>execute</method>
+  <thread>1</thread>
+  <message>Sending INFO request</message>
+</record>
+<record>
+  <date>2024-04-21T19:57:47.300083912Z</date>
+  <millis>1713729467300</millis>
+  <nanos>83912</nanos>
+  <sequence>15</sequence>
+  <logger>ru.ifmo.se.client.commands.Add</logger>
+  <level>INFO</level>
+  <class>ru.ifmo.se.client.commands.Info</class>
+  <method>execute</method>
+  <thread>1</thread>
+  <message>Sending INFO request</message>
+</record>
+<record>
+  <date>2024-04-21T19:57:47.300083912Z</date>
+  <millis>1713729467300</millis>
+  <nanos>83912</nanos>
+  <sequence>15</sequence>
+  <logger>ru.ifmo.se.client.commands.Add</logger>
+  <level>INFO</level>
+  <class>ru.ifmo.se.client.commands.Info</class>
+  <method>execute</method>
+  <thread>1</thread>
+  <message>Sending INFO request</message>
+</record>
+<record>
+  <date>2024-04-21T19:57:47.300083912Z</date>
+  <millis>1713729467300</millis>
+  <nanos>83912</nanos>
+  <sequence>15</sequence>
+  <logger>ru.ifmo.se.client.commands.Add</logger>
+  <level>INFO</level>
+  <class>ru.ifmo.se.client.commands.Info</class>
+  <method>execute</method>
+  <thread>1</thread>
+  <message>Sending INFO request</message>
+</record>
+<record>
+  <date>2024-04-21T19:57:47.300083912Z</date>
+  <millis>1713729467300</millis>
+  <nanos>83912</nanos>
+  <sequence>15</sequence>
+  <logger>ru.ifmo.se.client.commands.Add</logger>
+  <level>INFO</level>
+  <class>ru.ifmo.se.client.commands.Info</class>
+  <method>execute</method>
+  <thread>1</thread>
+  <message>Sending INFO request</message>
+</record>
+<record>
+  <date>2024-04-21T19:57:47.300083912Z</date>
+  <millis>1713729467300</millis>
+  <nanos>83912</nanos>
+  <sequence>15</sequence>
+  <logger>ru.ifmo.se.client.commands.Add</logger>
+  <level>INFO</level>
+  <class>ru.ifmo.se.client.commands.Info</class>
+  <method>execute</method>
+  <thread>1</thread>
+  <message>Sending INFO request</message>
+</record>
+<record>
+  <date>2024-04-21T19:57:47.300083912Z</date>
+  <millis>1713729467300</millis>
+  <nanos>83912</nanos>
+  <sequence>15</sequence>
+  <logger>ru.ifmo.se.client.commands.Add</logger>
+  <level>INFO</level>
+  <class>ru.ifmo.se.client.commands.Info</class>
+  <method>execute</method>
+  <thread>1</thread>
+  <message>Sending INFO request</message>
+</record>
+<record>
+  <date>2024-04-21T19:57:47.300083912Z</date>
+  <millis>1713729467300</millis>
+  <nanos>83912</nanos>
+  <sequence>15</sequence>
+  <logger>ru.ifmo.se.client.commands.Add</logger>
+  <level>INFO</level>
+  <class>ru.ifmo.se.client.commands.Info</class>
+  <method>execute</method>
+  <thread>1</thread>
+  <message>Sending INFO request</message>
+</record>
+<record>
+  <date>2024-04-21T19:57:48.940052477Z</date>
+  <millis>1713729468940</millis>
+  <nanos>52477</nanos>
+  <sequence>17</sequence>
+  <logger>ru.ifmo.se.client.commands.Add</logger>
+  <level>INFO</level>
+  <class>ru.ifmo.se.client.commands.Show</class>
+  <method>execute</method>
+  <thread>1</thread>
+  <message>Sending SHOW request</message>
+</record>
+<record>
+  <date>2024-04-21T19:57:48.940052477Z</date>
+  <millis>1713729468940</millis>
+  <nanos>52477</nanos>
+  <sequence>17</sequence>
+  <logger>ru.ifmo.se.client.commands.Add</logger>
+  <level>INFO</level>
+  <class>ru.ifmo.se.client.commands.Show</class>
+  <method>execute</method>
+  <thread>1</thread>
+  <message>Sending SHOW request</message>
+</record>
+<record>
+  <date>2024-04-21T19:57:48.940052477Z</date>
+  <millis>1713729468940</millis>
+  <nanos>52477</nanos>
+  <sequence>17</sequence>
+  <logger>ru.ifmo.se.client.commands.Add</logger>
+  <level>INFO</level>
+  <class>ru.ifmo.se.client.commands.Show</class>
+  <method>execute</method>
+  <thread>1</thread>
+  <message>Sending SHOW request</message>
+</record>
+<record>
+  <date>2024-04-21T19:57:48.940052477Z</date>
+  <millis>1713729468940</millis>
+  <nanos>52477</nanos>
+  <sequence>17</sequence>
+  <logger>ru.ifmo.se.client.commands.Add</logger>
+  <level>INFO</level>
+  <class>ru.ifmo.se.client.commands.Show</class>
+  <method>execute</method>
+  <thread>1</thread>
+  <message>Sending SHOW request</message>
+</record>
+<record>
+  <date>2024-04-21T19:57:48.940052477Z</date>
+  <millis>1713729468940</millis>
+  <nanos>52477</nanos>
+  <sequence>17</sequence>
+  <logger>ru.ifmo.se.client.commands.Add</logger>
+  <level>INFO</level>
+  <class>ru.ifmo.se.client.commands.Show</class>
+  <method>execute</method>
+  <thread>1</thread>
+  <message>Sending SHOW request</message>
+</record>
+<record>
+  <date>2024-04-21T19:57:48.940052477Z</date>
+  <millis>1713729468940</millis>
+  <nanos>52477</nanos>
+  <sequence>17</sequence>
+  <logger>ru.ifmo.se.client.commands.Add</logger>
+  <level>INFO</level>
+  <class>ru.ifmo.se.client.commands.Show</class>
+  <method>execute</method>
+  <thread>1</thread>
+  <message>Sending SHOW request</message>
+</record>
+<record>
+  <date>2024-04-21T19:57:48.940052477Z</date>
+  <millis>1713729468940</millis>
+  <nanos>52477</nanos>
+  <sequence>17</sequence>
+  <logger>ru.ifmo.se.client.commands.Add</logger>
+  <level>INFO</level>
+  <class>ru.ifmo.se.client.commands.Show</class>
+  <method>execute</method>
+  <thread>1</thread>
+  <message>Sending SHOW request</message>
+</record>
+<record>
+  <date>2024-04-21T19:57:48.940052477Z</date>
+  <millis>1713729468940</millis>
+  <nanos>52477</nanos>
+  <sequence>17</sequence>
+  <logger>ru.ifmo.se.client.commands.Add</logger>
+  <level>INFO</level>
+  <class>ru.ifmo.se.client.commands.Show</class>
+  <method>execute</method>
+  <thread>1</thread>
+  <message>Sending SHOW request</message>
+</record>
+<record>
+  <date>2024-04-21T19:57:48.940052477Z</date>
+  <millis>1713729468940</millis>
+  <nanos>52477</nanos>
+  <sequence>17</sequence>
+  <logger>ru.ifmo.se.client.commands.Add</logger>
+  <level>INFO</level>
+  <class>ru.ifmo.se.client.commands.Show</class>
+  <method>execute</method>
+  <thread>1</thread>
+  <message>Sending SHOW request</message>
+</record>
+<record>
+  <date>2024-04-21T19:57:48.940052477Z</date>
+  <millis>1713729468940</millis>
+  <nanos>52477</nanos>
+  <sequence>17</sequence>
+  <logger>ru.ifmo.se.client.commands.Add</logger>
+  <level>INFO</level>
+  <class>ru.ifmo.se.client.commands.Show</class>
+  <method>execute</method>
+  <thread>1</thread>
+  <message>Sending SHOW request</message>
+</record>
+<record>
+  <date>2024-04-21T19:57:48.940052477Z</date>
+  <millis>1713729468940</millis>
+  <nanos>52477</nanos>
+  <sequence>17</sequence>
+  <logger>ru.ifmo.se.client.commands.Add</logger>
+  <level>INFO</level>
+  <class>ru.ifmo.se.client.commands.Show</class>
+  <method>execute</method>
+  <thread>1</thread>
+  <message>Sending SHOW request</message>
+</record>
+<record>
+  <date>2024-04-21T19:57:48.940052477Z</date>
+  <millis>1713729468940</millis>
+  <nanos>52477</nanos>
+  <sequence>17</sequence>
+  <logger>ru.ifmo.se.client.commands.Add</logger>
+  <level>INFO</level>
+  <class>ru.ifmo.se.client.commands.Show</class>
+  <method>execute</method>
+  <thread>1</thread>
+  <message>Sending SHOW request</message>
+</record>
+<record>
+  <date>2024-04-21T19:57:48.940052477Z</date>
+  <millis>1713729468940</millis>
+  <nanos>52477</nanos>
+  <sequence>17</sequence>
+  <logger>ru.ifmo.se.client.commands.Add</logger>
+  <level>INFO</level>
+  <class>ru.ifmo.se.client.commands.Show</class>
+  <method>execute</method>
+  <thread>1</thread>
+  <message>Sending SHOW request</message>
+</record>
+<record>
+  <date>2024-04-21T19:57:48.940052477Z</date>
+  <millis>1713729468940</millis>
+  <nanos>52477</nanos>
+  <sequence>17</sequence>
+  <logger>ru.ifmo.se.client.commands.Add</logger>
+  <level>INFO</level>
+  <class>ru.ifmo.se.client.commands.Show</class>
+  <method>execute</method>
+  <thread>1</thread>
+  <message>Sending SHOW request</message>
+</record>
+<record>
+  <date>2024-04-21T19:57:48.940052477Z</date>
+  <millis>1713729468940</millis>
+  <nanos>52477</nanos>
+  <sequence>17</sequence>
+  <logger>ru.ifmo.se.client.commands.Add</logger>
+  <level>INFO</level>
+  <class>ru.ifmo.se.client.commands.Show</class>
+  <method>execute</method>
+  <thread>1</thread>
+  <message>Sending SHOW request</message>
 </record>
 </log>

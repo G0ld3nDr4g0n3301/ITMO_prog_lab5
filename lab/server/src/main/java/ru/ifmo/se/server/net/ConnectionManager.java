@@ -29,7 +29,7 @@ public class ConnectionManager{
         logger.addHandler(LogFile.getHandler());
     }
     
-    public static Integer port = 777;
+    public static Integer port = 32444;
     private static ServerSocketChannel socket;
     public static Integer timeout = 40;
     private static Selector selector;
