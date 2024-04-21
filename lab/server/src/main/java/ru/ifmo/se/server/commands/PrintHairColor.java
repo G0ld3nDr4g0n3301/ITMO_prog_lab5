@@ -37,13 +37,10 @@ public class PrintHairColor extends Command{
     
     @Override
     public Request execute(Request args){
-        List<Color> hairColors = CollectionManager.getHairColors().stream()
+        String colors = CollectionManager.getHairColors().stream()
         .sorted(Comparator.reverseOrder())
-        .collect(Collectors.toList());
-        String colors = "";
-        for (Color c : hairColors) {
-            colors += c.toString() + "\n";
-        }
+        .map(Object::toString)
+        .collect(Collectors.joining("\n"));
         logger.info("Got sorted color list");
         return new Request(400, colors);
     }

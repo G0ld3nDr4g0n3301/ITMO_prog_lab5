@@ -2,9 +2,9 @@
 <!DOCTYPE log SYSTEM "logger.dtd">
 <log>
 <record>
-  <date>2024-04-19T10:10:37.965856216Z</date>
-  <millis>1713521437965</millis>
-  <nanos>856216</nanos>
+  <date>2024-04-21T08:03:01.934065434Z</date>
+  <millis>1713686581934</millis>
+  <nanos>65434</nanos>
   <sequence>0</sequence>
   <logger>ru.ifmo.se.server.commands.Load</logger>
   <level>INFO</level>
@@ -14,9 +14,9 @@
   <message>Successfully loaded collection from file</message>
 </record>
 <record>
-  <date>2024-04-19T10:10:38.017171367Z</date>
-  <millis>1713521438017</millis>
-  <nanos>171367</nanos>
+  <date>2024-04-21T08:03:02.017461353Z</date>
+  <millis>1713686582017</millis>
+  <nanos>461353</nanos>
   <sequence>1</sequence>
   <logger>ru.ifmo.se.server.Main</logger>
   <level>INFO</level>
@@ -26,9 +26,9 @@
   <message>initialized socket</message>
 </record>
 <record>
-  <date>2024-04-19T10:10:48.373758665Z</date>
-  <millis>1713521448373</millis>
-  <nanos>758665</nanos>
+  <date>2024-04-21T08:03:02.190021546Z</date>
+  <millis>1713686582190</millis>
+  <nanos>21546</nanos>
   <sequence>2</sequence>
   <logger>ru.ifmo.se.server.net.ConnectionManager</logger>
   <level>INFO</level>
@@ -38,279 +38,39 @@
   <message>Added new key</message>
 </record>
 <record>
-  <date>2024-04-19T10:10:50.269328235Z</date>
-  <millis>1713521450269</millis>
-  <nanos>328235</nanos>
+  <date>2024-04-21T08:03:06.960131127Z</date>
+  <millis>1713686586960</millis>
+  <nanos>131127</nanos>
   <sequence>3</sequence>
-  <logger>ru.ifmo.se.server.net.Reciever</logger>
-  <level>INFO</level>
-  <class>ru.ifmo.se.server.net.Reciever</class>
-  <method>recieve</method>
-  <thread>1</thread>
-  <message>Recieved a package</message>
-</record>
-<record>
-  <date>2024-04-19T10:10:50.289383410Z</date>
-  <millis>1713521450289</millis>
-  <nanos>383410</nanos>
-  <sequence>4</sequence>
-  <logger>ru.ifmo.se.server.commands.Info</logger>
-  <level>INFO</level>
-  <class>ru.ifmo.se.server.commands.Info</class>
-  <method>execute</method>
-  <thread>1</thread>
-  <message>got the info</message>
-</record>
-<record>
-  <date>2024-04-19T10:10:50.301671922Z</date>
-  <millis>1713521450301</millis>
-  <nanos>671922</nanos>
-  <sequence>5</sequence>
-  <logger>ru.ifmo.se.server.net.Sender</logger>
-  <level>INFO</level>
-  <class>ru.ifmo.se.server.net.Sender</class>
-  <method>send</method>
-  <thread>1</thread>
-  <message>package sent</message>
-</record>
-<record>
-  <date>2024-04-19T10:10:54.367280763Z</date>
-  <millis>1713521454367</millis>
-  <nanos>280763</nanos>
-  <sequence>6</sequence>
-  <logger>ru.ifmo.se.server.net.Reciever</logger>
-  <level>INFO</level>
-  <class>ru.ifmo.se.server.net.Reciever</class>
-  <method>recieve</method>
-  <thread>1</thread>
-  <message>Recieved a package</message>
-</record>
-<record>
-  <date>2024-04-19T10:10:54.413757627Z</date>
-  <millis>1713521454413</millis>
-  <nanos>757627</nanos>
-  <sequence>7</sequence>
-  <logger>ru.ifmo.se.server.commands.Show</logger>
-  <level>INFO</level>
-  <class>ru.ifmo.se.server.commands.Show</class>
-  <method>execute</method>
-  <thread>1</thread>
-  <message>got the collection elements</message>
-</record>
-<record>
-  <date>2024-04-19T10:10:54.418843692Z</date>
-  <millis>1713521454418</millis>
-  <nanos>843692</nanos>
-  <sequence>8</sequence>
-  <logger>ru.ifmo.se.server.net.Sender</logger>
-  <level>INFO</level>
-  <class>ru.ifmo.se.server.net.Sender</class>
-  <method>send</method>
-  <thread>1</thread>
-  <message>package sent</message>
-</record>
-<record>
-  <date>2024-04-19T10:10:56.418193147Z</date>
-  <millis>1713521456418</millis>
-  <nanos>193147</nanos>
-  <sequence>9</sequence>
-  <logger>ru.ifmo.se.server.net.Reciever</logger>
-  <level>INFO</level>
-  <class>ru.ifmo.se.server.net.Reciever</class>
-  <method>recieve</method>
-  <thread>1</thread>
-  <message>Recieved a package</message>
-</record>
-<record>
-  <date>2024-04-19T10:10:56.420430647Z</date>
-  <millis>1713521456420</millis>
-  <nanos>430647</nanos>
-  <sequence>10</sequence>
-  <logger>ru.ifmo.se.server.commands.Help</logger>
-  <level>INFO</level>
-  <class>ru.ifmo.se.server.commands.Help</class>
-  <method>execute</method>
-  <thread>1</thread>
-  <message>Got the commands.</message>
-</record>
-<record>
-  <date>2024-04-19T10:10:56.424578551Z</date>
-  <millis>1713521456424</millis>
-  <nanos>578551</nanos>
-  <sequence>11</sequence>
-  <logger>ru.ifmo.se.server.net.Sender</logger>
-  <level>INFO</level>
-  <class>ru.ifmo.se.server.net.Sender</class>
-  <method>send</method>
-  <thread>1</thread>
-  <message>package sent</message>
-</record>
-<record>
-  <date>2024-04-19T10:11:02.433653481Z</date>
-  <millis>1713521462433</millis>
-  <nanos>653481</nanos>
-  <sequence>12</sequence>
-  <logger>ru.ifmo.se.server.net.Reciever</logger>
-  <level>INFO</level>
-  <class>ru.ifmo.se.server.net.Reciever</class>
-  <method>recieve</method>
-  <thread>1</thread>
-  <message>Recieved a package</message>
-</record>
-<record>
-  <date>2024-04-19T10:11:02.476653706Z</date>
-  <millis>1713521462476</millis>
-  <nanos>653706</nanos>
-  <sequence>13</sequence>
-  <logger>ru.ifmo.se.server.commands.PrintHairColor</logger>
-  <level>INFO</level>
-  <class>ru.ifmo.se.server.commands.PrintHairColor</class>
-  <method>execute</method>
-  <thread>1</thread>
-  <message>Got sorted color list</message>
-</record>
-<record>
-  <date>2024-04-19T10:11:02.481540176Z</date>
-  <millis>1713521462481</millis>
-  <nanos>540176</nanos>
-  <sequence>14</sequence>
-  <logger>ru.ifmo.se.server.net.Sender</logger>
-  <level>INFO</level>
-  <class>ru.ifmo.se.server.net.Sender</class>
-  <method>send</method>
-  <thread>1</thread>
-  <message>package sent</message>
-</record>
-<record>
-  <date>2024-04-19T10:11:06.029583664Z</date>
-  <millis>1713521466029</millis>
-  <nanos>583664</nanos>
-  <sequence>15</sequence>
-  <logger>ru.ifmo.se.server.net.Reciever</logger>
-  <level>INFO</level>
-  <class>ru.ifmo.se.server.net.Reciever</class>
-  <method>recieve</method>
-  <thread>1</thread>
-  <message>Recieved a package</message>
-</record>
-<record>
-  <date>2024-04-19T10:11:06.032698983Z</date>
-  <millis>1713521466032</millis>
-  <nanos>698983</nanos>
-  <sequence>16</sequence>
-  <logger>ru.ifmo.se.server.commands.Show</logger>
-  <level>INFO</level>
-  <class>ru.ifmo.se.server.commands.Show</class>
-  <method>execute</method>
-  <thread>1</thread>
-  <message>got the collection elements</message>
-</record>
-<record>
-  <date>2024-04-19T10:11:06.037893519Z</date>
-  <millis>1713521466037</millis>
-  <nanos>893519</nanos>
-  <sequence>17</sequence>
-  <logger>ru.ifmo.se.server.net.Sender</logger>
-  <level>INFO</level>
-  <class>ru.ifmo.se.server.net.Sender</class>
-  <method>send</method>
-  <thread>1</thread>
-  <message>package sent</message>
-</record>
-<record>
-  <date>2024-04-19T10:11:09.819712582Z</date>
-  <millis>1713521469819</millis>
-  <nanos>712582</nanos>
-  <sequence>18</sequence>
-  <logger>ru.ifmo.se.server.net.Reciever</logger>
-  <level>INFO</level>
-  <class>ru.ifmo.se.server.net.Reciever</class>
-  <method>recieve</method>
-  <thread>1</thread>
-  <message>Recieved a package</message>
-</record>
-<record>
-  <date>2024-04-19T10:11:09.821236780Z</date>
-  <millis>1713521469821</millis>
-  <nanos>236780</nanos>
-  <sequence>19</sequence>
-  <logger>ru.ifmo.se.server.commands.Exit</logger>
-  <level>INFO</level>
-  <class>ru.ifmo.se.server.commands.Exit</class>
-  <method>execute</method>
-  <thread>1</thread>
-  <message>client disconnected</message>
-</record>
-<record>
-  <date>2024-04-19T10:11:09.822528581Z</date>
-  <millis>1713521469822</millis>
-  <nanos>528581</nanos>
-  <sequence>20</sequence>
-  <logger>ru.ifmo.se.server.net.Sender</logger>
-  <level>INFO</level>
-  <class>ru.ifmo.se.server.net.Sender</class>
-  <method>send</method>
-  <thread>1</thread>
-  <message>package sent</message>
-</record>
-<record>
-  <date>2024-04-19T10:11:10.139491792Z</date>
-  <millis>1713521470139</millis>
-  <nanos>491792</nanos>
-  <sequence>21</sequence>
-  <logger>ru.ifmo.se.server.net.ConnectionManager</logger>
-  <level>WARNING</level>
-  <class>ru.ifmo.se.server.net.ConnectionManager</class>
-  <method>run</method>
-  <thread>1</thread>
-  <message>client disconnected</message>
-</record>
-<record>
-  <date>2024-04-19T10:11:10.148169712Z</date>
-  <millis>1713521470148</millis>
-  <nanos>169712</nanos>
-  <sequence>22</sequence>
-  <logger>ru.ifmo.se.server.commands.Save</logger>
-  <level>INFO</level>
-  <class>ru.ifmo.se.server.commands.Save</class>
-  <method>execute</method>
-  <thread>1</thread>
-  <message>successfully saved collection to file</message>
-</record>
-<record>
-  <date>2024-04-19T10:11:15.306727371Z</date>
-  <millis>1713521475306</millis>
-  <nanos>727371</nanos>
-  <sequence>23</sequence>
   <logger>ru.ifmo.se.server.commands.EmergencySave</logger>
   <level>INFO</level>
   <class>ru.ifmo.se.server.commands.EmergencySave</class>
   <method>save</method>
-  <thread>13</thread>
+  <thread>14</thread>
   <message>emergency save...</message>
 </record>
 <record>
-  <date>2024-04-19T10:11:15.328624787Z</date>
-  <millis>1713521475328</millis>
-  <nanos>624787</nanos>
-  <sequence>24</sequence>
+  <date>2024-04-21T08:03:06.976156680Z</date>
+  <millis>1713686586976</millis>
+  <nanos>156680</nanos>
+  <sequence>4</sequence>
   <logger>ru.ifmo.se.server.commands.Save</logger>
   <level>INFO</level>
   <class>ru.ifmo.se.server.commands.Save</class>
   <method>execute</method>
-  <thread>13</thread>
+  <thread>14</thread>
   <message>successfully saved collection to file</message>
 </record>
 <record>
-  <date>2024-04-19T10:11:15.329678664Z</date>
-  <millis>1713521475329</millis>
-  <nanos>678664</nanos>
-  <sequence>25</sequence>
+  <date>2024-04-21T08:03:06.977104506Z</date>
+  <millis>1713686586977</millis>
+  <nanos>104506</nanos>
+  <sequence>5</sequence>
   <logger>ru.ifmo.se.server.commands.EmergencySave</logger>
   <level>INFO</level>
   <class>ru.ifmo.se.server.commands.EmergencySave</class>
   <method>save</method>
-  <thread>13</thread>
+  <thread>14</thread>
   <message>saved successfully</message>
 </record>
 </log>

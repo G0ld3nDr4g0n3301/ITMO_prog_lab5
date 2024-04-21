@@ -36,6 +36,9 @@ class HairColor extends AbstractField<Person, Color>{
             }
         }
         String input = CLIInputManager.ask("Enter the hair color: ");
+        if (input == null) {
+            return null;
+        }
         if(Validator.validateColor(input.toUpperCase())){
             return Color.valueOf(input.toUpperCase());
         }
