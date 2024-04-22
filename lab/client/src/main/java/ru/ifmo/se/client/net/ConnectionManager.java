@@ -148,6 +148,8 @@ public class ConnectionManager{
             }
             logger.info("Connected!");
             return null; */
+                logger.warning("server is unreachable");
+                EmergencyExit.execute();
             return null;
         } catch (IOException e){
             System.out.println(e);
