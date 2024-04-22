@@ -32,7 +32,9 @@ public class Help extends Command {
         Set<Commands> commandSet = Invoker.getCommands().keySet();
         String answer = "";
         for(Commands key : commandSet){
+            if(!Invoker.getClientForbidden().contains(key)){
             answer += Invoker.getCommands().get(key).getName() + " - " + Invoker.getCommands().get(key).getDescription() + "\n";
+            }
         }
         logger.info("Got the commands.");
         return new Request(400, answer);
