@@ -21,19 +21,43 @@ import ru.ifmo.se.server.commands.Save;
 
 public class ConnectionManager{
 
+    /**
+     * logger
+     */
     private static final Logger logger = Logger.getLogger(ConnectionManager.class.getName());
 
+    /**
+     * number of users connected
+     */
     private static int usersConnected = 0;
     
     static {
         logger.addHandler(LogFile.getHandler());
     }
     
+    /**
+     * server port
+     */
     public static Integer port = 32444;
+
+    /**
+     * server channel
+     */
     private static ServerSocketChannel socket;
+
+    /**
+     * connection timeout
+     */
     public static Integer timeout = 40;
+
+    /**
+     * selector to switch users
+     */
     private static Selector selector;
     
+    /**
+     * initialize the socket
+     */
     public static void initSocket() throws IOException {
         socket = ServerSocketChannel.open();
         socket.bind(new InetSocketAddress(port));
@@ -43,11 +67,19 @@ public class ConnectionManager{
 
     }
 
+    /**
+     * return numbers of connected users
+     * @return number of connected users
+     */
     public static int getUsersConnected() {
         return usersConnected;
     }
 
-
+    /**
+     * run user handler
+     * @return true if no errors encountered
+     * @throws IOException
+     */
     public static boolean run() throws IOException{
         
             selector.select();

@@ -19,13 +19,22 @@ import ru.ifmo.se.server.commands.Save;
 
 public class Reciever {
 
-    
+    /**
+     * logger
+     */
     private static final Logger logger = Logger.getLogger(Reciever.class.getName());
     
     static {
         logger.addHandler(LogFile.getHandler());
     }
     
+    /**
+     * recieve data from user
+     * @param key user
+     * @return User Request
+     * @throws SocketException
+     * @throws IOException
+     */
     public static Request recieve(SelectionKey key) throws SocketException, IOException {
             SocketChannel client = (SocketChannel) key.channel();
             client.configureBlocking(false);

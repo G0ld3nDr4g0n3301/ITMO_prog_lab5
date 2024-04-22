@@ -6,17 +6,39 @@ import ru.ifmo.se.common.collections.Person;
 
 public class Request implements Serializable{
     
+    /**
+     * Serial version UID to lower the risk of collisions
+     */
     private static final long serialVersionUID = 4234661872345L;
 
+    /**
+     * Type of Command to execute
+     */
     private Commands commandType;
 
     /**
      * status code 200 means Successfully performed an operation. 300 means "execute the command". 400 means "Your request has been performed, and please, execute this command". 404 means error in execution.
      */
     private Integer statusCode;
+
+    /**
+     * attached person
+     */
     private Person person = null;
+
+    /**
+     * Attached string
+     */
     private String msg = null;
+
+    /**
+     * attached integer
+     */
     private Integer id = null;
+
+    /**
+     * attached location
+     */
     private Location loc = null;
 
     {

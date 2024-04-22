@@ -20,19 +20,49 @@ import ru.ifmo.se.common.net.Request;
 
 public class ConnectionManager{
     
+    /**
+     * target port
+     */
     public static Integer port = 32444;
+
+    /**
+     * Target host
+     */
     public static String host = "localhost";
+
+    /**
+     * target socket
+     */
     private static Socket socket = null;
+
+    /**
+     * connection timeout
+     */
     public static Integer timeout = 40;
+
+    /**
+     * Output stream for connection with server
+     */
     private static OutputStream out;
+
+    /**
+     * Input stream for connection with server
+     */
     private static InputStream in;
+
+    /**
+     * Logger
+     */
     private static final Logger logger = Logger.getLogger(ConnectionManager.class.getName());
 
     static {
         logger.addHandler(LogFile.getHandler());
     }
 
-    
+    /**
+     * Initialize Socket
+     * @throws IOException
+     */
     public static void initSocket() throws IOException{
         socket = new Socket(host, port);
         //socket.connect(new InetSocketAddress(host, port));
@@ -40,12 +70,24 @@ public class ConnectionManager{
         in = socket.getInputStream();
     }
 
+
+    /**
+     * Close socket
+     * @throws IOException
+     */
     public static void close() throws IOException{
         if (!socket.isClosed()) {
             socket.close();
         }
     }
 
+
+    /**
+     * Send data to server
+     * @param request Request to send
+     * @return true if no errors encountered
+     * @throws IOException
+     */
     public static boolean send(Request request) throws IOException{
 
 
@@ -60,6 +102,10 @@ public class ConnectionManager{
         return false;
     }
 
+    /**
+     * Recieve Response from server
+     * @return Response
+     */
     public static Request recieve() {
         System.out.println("Recieving");
         if (socket == null ){
@@ -93,6 +139,10 @@ public class ConnectionManager{
         }
     }
 
+    /**
+     * Just returns socket.
+     * @return socket
+     */
     public static Socket getSocket(){
         return socket;
     }

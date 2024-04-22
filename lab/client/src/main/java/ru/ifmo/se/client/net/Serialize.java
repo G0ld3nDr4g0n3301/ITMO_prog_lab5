@@ -8,6 +8,11 @@ import ru.ifmo.se.common.net.Request;
 
 public class Serialize {
     
+    /**
+     * Serialize Request Object into bytes
+     * @param r Request
+     * @return bytes
+     */
     public static byte[] serializeRequest(Request r) {
         ByteArrayOutputStream byte_out = new ByteArrayOutputStream();
         try {

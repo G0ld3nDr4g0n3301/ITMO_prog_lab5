@@ -13,12 +13,22 @@ import ru.ifmo.se.server.LogFile;
 
 public class Sender {
     
+    /**
+     * logger
+     */
     private static final Logger logger = Logger.getLogger(Sender.class.getName());
 
     static {
         logger.addHandler(LogFile.getHandler());
     }
     
+    /**
+     * Send response to user
+     * @param key user
+     * @return true if no errors encountered
+     * @throws SocketException
+     * @throws IOException
+     */
     public static boolean send(SelectionKey key) throws SocketException,IOException{
 
         SocketChannel client = (SocketChannel) key.channel();

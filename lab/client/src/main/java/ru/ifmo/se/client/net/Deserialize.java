@@ -10,6 +10,11 @@ import ru.ifmo.se.common.net.Request;
 
 public class Deserialize {
 
+    /**
+     * Transform bytes to Request object
+     * @param bytes Array of server data
+     * @return Deserialized request
+     */
     public static Request deserializeRequest(byte[] bytes) {
         ByteArrayInputStream byte_in = new ByteArrayInputStream(bytes);
         int length = bytes.length - 54;
