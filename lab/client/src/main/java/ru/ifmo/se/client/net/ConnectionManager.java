@@ -136,7 +136,7 @@ public class ConnectionManager{
             return request;
         } catch (BufferUnderflowException e) {
             logger.warning("SERVER DISCONNECTED!!!(That might be either your connection problem, or server-side issue)");
-            boolean isConnected = false;
+            /*boolean isConnected = false;
             for (int tries = 0; tries < 5 && !isConnected; tries++) {
                 logger.info("Server doesn't respond.Retrying, try "+ tries +"...");
                 isConnected = Main.connect();
@@ -147,6 +147,7 @@ public class ConnectionManager{
                 return null;
             }
             logger.info("Connected!");
+            return null; */
             return null;
         } catch (IOException e){
             System.out.println(e);

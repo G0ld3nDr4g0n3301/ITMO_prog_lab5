@@ -22,13 +22,13 @@ public class EmergencySave {
         logger.info("emergency save...");        
         new Save("","").execute(null);
         logger.info("saved successfully");
-        Set<SelectionKey> keys = ConnectionManager.getKeys();
+        /*Set<SelectionKey> keys = ConnectionManager.getKeys();
         Iterator<SelectionKey> iter = keys.iterator();
         while (iter.hasNext()) {
             SelectionKey key = iter.next();
             key.cancel();
             iter.remove();
-        }
+        } */
         ConnectionManager.close();
         System.exit(0);
         } catch (IOException e){
