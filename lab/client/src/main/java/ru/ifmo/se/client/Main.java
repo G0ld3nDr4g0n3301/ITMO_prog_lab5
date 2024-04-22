@@ -20,6 +20,9 @@ public class Main {
     }
 
     public static void main(String[] args) {
+        if(args.length > 0 && Validator.validateInt(args[0])) {
+            ConnectionManager.setPort(Integer.parseInt(args[0]));
+        }
         boolean isConnected = false;
         for (int tries = 0; tries < 5 && !isConnected; tries++) {
             logger.info("Server doesn't respond.Retrying, try "+ tries +"...");
@@ -49,7 +52,7 @@ public class Main {
         }
 }
 
-    private static boolean connect() {
+    public static boolean connect() {
         try {
             Thread.sleep(200);
             ConnectionManager.initSocket();

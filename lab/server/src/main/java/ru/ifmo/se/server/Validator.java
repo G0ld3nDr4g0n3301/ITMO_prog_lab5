@@ -33,6 +33,14 @@ public class Validator {
         return true;
     }
     
+    public static boolean validateInt(String input){
+        try{
+            Integer.parseInt(input);
+            return true;
+        } catch (Exception e) {
+            return false;
+        }
+    }
     
     public static boolean checkEmpty(String input){
         if(input == ""){

@@ -16,6 +16,7 @@ import java.util.logging.Logger;
 
 import ru.ifmo.se.client.EmergencyExit;
 import ru.ifmo.se.client.LogFile;
+import ru.ifmo.se.client.Main;
 import ru.ifmo.se.common.net.Request;
 
 public class ConnectionManager{
@@ -68,6 +69,10 @@ public class ConnectionManager{
         //socket.connect(new InetSocketAddress(host, port));
         out = socket.getOutputStream();
         in = socket.getInputStream();
+    }
+
+    public static void setPort(int userPort) {
+        port = userPort;
     }
 
 
@@ -131,7 +136,17 @@ public class ConnectionManager{
             return request;
         } catch (BufferUnderflowException e) {
             logger.warning("SERVER DISCONNECTED!!!(That might be either your connection problem, or server-side issue)");
-            EmergencyExit.execute();
+            boolean isConnected = false;
+            for (int tries = 0; tries < 5 && !isConnected; tries++) {
+                logger.info("Server doesn't respond.Retrying, try "+ tries +"...");
+                isConnected = Main.connect();
+            }
+            if (!isConnected) {
+                logger.warning("server is unreachable");
+                EmergencyExit.execute();
+                return null;
+            }
+            logger.info("Connected!");
             return null;
         } catch (IOException e){
             System.out.println(e);

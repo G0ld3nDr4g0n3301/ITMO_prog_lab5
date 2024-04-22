@@ -100,6 +100,7 @@ public class ConnectionManager{
                     client.register(selector, SelectionKey.OP_READ);
                     usersConnected += 1;
                     logger.info("Added new key");
+                    logger.info("Now total " + usersConnected + " users");
                 } else if (key.isReadable()) {
                     Request request;
                     SocketChannel client = (SocketChannel) key.channel();
@@ -136,6 +137,10 @@ public class ConnectionManager{
     
     public static Selector getSelector(){
         return selector;
+    }
+
+    public static void setPort(int userPort){
+        port = userPort;
     }
 
     public static void close() throws IOException{

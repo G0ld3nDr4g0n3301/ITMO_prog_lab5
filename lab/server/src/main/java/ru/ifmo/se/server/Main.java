@@ -26,6 +26,9 @@ public class Main {
         if(args.length > 0){
             Invoker.setCurrMainFile(new File(args[0]));
         }
+        if(args.length > 1 && Validator.validateInt(args[0])) {
+            ConnectionManager.setPort(Integer.parseInt(args[0]));
+        }
         new Load(null,null).execute(new Request(200));
         Signal.handle(new Signal("INT"), signal -> EmergencySave.save());
         try{
