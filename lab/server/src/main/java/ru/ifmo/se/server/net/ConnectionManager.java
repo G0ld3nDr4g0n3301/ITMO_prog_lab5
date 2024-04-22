@@ -9,6 +9,7 @@ import java.nio.channels.Selector;
 import java.nio.channels.ServerSocketChannel;
 import java.nio.channels.SocketChannel;
 import java.util.Iterator;
+import java.util.Set;
 import java.util.logging.Logger;
 
 import ru.ifmo.se.common.net.Commands;
@@ -73,6 +74,15 @@ public class ConnectionManager{
      */
     public static int getUsersConnected() {
         return usersConnected;
+    }
+
+    public static Set<SelectionKey> getKeys(){
+        try {
+        selector.select();
+        return selector.selectedKeys();
+        } catch (IOException e){
+            return null;
+        }
     }
 
     /**
