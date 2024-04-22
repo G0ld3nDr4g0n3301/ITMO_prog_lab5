@@ -23,6 +23,7 @@ public class Main {
         if(args.length > 0 && Validator.validateInt(args[0])) {
             ConnectionManager.setPort(Integer.parseInt(args[0]));
         }
+        System.out.println(ConnectionManager.getPort());
         boolean isConnected = false;
         for (int tries = 0; tries < 5 && !isConnected; tries++) {
             logger.info("Server doesn't respond.Retrying, try "+ tries +"...");

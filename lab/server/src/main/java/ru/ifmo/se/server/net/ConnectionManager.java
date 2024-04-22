@@ -152,4 +152,8 @@ public class ConnectionManager{
         return socket;
     }
 
+    public static int getPort() {
+        return port;
+    }
+
 }
