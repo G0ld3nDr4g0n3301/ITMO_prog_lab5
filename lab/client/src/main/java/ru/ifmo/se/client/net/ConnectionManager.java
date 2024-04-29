@@ -7,7 +7,9 @@ import java.io.InputStream;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.OutputStream;
+import java.net.InetSocketAddress;
 import java.net.Socket;
+import java.net.SocketAddress;
 import java.nio.BufferOverflowException;
 import java.nio.BufferUnderflowException;
 import java.nio.ByteBuffer;
@@ -65,10 +67,12 @@ public class ConnectionManager{
      * @throws IOException
      */
     public static void initSocket() throws IOException{
-        socket = new Socket(host, port);
-        //socket.connect(new InetSocketAddress(host, port));
         out = socket.getOutputStream();
         in = socket.getInputStream();
+        if (out == null || in == null){
+            throw new IOException("Not connected");
+        }
+        System.out.println("Socket = " + socket.getRemoteSocketAddress());
     }
 
     public static void setPort(int userPort) {
@@ -86,6 +90,21 @@ public class ConnectionManager{
         }
     }
 
+    public static void setSocket(Socket s) {
+        socket = s;
+    }
+
+    public static String getHost() {
+        return host;
+    }
+
+    public static void setOut(OutputStream o) {
+        out = o;
+    }
+
+    public static void setIn(InputStream i){
+        in = i;
+    }
 
     /**
      * Send data to server
@@ -136,10 +155,16 @@ public class ConnectionManager{
             return request;
         } catch (BufferUnderflowException e) {
             logger.warning("SERVER DISCONNECTED!!!(That might be either your connection problem, or server-side issue)");
-            /*boolean isConnected = false;
+            try {
+            socket.close();
+            } catch (IOException io){
+                // handle
+            }
+            boolean isConnected = false;
             for (int tries = 0; tries < 5 && !isConnected; tries++) {
                 logger.info("Server doesn't respond.Retrying, try "+ tries +"...");
                 isConnected = Main.connect();
+                System.out.println(isConnected);
             }
             if (!isConnected) {
                 logger.warning("server is unreachable");
@@ -147,10 +172,10 @@ public class ConnectionManager{
                 return null;
             }
             logger.info("Connected!");
-            return null; */
-                logger.warning("server is unreachable");
-                EmergencyExit.execute();
-            return null;
+            return null; 
+            //    logger.warning("server is unreachable");
+            //    EmergencyExit.execute();
+            //return null;
         } catch (IOException e){
             System.out.println(e);
             return null;

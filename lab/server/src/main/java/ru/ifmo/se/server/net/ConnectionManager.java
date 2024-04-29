@@ -155,6 +155,7 @@ public class ConnectionManager{
 
     public static void close() throws IOException{
         socket.close();
+        
     }
 
 

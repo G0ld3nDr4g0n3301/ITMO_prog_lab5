@@ -2,6 +2,7 @@ package ru.ifmo.se.client;
 
 import java.io.IOException;
 import java.io.Serializable;
+import java.net.Socket;
 import java.util.logging.Logger;
 
 import ru.ifmo.se.common.collections.Location;
@@ -56,8 +57,9 @@ public class Main {
     public static boolean connect() {
         try {
             Thread.sleep(200);
-            ConnectionManager.initSocket();
-            return true;
+        ConnectionManager.setSocket(new Socket(ConnectionManager.getHost(), ConnectionManager.getPort()));
+        ConnectionManager.initSocket();
+        return true;
         } catch (IOException | InterruptedException e){
             System.out.println(e.getMessage());
         }
