@@ -23,8 +23,8 @@ public class Sender implements Runnable{
      */
     private static final Logger logger = Logger.getLogger(Sender.class.getName());
 
-    private volatile SelectionKey key;
-    private volatile Selector selector;
+    private SelectionKey key;
+    private Selector selector;
     
     public Sender(SelectionKey key, Selector selector){
         this.selector = selector;

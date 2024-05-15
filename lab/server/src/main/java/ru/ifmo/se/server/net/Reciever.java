@@ -27,8 +27,8 @@ public class Reciever implements Runnable{
     private static final Logger logger = Logger.getLogger(Reciever.class.getName());
 
 
-    private volatile SelectionKey key;
-    private volatile Selector selector;
+    private SelectionKey key;
+    private Selector selector;
 
     
     static {

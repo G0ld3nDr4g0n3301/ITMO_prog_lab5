@@ -107,7 +107,7 @@ public class ConnectionManager{
      * @throws IOException
      */
     public static boolean run() throws IOException{
-        
+            SelectionKey new_key; 
             selector.select();
             Iterator<SelectionKey> keys = selector.selectedKeys().iterator();
             while (keys.hasNext()) {
@@ -128,11 +128,17 @@ public class ConnectionManager{
                     logger.info("Added new key");
                     logger.info("Now total " + usersConnected + " users");
                 } else if (key.isReadable()) {
-                    Runnable reciever = new Reciever(key,selector);
+                    SocketChannel client = (SocketChannel) key.channel();
+                    new_key = client.register(selector, SelectionKey.OP_CONNECT);
+                    Runnable reciever = new Reciever(new_key,selector);
                     //recievePool.execute(reciever);
                     reciever.run();
                 }else if (key.isWritable()){
-                    Runnable sender = new Sender(key, selector);
+                    Request request = (Request) key.attachment();
+                    SocketChannel client = (SocketChannel) key.channel();
+                    new_key = client.register(selector, SelectionKey.OP_CONNECT);
+                    new_key.attach(request);
+                    Runnable sender = new Sender(new_key, selector);
                     sendPool.execute(sender);
                 } 
             } catch (SocketException | StreamCorruptedException e) {
