@@ -121,9 +121,8 @@ public class ConnectionManager{
                     reciever.run();
                 }else if (key.isWritable()){
                     SocketChannel client = (SocketChannel) key.channel();
-                    Sender.send(key);
-                    client = (SocketChannel) key.channel();
-                    client.register(selector, SelectionKey.OP_READ);
+                    Sender sender = new Sender(key, selector);
+                    sender.run();
                 } 
             } catch (SocketException | StreamCorruptedException e) {
                 // ignore

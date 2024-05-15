@@ -7,6 +7,7 @@ import java.io.StreamCorruptedException;
 import java.net.SocketException;
 import java.nio.ByteBuffer;
 import java.nio.channels.SelectionKey;
+import java.nio.channels.Selector;
 import java.nio.channels.SocketChannel;
 import java.util.logging.Logger;
 
@@ -22,9 +23,19 @@ public class Sender {
      */
     private static final Logger logger = Logger.getLogger(Sender.class.getName());
 
+    private SelectionKey key;
+    private Selector selector;
+    
+    public Sender(SelectionKey key, Selector selector){
+        this.selector = selector;
+        this.key = key;
+    } 
+
     static {
         logger.addHandler(LogFile.getHandler());
     }
+
+
     
     /**
      * Send response to user
@@ -33,7 +44,7 @@ public class Sender {
      * @throws SocketException
      * @throws IOException
      */
-    public static boolean send(SelectionKey key){
+    public void run(){
         try{
             SocketChannel client = (SocketChannel) key.channel();
             client.configureBlocking(false);
@@ -54,7 +65,8 @@ public class Sender {
             client.write(buffer);
 
             logger.info("package sent");
-            return true;
+            
+            client.register(selector, SelectionKey.OP_READ);
 
         } catch (SocketException | StreamCorruptedException e) {
             logger.warning("client disconnected");
@@ -63,10 +75,8 @@ public class Sender {
                 new Save("","").execute(new Request(Commands.SAVE));
             }
             key.cancel();
-            return false;
         } catch (IOException e){
             //handle
-            return false;
         }
     }
 }

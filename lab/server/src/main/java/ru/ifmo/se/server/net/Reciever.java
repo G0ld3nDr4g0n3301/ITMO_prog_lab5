@@ -67,20 +67,14 @@ public class Reciever implements Runnable{
             //ByteArrayInputStream bi = new ByteArrayInputStream(bigBuffer.array());
             //ObjectInputStream oi = new ObjectInputStream(bi);
             request = Deserialize.deserializeRequest(bigBuffer.array());
+            logger.info("Recieved a package");
+            
             if (request == null) {
                 logger.warning("package is null!");
-                throw new SocketException();
             }
-            logger.info("Recieved a package");
-            if (request == null) {
-                throw new IOException();
-            }
-            Request answerRequest = Invoker.execute(request);
-            SelectionKey keyNew = client.register(selector, SelectionKey.OP_WRITE);
-            if(answerRequest != null){
-                answerRequest.setId(ConnectionManager.getUsersConnected());
-            }
-            keyNew.attach(answerRequest);
+            
+            Handler handler = new Handler(key, selector, request);
+            handler.run();
 
         } catch (SocketException | StreamCorruptedException e) {
             logger.warning("client disconnected");
