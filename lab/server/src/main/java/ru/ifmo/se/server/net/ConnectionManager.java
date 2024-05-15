@@ -10,6 +10,8 @@ import java.nio.channels.ServerSocketChannel;
 import java.nio.channels.SocketChannel;
 import java.util.Iterator;
 import java.util.Set;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 import java.util.logging.Logger;
 
 import ru.ifmo.se.common.net.Commands;
@@ -21,6 +23,11 @@ import ru.ifmo.se.server.commands.Save;
 
 
 public class ConnectionManager{
+
+    private static final ExecutorService recievePool = Executors.newCachedThreadPool();
+    private static final ExecutorService sendPool = Executors.newCachedThreadPool();
+    private static final ExecutorService handlePool = Executors.newFixedThreadPool(10);
+    
 
     /**
      * logger
@@ -76,6 +83,10 @@ public class ConnectionManager{
         return usersConnected;
     }
 
+    public static synchronized void addToHandlePool(Runnable task){
+        handlePool.execute(task);
+    }
+
 
     public static void decrementUsersConnected(){
         usersConnected -= 1;
@@ -118,11 +129,11 @@ public class ConnectionManager{
                     logger.info("Now total " + usersConnected + " users");
                 } else if (key.isReadable()) {
                     Runnable reciever = new Reciever(key,selector);
+                    //recievePool.execute(reciever);
                     reciever.run();
                 }else if (key.isWritable()){
-                    SocketChannel client = (SocketChannel) key.channel();
-                    Sender sender = new Sender(key, selector);
-                    sender.run();
+                    Runnable sender = new Sender(key, selector);
+                    sendPool.execute(sender);
                 } 
             } catch (SocketException | StreamCorruptedException e) {
                 // ignore

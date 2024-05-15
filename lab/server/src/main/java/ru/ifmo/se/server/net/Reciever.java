@@ -27,8 +27,8 @@ public class Reciever implements Runnable{
     private static final Logger logger = Logger.getLogger(Reciever.class.getName());
 
 
-    private SelectionKey key;
-    private Selector selector;
+    private volatile SelectionKey key;
+    private volatile Selector selector;
 
     
     static {
@@ -73,7 +73,7 @@ public class Reciever implements Runnable{
                 logger.warning("package is null!");
             }
             
-            Handler handler = new Handler(key, selector, request);
+            Runnable handler = new Handler(key, selector, request);
             handler.run();
 
         } catch (SocketException | StreamCorruptedException e) {

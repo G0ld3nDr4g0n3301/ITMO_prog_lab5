@@ -16,15 +16,15 @@ import ru.ifmo.se.common.net.Request;
 import ru.ifmo.se.server.LogFile;
 import ru.ifmo.se.server.commands.Save;
 
-public class Sender {
+public class Sender implements Runnable{
     
     /**
      * logger
      */
     private static final Logger logger = Logger.getLogger(Sender.class.getName());
 
-    private SelectionKey key;
-    private Selector selector;
+    private volatile SelectionKey key;
+    private volatile Selector selector;
     
     public Sender(SelectionKey key, Selector selector){
         this.selector = selector;
@@ -64,7 +64,7 @@ public class Sender {
             buffer.flip();
             client.write(buffer);
 
-            logger.info("package sent");
+            logger.info("package sent in " + Thread.currentThread().getName());
             
             client.register(selector, SelectionKey.OP_READ);
 

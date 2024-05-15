@@ -16,9 +16,9 @@ import ru.ifmo.se.server.commands.Save;
 
 public class Handler implements Runnable {
     
-    private SelectionKey key;
-    private Selector selector;
-    private Request request;
+    private volatile SelectionKey key;
+    private volatile Selector selector;
+    private volatile Request request;
     private static final Logger logger = Logger.getLogger(Handler.class.getName());
 
     static {
