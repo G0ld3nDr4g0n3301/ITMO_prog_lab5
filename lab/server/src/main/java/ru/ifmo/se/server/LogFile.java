@@ -6,9 +6,9 @@ import java.util.logging.Handler;
 
 public class LogFile {
 
-    private static Handler fileHandler;
+    private static volatile Handler fileHandler;
 
-    static {
+    private static void createHandler() {
         try{
             fileHandler = new FileHandler("java.log");
         } catch (IOException e){
@@ -17,7 +17,10 @@ public class LogFile {
         }
     }
 
-    public static Handler getHandler(){
+    public static synchronized Handler getHandler(){
+        if(fileHandler == null){
+            createHandler();
+        }
         return fileHandler;
     }
 }

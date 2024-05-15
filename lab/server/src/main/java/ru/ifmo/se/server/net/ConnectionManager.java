@@ -76,6 +76,11 @@ public class ConnectionManager{
         return usersConnected;
     }
 
+
+    public static void decrementUsersConnected(){
+        usersConnected -= 1;
+    }
+
     public static Set<SelectionKey> getKeys(){
         try {
         selector.select();
@@ -112,32 +117,16 @@ public class ConnectionManager{
                     logger.info("Added new key");
                     logger.info("Now total " + usersConnected + " users");
                 } else if (key.isReadable()) {
-                    Request request;
+                    Runnable reciever = new Reciever(key,selector);
+                    reciever.run();
+                }else if (key.isWritable()){
                     SocketChannel client = (SocketChannel) key.channel();
-                    request = Reciever.recieve(key);
-                    if (request == null) {
-                        return false;
-                    }
-                    Request answerRequest = Invoker.execute(request);
-                    SelectionKey keyNew = client.register(selector, SelectionKey.OP_WRITE);
-                    if(answerRequest != null){
-                        answerRequest.setId(usersConnected);
-                    }
-                    keyNew.attach(answerRequest);
-                
-                    //SocketChannel client = (SocketChannel) key.channel();
                     Sender.send(key);
                     client = (SocketChannel) key.channel();
                     client.register(selector, SelectionKey.OP_READ);
                 } 
             } catch (SocketException | StreamCorruptedException e) {
-                logger.warning("client disconnected");
-                usersConnected -= 1;
-                if (usersConnected == 0) {
-                    new Save("","").execute(new Request(Commands.SAVE));
-                }
-                key.cancel();
-                return false;
+                // ignore
             } 
             }
         return true;

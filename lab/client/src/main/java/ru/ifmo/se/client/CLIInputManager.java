@@ -1,7 +1,6 @@
 package ru.ifmo.se.client;
 
 import java.util.Scanner;
-import java.util.logging.Handler;
 import java.util.logging.Logger;
 
 /**

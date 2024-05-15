@@ -4,9 +4,11 @@ import java.io.ByteArrayInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.ObjectInputStream;
+import java.io.StreamCorruptedException;
 import java.net.SocketException;
 import java.nio.ByteBuffer;
 import java.nio.channels.SelectionKey;
+import java.nio.channels.Selector;
 import java.nio.channels.SocketChannel;
 import java.util.Arrays;
 import java.util.logging.Logger;
@@ -17,17 +19,28 @@ import ru.ifmo.se.server.Invoker;
 import ru.ifmo.se.server.LogFile;
 import ru.ifmo.se.server.commands.Save;
 
-public class Reciever {
+public class Reciever implements Runnable{
 
     /**
      * logger
      */
     private static final Logger logger = Logger.getLogger(Reciever.class.getName());
+
+
+    private SelectionKey key;
+    private Selector selector;
+
     
     static {
         logger.addHandler(LogFile.getHandler());
     }
-    
+
+    public Reciever(SelectionKey key, Selector selector){
+        this.key = key;
+        this.selector = selector;
+    }
+
+
     /**
      * recieve data from user
      * @param key user
@@ -35,7 +48,11 @@ public class Reciever {
      * @throws SocketException
      * @throws IOException
      */
-    public static Request recieve(SelectionKey key) throws SocketException, IOException {
+    public void run(){
+
+        try {
+
+            Request request;
             SocketChannel client = (SocketChannel) key.channel();
             client.configureBlocking(false);
             
@@ -49,13 +66,31 @@ public class Reciever {
             bigBuffer.put(buffer.array());
             //ByteArrayInputStream bi = new ByteArrayInputStream(bigBuffer.array());
             //ObjectInputStream oi = new ObjectInputStream(bi);
-            Request rq =  Deserialize.deserializeRequest(bigBuffer.array());
-            if (rq == null) {
+            request = Deserialize.deserializeRequest(bigBuffer.array());
+            if (request == null) {
                 logger.warning("package is null!");
                 throw new SocketException();
             }
             logger.info("Recieved a package");
-            return rq;
-        
+            if (request == null) {
+                throw new IOException();
+            }
+            Request answerRequest = Invoker.execute(request);
+            SelectionKey keyNew = client.register(selector, SelectionKey.OP_WRITE);
+            if(answerRequest != null){
+                answerRequest.setId(ConnectionManager.getUsersConnected());
+            }
+            keyNew.attach(answerRequest);
+
+        } catch (SocketException | StreamCorruptedException e) {
+            logger.warning("client disconnected");
+            ConnectionManager.decrementUsersConnected();
+            if (ConnectionManager.getUsersConnected() == 0) {
+                new Save("","").execute(new Request(Commands.SAVE));
+            }
+            key.cancel();
+        } catch (IOException e) {
+            //ignore
+        }
     }
 }
