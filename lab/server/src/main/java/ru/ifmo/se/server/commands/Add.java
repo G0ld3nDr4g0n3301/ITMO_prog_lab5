@@ -8,6 +8,7 @@ import ru.ifmo.se.server.collections.Id;
 import ru.ifmo.se.server.collections.CreationDate;
 
 import java.io.IOException;
+import java.util.concurrent.locks.ReadWriteLock;
 import java.util.logging.FileHandler;
 import java.util.logging.Logger;
 
@@ -25,7 +26,7 @@ public class Add extends Command{
     private static final Logger logger = Logger.getLogger(Add.class.getName());
 
     static {
-            logger.addHandler(LogFile.getHandler());
+        logger.addHandler(LogFile.getHandler());
     }
     
     public Add(String name, String desc){
@@ -40,6 +41,8 @@ public class Add extends Command{
             logger.warning("No person specified in request");
             return null;
         }
+        ReadWriteLock lock = CollectionManager.getLock();
+        lock.writeLock().lock();
         person.setId(new Id().create(null));
         person.setCreationDate(new CreationDate().create(null));
         if (!Validator.validatePerson(person)) {
@@ -47,6 +50,7 @@ public class Add extends Command{
             return null;
         }
         CollectionManager.add(person);
+        lock.writeLock().unlock();
         Request request = new Request(Commands.RESPONSE, 200);
         logger.info("Successfully added person to collection");
         return request;

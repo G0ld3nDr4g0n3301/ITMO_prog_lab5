@@ -45,10 +45,8 @@ public class CollectionManager {
      * @param p 
      */
     public static void add(Person p){
-        lock.writeLock().lock();
         collection.add(p);
         sort();
-        lock.writeLock().unlock();
     }
     
     /**

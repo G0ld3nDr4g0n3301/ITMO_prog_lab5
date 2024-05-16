@@ -69,9 +69,6 @@ public class Reciever implements Runnable{
             request = Deserialize.deserializeRequest(bigBuffer.array());
             logger.info("Recieved a package " + request.toString());
             
-            if (request == null) {
-                logger.warning("package is null!");
-            }
             
             Runnable handler = new Handler(key, selector, request);
             ConnectionManager.addToHandlePool(handler);

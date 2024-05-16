@@ -27,7 +27,7 @@ public class ConnectionManager{
 
     private static final ExecutorService recievePool = Executors.newCachedThreadPool();
     private static final ExecutorService sendPool = Executors.newCachedThreadPool();
-    private static final ExecutorService handlePool = Executors.newFixedThreadPool(10);
+    private static final ExecutorService handlePool = Executors.newFixedThreadPool(50);
     
 
     /**
@@ -38,7 +38,7 @@ public class ConnectionManager{
     /**
      * number of users connected
      */
-    private static int usersConnected = 0;
+    private volatile static int usersConnected = 0;
     
     static {
         logger.addHandler(LogFile.getHandler());
