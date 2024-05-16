@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.io.StreamCorruptedException;
 import java.net.InetSocketAddress;
 import java.net.SocketException;
+import java.nio.channels.CancelledKeyException;
 import java.nio.channels.SelectionKey;
 import java.nio.channels.Selector;
 import java.nio.channels.ServerSocketChannel;
@@ -133,14 +134,17 @@ public class ConnectionManager{
                     Runnable reciever = new Reciever(new_key,selector);
                     recievePool.execute(reciever);
                 }else if (key.isWritable()){
-                    Request request = (Request) key.attachment();
+                    Object request = key.attachment();
+                    if(request == null){
+                        continue;
+                    }
                     SocketChannel client = (SocketChannel) key.channel();
                     new_key = client.register(selector, SelectionKey.OP_CONNECT);
                     new_key.attach(request);
                     Runnable sender = new Sender(new_key, selector);
                     sendPool.execute(sender);
                 } 
-            } catch (SocketException | StreamCorruptedException e) {
+            } catch (SocketException | StreamCorruptedException | CancelledKeyException e) {
                 // ignore
             } 
             }

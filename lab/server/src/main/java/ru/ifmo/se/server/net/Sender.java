@@ -29,7 +29,7 @@ public class Sender implements Runnable{
     public Sender(SelectionKey key, Selector selector){
         this.selector = selector;
         this.key = key;
-    } 
+    }
 
     static {
         logger.addHandler(LogFile.getHandler());
@@ -64,7 +64,7 @@ public class Sender implements Runnable{
             buffer.flip();
             client.write(buffer);
 
-            logger.info("package sent in " + Thread.currentThread().getName());
+            logger.info("package sent");
             
             client.register(selector, SelectionKey.OP_READ);
 

@@ -37,10 +37,10 @@ public class Handler implements Runnable {
             SocketChannel client = (SocketChannel) key.channel();
 
             Request answerRequest = Invoker.execute(request);
-            SelectionKey keyNew = client.register(selector, SelectionKey.OP_WRITE);
             if(answerRequest != null){
                 answerRequest.setId(ConnectionManager.getUsersConnected());
             }
+            SelectionKey keyNew = client.register(selector, SelectionKey.OP_WRITE);
             keyNew.attach(answerRequest);
         } catch (IOException e) {
         }
