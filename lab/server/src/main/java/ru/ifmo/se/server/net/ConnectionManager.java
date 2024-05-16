@@ -131,8 +131,7 @@ public class ConnectionManager{
                     SocketChannel client = (SocketChannel) key.channel();
                     new_key = client.register(selector, SelectionKey.OP_CONNECT);
                     Runnable reciever = new Reciever(new_key,selector);
-                    //recievePool.execute(reciever);
-                    reciever.run();
+                    recievePool.execute(reciever);
                 }else if (key.isWritable()){
                     Request request = (Request) key.attachment();
                     SocketChannel client = (SocketChannel) key.channel();
