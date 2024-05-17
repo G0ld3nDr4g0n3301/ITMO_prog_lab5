@@ -10,6 +10,7 @@ import sun.misc.Signal;
 import ru.ifmo.se.server.commands.EmergencySave;
 import ru.ifmo.se.server.commands.Load;
 import ru.ifmo.se.server.commands.Save;
+import ru.ifmo.se.server.db.DBConnection;
 import ru.ifmo.se.server.net.ConnectionManager;
 import ru.ifmo.se.common.net.Commands;
 import ru.ifmo.se.common.net.Request;
@@ -32,6 +33,9 @@ public class Main {
         System.out.println(ConnectionManager.getPort());
         new Load(null,null).execute(new Request(200));
         Signal.handle(new Signal("INT"), signal -> EmergencySave.save());
+        if(DBConnection.connect() != null) {
+            System.out.println("WEEEE ARE THE CHAAAMPIOONS");
+        }
         try{
             ConnectionManager.initSocket();
             logger.info("initialized socket");
