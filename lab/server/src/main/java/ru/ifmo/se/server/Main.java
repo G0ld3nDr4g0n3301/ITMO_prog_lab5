@@ -3,6 +3,10 @@ package ru.ifmo.se.server;
 import java.io.File;
 import java.io.IOException;
 import java.net.SocketException;
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -20,9 +24,17 @@ public class Main {
     private static final Logger logger = Logger.getLogger(Main.class.getName());
 
     static {
-
-        if(DBConnection.connect() != null) {
+        Connection connection = DBConnection.connect();
+        if(connection != null) {
             System.out.println("WEEEE ARE THE CHAAAMPIOONS");
+        }
+        try {
+            Statement query = connection.createStatement();
+            ResultSet set = query.executeQuery("SELECT * FROM how_useful_for;");
+            System.out.println(set.getString(0));
+        } catch (SQLException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
         }
         logger.addHandler(LogFile.getHandler());
     }

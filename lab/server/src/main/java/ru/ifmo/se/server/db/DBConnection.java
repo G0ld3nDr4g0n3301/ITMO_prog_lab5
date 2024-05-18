@@ -23,7 +23,7 @@ public class DBConnection {
         Properties config = new Properties();
         try {
             config.load(new FileInputStream("db.properties"));
-            DB_URL = config.getProperty("url");
+            DB_URL = "jdbc:postgresql://localhost:5432/studs";
             DB_LOGIN = config.getProperty("login");
             DB_PASS = config.getProperty("password");
             Properties info = new Properties();
@@ -39,7 +39,12 @@ public class DBConnection {
 
     public static Connection connect(){
         try {
-            return new org.postgresql.Driver().connect(DB_URL, info);
+            if (!DB_URL.startsWith("jdbc:postgresql:")){
+                System.out.println("KDLSJHFLKDSJBFKLDJSFKSDJFLKJSDBLFK");
+                System.out.println(DB_URL);
+            }
+            Class.forName("org.postgresql.Driver");
+            return DriverManager.getConnection(DB_URL, DB_LOGIN, DB_PASS);
         } catch (SQLException e) {
             LogFile.warning(e.getMessage());
             Enumeration<java.sql.Driver> en = DriverManager.getDrivers();
@@ -48,6 +53,10 @@ public class DBConnection {
             }
             System.out.println();
             System.out.println("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA");
+            return null;
+        } catch (ClassNotFoundException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
             return null;
         } 
     }
