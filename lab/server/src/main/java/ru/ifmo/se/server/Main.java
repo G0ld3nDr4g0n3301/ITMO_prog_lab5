@@ -20,6 +20,10 @@ public class Main {
     private static final Logger logger = Logger.getLogger(Main.class.getName());
 
     static {
+
+        if(DBConnection.connect() != null) {
+            System.out.println("WEEEE ARE THE CHAAAMPIOONS");
+        }
         logger.addHandler(LogFile.getHandler());
     }
     
@@ -33,9 +37,7 @@ public class Main {
         System.out.println(ConnectionManager.getPort());
         new Load(null,null).execute(new Request(200));
         Signal.handle(new Signal("INT"), signal -> EmergencySave.save());
-        if(DBConnection.connect() != null) {
-            System.out.println("WEEEE ARE THE CHAAAMPIOONS");
-        }
+        
         try{
             ConnectionManager.initSocket();
             logger.info("initialized socket");
