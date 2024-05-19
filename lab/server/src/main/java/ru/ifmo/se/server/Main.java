@@ -14,6 +14,7 @@ import sun.misc.Signal;
 import ru.ifmo.se.server.commands.EmergencySave;
 import ru.ifmo.se.server.commands.Load;
 import ru.ifmo.se.server.commands.Save;
+import ru.ifmo.se.server.db.CreateTables;
 import ru.ifmo.se.server.db.DBConnection;
 import ru.ifmo.se.server.net.ConnectionManager;
 import ru.ifmo.se.common.net.Commands;
@@ -32,6 +33,7 @@ public class Main {
             Statement query = connection.createStatement();
             ResultSet set = query.executeQuery("SELECT * FROM how_useful_for;");
             System.out.println(set.getString(0));
+            CreateTables.create(connection);
         } catch (SQLException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
