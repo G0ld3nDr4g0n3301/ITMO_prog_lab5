@@ -2,8 +2,10 @@ package ru.ifmo.se.server.auth;
 
 import java.beans.Statement;
 import java.io.IOException;
+import java.nio.channels.ClosedChannelException;
 import java.nio.channels.SelectionKey;
 import java.nio.channels.Selector;
+import java.nio.channels.SocketChannel;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -39,16 +41,27 @@ public class AuthManager implements Runnable {
 
     public void run(){
         try {
-            ResultSet userId = connection.createStatement().executeQuery("SELECT id FROM users WHERE login = " + login);
+            ResultSet userId = connection.createStatement().executeQuery("SELECT id,hash,salt FROM users WHERE login = " + login);
             boolean hasRows = userId.next();
             if (!hasRows){
                 register();
             }
+            userId = connection.createStatement().executeQuery("SELECT id,hash,salt FROM users WHERE login = " + login);
+            userId.next();
             Integer id = userId.getInt(1);
-            request.setOwnerId(id);
-            Runnable handler = new Handler(key, selector, request);
-            ConnectionManager.addToHandlePool(handler);
-        } catch (SQLException e) {
+            String userHash = userId.getString(2);
+            String userSalt = userId.getString(3);
+            if (CompareHash.compare(password, userSalt, pepper, userHash)) {
+                request.setOwnerId(id);
+                Runnable handler = new Handler(key, selector, request);
+                ConnectionManager.addToHandlePool(handler);
+            }
+            SocketChannel client = (SocketChannel) key.channel();
+            Request errorRequest = new Request(404);
+            errorRequest.setMsg("Wrong password.");
+            SelectionKey keyNew = client.register(selector, SelectionKey.OP_WRITE);
+            keyNew.attach(errorRequest);
+        } catch (SQLException | ClosedChannelException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
         }
