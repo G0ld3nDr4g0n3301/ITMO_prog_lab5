@@ -23,7 +23,7 @@ public class DBConnection {
         Properties config = new Properties();
         try {
             config.load(new FileInputStream("db.properties"));
-            DB_URL = "jdbc:postgresql://localhost:5432/studs";
+            DB_URL = "jdbc:postgresql://pg/studs";
             DB_LOGIN = config.getProperty("login");
             DB_PASS = config.getProperty("password");
             Properties info = new Properties();
