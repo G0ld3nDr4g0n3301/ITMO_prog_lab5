@@ -25,31 +25,19 @@ public class Main {
     private static final Logger logger = Logger.getLogger(Main.class.getName());
 
     static {
-        Connection connection = DBConnection.connect();
-        if(connection != null) {
-            System.out.println("WEEEE ARE THE CHAAAMPIOONS");
-        }
-        try {
-            Statement query = connection.createStatement();
-            ResultSet set = query.executeQuery("SELECT * FROM how_useful_for;");
-            set.next();
-            System.out.println(set.getString(1));
-            CreateTables.create(connection);
-        } catch (SQLException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        }
         logger.addHandler(LogFile.getHandler());
+        Connection connection = DBConnection.connect();
+        if(connection == null) {
+            logger.warning("Can't connect to database! Check your db.properties file.");
+            System.exit(0);
+        }
+        CreateTables.create(connection);
     }
     
     public static void main(String[] args){
-        if(args.length > 0){
-            Invoker.setCurrMainFile(new File(args[0]));
+        if(args.length > 0 && Validator.validateInt(args[0])) {
+            ConnectionManager.setPort(Integer.parseInt(args[0]));
         }
-        if(args.length > 1 && Validator.validateInt(args[1])) {
-            ConnectionManager.setPort(Integer.parseInt(args[1]));
-        }
-        System.out.println(ConnectionManager.getPort());
         new Load(null,null).execute(new Request(200));
         Signal.handle(new Signal("INT"), signal -> EmergencySave.save());
         

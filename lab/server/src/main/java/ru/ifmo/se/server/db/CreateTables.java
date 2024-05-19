@@ -22,10 +22,10 @@ public class CreateTables {
             INT NOT NULL height,
             DATE birthday,
             INT NOT NULL weight,
-            INT NOT NULL coord_x,
+            REAL NOT NULL coord_x,
             INT NOT NULL coord_y,
-            INT NOT NULL loc_x,
-            INT NOT NULL loc_y,
+            REAL NOT NULL loc_x,
+            REAL NOT NULL loc_y,
             TEXT loc_name,
             COLOR NOT NULL color
         );
