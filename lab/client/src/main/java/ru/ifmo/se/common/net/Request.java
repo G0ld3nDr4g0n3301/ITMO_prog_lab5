@@ -43,7 +43,11 @@ public class Request implements Serializable{
 
     private String login;
     private String password;
+    private Integer ownerId;
 
+    public void setOwnerId(Integer id){
+        this.ownerId = id;
+    }
     public void setLogin(String login){
         this.login = login;
     }

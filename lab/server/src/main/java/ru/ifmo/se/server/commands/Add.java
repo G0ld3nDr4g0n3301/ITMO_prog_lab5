@@ -43,7 +43,7 @@ public class Add extends Command{
         }
         ReadWriteLock lock = CollectionManager.getLock();
         lock.writeLock().lock();
-        person.setId(new Id().create(null));
+        person.setOwnerId(args.getOwnerId());
         person.setCreationDate(new CreationDate().create(null));
         if (!Validator.validatePerson(person)) {
             logger.warning("Given person contains malicious data");

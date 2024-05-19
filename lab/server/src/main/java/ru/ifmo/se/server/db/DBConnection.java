@@ -18,6 +18,7 @@ public class DBConnection {
     private static String DB_LOGIN;
     private static String DB_PASS;
     private static Properties info;
+    private static Connection connection;
 
     static {
         Properties config = new Properties();
@@ -37,10 +38,13 @@ public class DBConnection {
 
     }
 
-    public static Connection connect(){
+    public static synchronized Connection connect(){
         try {
-            Class.forName("org.postgresql.Driver");
-            return DriverManager.getConnection(DB_URL, DB_LOGIN, DB_PASS);
+            if (connection == null) {
+                Class.forName("org.postgresql.Driver");
+                connection = DriverManager.getConnection(DB_URL, DB_LOGIN, DB_PASS);
+            }
+            return connection;
         } catch (SQLException e) {
             LogFile.warning(e.getMessage());
             return null;

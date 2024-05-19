@@ -3,11 +3,22 @@ package ru.ifmo.se.server.auth;
 import java.math.BigInteger;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.util.Random;
 
 import ru.ifmo.se.server.LogFile;
 
 public class Hash {
+
+    public static String hash(String pass, String salt, String[] peppers) {
+        String salted = pass + salt;
+        Random random = new Random();
+        String pepper = peppers[random.nextInt(7)];
+        String hashedPass = hash(salted + pepper);
+        return hashedPass;
+    }
+
     public static String hash(String input){
+
         try {
             MessageDigest messageDigest = MessageDigest.getInstance("SHA-384");
             byte[] md = messageDigest.digest(input.getBytes());

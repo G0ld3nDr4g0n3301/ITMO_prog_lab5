@@ -28,6 +28,7 @@ public class ConnectionManager{
     private static final ExecutorService recievePool = Executors.newCachedThreadPool();
     private static final ExecutorService sendPool = Executors.newCachedThreadPool();
     private static final ExecutorService handlePool = Executors.newFixedThreadPool(50);
+    private static final ExecutorService authPool = Executors.newCachedThreadPool();
     
 
     /**
@@ -82,6 +83,10 @@ public class ConnectionManager{
      */
     public static int getUsersConnected() {
         return usersConnected;
+    }
+
+    public static synchronized void addToAuthPool(Runnable task){
+        authPool.execute(task);
     }
 
     public static synchronized void addToHandlePool(Runnable task){
