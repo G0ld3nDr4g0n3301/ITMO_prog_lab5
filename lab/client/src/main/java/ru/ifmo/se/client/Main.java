@@ -24,6 +24,17 @@ public class Main {
         if(args.length > 0 && Validator.validateInt(args[0])) {
             ConnectionManager.setPort(Integer.parseInt(args[0]));
         }
+        String password = null;
+        String login = CLIInputManager.ask("Please, enter your login(empty for guest mode):");
+        if (login != null){
+            password = CLIInputManager.ask("Enter password: ");
+            if (password == null){
+                System.out.println("Null password is not allowed");
+                System.exit(0);
+            }
+        }
+        ConnectionManager.setLogin(login);
+        ConnectionManager.setPassword(password);
         System.out.println(ConnectionManager.getPort());
         boolean isConnected = false;
         for (int tries = 0; tries < 5 && !isConnected; tries++) {

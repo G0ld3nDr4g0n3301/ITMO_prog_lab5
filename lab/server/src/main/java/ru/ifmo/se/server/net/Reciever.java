@@ -69,7 +69,17 @@ public class Reciever implements Runnable{
             request = Deserialize.deserializeRequest(bigBuffer.array());
             logger.info("Recieved a package " + request.toString());
             
-            
+            String login = request.getLogin();
+            String password = request.getPassword();
+
+            if(login == null || password == null){
+                Request errorRequest = new Request(404);
+                errorRequest.setMsg("Unauthorized users can't execute commands.To exit type Ctrl+C.");
+                SelectionKey keyNew = client.register(selector, SelectionKey.OP_WRITE);
+                keyNew.attach(errorRequest);
+                throw new IOException();
+            }
+
             Runnable handler = new Handler(key, selector, request);
             ConnectionManager.addToHandlePool(handler);
 

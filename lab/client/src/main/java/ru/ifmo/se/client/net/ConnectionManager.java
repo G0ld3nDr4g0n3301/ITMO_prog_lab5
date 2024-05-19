@@ -23,6 +23,10 @@ import ru.ifmo.se.common.net.Request;
 
 public class ConnectionManager{
     
+    private static String login;
+
+    private static String password;
+
     /**
      * target port
      */
@@ -79,6 +83,13 @@ public class ConnectionManager{
         port = userPort;
     }
 
+    public static void setLogin(String login){
+        login = login;
+    }
+
+    public static void setPassword(String password){
+        password = password;
+    }
 
     /**
      * Close socket
@@ -113,7 +124,8 @@ public class ConnectionManager{
      * @throws IOException
      */
     public static boolean send(Request request) throws IOException{
-
+        request.setLogin(login);
+        request.setPassword(password);
 
         if (socket != null){
             System.out.println("Sending...");

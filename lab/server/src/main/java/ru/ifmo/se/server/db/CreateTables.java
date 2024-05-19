@@ -7,17 +7,17 @@ import java.sql.Statement;
 public class CreateTables {
 
     private static final String statement = """
-        CREATE TABLE user (
-            SERIAL PRIMARY KEY id,
-            STRING UNIQUE NOT NULL login,
-            STRING NOT NULL password,
-            VARCHAR[7] NOT NULL salt
+        CREATE TABLE IF NOT EXISTS users (
+            id SERIAL PRIMARY KEY,
+            login TEXT UNIQUE NOT NULL,
+            password TEXT NOT NULL,
+            salt VARCHAR[7] NOT NULL
         );
-        CREATE TYPE COLOR AS ENUM ("RED","YELLOW", "ORANGE", "WHITE", "BROWN");
-        CREATE TABLE collection (
+        CREATE TYPE IF NOT EXISTS COLOR AS ENUM ("RED","YELLOW", "ORANGE", "WHITE", "BROWN");
+        CREATE TABLE IF NOT EXISTS collection (
             SERIAL PRIMARY KEY id,
             INT NOT NULL owner,
-            STRING NOT NULL name,
+            TEXT NOT NULL name,
             DATE NOT NULL creation_date,
             INT NOT NULL height,
             DATE birthday,
@@ -26,7 +26,7 @@ public class CreateTables {
             INT NOT NULL coord_y,
             INT NOT NULL loc_x,
             INT NOT NULL loc_y,
-            STRING loc_name,
+            TEXT loc_name,
             COLOR NOT NULL color
         );
         """;

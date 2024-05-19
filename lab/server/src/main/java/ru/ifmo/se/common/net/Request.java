@@ -25,6 +25,25 @@ public class Request implements Serializable{
     private Integer id = null;
     private Location loc = null;
 
+    private String login;
+    private String password;
+
+    public void setLogin(String login){
+        this.login = login;
+    }
+
+    public void setPassword(String password){
+        this.password = password;
+    }
+
+    public String getLogin(){
+        return this.login;
+    }
+
+    public String getPassword(){
+        return this.password;
+    }
+
     {
         // by default code is 300
         this.statusCode = 300;

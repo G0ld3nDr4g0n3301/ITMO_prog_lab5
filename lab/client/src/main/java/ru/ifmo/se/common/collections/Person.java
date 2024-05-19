@@ -21,6 +21,10 @@ public class Person implements Comparable<Person>,Serializable{
     
     private String name; //Поле не может быть null, Строка не может быть пустой
     
+
+
+    private transient Integer ownerId;
+    
     /**
      * Coordinates(x,y) of a person
      */
@@ -87,14 +91,14 @@ public class Person implements Comparable<Person>,Serializable{
     
     @Override
     public boolean equals(Object obj){
+        if(obj == null){
+            return false;
+        }
         if(obj.hashCode() != this.hashCode()){
             return false;
         }
         if(obj == this){
             return true;
-        }
-        if(obj == null){
-            return false;
         }
         if(!(obj instanceof Person)){
             return false;
@@ -106,6 +110,14 @@ public class Person implements Comparable<Person>,Serializable{
     @Override
     public int hashCode(){
         return this.getId();
+    }
+
+    public void setOwnerId(Integer id) {
+        this.ownerId = id;
+    }
+
+    public Integer getOwnerId(){
+        return this.ownerId;
     }
     
     /**

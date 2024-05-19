@@ -32,7 +32,8 @@ public class Main {
         try {
             Statement query = connection.createStatement();
             ResultSet set = query.executeQuery("SELECT * FROM how_useful_for;");
-            System.out.println(set.getString(0));
+            set.next();
+            System.out.println(set.getString(1));
             CreateTables.create(connection);
         } catch (SQLException e) {
             // TODO Auto-generated catch block

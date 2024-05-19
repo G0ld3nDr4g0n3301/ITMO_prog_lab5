@@ -15,6 +15,9 @@ public class Person implements Comparable<Person>,Serializable{
     
     private transient Integer id; //Поле не может быть null, Значение поля должно быть больше 0, Значение этого поля должно быть уникальным, Значение этого поля должно генерироваться автоматически
     
+
+    private transient Integer ownerId;
+
     /**
      * Name of a Person
      */
@@ -87,14 +90,14 @@ public class Person implements Comparable<Person>,Serializable{
     
     @Override
     public boolean equals(Object obj){
+        if(obj == null){
+            return false;
+        }
         if(obj.hashCode() != this.hashCode()){
             return false;
         }
         if(obj == this){
             return true;
-        }
-        if(obj == null){
-            return false;
         }
         if(!(obj instanceof Person)){
             return false;
@@ -108,6 +111,14 @@ public class Person implements Comparable<Person>,Serializable{
         return this.getId();
     }
     
+    public void setOwnerId(Integer id) {
+        this.ownerId = id;
+    }
+
+    public Integer getOwnerId(){
+        return this.ownerId;
+    }
+
     /**
      * set new location to person.
      * @param location .
