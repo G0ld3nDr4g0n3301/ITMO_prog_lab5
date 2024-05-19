@@ -39,20 +39,10 @@ public class DBConnection {
 
     public static Connection connect(){
         try {
-            if (!DB_URL.startsWith("jdbc:postgresql:")){
-                System.out.println("KDLSJHFLKDSJBFKLDJSFKSDJFLKJSDBLFK");
-                System.out.println(DB_URL);
-            }
             Class.forName("org.postgresql.Driver");
             return DriverManager.getConnection(DB_URL, DB_LOGIN, DB_PASS);
         } catch (SQLException e) {
             LogFile.warning(e.getMessage());
-            Enumeration<java.sql.Driver> en = DriverManager.getDrivers();
-            while (en.hasMoreElements()){
-                System.out.println(en.nextElement());
-            }
-            System.out.println();
-            System.out.println("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA");
             return null;
         } catch (ClassNotFoundException e) {
             // TODO Auto-generated catch block
