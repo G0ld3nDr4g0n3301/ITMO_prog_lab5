@@ -19,9 +19,6 @@ public class EmergencySave {
     
     public static void save(){
         try {
-        logger.info("emergency save...");        
-        new Save("","").execute(null);
-        logger.info("saved successfully");
         /*Set<SelectionKey> keys = ConnectionManager.getKeys();
         Iterator<SelectionKey> iter = keys.iterator();
         while (iter.hasNext()) {

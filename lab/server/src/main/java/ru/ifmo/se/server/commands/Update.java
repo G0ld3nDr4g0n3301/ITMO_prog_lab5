@@ -46,13 +46,16 @@ public class Update extends Command{
             logger.warning("no such id in collection");
             return new Request(404,"No such id in collection.");
         }
+        if(person.getOwnerId() != arguments.getOwnerId()){
+            return new Request(404, "Permisson denied. It's not your element.");
+        }
         Person newPerson = arguments.getPerson();
         if(newPerson == null){
             logger.warning("No person is given");
             return new Request(404, "Error in creating new Person. Try again.");
         }
         
-        newPerson.setId(id);
+        newPerson.setOwnerId(arguments.getOwnerId());
         newPerson.setCreationDate(new CreationDate().create(null));
         if (!Validator.validatePerson(person)) {
             logger.warning("given person is inappropriate");

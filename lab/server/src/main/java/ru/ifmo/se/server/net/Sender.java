@@ -14,7 +14,6 @@ import java.util.logging.Logger;
 import ru.ifmo.se.common.net.Commands;
 import ru.ifmo.se.common.net.Request;
 import ru.ifmo.se.server.LogFile;
-import ru.ifmo.se.server.commands.Save;
 
 public class Sender implements Runnable{
     
@@ -71,9 +70,6 @@ public class Sender implements Runnable{
         } catch (SocketException | StreamCorruptedException e) {
             logger.warning("client disconnected");
             ConnectionManager.decrementUsersConnected();
-            if (ConnectionManager.getUsersConnected() == 0) {
-                new Save("","").execute(new Request(Commands.SAVE));
-            }
             key.cancel();
         } catch (IOException e){
             //handle

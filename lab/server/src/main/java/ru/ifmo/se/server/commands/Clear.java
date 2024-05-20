@@ -33,7 +33,7 @@ public class Clear extends Command{
     
     @Override
     public Request execute(Request args){
-        CollectionManager.clear();
+        CollectionManager.clear(args);
         logger.info("Cleared the collection");
         return new Request(200);
     }

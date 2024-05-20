@@ -43,6 +43,11 @@ public class Remove extends Command{
             logger.warning("given id is wrong.no such element in collection");
             return request;
         }
+        if(person.getOwnerId() != arguments.getOwnerId()){
+            request.setMsg("Permission denied. It's not your element.");
+            logger.warning("User has no permisstion for this operation");
+            return request;
+        }
         CollectionManager.remove(person);
         request.setStatusCode(200);
         logger.info("Successfully removed person from collection");

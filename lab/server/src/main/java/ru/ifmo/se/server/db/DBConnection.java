@@ -4,11 +4,21 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.Enumeration;
+import java.util.List;
 import java.util.Properties;
 
+import ru.ifmo.se.common.collections.Color;
+import ru.ifmo.se.common.collections.Coordinates;
+import ru.ifmo.se.common.collections.Location;
+import ru.ifmo.se.common.collections.Person;
+import ru.ifmo.se.common.net.Request;
 import ru.ifmo.se.server.LogFile;
 import ru.ifmo.se.server.commands.EmergencySave;
 
@@ -53,6 +63,115 @@ public class DBConnection {
             e.printStackTrace();
             return null;
         } 
+    }
+
+    public static List<Person> getPerson(String additionalQuery){
+        List<Person> list = new ArrayList<>();
+        ResultSet collection;
+        try {
+            collection = DBConnection.connect().createStatement().executeQuery("SELECT id, owner, name, creation_date, height, birthday, weight, coord_x, coord_y, loc_x, loc_y, loc_name, color FROM users " + additionalQuery + ";");
+            while (collection.next()){
+                Person person = new Person();
+                person.setId(collection.getInt(1));
+                person.setOwnerId(collection.getInt(2));
+                person.setName(collection.getString(3));
+                person.setCreationDate(collection.getDate(4).toLocalDate());
+                person.setHeight(collection.getLong(5));
+                person.setBirthday(collection.getDate(6).toLocalDate());
+                person.setWeight(collection.getInt(7));
+                Coordinates coordinates = new Coordinates(collection.getDouble(8), collection.getLong(9));
+                Location location = new Location(collection.getFloat(10), collection.getDouble(11), collection.getString(12));
+                Color color = Color.valueOf(collection.getString(13));
+                person.setCoordinates(coordinates);
+                person.setLocation(location);
+                person.setHairColor(color);
+                list.add(person);
+            }
+            return list;
+            } catch (SQLException e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+                return null;
+            }
+    } 
+
+    public static Boolean deletePerson(Integer[] IDs){
+        String[] strings = new String[IDs.length];
+        for (int i = 0; i < strings.length; i++){
+            strings[i] = IDs[i].toString();
+        }
+        try {
+            connect().createStatement().execute("DELETE FROM collection WHERE id IN (" + String.join(",", strings) + ");");
+        } catch (SQLException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+        return true;
+    }
+
+    public static Boolean putPerson(Person person){
+        PreparedStatement preparedStatement;
+        try {
+            preparedStatement = connect().prepareStatement("INSERT INTO users (id, owner, name, creation_date, height, birthday, weight, coord_x, coord_y, loc_x, loc_y, loc_name, color) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?);");
+       
+        preparedStatement.setInt(0, person.getId());
+        preparedStatement.setInt(1, person.getOwnerId());
+        preparedStatement.setString(2, person.getName());
+        preparedStatement.setDate(3, Date.valueOf(person.getCreationDate()));
+        preparedStatement.setLong(4, person.getHeight());
+        preparedStatement.setDate(5, Date.valueOf(person.getBirthday()));
+        preparedStatement.setInt(6, person.getWeight());
+        preparedStatement.setDouble(7, person.getCoordinates().getX());
+        preparedStatement.setDouble(8, person.getCoordinates().getY());
+        preparedStatement.setDouble(9, person.getLocation().getLocX());
+        preparedStatement.setDouble(10, person.getLocation().getLocY());
+        preparedStatement.setString(11, person.getLocation().getName());
+        preparedStatement.setString(12, person.getHairColor().toString());
+        if(preparedStatement.executeUpdate() != 0){
+            return true;
+        }
+    } catch (SQLException e) {
+        // TODO Auto-generated catch block
+        e.printStackTrace();
+    }
+    return false;
+    }
+
+    public static Boolean deletePerson(Person p){
+        try {
+            PreparedStatement preparedStatement = connect().prepareStatement("DELETE FROM users WHERE id = " + p.getId() + ";");
+            return preparedStatement.executeUpdate() != 0;
+        } catch (SQLException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+            return false;
+        }
+    }
+
+    public static Boolean truncate(Request request){
+        try {
+            PreparedStatement preparedStatement = connect().prepareStatement("DELETE FROM users WHERE owner = " + request.getOwnerId() + ";");
+            return preparedStatement.executeUpdate() != 0;
+        } catch (SQLException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+
+
+        return false;
+    }
+
+    public static Person getLast(Request request){
+        try {
+            PreparedStatement preparedStatement = connect().prepareStatement("SELECT MAX(id) FROM users WHERE owner = " + request.getOwnerId() + ";");
+            ResultSet inf = preparedStatement.executeQuery();
+            inf.next();
+            return getPerson("WHERE id = " + inf.getInt(0)).get(0);
+        } catch (SQLException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+            return null;
+        }
     }
 
 }

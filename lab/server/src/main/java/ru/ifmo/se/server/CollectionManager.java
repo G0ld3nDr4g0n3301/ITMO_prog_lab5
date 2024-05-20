@@ -2,6 +2,9 @@ package ru.ifmo.se.server;
 
 import java.util.ArrayList;
 import ru.ifmo.se.common.collections.Person;
+import ru.ifmo.se.common.net.Request;
+import ru.ifmo.se.server.db.DBConnection;
+
 import java.time.LocalDate;
 import java.util.Collections;
 import java.util.Comparator;
@@ -45,8 +48,10 @@ public class CollectionManager {
      * @param p 
      */
     public static void add(Person p){
-        collection.add(p);
-        sort();
+        if(DBConnection.putPerson(p)){
+            collection.add(p);
+            sort();
+        }
     }
     
     /**
@@ -111,16 +116,20 @@ public class CollectionManager {
      */
     public static void remove(Person p){
         lock.writeLock().lock();
-        collection.remove(p);
+        if(DBConnection.deletePerson(p)){
+            collection.remove(p);
+        }
         lock.writeLock().unlock();
     }
     
     /**
      * clears the collection
      */
-    public static void clear(){
+    public static void clear(Request request){
         lock.writeLock().lock();
-        collection.clear();
+        if(DBConnection.truncate(request)){
+        collection.stream().filter(s -> s.getOwnerId() == request.getOwnerId()).forEach(s -> collection.remove(s));
+        }
         lock.writeLock().unlock();
     }
     
@@ -149,12 +158,11 @@ public class CollectionManager {
     /**
      * removes last element of collection
      */
-    public static void removeLast(){
-        lock.writeLock().lock();
-        collection = collection.stream()
-        .filter((Person p) -> collection.indexOf(p) != collection.size() - 1)
-        .collect(Collectors.toList());
-        lock.writeLock().unlock();
+    public static void removeLast(Request request){
+        Person toRemove = DBConnection.getLast(request);
+        if(DBConnection.deletePerson(toRemove)){
+            remove(toRemove);
+        }
     }
     
     /**
@@ -162,11 +170,10 @@ public class CollectionManager {
      * @param removeList 
      */
     public static void remove(List<Person> removeList){
-        lock.writeLock().lock();
-        collection = collection.stream()
+        removeList.stream().forEach(s -> remove(s));
+        /**collection = collection.stream()
         .filter((Person p) -> !removeList.contains(p))
-        .collect(Collectors.toList());
-        lock.writeLock().unlock();
+        .collect(Collectors.toList()); **/
 //        collection.removeAll(removeList);
     }
     
@@ -204,7 +211,7 @@ public class CollectionManager {
     public static void addAll(List<Person> newList){
         lock.writeLock().lock();
         newList.stream()
-        .forEachOrdered(collection::add);
+        .forEachOrdered(s -> add(s));
         sort();
         lock.writeLock().unlock();
     }

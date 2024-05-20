@@ -48,7 +48,7 @@ public class AddIfMax extends Command{
             logger.warning("No person specified");
             return null;
         }
-        person.setId(new Id().create(null));
+        person.setOwnerId(args.getOwnerId());
         person.setCreationDate(new CreationDate().create(null));
         Request request = new Request(Commands.RESPONSE, null);
         if (!Validator.validatePerson(person)) {

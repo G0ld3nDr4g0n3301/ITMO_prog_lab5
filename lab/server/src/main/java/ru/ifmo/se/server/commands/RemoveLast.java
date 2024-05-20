@@ -32,7 +32,7 @@ public class RemoveLast extends Command{
     
     @Override
     public Request execute(Request args){
-        CollectionManager.removeLast();
+        CollectionManager.removeLast(args);
         logger.info("successfully removed last person");
         return new Request(200);
     }

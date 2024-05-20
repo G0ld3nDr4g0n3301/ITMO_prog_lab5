@@ -44,13 +44,13 @@ public class RemoveLower extends Command{
             return null;
         }
         person.setCreationDate(new CreationDate().create(""));
-        person.setId(new Id().create(""));
+        person.setOwnerId(args.getOwnerId());
         List<Person> removeList = new ArrayList<Person>();
         if (!Validator.validatePerson(person)) {
             logger.warning("Given person contains malicious data");
             return null;
         }
-        removeList = CollectionManager.getCollection().stream()
+        removeList = CollectionManager.getCollection().stream().filter(s -> s.getOwnerId() == args.getOwnerId())
         .filter((Person p) -> p.compareTo(person) < 0)
         .collect(Collectors.toList());
         CollectionManager.remove(removeList);

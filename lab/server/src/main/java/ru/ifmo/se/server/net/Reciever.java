@@ -18,7 +18,6 @@ import ru.ifmo.se.common.net.Request;
 import ru.ifmo.se.server.Invoker;
 import ru.ifmo.se.server.LogFile;
 import ru.ifmo.se.server.auth.AuthManager;
-import ru.ifmo.se.server.commands.Save;
 
 public class Reciever implements Runnable{
 
@@ -87,9 +86,6 @@ public class Reciever implements Runnable{
         } catch (SocketException | StreamCorruptedException e) {
             logger.warning("client disconnected");
             ConnectionManager.decrementUsersConnected();
-            if (ConnectionManager.getUsersConnected() == 0) {
-                new Save("","").execute(new Request(Commands.SAVE));
-            }
             key.cancel();
         } catch (IOException e) {
             //ignore

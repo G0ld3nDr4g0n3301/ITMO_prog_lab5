@@ -54,7 +54,6 @@ public class Invoker {
         Add add = new Add("add", "(add name height weight {birthday})create a new element, and add it to collection.");
         Show show = new Show("show", "print all collection's elements.");
         Show execScr = new Show("execute_script","execute_script (filename) - executing a lines from a file,like it's normal CLI input.");
-        Save save = new Save("save", "saves collection list in the file.");
         Load load = new Load("load","loads collection from the file,specified in command line.");
         Info info = new Info("info", "Prints info about collection(type,init date,size.)");
         Update update = new Update("update", "(update id {element}) replace collection element id with new element.");
@@ -72,7 +71,6 @@ public class Invoker {
         commands.put(Commands.ADD, add);
         commands.put(Commands.SHOW, show);
         commands.put(Commands.EXEC, execScr);
-        commands.put(Commands.SAVE, save);
         commands.put(Commands.LOAD, load);
         commands.put(Commands.INFO, info);
         commands.put(Commands.UPDATE, update);

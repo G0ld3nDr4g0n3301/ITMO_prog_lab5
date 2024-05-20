@@ -44,7 +44,9 @@ public class RemoveLoc extends Command{
         }
         Person person = CollectionManager.findPerson(loc);
         while(person != null){
+            if(person.getOwnerId() == args.getOwnerId()){
             CollectionManager.remove(person);
+            }
             person = CollectionManager.findPerson(loc);
         }
         logger.info("removed persons with given location");
