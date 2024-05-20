@@ -1,0 +1,81 @@
+<project>
+	<modelVersion>4.0.0</modelVersion>
+
+
+	<groupId>se.ifmo.ru</groupId>
+	<artifactId>server</artifactId>
+	<version>0.0.1</version>
+
+	<name>server</name>
+
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+                <maven.compiler.source>17</maven.compiler.source>
+                <maven.compiler.target>17</maven.compiler.target>
+        </properties>
+
+        <packaging>jar</packaging>
+
+
+
+<dependencies>
+      <dependency>
+        <groupId>org.postgresql</groupId>
+        <artifactId>postgresql</artifactId>
+        <version>42.2.2</version>
+        </dependency>
+      </dependencies>
+
+        <build>
+                <plugins>
+<plugin>
+        <artifactId>maven-assembly-plugin</artifactId>
+        <executions>
+          <execution>
+            <phase>package</phase>
+            <goals>
+              <goal>single</goal>
+            </goals>
+          </execution>
+        </executions>
+        <configuration>
+          <archive>
+            <manifest>
+              <mainClass>ru.ifmo.se.server.Main</mainClass>
+              </manifest>
+            </archive>
+          <descriptorRefs>
+            <descriptorRef>jar-with-dependencies</descriptorRef>
+          </descriptorRefs>
+        </configuration>
+      </plugin>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-jar-plugin</artifactId>
+                        <version>2.4</version>
+                        <configuration>
+                            <archive>
+                                <manifest>
+                                    <mainClass>ru.ifmo.se.server.Main</mainClass>
+                                </manifest>
+                            </archive>
+                        </configuration>
+                    </plugin>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-javadoc-plugin</artifactId>
+                        <version>3.6.2</version>
+                        <configuration>
+                            <source>1.8</source>
+                            <target>1.8</target>
+                            <show>private</show>
+                        </configuration>
+                    </plugin>
+                </plugins>
+
+
+
+        </build>
+
+
+</project>

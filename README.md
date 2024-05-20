@@ -6,5 +6,4 @@ Here are the screenshots from the website:
 ![1](./task/screen1.png)
 ![2](./task/screen2.png)
 ![3](./task/screen3.png)
-![4](./task/screen4.png)
 
