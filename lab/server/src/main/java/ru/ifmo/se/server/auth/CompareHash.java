@@ -10,7 +10,8 @@ public class CompareHash {
             if (hashedPass == null) {
                 LogFile.warning("Hashing error");
             }
-            if (hashedPass == hash) {
+            if (hashedPass.equals(hash)) {
+                System.out.println("PASSWORD IS CORRECT!");
                 return true;
             }
         }

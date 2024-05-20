@@ -191,6 +191,12 @@ public class Request implements Serializable{
         if (this.id != null) {
         result += this.id.toString() + "\n";
         }
+        if (this.login != null) {
+            result += this.login + "\n";
+        }
+        if (this.password != null) {
+            result += this.password + "\n";
+        }
         return result;
     }
 

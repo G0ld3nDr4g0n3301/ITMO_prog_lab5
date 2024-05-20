@@ -3,4 +3,4 @@ cd target/classes/
 jar -cf ../server/server.jar ru/ifmo/se/server/*.class ru/ifmo/se/server/**/*.class ru/ifmo/se/common/**/*.class
 echo "jar built!"
 cd ../..
-./rserver.sh
+./rserver.sh $1

@@ -21,13 +21,19 @@ public class Hash {
 
         try {
             MessageDigest messageDigest = MessageDigest.getInstance("SHA-384");
-            byte[] md = messageDigest.digest(input.getBytes());
-            BigInteger intRepresentation = new BigInteger(1, md);
-            String hash = intRepresentation.toString();
-            while(hash.length() < 32){
-                hash = "0" + hash;
+            String hashValue = "";
+            try {
+                messageDigest.update(input.getBytes());
+                byte[] digestedBytes = messageDigest.digest();
+                String str = "";
+                for (Byte bytes : digestedBytes){
+                    str += String.format("%02X", bytes);
+                }
+                hashValue = str.toLowerCase();
+            } catch(Exception e) {
+                e.printStackTrace();
             }
-            return hash;
+            return hashValue;
         } catch (NoSuchAlgorithmException e){
             LogFile.warning("No such algorithm for hashing.");
             return null;

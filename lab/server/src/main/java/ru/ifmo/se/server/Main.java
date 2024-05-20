@@ -36,6 +36,7 @@ public class Main {
     public static void main(String[] args){
         if(args.length > 0 && Validator.validateInt(args[0])) {
             ConnectionManager.setPort(Integer.parseInt(args[0]));
+            System.out.println(args[0]);
         }
         new Load(null,null).execute(new Request(200));
         Signal.handle(new Signal("INT"), signal -> EmergencySave.save());

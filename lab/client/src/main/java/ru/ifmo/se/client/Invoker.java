@@ -104,7 +104,11 @@ public class Invoker {
                 System.out.println("Error in package reading");
                 return false;
             }
-            int diff = answer.getId() - usersConnected;
+            System.out.println(answer);
+            int diff = 0;
+            if (answer.getId() != null) {
+                diff = answer.getId() - usersConnected;
+            }
             if (diff != 0){
                 if (diff < 0) {
                     diff = -diff;

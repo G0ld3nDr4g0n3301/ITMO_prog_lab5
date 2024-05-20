@@ -13,7 +13,6 @@ public class CreateTables {
             password TEXT NOT NULL,
             salt VARCHAR(7) NOT NULL
         );
-        CREATE TYPE COLOR AS ENUM ("RED","YELLOW", "ORANGE", "WHITE", "BROWN");
             CREATE TABLE IF NOT EXISTS collection (
             id SERIAL PRIMARY KEY,
             owner INT NOT NULL,
@@ -27,7 +26,7 @@ public class CreateTables {
             loc_x REAL NOT NULL ,
             loc_y REAL NOT NULL,
             loc_name TEXT ,
-            color COLOR NOT NULL
+            color TEXT NOT NULL
         );
         """;
 

@@ -113,19 +113,21 @@ public class DBConnection {
         PreparedStatement preparedStatement;
         try {
             preparedStatement = connect().prepareStatement("INSERT INTO users (id, owner, name, creation_date, height, birthday, weight, coord_x, coord_y, loc_x, loc_y, loc_name, color) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?);");
-       
-        preparedStatement.setInt(0, person.getId());
         preparedStatement.setInt(1, person.getOwnerId());
         preparedStatement.setString(2, person.getName());
         preparedStatement.setDate(3, Date.valueOf(person.getCreationDate()));
         preparedStatement.setLong(4, person.getHeight());
+        if (person.getBirthday() != null) {
         preparedStatement.setDate(5, Date.valueOf(person.getBirthday()));
+        }
         preparedStatement.setInt(6, person.getWeight());
         preparedStatement.setDouble(7, person.getCoordinates().getX());
         preparedStatement.setDouble(8, person.getCoordinates().getY());
         preparedStatement.setDouble(9, person.getLocation().getLocX());
         preparedStatement.setDouble(10, person.getLocation().getLocY());
+        if (person.getLocation().getName() != null) {
         preparedStatement.setString(11, person.getLocation().getName());
+        }
         preparedStatement.setString(12, person.getHairColor().toString());
         if(preparedStatement.executeUpdate() != 0){
             return true;
@@ -170,6 +172,19 @@ public class DBConnection {
         } catch (SQLException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
+            return null;
+        }
+    }
+
+    public static Integer getNextId(){
+        try {
+           ResultSet resultSet = connect().createStatement().executeQuery("SELECT id_seq.nextval FROM collection;");
+            resultSet.next();
+            return resultSet.getInt(0);
+        } catch (SQLException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+            System.out.println("NOPE");
             return null;
         }
     }

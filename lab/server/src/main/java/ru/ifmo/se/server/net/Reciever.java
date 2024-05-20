@@ -73,12 +73,15 @@ public class Reciever implements Runnable{
             String password = request.getPassword();
 
             if(login == null || password == null){
+                System.out.println(request);
                 Request errorRequest = new Request(404);
                 errorRequest.setMsg("Unauthorized users can't execute commands.To exit type Ctrl+C.");
                 SelectionKey keyNew = client.register(selector, SelectionKey.OP_WRITE);
                 keyNew.attach(errorRequest);
                 throw new IOException();
             }
+            System.out.println(login);
+            System.out.println(password);
 
             Runnable auth = new AuthManager(key,selector,request,request.getLogin(), request.getPassword());
             ConnectionManager.addToAuthPool(auth);

@@ -48,7 +48,7 @@ public class Load extends Command{
 
         List<Person> newList = new ArrayList<>();
         try {
-            ResultSet collection = DBConnection.connect().createStatement().executeQuery("SELECT id, owner, name, creation_date, height, birthday, weight, coord_x, coord_y, loc_x, loc_y, loc_name, color FROM users;");
+            ResultSet collection = DBConnection.connect().createStatement().executeQuery("SELECT (id, owner, name, creation_date, height, birthday, weight, coord_x, coord_y, loc_x, loc_y, loc_name, color) FROM collection;");
             while (collection.next()){
                 Person person = new Person();
                 person.setId(collection.getInt(1));

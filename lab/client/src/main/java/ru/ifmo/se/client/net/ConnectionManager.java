@@ -83,12 +83,12 @@ public class ConnectionManager{
         port = userPort;
     }
 
-    public static void setLogin(String login){
-        login = login;
+    public static void setLogin(String userLogin){
+        login = userLogin;
     }
 
-    public static void setPassword(String password){
-        password = password;
+    public static void setPassword(String userPassword){
+        password = userPassword;
     }
 
     /**
@@ -129,7 +129,6 @@ public class ConnectionManager{
 
         if (socket != null){
             System.out.println("Sending...");
-
             out.write(Serialize.serializeRequest(request));
             out.flush();
             return true;

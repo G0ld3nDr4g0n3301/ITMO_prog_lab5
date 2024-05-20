@@ -41,12 +41,12 @@ public class AuthManager implements Runnable {
 
     public void run(){
         try {
-            ResultSet userId = connection.createStatement().executeQuery("SELECT id,hash,salt FROM users WHERE login = " + login);
+            ResultSet userId = connection.createStatement().executeQuery("SELECT id,password,salt FROM users WHERE login = '" + login + "';");
             boolean hasRows = userId.next();
             if (!hasRows){
                 register();
             }
-            userId = connection.createStatement().executeQuery("SELECT id,hash,salt FROM users WHERE login = " + login);
+            userId = connection.createStatement().executeQuery("SELECT id,password,salt FROM users WHERE login = '" + login + "';");
             userId.next();
             Integer id = userId.getInt(1);
             String userHash = userId.getString(2);
@@ -55,12 +55,13 @@ public class AuthManager implements Runnable {
                 request.setOwnerId(id);
                 Runnable handler = new Handler(key, selector, request);
                 ConnectionManager.addToHandlePool(handler);
+            } else {
+                SocketChannel client = (SocketChannel) key.channel();
+                Request errorRequest = new Request(404);
+                errorRequest.setMsg("Wrong password.");
+                SelectionKey keyNew = client.register(selector, SelectionKey.OP_WRITE);
+                keyNew.attach(errorRequest);
             }
-            SocketChannel client = (SocketChannel) key.channel();
-            Request errorRequest = new Request(404);
-            errorRequest.setMsg("Wrong password.");
-            SelectionKey keyNew = client.register(selector, SelectionKey.OP_WRITE);
-            keyNew.attach(errorRequest);
         } catch (SQLException | ClosedChannelException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
@@ -70,11 +71,12 @@ public class AuthManager implements Runnable {
     private Boolean register() {
         this.salt = generateSalt();
         String hash = Hash.hash(password, salt, pepper);
+        System.out.println("register: " + hash);
         try {
             PreparedStatement preparedStatement = connection.prepareStatement(registerSQL);
-            preparedStatement.setString(0, login);
-            preparedStatement.setString(1, hash);
-            preparedStatement.setString(2, salt);
+            preparedStatement.setString(1, login);
+            preparedStatement.setString(2, hash);
+            preparedStatement.setString(3, salt);
             if(!preparedStatement.execute()){
                 return false;
             }
