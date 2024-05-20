@@ -12,9 +12,15 @@ public class CreateTables {
             login TEXT UNIQUE NOT NULL,
             password TEXT NOT NULL,
             salt VARCHAR(7) NOT NULL
-        );
+        );""";
+                
+String lol = 
+                
+                """
         CREATE TYPE IF NOT EXISTS COLOR AS ENUM ("RED","YELLOW", "ORANGE", "WHITE", "BROWN");
-        CREATE TABLE IF NOT EXISTS collection (
+        """;
+String kek =             """
+            CREATE TABLE IF NOT EXISTS collection (
             id SERIAL PRIMARY KEY,
             owner INT NOT NULL,
             name TEXT NOT NULL,
