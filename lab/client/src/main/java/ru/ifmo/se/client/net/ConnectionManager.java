@@ -175,7 +175,6 @@ public class ConnectionManager{
             for (int tries = 0; tries < 5 && !isConnected; tries++) {
                 logger.info("Server doesn't respond.Retrying, try "+ tries +"...");
                 isConnected = Main.connect();
-                System.out.println(isConnected);
             }
             if (!isConnected) {
                 logger.warning("server is unreachable");

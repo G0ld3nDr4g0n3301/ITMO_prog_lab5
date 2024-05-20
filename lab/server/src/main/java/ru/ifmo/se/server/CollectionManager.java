@@ -130,7 +130,12 @@ public class CollectionManager {
     public static void clear(Request request){
         lock.writeLock().lock();
         if(DBConnection.truncate(request)){
-        collection.stream().filter(s -> s.getOwnerId() == request.getOwnerId()).forEach(s -> collection.remove(s));
+            Integer ownerId = request.getOwnerId();
+        for (int i = 0; i < collection.size(); i++){
+            if(collection.get(i).getOwnerId() == ownerId){
+                collection.remove(i);
+            }
+        }
         }
         lock.writeLock().unlock();
     }

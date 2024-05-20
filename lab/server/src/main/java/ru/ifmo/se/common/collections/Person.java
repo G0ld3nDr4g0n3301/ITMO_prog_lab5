@@ -80,12 +80,7 @@ public class Person implements Comparable<Person>,Serializable{
      */
     @Override
     public int compareTo(Person p){
-        if(this.getId() > p.getId()){
-            return 1;
-        }else if(this.getId() == p.getId()){
-            return 0;
-        }
-        return -1;
+        return this.getLocation().compareTo(p.getLocation());
     }
     
     @Override

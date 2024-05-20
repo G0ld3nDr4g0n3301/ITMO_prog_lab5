@@ -35,7 +35,7 @@ public class DBConnection {
         Properties config = new Properties();
         try {
             config.load(new FileInputStream("db.properties"));
-            DB_URL = "jdbc:postgresql://pg/studs";
+            DB_URL = config.getProperty("url");
             DB_LOGIN = config.getProperty("login");
             DB_PASS = config.getProperty("password");
             Properties info = new Properties();
@@ -78,7 +78,9 @@ public class DBConnection {
                 person.setName(collection.getString(3));
                 person.setCreationDate(collection.getDate(4).toLocalDate());
                 person.setHeight(collection.getLong(5));
+                if(collection.getDate(6) != null) {
                 person.setBirthday(collection.getDate(6).toLocalDate());
+                }
                 person.setWeight(collection.getInt(7));
                 Coordinates coordinates = new Coordinates(collection.getDouble(8), collection.getLong(9));
                 Location location = new Location(collection.getFloat(10), collection.getDouble(11), collection.getString(12));
@@ -96,7 +98,7 @@ public class DBConnection {
             }
     } 
 
-    public static Boolean deletePerson(Integer[] IDs){
+    public static synchronized Boolean deletePerson(Integer[] IDs){
         String[] strings = new String[IDs.length];
         for (int i = 0; i < strings.length; i++){
             strings[i] = IDs[i].toString();
@@ -110,7 +112,7 @@ public class DBConnection {
         return true;
     }
 
-    public static Boolean putPerson(Person person){
+    public static synchronized Boolean putPerson(Person person){
         PreparedStatement preparedStatement;
         try {
             preparedStatement = connect().prepareStatement("INSERT INTO collection (owner, name, creation_date, height, birthday, weight, coord_x, coord_y, loc_x, loc_y, loc_name, color) VALUES (?,?,?,?,?,?,?,?,?,?,?,?);");
@@ -144,7 +146,7 @@ public class DBConnection {
     return false;
     }
 
-    public static Boolean deletePerson(Person p){
+    public static synchronized Boolean deletePerson(Person p){
         try {
             PreparedStatement preparedStatement = connect().prepareStatement("DELETE FROM collection WHERE id = " + p.getId() + ";");
             return preparedStatement.executeUpdate() != 0;
@@ -155,7 +157,7 @@ public class DBConnection {
         }
     }
 
-    public static Boolean truncate(Request request){
+    public static synchronized Boolean truncate(Request request){
         try {
             PreparedStatement preparedStatement = connect().prepareStatement("DELETE FROM collection WHERE owner = " + request.getOwnerId() + ";");
             return preparedStatement.executeUpdate() != 0;
@@ -168,7 +170,7 @@ public class DBConnection {
         return false;
     }
 
-    public static Person getLast(Request request){
+    public static synchronized Person getLast(Request request){
         try {
             PreparedStatement preparedStatement = connect().prepareStatement("SELECT MAX(id) FROM collection WHERE owner = " + request.getOwnerId() + ";");
             ResultSet inf = preparedStatement.executeQuery();
@@ -181,7 +183,7 @@ public class DBConnection {
         }
     }
 
-    public static Integer getNextId(){
+    public static synchronized Integer getNextId(){
         try {
            ResultSet resultSet = connect().createStatement().executeQuery("select currval('collection_id_seq');");
             resultSet.next();

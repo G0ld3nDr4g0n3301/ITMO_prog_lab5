@@ -43,13 +43,16 @@ public class RemoveLoc extends Command{
             return new Request(404,"Incorrect location");
         }
         Person person = CollectionManager.findPerson(loc);
+        Request request =new Request(200);
         while(person != null){
             if(person.getOwnerId() == args.getOwnerId()){
             CollectionManager.remove(person);
+            } else {
+                request.setMsg(request.getMsg() + "\n" + "Permission denied.It's not your element.");
             }
             person = CollectionManager.findPerson(loc);
         }
         logger.info("removed persons with given location");
-        return new Request(200);
+        return request;
     }
 }

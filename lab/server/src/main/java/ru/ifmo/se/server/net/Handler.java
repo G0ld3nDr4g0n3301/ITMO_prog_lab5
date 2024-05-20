@@ -37,7 +37,6 @@ public class Handler implements Runnable {
 
             Request answerRequest = Invoker.execute(request);
             if(answerRequest != null){
-                System.out.println("great!");
                 answerRequest.setId(ConnectionManager.getUsersConnected());
             }
             SelectionKey keyNew = client.register(selector, SelectionKey.OP_WRITE);

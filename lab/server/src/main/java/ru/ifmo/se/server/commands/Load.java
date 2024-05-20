@@ -48,21 +48,21 @@ public class Load extends Command{
 
         List<Person> newList = new ArrayList<>();
         try {
-            ResultSet collection = DBConnection.connect().createStatement().executeQuery("SELECT (id, owner, name, creation_date, height, birthday, weight, coord_x, coord_y, loc_x, loc_y, loc_name, color) FROM collection;");
+            ResultSet collection = DBConnection.connect().createStatement().executeQuery("SELECT id, owner, name, creation_date, height, birthday, weight, coord_x, coord_y, loc_x, loc_y, loc_name, color FROM collection;");
             while (collection.next()){
                 Person person = new Person();
-                String id = collection.getString(1).split(",")[0];
-                id = new StringBuilder(id).deleteCharAt(0).toString();
-                person.setId(Integer.valueOf(id));
-                person.setOwnerId(collection.getInt(2));
-                person.setName(collection.getString(3));
-                person.setCreationDate(collection.getDate(4).toLocalDate());
-                person.setHeight(collection.getLong(5));
-                person.setBirthday(collection.getDate(6).toLocalDate());
-                person.setWeight(collection.getInt(7));
-                Coordinates coordinates = new Coordinates(collection.getDouble(8), collection.getLong(9));
-                Location location = new Location(collection.getFloat(10), collection.getDouble(11), collection.getString(12));
-                Color color = Color.valueOf(collection.getString(13));
+                person.setId(collection.getInt("id"));
+                person.setOwnerId(collection.getInt("owner"));
+                person.setName(collection.getString("name"));
+                person.setCreationDate(collection.getDate("creation_date").toLocalDate());
+                person.setHeight(collection.getLong("height"));
+                if(collection.getDate("birthday") != null) {
+                person.setBirthday(collection.getDate("birthday").toLocalDate());
+                }
+                person.setWeight(collection.getInt("weight"));
+                Coordinates coordinates = new Coordinates(collection.getDouble("coord_x"), collection.getLong("coord_y"));
+                Location location = new Location(collection.getFloat("loc_x"), collection.getDouble("loc_y"), collection.getString("loc_name"));
+                Color color = Color.valueOf(collection.getString("color"));
                 person.setCoordinates(coordinates);
                 person.setLocation(location);
                 person.setHairColor(color);
