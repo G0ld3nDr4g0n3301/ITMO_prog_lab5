@@ -14,12 +14,12 @@ public class CreateTables {
             salt VARCHAR(7) NOT NULL
         );""";
                 
-String lol = 
+private static final String lol = 
                 
                 """
         CREATE TYPE IF NOT EXISTS COLOR AS ENUM ("RED","YELLOW", "ORANGE", "WHITE", "BROWN");
         """;
-String kek =             """
+private static final String kek =             """
             CREATE TABLE IF NOT EXISTS collection (
             id SERIAL PRIMARY KEY,
             owner INT NOT NULL,
@@ -41,6 +41,8 @@ String kek =             """
         try {
            Statement creationQuery = connection.createStatement();
            creationQuery.execute(statement);
+           creationQuery.execute(lol);
+           creationQuery.execute(kek);
         } catch (SQLException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
