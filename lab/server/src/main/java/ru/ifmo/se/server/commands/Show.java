@@ -32,7 +32,7 @@ public class Show extends Command{
         String answer = "";
         for(Person p : CollectionManager.sortLoc(CollectionManager.getCollection())){
             answer += "------------------------------------" + "\n";
-            answer += p + "\n";
+            answer += p.toString() + "\n";
             answer += "------------------------------------" + "\n";
         }
         logger.info("got the collection elements");

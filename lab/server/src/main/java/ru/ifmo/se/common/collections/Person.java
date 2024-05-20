@@ -260,6 +260,7 @@ public class Person implements Comparable<Person>,Serializable{
     @Override
     public String toString(){
         String str = "id = " + id;
+        str += "\nowner = " + ownerId;
         str += "\nname = " + name;
         str += "\ncoordinates = " + coordinates;
         str += "\ncreationDate = " + creationDate;

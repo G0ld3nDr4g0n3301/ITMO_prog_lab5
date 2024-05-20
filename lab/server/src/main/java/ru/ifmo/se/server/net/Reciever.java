@@ -83,7 +83,7 @@ public class Reciever implements Runnable{
             Runnable auth = new AuthManager(key,selector,request,request.getLogin(), request.getPassword());
             ConnectionManager.addToAuthPool(auth);
 
-        } catch (SocketException | StreamCorruptedException e) {
+        } catch (SocketException | StreamCorruptedException | NullPointerException e) {
             logger.warning("client disconnected");
             ConnectionManager.decrementUsersConnected();
             key.cancel();
