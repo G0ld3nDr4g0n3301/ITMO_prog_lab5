@@ -174,8 +174,12 @@ public class DBConnection {
         try {
             PreparedStatement preparedStatement = connect().prepareStatement("SELECT MAX(id) FROM collection WHERE owner = " + request.getOwnerId() + ";");
             ResultSet inf = preparedStatement.executeQuery();
-            inf.next();
+            if(inf.next()){
+            System.out.println(inf.getInt(1));
             return getPerson("WHERE id = " + inf.getInt(1)).get(0);
+        }
+        return null;
+
         } catch (SQLException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();

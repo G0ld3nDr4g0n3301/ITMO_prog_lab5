@@ -168,8 +168,10 @@ public class CollectionManager {
      */
     public static void removeLast(Request request){
         Person toRemove = DBConnection.getLast(request);
-        if(DBConnection.deletePerson(toRemove)){
-            remove(toRemove);
+        System.out.println(toRemove);
+
+        if(toRemove != null && DBConnection.deletePerson(toRemove)){
+            collection.remove(toRemove);
         }
     }
     
