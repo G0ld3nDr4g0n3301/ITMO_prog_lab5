@@ -9,6 +9,7 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Types;
 import java.util.ArrayList;
 import java.util.Enumeration;
 import java.util.List;
@@ -69,7 +70,7 @@ public class DBConnection {
         List<Person> list = new ArrayList<>();
         ResultSet collection;
         try {
-            collection = DBConnection.connect().createStatement().executeQuery("SELECT id, owner, name, creation_date, height, birthday, weight, coord_x, coord_y, loc_x, loc_y, loc_name, color FROM users " + additionalQuery + ";");
+            collection = DBConnection.connect().createStatement().executeQuery("SELECT id, owner, name, creation_date, height, birthday, weight, coord_x, coord_y, loc_x, loc_y, loc_name, color FROM collection " + additionalQuery + ";");
             while (collection.next()){
                 Person person = new Person();
                 person.setId(collection.getInt(1));
@@ -112,13 +113,15 @@ public class DBConnection {
     public static Boolean putPerson(Person person){
         PreparedStatement preparedStatement;
         try {
-            preparedStatement = connect().prepareStatement("INSERT INTO users (id, owner, name, creation_date, height, birthday, weight, coord_x, coord_y, loc_x, loc_y, loc_name, color) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?);");
+            preparedStatement = connect().prepareStatement("INSERT INTO collection (owner, name, creation_date, height, birthday, weight, coord_x, coord_y, loc_x, loc_y, loc_name, color) VALUES (?,?,?,?,?,?,?,?,?,?,?,?);");
         preparedStatement.setInt(1, person.getOwnerId());
         preparedStatement.setString(2, person.getName());
         preparedStatement.setDate(3, Date.valueOf(person.getCreationDate()));
         preparedStatement.setLong(4, person.getHeight());
         if (person.getBirthday() != null) {
         preparedStatement.setDate(5, Date.valueOf(person.getBirthday()));
+        } else {
+            preparedStatement.setNull(5, Types.DATE);
         }
         preparedStatement.setInt(6, person.getWeight());
         preparedStatement.setDouble(7, person.getCoordinates().getX());
@@ -127,6 +130,8 @@ public class DBConnection {
         preparedStatement.setDouble(10, person.getLocation().getLocY());
         if (person.getLocation().getName() != null) {
         preparedStatement.setString(11, person.getLocation().getName());
+        } else {
+            preparedStatement.setNull(11, Types.OTHER);
         }
         preparedStatement.setString(12, person.getHairColor().toString());
         if(preparedStatement.executeUpdate() != 0){
@@ -141,7 +146,7 @@ public class DBConnection {
 
     public static Boolean deletePerson(Person p){
         try {
-            PreparedStatement preparedStatement = connect().prepareStatement("DELETE FROM users WHERE id = " + p.getId() + ";");
+            PreparedStatement preparedStatement = connect().prepareStatement("DELETE FROM collection WHERE id = " + p.getId() + ";");
             return preparedStatement.executeUpdate() != 0;
         } catch (SQLException e) {
             // TODO Auto-generated catch block
@@ -152,7 +157,7 @@ public class DBConnection {
 
     public static Boolean truncate(Request request){
         try {
-            PreparedStatement preparedStatement = connect().prepareStatement("DELETE FROM users WHERE owner = " + request.getOwnerId() + ";");
+            PreparedStatement preparedStatement = connect().prepareStatement("DELETE FROM collection WHERE owner = " + request.getOwnerId() + ";");
             return preparedStatement.executeUpdate() != 0;
         } catch (SQLException e) {
             // TODO Auto-generated catch block
@@ -165,10 +170,10 @@ public class DBConnection {
 
     public static Person getLast(Request request){
         try {
-            PreparedStatement preparedStatement = connect().prepareStatement("SELECT MAX(id) FROM users WHERE owner = " + request.getOwnerId() + ";");
+            PreparedStatement preparedStatement = connect().prepareStatement("SELECT MAX(id) FROM collection WHERE owner = " + request.getOwnerId() + ";");
             ResultSet inf = preparedStatement.executeQuery();
             inf.next();
-            return getPerson("WHERE id = " + inf.getInt(0)).get(0);
+            return getPerson("WHERE id = " + inf.getInt(1)).get(0);
         } catch (SQLException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
@@ -178,9 +183,9 @@ public class DBConnection {
 
     public static Integer getNextId(){
         try {
-           ResultSet resultSet = connect().createStatement().executeQuery("SELECT id_seq.nextval FROM collection;");
+           ResultSet resultSet = connect().createStatement().executeQuery("select currval('collection_id_seq');");
             resultSet.next();
-            return resultSet.getInt(0);
+            return resultSet.getInt(1);
         } catch (SQLException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();

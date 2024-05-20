@@ -8,13 +8,13 @@ public class CreateTables {
 
     private static final String statement = """
         CREATE TABLE IF NOT EXISTS users (
-            id SERIAL PRIMARY KEY,
+            id SERIAL PRIMARY KEY NOT NULL,
             login TEXT UNIQUE NOT NULL,
             password TEXT NOT NULL,
             salt VARCHAR(7) NOT NULL
         );
             CREATE TABLE IF NOT EXISTS collection (
-            id SERIAL PRIMARY KEY,
+            id SERIAL PRIMARY KEY NOT NULL,
             owner INT NOT NULL,
             name TEXT NOT NULL,
             creation_date DATE NOT NULL,

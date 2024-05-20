@@ -51,7 +51,9 @@ public class Load extends Command{
             ResultSet collection = DBConnection.connect().createStatement().executeQuery("SELECT (id, owner, name, creation_date, height, birthday, weight, coord_x, coord_y, loc_x, loc_y, loc_name, color) FROM collection;");
             while (collection.next()){
                 Person person = new Person();
-                person.setId(collection.getInt(1));
+                String id = collection.getString(1).split(",")[0];
+                id = new StringBuilder(id).deleteCharAt(0).toString();
+                person.setId(Integer.valueOf(id));
                 person.setOwnerId(collection.getInt(2));
                 person.setName(collection.getString(3));
                 person.setCreationDate(collection.getDate(4).toLocalDate());
@@ -70,7 +72,7 @@ public class Load extends Command{
             // TODO Auto-generated catch block
             e.printStackTrace();
         }
-        CollectionManager.addAll(newList);
+        CollectionManager.getCollection().addAll(newList);
         logger.info("Successfully loaded collection from DB");
         return null;
     }

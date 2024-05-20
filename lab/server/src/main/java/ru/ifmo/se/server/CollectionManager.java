@@ -49,6 +49,8 @@ public class CollectionManager {
      */
     public static void add(Person p){
         if(DBConnection.putPerson(p)){
+            int id = DBConnection.getNextId();
+            p.setId(id);
             collection.add(p);
             sort();
         }
@@ -150,6 +152,7 @@ public class CollectionManager {
         lock.readLock().unlock();
         return null;
     }
+    
 
     public static ReadWriteLock getLock(){
         return lock;
