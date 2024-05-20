@@ -15,19 +15,19 @@ public class CreateTables {
         );
         CREATE TYPE IF NOT EXISTS COLOR AS ENUM ("RED","YELLOW", "ORANGE", "WHITE", "BROWN");
         CREATE TABLE IF NOT EXISTS collection (
-            SERIAL PRIMARY KEY id,
-            INT NOT NULL owner,
-            TEXT NOT NULL name,
-            DATE NOT NULL creation_date,
-            INT NOT NULL height,
-            DATE birthday,
-            INT NOT NULL weight,
-            REAL NOT NULL coord_x,
-            INT NOT NULL coord_y,
-            REAL NOT NULL loc_x,
-            REAL NOT NULL loc_y,
-            TEXT loc_name,
-            COLOR NOT NULL color
+            id SERIAL PRIMARY KEY,
+            owner INT NOT NULL,
+            name TEXT NOT NULL,
+            creation_date DATE NOT NULL,
+            height INT NOT NULL ,
+            birthday DATE ,
+            weight INT NOT NULL,
+            coord_x REAL NOT NULL,
+            coord_y INT NOT NULL,
+            loc_x REAL NOT NULL ,
+            loc_y REAL NOT NULL,
+            loc_name TEXT ,
+            color COLOR NOT NULL
         );
         """;
 
