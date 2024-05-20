@@ -11,7 +11,7 @@ public class CreateTables {
             id SERIAL PRIMARY KEY,
             login TEXT UNIQUE NOT NULL,
             password TEXT NOT NULL,
-            salt VARCHAR[7] NOT NULL
+            salt VARCHAR(7) NOT NULL
         );
         CREATE TYPE IF NOT EXISTS COLOR AS ENUM ("RED","YELLOW", "ORANGE", "WHITE", "BROWN");
         CREATE TABLE IF NOT EXISTS collection (
