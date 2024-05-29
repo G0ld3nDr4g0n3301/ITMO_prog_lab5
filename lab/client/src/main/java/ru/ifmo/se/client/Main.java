@@ -21,6 +21,7 @@ public class Main {
     }
 
     public static void main(String[] args) {
+        Test.main(args);
         if(args.length > 0 && Validator.validateInt(args[0])) {
             ConnectionManager.setPort(Integer.parseInt(args[0]));
         }
