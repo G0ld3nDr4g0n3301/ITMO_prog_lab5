@@ -1,6 +1,7 @@
-javac -cp client/src/main/java/ru/ifmo/se/client/:client/src/main/java/ru/ifmo/se/client/**:client/src/main/java/ru/ifmo/se/common/** -d target/classes/ client/src/main/java/ru/ifmo/se/client/*.java client/src/main/java/ru/ifmo/se/client/**/*.java client/src/main/java/ru/ifmo/se/common/**/*.java
-cd target/classes/
-jar -cf ../../client.jar ru/ifmo/se/client/*.class ru/ifmo/se/client/**/*.class ru/ifmo/se/common/**/*.class
-echo "jar built!"
+cd client
+mvn package
+cd target
+#rm client-0.0.1.jar
+#mv client-0.0.1-jar-with-dependencies.jar client-0.0.1.jar
 cd ../..
 ./rclient.sh $1
