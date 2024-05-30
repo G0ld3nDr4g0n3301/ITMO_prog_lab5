@@ -3,9 +3,46 @@
   <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Lol</title>
+    <title></title>
+    <style>
+.flex-centered {
+  display: flex;
+  justify-content: center;
+}
+
+.flex-top-left {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+}
+
+.auth-screen {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+#auth {
+  background: #2753e9;
+  border-radius: 25px;
+}
+    </style>
   </head>
   <body>
-  <p>html inside java, WOW!</p>
+    <div class="flex-centered" id="auth">Авторизация</div>
+    <div class="flex-top-left" id="locale">
+      <table>
+        <td>
+          <dd><img src="media/rus.png"></dd>
+          <dd><img src="media/ukr.png"></dd>
+        </td>
+        <td>
+          <dd><img src="media/bel.png"></dd>
+          <dd><img src="media/spa.png"></dd>
+        </td>
+      </table>
+    </div>
+    <div class="auth-screen" id="auth-box">ауф!</div>
   </body>
 </html>
