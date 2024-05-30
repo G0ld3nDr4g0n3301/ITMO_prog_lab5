@@ -5,14 +5,16 @@ import java.io.Serializable;
 import java.net.Socket;
 import java.util.logging.Logger;
 
-import ru.ifmo.se.common.collections.Location;
-import ru.ifmo.se.common.collections.Person;
-import ru.ifmo.se.common.net.Commands;
+import javafx.application.Application;
+import javafx.scene.Group;
+import javafx.scene.Scene;
+import javafx.scene.web.WebEngine;
+import javafx.scene.web.WebView;
+import javafx.stage.Stage;
 import ru.ifmo.se.client.net.ConnectionManager;
 import sun.misc.Signal;
 
 public class Main {
-
     private static final Logger logger = Logger.getLogger(ConnectionManager.class.getName());
 
     static {
@@ -21,7 +23,7 @@ public class Main {
     }
 
     public static void main(String[] args) {
-        Test.main(args);
+        GUI.main(args);
         if(args.length > 0 && Validator.validateInt(args[0])) {
             ConnectionManager.setPort(Integer.parseInt(args[0]));
         }
@@ -65,6 +67,8 @@ public class Main {
             }
         }
 }
+
+   
 
     public static boolean connect() {
         try {
