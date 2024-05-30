@@ -36,11 +36,7 @@ public class GUI extends Application {
         Parent root = null;
         try {
             URL url = new File("fxml/login.fxml").toURI().toURL();
-            System.out.println(url);
             FXMLLoader fxmlLoader = new FXMLLoader(url);
-            System.out.println("IDK");
-            //fxmlLoader.setController(new LoginController());
-            //System.out.println(fxmlLoader.getController().toString());
             root = fxmlLoader.load();
         
         Scene scene = new Scene(root,800,500);
