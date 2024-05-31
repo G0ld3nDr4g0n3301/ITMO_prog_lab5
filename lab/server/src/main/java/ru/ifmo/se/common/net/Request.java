@@ -1,6 +1,8 @@
 package ru.ifmo.se.common.net;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+
 import ru.ifmo.se.common.collections.Location;
 import ru.ifmo.se.common.collections.Person;
 
@@ -30,6 +32,15 @@ public class Request implements Serializable{
 
     private Integer ownerId;
     private String cookie;
+    private ArrayList<Person> collection;
+
+    public ArrayList<Person> getCollection(){
+        return this.collection;
+    }
+
+    public void setCollection(ArrayList<Person> collection){
+        this.collection = collection;
+    }
 
     public String getCookie(){
         return this.cookie;

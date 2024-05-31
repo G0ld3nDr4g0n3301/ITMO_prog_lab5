@@ -13,12 +13,14 @@ import java.net.SocketAddress;
 import java.nio.BufferOverflowException;
 import java.nio.BufferUnderflowException;
 import java.nio.ByteBuffer;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.logging.Logger;
 
 import ru.ifmo.se.client.EmergencyExit;
 import ru.ifmo.se.client.LogFile;
 import ru.ifmo.se.client.Main;
+import ru.ifmo.se.common.collections.Person;
 import ru.ifmo.se.common.net.Commands;
 import ru.ifmo.se.common.net.Request;
 
@@ -68,6 +70,8 @@ public class ConnectionManager{
     static {
         logger.addHandler(LogFile.getHandler());
     }
+
+
 
     /**
      * Initialize Socket

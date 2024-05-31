@@ -65,7 +65,8 @@ public class Invoker {
         PrintHairColor printColor = new PrintHairColor("hair", "prints all hair colors in collection(descending)");
         CountHeight count = new CountHeight("count","count [height] - prints the number of objects with this height.");
         AddIfMax addIf = new AddIfMax("addif", "addif [element] - adds new element, if it's greater than max element");
-        
+        Reload reload = new Reload("reload", " reloads collection on client");
+
         commands.put(Commands.EXIT, exit);
         commands.put(Commands.HELP, help);
         commands.put(Commands.ADD, add);
@@ -82,6 +83,7 @@ public class Invoker {
         commands.put(Commands.HAIR, printColor);
         commands.put(Commands.COUNT, count);
         commands.put(Commands.ADDIF, addIf);
+        commands.put(Commands.RELOAD, reload);
         
         clientForbidden.add(Commands.EXEC);
         clientForbidden.add(Commands.SAVE);

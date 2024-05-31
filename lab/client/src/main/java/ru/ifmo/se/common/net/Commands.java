@@ -21,5 +21,6 @@ public enum Commands {
     SAVE,
     LOAD,
     REGISTER,
-    LOGIN
+    LOGIN,
+    RELOAD
 }
