@@ -18,6 +18,7 @@ import ru.ifmo.se.common.net.Request;
 import ru.ifmo.se.server.Invoker;
 import ru.ifmo.se.server.LogFile;
 import ru.ifmo.se.server.auth.AuthManager;
+import ru.ifmo.se.server.auth.CookieCheck;
 
 public class Reciever implements Runnable{
 
@@ -69,8 +70,10 @@ public class Reciever implements Runnable{
             request = Deserialize.deserializeRequest(bigBuffer.array());
             logger.info("Recieved a package " + request.toString());
             
+            if(request.getCommandType() == Commands.REGISTER || request.getCommandType() == Commands.LOGIN){
             String login = request.getLogin();
             String password = request.getPassword();
+            
 
             if(login == null || password == null || login == "" || password == ""){
                 Request errorRequest = new Request(404);
@@ -79,9 +82,12 @@ public class Reciever implements Runnable{
                 keyNew.attach(errorRequest);
                 throw new IOException();
             }
-
             Runnable auth = new AuthManager(key,selector,request,request.getLogin(), request.getPassword());
             ConnectionManager.addToAuthPool(auth);
+        }
+        Runnable cookie = new CookieCheck(key,selector,request);
+        ConnectionManager.addToAuthPool(cookie);
+            
 
         } catch (SocketException | StreamCorruptedException | NullPointerException e) {
             logger.warning("client disconnected");

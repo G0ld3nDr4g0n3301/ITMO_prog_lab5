@@ -19,5 +19,7 @@ public enum Commands {
     INFO,
     RESPONSE,
     SAVE,
-    LOAD    
+    LOAD,
+    REGISTER,
+    LOGIN
 }

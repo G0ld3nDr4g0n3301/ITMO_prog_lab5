@@ -44,6 +44,15 @@ public class Request implements Serializable{
     private String login;
     private String password;
     private Integer ownerId;
+    private String cookie;
+
+    public String getCookie(){
+        return this.cookie;
+    }
+
+    public void setCookie(String cookie){
+        this.cookie = cookie;
+    }
 
     public void setOwnerId(Integer id){
         this.ownerId = id;

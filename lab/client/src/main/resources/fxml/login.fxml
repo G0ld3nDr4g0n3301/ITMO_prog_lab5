@@ -63,7 +63,7 @@
                         <PasswordField fx:id="pass_field" layoutX="16.0" layoutY="176.0" prefHeight="26.0" prefWidth="198.0" />
                         <Button fx:id="register_button" layoutX="14.0" layoutY="268.0" mnemonicParsing="false" text="Регистрация" />
                         <Button fx:id="login_button" layoutX="141.0" layoutY="268.0" mnemonicParsing="false" text="Вход" />
-                        <CheckBox id="remember" layoutX="14.0" layoutY="211.0" mnemonicParsing="false" text="Запомнить данные" />
+                        <CheckBox fx:id="remember" layoutX="14.0" layoutY="211.0" mnemonicParsing="false" text="Запомнить данные" />
                         <Text fx:id="error_text" layoutX="16.0" layoutY="251.0" strokeType="OUTSIDE" strokeWidth="0.0" />
                               <Label fx:id="login_label" layoutX="16.0" layoutY="145.0" text="Логин" />
                               <Label fx:id="pass_label" layoutX="19.0" layoutY="180.0" text="Пароль" />

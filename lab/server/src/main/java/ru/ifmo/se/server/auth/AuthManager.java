@@ -11,7 +11,9 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Random;
+import java.util.UUID;
 
+import ru.ifmo.se.common.net.Commands;
 import ru.ifmo.se.common.net.Request;
 import ru.ifmo.se.server.db.DBConnection;
 import ru.ifmo.se.server.net.ConnectionManager;
@@ -51,17 +53,19 @@ public class AuthManager implements Runnable {
             Integer id = userId.getInt(1);
             String userHash = userId.getString(2);
             String userSalt = userId.getString(3);
+            Request answer = null;
             if (CompareHash.compare(password, userSalt, pepper, userHash)) {
-                request.setOwnerId(id);
-                Runnable handler = new Handler(key, selector, request);
-                ConnectionManager.addToHandlePool(handler);
+                String uuid = generateUUID();
+                CookieCheck.setCookie(uuid,id);
+                answer = new Request(Commands.RESPONSE);
+                answer.setCookie(uuid);
             } else {
-                SocketChannel client = (SocketChannel) key.channel();
-                Request errorRequest = new Request(404);
-                errorRequest.setMsg("Wrong password.");
-                SelectionKey keyNew = client.register(selector, SelectionKey.OP_WRITE);
-                keyNew.attach(errorRequest);
+                answer = new Request(404);
+                answer.setMsg("Wrong password.");
             }
+            SocketChannel client = (SocketChannel) key.channel();
+            SelectionKey keyNew = client.register(selector, SelectionKey.OP_WRITE);
+            keyNew.attach(answer);
         } catch (SQLException | ClosedChannelException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
@@ -99,6 +103,10 @@ public class AuthManager implements Runnable {
         String res = String.join("",salt);
         System.out.println(res);
         return res;
+    }
+
+    private String generateUUID(){
+        return UUID.randomUUID().toString();
     }
     
 }

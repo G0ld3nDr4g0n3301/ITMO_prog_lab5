@@ -19,6 +19,7 @@ import java.util.logging.Logger;
 import ru.ifmo.se.client.EmergencyExit;
 import ru.ifmo.se.client.LogFile;
 import ru.ifmo.se.client.Main;
+import ru.ifmo.se.common.net.Commands;
 import ru.ifmo.se.common.net.Request;
 
 public class ConnectionManager{
@@ -26,6 +27,8 @@ public class ConnectionManager{
     private static String login;
 
     private static String password;
+
+    private static String cookie;
 
     /**
      * target port
@@ -124,9 +127,8 @@ public class ConnectionManager{
      * @throws IOException
      */
     public static boolean send(Request request) throws IOException{
-        request.setLogin(login);
-        request.setPassword(password);
-
+        request.setCookie(cookie);
+        
         if (socket != null){
             System.out.println("Sending...");
             out.write(Serialize.serializeRequest(request));
@@ -198,6 +200,54 @@ public class ConnectionManager{
      */
     public static Socket getSocket(){
         return socket;
+    }
+
+    public static void setCookie(String newCookie){
+        cookie = newCookie;
+    }
+
+    public static String getCookie(){
+        return cookie;
+    }
+
+    public static String register(){
+        Request request = new Request(Commands.REGISTER);
+        request.setLogin(login);
+        request.setPassword(password);
+        try {
+            send(request);
+            Request result = recieve();
+            if(result.getStatusCode() == 404){
+                return null;
+            }
+            setCookie(result.getCookie());
+            return result.getMsg();
+        } catch (IOException e) {
+            
+            e.printStackTrace();
+            return null;
+        }
+        
+
+    }
+
+    public static String login(){
+        Request request = new Request(Commands.LOGIN);
+        request.setLogin(login);
+        request.setPassword(password);
+        try {
+            send(request);
+            Request result = recieve();
+            if(result.getStatusCode() == 404){
+                return null;
+            }
+            setCookie(result.getCookie());
+            return result.getMsg();
+        } catch (IOException e) {
+            
+            e.printStackTrace();
+            return null;
+        }
     }
 
     public static int getPort() {

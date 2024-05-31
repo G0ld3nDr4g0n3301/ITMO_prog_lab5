@@ -9,7 +9,9 @@ import java.nio.channels.SelectionKey;
 import java.nio.channels.Selector;
 import java.nio.channels.ServerSocketChannel;
 import java.nio.channels.SocketChannel;
+import java.util.HashMap;
 import java.util.Iterator;
+import java.util.Map;
 import java.util.Set;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
@@ -28,7 +30,6 @@ public class ConnectionManager{
     private static final ExecutorService sendPool = Executors.newCachedThreadPool();
     private static final ExecutorService handlePool = Executors.newFixedThreadPool(50);
     private static final ExecutorService authPool = Executors.newCachedThreadPool();
-    
 
     /**
      * logger
@@ -43,6 +44,7 @@ public class ConnectionManager{
     static {
         logger.addHandler(LogFile.getHandler());
     }
+
     
     /**
      * server port
