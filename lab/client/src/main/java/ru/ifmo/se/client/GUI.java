@@ -5,11 +5,13 @@ import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.net.MalformedURLException;
 import java.net.URL;
 import java.nio.charset.StandardCharsets;
 import java.util.stream.Collectors;
 
 import javafx.application.Application;
+import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Group;
 import javafx.scene.Parent;
@@ -22,6 +24,7 @@ import javafx.scene.web.WebEngine;
 import javafx.scene.web.WebView;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
+import javafx.stage.WindowEvent;
 
 public class GUI extends Application {
 
@@ -44,9 +47,9 @@ public class GUI extends Application {
         stage.sizeToScene();
         stage.setScene(scene);
         stage.show();
+       
+
     } catch (Exception e) {
-        // TODO Auto-generated catch block
-        System.out.println(e);
         e.printStackTrace();
     }
     }

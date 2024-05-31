@@ -6,6 +6,7 @@ import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStream;
+import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.Properties;
 import java.util.ResourceBundle;
@@ -14,7 +15,10 @@ import javafx.event.ActionEvent;
 import javafx.event.Event;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
@@ -141,8 +145,7 @@ public class LoginController implements Initializable {
                     error_text.setText(msg);
                 } else {
                     error_text.setText("");
-                    Stage window = (Stage) login_button.getScene().getWindow();
-                    window.close();
+                    showMain();
                 }
                 
             }
@@ -159,8 +162,7 @@ public class LoginController implements Initializable {
                     error_text.setText(msg);
                 }else {
                     error_text.setText("");
-                    Stage window = (Stage) register_button.getScene().getWindow();
-                    window.close();
+                    showMain();
                 }
             }
         };
@@ -213,5 +215,30 @@ public class LoginController implements Initializable {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    private void showMain(){
+        login_button.getScene().getWindow().hide();
+        URL url = null;
+        try {
+            url = new File("fxml/main.fxml").toURI().toURL();
+        } catch (MalformedURLException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+        FXMLLoader fxmlLoader = new FXMLLoader(url);
+
+        try {
+            fxmlLoader.load();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        Parent root = fxmlLoader.getRoot();
+        Scene scene = new Scene(root);
+        Stage stage = new Stage();
+        stage.setTitle("Raistlin!");
+        stage.setScene(scene);
+        stage.setResizable(false);
+        stage.show();
     }
 }

@@ -231,6 +231,10 @@ public class ConnectionManager{
 
     }
 
+    public static String getLogin(){
+        return login;
+    }
+
     public static String login(){
         Request request = new Request(Commands.LOGIN);
         request.setLogin(login);
