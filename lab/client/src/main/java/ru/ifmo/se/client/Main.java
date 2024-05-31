@@ -23,9 +23,12 @@ public class Main {
     }
 
     public static void main(String[] args) {
-        GUI.main(args);
+       
 
-
+        if(args.length > 0){
+            ConnectionManager.setPort(Integer.valueOf(args[0]));
+        }
+        
         boolean isConnected = false;
         for (int tries = 0; tries < 5 && !isConnected; tries++) {
             logger.info("Server doesn't respond.Retrying, try "+ tries +"...");
@@ -36,6 +39,8 @@ public class Main {
             System.exit(0);
         }
         logger.info("Connected!");
+        
+        GUI.main(args);
         try {
             while(true){
                 String input = CLIInputManager.ask("> ");

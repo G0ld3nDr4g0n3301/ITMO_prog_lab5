@@ -31,6 +31,7 @@ public class CookieCheck implements Runnable{
         try {
         while(true){
         SocketChannel client = (SocketChannel) key.channel();
+        if(request.getCookie() != null){
         if(!cookies.containsKey(request.getCookie())){
             Request answer = new Request(404);
             answer.setMsg("Unknown Cookie!");
@@ -38,12 +39,12 @@ public class CookieCheck implements Runnable{
             keyNew.attach(answer);
             break;
         } else {
-            Request answer = new Request(Commands.RESPONSE);
-            answer.setOwnerId(cookies.get(request.getCookie()));
-            Runnable handler = new Handler(key, selector, answer);
+            request.setOwnerId(cookies.get(request.getCookie()));
+            Runnable handler = new Handler(key, selector, request);
             ConnectionManager.addToHandlePool(handler);
             break;
         }
+    }
     }
         } catch (Exception e){
             e.printStackTrace();
