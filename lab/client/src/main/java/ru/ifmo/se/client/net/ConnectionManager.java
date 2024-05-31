@@ -128,7 +128,7 @@ public class ConnectionManager{
      */
     public static boolean send(Request request) throws IOException{
         request.setCookie(cookie);
-        
+
         if (socket != null){
             System.out.println("Sending...");
             out.write(Serialize.serializeRequest(request));
@@ -218,14 +218,14 @@ public class ConnectionManager{
             send(request);
             Request result = recieve();
             if(result.getStatusCode() == 404){
-                return null;
+                return result.getMsg();
             }
             setCookie(result.getCookie());
-            return result.getMsg();
+            return null;
         } catch (IOException e) {
             
             e.printStackTrace();
-            return null;
+            return "Error";
         }
         
 
@@ -239,14 +239,14 @@ public class ConnectionManager{
             send(request);
             Request result = recieve();
             if(result.getStatusCode() == 404){
-                return null;
+                return result.getMsg();
             }
             setCookie(result.getCookie());
-            return result.getMsg();
+            return null;
         } catch (IOException e) {
             
             e.printStackTrace();
-            return null;
+            return "Error";
         }
     }
 

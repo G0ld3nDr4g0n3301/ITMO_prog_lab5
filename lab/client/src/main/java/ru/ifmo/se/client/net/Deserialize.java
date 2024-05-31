@@ -19,6 +19,7 @@ public class Deserialize {
         ByteArrayInputStream byte_in = new ByteArrayInputStream(bytes);
         int length = bytes.length - 54;
         Object obj = null;
+        
         try {
             try (ObjectInputStream obj_in = new ObjectInputStream(byte_in)) {
                 obj = obj_in.readObject();

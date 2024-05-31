@@ -135,10 +135,16 @@ public class LoginController implements Initializable {
             public void handle(MouseEvent e){
                 ConnectionManager.setLogin(login_field.getText());
                 ConnectionManager.setPassword(pass_field.getText());
-                ConnectionManager.login();
+                String msg = ConnectionManager.login();
                 storeUserData(login_field.getText(), pass_field.getText());
-                Stage window = (Stage) login_button.getScene().getWindow();
-                window.close();
+                if(msg != null){
+                    error_text.setText(msg);
+                } else {
+                    error_text.setText("");
+                    Stage window = (Stage) login_button.getScene().getWindow();
+                    window.close();
+                }
+                
             }
         };
         
@@ -148,9 +154,14 @@ public class LoginController implements Initializable {
                 ConnectionManager.setLogin(login_field.getText());
                 ConnectionManager.setPassword(pass_field.getText());
                 storeUserData(login_field.getText(), pass_field.getText());
-                ConnectionManager.register();
-                Stage window = (Stage) register_button.getScene().getWindow();
-                window.close();
+                String msg = ConnectionManager.register();
+                if(msg != null){
+                    error_text.setText(msg);
+                }else {
+                    error_text.setText("");
+                    Stage window = (Stage) register_button.getScene().getWindow();
+                    window.close();
+                }
             }
         };
 

@@ -59,13 +59,17 @@ public class AuthManager implements Runnable {
                 CookieCheck.setCookie(uuid,id);
                 answer = new Request(Commands.RESPONSE);
                 answer.setCookie(uuid);
+                SocketChannel client = (SocketChannel) key.channel();
+                SelectionKey keyNew = client.register(selector, SelectionKey.OP_WRITE);
+                keyNew.attach(answer);
             } else {
                 answer = new Request(404);
                 answer.setMsg("Wrong password.");
+                SocketChannel client = (SocketChannel) key.channel();
+                SelectionKey keyNew = client.register(selector, SelectionKey.OP_WRITE);
+                keyNew.attach(answer);
             }
-            SocketChannel client = (SocketChannel) key.channel();
-            SelectionKey keyNew = client.register(selector, SelectionKey.OP_WRITE);
-            keyNew.attach(answer);
+            
         } catch (SQLException | ClosedChannelException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();

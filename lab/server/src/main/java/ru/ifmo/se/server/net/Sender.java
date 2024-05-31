@@ -52,6 +52,7 @@ public class Sender implements Runnable{
             ObjectOutputStream objectOutputStream = new ObjectOutputStream(byteArrayOutputStream);
             ByteBuffer tempHeader = ByteBuffer.wrap(byteArrayOutputStream.toByteArray());
             byteArrayOutputStream.reset();
+            System.out.println(key.attachment());
             objectOutputStream.writeObject(key.attachment());
             objectOutputStream.flush();
             objectOutputStream.close();
@@ -73,6 +74,7 @@ public class Sender implements Runnable{
             key.cancel();
         } catch (IOException e){
             //handle
+            e.printStackTrace();
         }
     }
 }
