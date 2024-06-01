@@ -44,16 +44,18 @@ public class MainController implements Initializable{
         Executors.newScheduledThreadPool(1).scheduleAtFixedRate(new Collection(), 0, 10, TimeUnit.SECONDS);
 
         logoutButton.setOnMouseClicked(new EventHandler<MouseEvent>(){
+
             @Override
             public void handle(MouseEvent e){
                 Stage stage = (Stage) elNum.getScene().getWindow();
                 stage.close();
             }
+            
         });
 
         elNum.setText(ConnectionManager.getLogin());
 
-        langChoice.getItems().clear();;
+        langChoice.getItems().clear();
         langChoice.getItems().addAll("RU", "UA", "BL", "SP");
         langChoice.getSelectionModel().select("RU");
 
