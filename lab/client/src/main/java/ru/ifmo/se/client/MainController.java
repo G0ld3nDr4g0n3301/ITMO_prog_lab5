@@ -1,14 +1,21 @@
 package ru.ifmo.se.client;
 
+import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.TimeUnit;
 
+import javafx.animation.Animation;
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
+import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.Event;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -22,10 +29,13 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
+import javafx.util.Duration;
 import ru.ifmo.se.client.GUIHelp.PersonData;
 import ru.ifmo.se.client.net.Collection;
 import ru.ifmo.se.client.net.ConnectionManager;
 import ru.ifmo.se.common.collections.Person;
+import ru.ifmo.se.common.net.Commands;
+import ru.ifmo.se.common.net.Request;
 
 public class MainController implements Initializable{
 
@@ -50,14 +60,18 @@ public class MainController implements Initializable{
     @FXML
     private ScrollPane tablePane;
 
+    private static ArrayList<Person> collection;
 
     private static TableView<PersonData> table = new TableView<>();
 
     
     @Override
     public void initialize(URL url, ResourceBundle resources){
-        Executors.newScheduledThreadPool(1).scheduleAtFixedRate(new Collection(), 0, 10, TimeUnit.SECONDS);
 
+        Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(7), e -> refreshTable()));
+
+        timeline.setCycleCount(Animation.INDEFINITE);
+        timeline.play();
         logoutButton.setOnMouseClicked(new EventHandler<MouseEvent>(){
 
             @Override
@@ -67,6 +81,8 @@ public class MainController implements Initializable{
             }
             
         });
+
+        
 
         
         TableColumn id = new TableColumn<>("id");
@@ -107,7 +123,16 @@ public class MainController implements Initializable{
 
     }
     
-    public static void refreshTable(List<Person> collection){
+    public void refreshTable(){
+        System.out.println("DFLDSJFK");
+        Request request = new Request(Commands.RELOAD);
+    try {
+        ConnectionManager.send(request);
+    } catch (IOException e) {
+        e.printStackTrace();
+    }
+    Request answer = ConnectionManager.recieve();
+    collection = answer.getCollection();
         ObservableList<PersonData> data = FXCollections.observableArrayList(PersonData.calc(collection));
         table.setItems(data);
     }

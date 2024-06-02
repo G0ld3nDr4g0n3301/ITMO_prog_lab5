@@ -31,6 +31,5 @@ public class Collection implements Runnable{
         }
         Request answer = ConnectionManager.recieve();
         setCollection(answer.getCollection());
-        MainController.refreshTable(collection);
     }
 }
