@@ -1,6 +1,8 @@
 package ru.ifmo.se.client;
 
 import java.io.IOException;
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
@@ -8,6 +10,7 @@ import java.util.ResourceBundle;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.TimeUnit;
+import java.util.stream.Collectors;
 
 import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
@@ -25,6 +28,7 @@ import javafx.scene.control.ScrollPane;
 import javafx.scene.control.SelectionMode;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.text.Text;
@@ -60,18 +64,37 @@ public class MainController implements Initializable{
     @FXML
     private ScrollPane tablePane;
 
-    private static ArrayList<Person> collection;
+    @FXML
+    private ComboBox filterColumn;
+
+    @FXML
+    private TextField filterValue;
+
+    @FXML
+    private Button filterButton;
+
+    private static ArrayList<Person> collection = new ArrayList<>();
 
     private static TableView<PersonData> table = new TableView<>();
+
+    private static String columnSelected = null;
+
+    private static String valueSelected = "";
+
+    private ObservableList<TableColumn<PersonData, ?>> sortedColumns = FXCollections.observableArrayList();
 
     
     @Override
     public void initialize(URL url, ResourceBundle resources){
 
-        Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(7), e -> refreshTable()));
+        Executors.newScheduledThreadPool(1).scheduleAtFixedRate(new Collection(), 0, 10, TimeUnit.SECONDS);
+
+        refreshTable();
+        Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(3), e -> refreshTable()));
 
         timeline.setCycleCount(Animation.INDEFINITE);
-        timeline.play();
+        timeline.playFromStart();
+
         logoutButton.setOnMouseClicked(new EventHandler<MouseEvent>(){
 
             @Override
@@ -84,6 +107,23 @@ public class MainController implements Initializable{
 
         
 
+
+        filterColumn.getItems().clear();
+        filterColumn.getItems().addAll("None","Id", "Name", "OwnerId", "Height", "Weight", "Birthday", "CreationDate","HairColor","Location","Coordinates");
+        filterColumn.getSelectionModel().select("Id");
+
+        filterButton.setOnMouseClicked(new EventHandler<MouseEvent>() {
+
+            @Override
+            public void handle(MouseEvent event) {
+                columnSelected = filterColumn.getSelectionModel().getSelectedItem().toString();
+                valueSelected = filterValue.getText();
+                refreshTable();
+            }
+            
+        });
+
+        
         
         TableColumn id = new TableColumn<>("id");
         id.setCellValueFactory(new PropertyValueFactory<>("id"));
@@ -106,7 +146,9 @@ public class MainController implements Initializable{
         TableColumn coordinates = new TableColumn<>("coordinates");
         coordinates.setCellValueFactory(new PropertyValueFactory<>("coordinates"));
         
-
+        table.setOnSort(e -> {
+            this.sortedColumns = table.getSortOrder();
+        });
 
 
         table.getColumns().addAll(id,name,ownerId,height,weight,birthday,creationDate,hairColor,location,coordinates);
@@ -124,18 +166,60 @@ public class MainController implements Initializable{
     }
     
     public void refreshTable(){
-        System.out.println("DFLDSJFK");
-        Request request = new Request(Commands.RELOAD);
-    try {
-        ConnectionManager.send(request);
-    } catch (IOException e) {
-        e.printStackTrace();
-    }
-    Request answer = ConnectionManager.recieve();
-    collection = answer.getCollection();
-        ObservableList<PersonData> data = FXCollections.observableArrayList(PersonData.calc(collection));
+        ObservableList<PersonData> data = FXCollections.observableArrayList(filterValues());
+        ObservableList<TableColumn<PersonData, ?>> currentSortedColumns = FXCollections.observableArrayList();
+        currentSortedColumns.addAll(sortedColumns);
         table.setItems(data);
+        table.getSortOrder().addAll(currentSortedColumns);
+        table.sort();
+        table.refresh();
+    }
+
+    public List<PersonData> filterValues(){
+        List<PersonData> oldList = PersonData.calc(collection);
+        if(columnSelected == "None"){
+            return oldList;
+        }
+        List<PersonData> newList = oldList.stream()
+        .filter(p -> matchPredicate(p))
+        .collect(Collectors.toList());
+        return newList;
+    }
+
+    public boolean matchPredicate(PersonData p){
+            if(columnSelected == null){
+                return true;
+            }
+            try {
+                String value = (String) p.getClass().getMethod("get" + columnSelected).invoke(p);
+                if (value == null){
+                    if(valueSelected == "") {
+                        return true;
+                    }
+                    return false;
+                }
+                return value.equals(valueSelected);
+            } catch (IllegalAccessException e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+            } catch (IllegalArgumentException e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+            } catch (InvocationTargetException e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+            } catch (NoSuchMethodException e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+            } catch (SecurityException e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+            }
+            return false;
     }
 
 
+    public static void setCollection(ArrayList<Person> p){
+        collection = p;
+    }
 }

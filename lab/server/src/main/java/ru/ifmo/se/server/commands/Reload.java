@@ -30,9 +30,6 @@ public class Reload extends Command{
     
     @Override
     public Request execute(Request args){
-        for (Person p : CollectionManager.getCollection()){
-            System.out.println(p);
-        }
         args.setCollection((ArrayList) CollectionManager.getCollection());
         return args;
     }

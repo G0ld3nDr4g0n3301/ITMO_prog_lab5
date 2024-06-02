@@ -12,15 +12,6 @@ import ru.ifmo.se.common.net.Request;
 
 public class Collection implements Runnable{
     
-    private static ArrayList<Person> collection;
-
-    public static ArrayList<Person> getCollection(){
-        return collection;
-    }
-
-    public static void setCollection(ArrayList<Person> newCollection){
-        collection = newCollection;
-    }
 
     public void run(){
         Request request = new Request(Commands.RELOAD);
@@ -30,6 +21,6 @@ public class Collection implements Runnable{
             e.printStackTrace();
         }
         Request answer = ConnectionManager.recieve();
-        setCollection(answer.getCollection());
+        MainController.setCollection(answer.getCollection());
     }
 }
