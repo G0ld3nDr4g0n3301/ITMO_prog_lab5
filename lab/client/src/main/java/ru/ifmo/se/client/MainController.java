@@ -1,8 +1,10 @@
 package ru.ifmo.se.client;
 
+import java.io.File;
 import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
+import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
@@ -21,7 +23,10 @@ import javafx.collections.ObservableList;
 import javafx.event.Event;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.ScrollPane;
@@ -42,6 +47,18 @@ import ru.ifmo.se.common.net.Commands;
 import ru.ifmo.se.common.net.Request;
 
 public class MainController implements Initializable{
+
+    @FXML
+    private Button infoCommandsButton;
+
+
+    @FXML
+    private Button removeCommandsButton;
+
+
+    @FXML
+    private Button addComandsButton;
+
 
     @FXML
     private Button logoutButton;
@@ -151,17 +168,46 @@ public class MainController implements Initializable{
         });
 
 
+
+
         table.getColumns().addAll(id,name,ownerId,height,weight,birthday,creationDate,hairColor,location,coordinates);
         
         tablePane.setContent(table);
 
+        infoCommandsButton.setOnMouseClicked(new EventHandler<MouseEvent>(){
 
+            @Override
+            public void handle(MouseEvent event) {
+                URL url = null;
+                try {
+                    url = new File("fxml/info.fxml").toURI().toURL();
+                } catch (MalformedURLException e) {
+                    e.printStackTrace();
+                }
+                FXMLLoader fxmlLoader = new FXMLLoader(url);
+
+                try {
+                    fxmlLoader.load();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+                Parent root = fxmlLoader.getRoot();
+                Scene scene = new Scene(root);
+                Stage stage = new Stage();
+                stage.setScene(scene);
+                stage.setResizable(false);
+                stage.show();
+            }
+
+        });
 
         currUser.setText(ConnectionManager.getLogin());
 
         langChoice.getItems().clear();
         langChoice.getItems().addAll("RU", "UA", "BL", "SP");
         langChoice.getSelectionModel().select("RU");
+
+        
 
     }
     

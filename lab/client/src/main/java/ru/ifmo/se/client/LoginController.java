@@ -236,6 +236,7 @@ public class LoginController implements Initializable {
         Parent root = fxmlLoader.getRoot();
         Scene scene = new Scene(root);
         Stage stage = new Stage();
+        GUI.setStage(stage);
         stage.setTitle("Raistlin!");
         stage.setScene(scene);
         stage.setResizable(false);

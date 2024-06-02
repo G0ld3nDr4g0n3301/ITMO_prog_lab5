@@ -130,7 +130,7 @@ public class ConnectionManager{
      * @return true if no errors encountered
      * @throws IOException
      */
-    public static boolean send(Request request) throws IOException{
+    public synchronized static boolean send(Request request) throws IOException{
         request.setCookie(cookie);
 
         if (socket != null){
@@ -147,7 +147,7 @@ public class ConnectionManager{
      * Recieve Response from server
      * @return Response
      */
-    public static Request recieve() {
+    public synchronized static Request recieve() {
         System.out.println("Recieving");
         if (socket == null ){
             System.out.println("run initSocket() first.");

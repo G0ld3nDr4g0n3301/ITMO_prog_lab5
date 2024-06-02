@@ -28,9 +28,21 @@ import javafx.stage.WindowEvent;
 
 public class GUI extends Application {
 
+    private static Stage stage;
+
+    public static void setStage(Stage newStage){
+        stage = newStage;
+    }
+
+    public static Stage getStage(){
+        return stage;
+    }
+
+
     public static void main(String[] args) {
         launch(args);
     }
+
 
      public void start(Stage stage){
         

@@ -45,9 +45,9 @@
          <right>
             <VBox prefHeight="462.0" prefWidth="149.0" BorderPane.alignment="CENTER">
                <children>
-                  <Button id="addCommandsButton" mnemonicParsing="false" prefHeight="146.0" prefWidth="150.0" style="-fx-background-color: #499d2d;" text="add commands" />
-                  <Button id="removeCommandsButton" mnemonicParsing="false" prefHeight="157.0" prefWidth="149.0" style="-fx-background-color: #c84f35;" text="remove commands" />
-                  <Button id="infoCommandsButton" mnemonicParsing="false" prefHeight="160.0" prefWidth="158.0" style="-fx-background-color: #306296;" text="info commands" />
+                  <Button fx:id="addCommandsButton" mnemonicParsing="false" prefHeight="146.0" prefWidth="150.0" style="-fx-background-color: #499d2d;" text="add commands" />
+                  <Button fx:id="removeCommandsButton" mnemonicParsing="false" prefHeight="157.0" prefWidth="149.0" style="-fx-background-color: #c84f35;" text="remove commands" />
+                  <Button fx:id="infoCommandsButton" mnemonicParsing="false" prefHeight="160.0" prefWidth="158.0" style="-fx-background-color: #306296;" text="info commands" />
                </children>
             </VBox>
          </right>

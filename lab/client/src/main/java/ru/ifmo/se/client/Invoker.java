@@ -61,8 +61,8 @@ public class Invoker {
         RemoveLoc removeLoc = new RemoveLoc("remove_by_location", "removes all elements with specified location.");
         RemoveLast removeLast = new RemoveLast("remove_last", "removes last collection element");
         RemoveLower removeLower = new RemoveLower("remove_lower", "remove_lower {element} - removes all the elements, that are lower than the given one");
-        PrintHairColor printColor = new PrintHairColor("hair", "prints all hair colors in collection(descending)");
-        CountHeight count = new CountHeight("count","count [height] - prints the number of objects with this height.");
+        PrintHairColor printColor = new PrintHairColor("print_hair_colors", "prints all hair colors in collection(descending)");
+        CountHeight count = new CountHeight("count_by_height","count [height] - prints the number of objects with this height.");
         AddIfMax addIf = new AddIfMax("addif", "addif [element] - adds new element, if it's greater than max element");
         
         commands.put(exit.getName(), exit);
@@ -88,21 +88,21 @@ public class Invoker {
      * @param args
      * @return true, if no errors encountered during runtime of command.
      */
-    public static boolean execute(String[] args){
+    public static Request execute(String[] args){
         if (!(commands.containsKey(args[0].toLowerCase()))){
             System.out.println("Wrong command. Type \"help\" for command list");
-            return false;
+            return null;
         }
         Request request = commands.get(args[0].toLowerCase()).execute(args);
         if (request == null) {
-            return false;
+            return null;
         }
         try {
             ConnectionManager.send(request);
             Request answer = ConnectionManager.recieve();
             if (answer == null) {
                 System.out.println("Error in package reading");
-                return false;
+                return null;
             }
             System.out.println(answer);
             int diff = 0;
@@ -118,26 +118,12 @@ public class Invoker {
                 }
                 usersConnected = answer.getId();
             }
-            switch (answer.getStatusCode()) {
-                case 200:
-                    System.out.println("Operation performed successfully.");
-                    break;
-                case 404:
-                    System.out.println("Error encountered");
-                    System.out.println(answer.getMsg());
-                    break;
-                case 400:
-                    System.out.println("Operation performed successfully");
-                    System.out.println(answer.getMsg());
-                    break;
-                default:
-                    System.out.println("Unknown status code");
-                    return false;
-            }
+            return answer;
         } catch (IOException e) {
             System.out.println(e);
+            return null;
         }
-        return true;
+        
 
     }
     
