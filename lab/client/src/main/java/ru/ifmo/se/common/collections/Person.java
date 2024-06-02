@@ -13,17 +13,16 @@ public class Person implements Comparable<Person>,Serializable{
      * id of a person
      */
     
-    private transient Integer id; //Поле не может быть null, Значение поля должно быть больше 0, Значение этого поля должно быть уникальным, Значение этого поля должно генерироваться автоматически
+    private  Integer id; //Поле не может быть null, Значение поля должно быть больше 0, Значение этого поля должно быть уникальным, Значение этого поля должно генерироваться автоматически
     
+
+    private  Integer ownerId;
+
     /**
      * Name of a Person
      */
     
     private String name; //Поле не может быть null, Строка не может быть пустой
-    
-
-
-    private transient Integer ownerId;
     
     /**
      * Coordinates(x,y) of a person
@@ -35,7 +34,7 @@ public class Person implements Comparable<Person>,Serializable{
      * Creation date of a person
      */
     
-    private transient LocalDate creationDate; //Поле не может быть null, Значение этого поля должно генерироваться автоматически
+    private LocalDate creationDate; //Поле не может быть null, Значение этого поля должно генерироваться автоматически
     
     /**
      * height of a person
@@ -81,12 +80,7 @@ public class Person implements Comparable<Person>,Serializable{
      */
     @Override
     public int compareTo(Person p){
-        if(this.getId() > p.getId()){
-            return 1;
-        }else if(this.getId() == p.getId()){
-            return 0;
-        }
-        return -1;
+        return this.getLocation().compareTo(p.getLocation());
     }
     
     @Override
@@ -111,7 +105,7 @@ public class Person implements Comparable<Person>,Serializable{
     public int hashCode(){
         return this.getId();
     }
-
+    
     public void setOwnerId(Integer id) {
         this.ownerId = id;
     }
@@ -119,7 +113,7 @@ public class Person implements Comparable<Person>,Serializable{
     public Integer getOwnerId(){
         return this.ownerId;
     }
-    
+
     /**
      * set new location to person.
      * @param location .
@@ -266,6 +260,7 @@ public class Person implements Comparable<Person>,Serializable{
     @Override
     public String toString(){
         String str = "id = " + id;
+        str += "\nowner = " + ownerId;
         str += "\nname = " + name;
         str += "\ncoordinates = " + coordinates;
         str += "\ncreationDate = " + creationDate;

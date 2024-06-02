@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 import ru.ifmo.se.client.Invoker;
+import ru.ifmo.se.client.Main;
 import ru.ifmo.se.client.MainController;
 import ru.ifmo.se.common.collections.Person;
 import ru.ifmo.se.common.net.Commands;
@@ -30,5 +31,6 @@ public class Collection implements Runnable{
         }
         Request answer = ConnectionManager.recieve();
         setCollection(answer.getCollection());
+        MainController.refreshTable(collection);
     }
 }

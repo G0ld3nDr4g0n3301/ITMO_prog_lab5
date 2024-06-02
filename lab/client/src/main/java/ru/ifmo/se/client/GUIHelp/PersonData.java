@@ -43,17 +43,17 @@ public class PersonData {
     private SimpleStringProperty location = new SimpleStringProperty();
     
     public PersonData(Person p){
+        setId(p.getId().toString());
         setOwnerId(p.getOwnerId().toString());
         if(p.getBirthday() != null){
         setBirthday(p.getBirthday().toString());
         }
         setCoordinates("(" + p.getCoordinates().getX() + "," + p.getCoordinates().getY() + ")");
         setCreationDate(p.getCreationDate().toString());
-        setHairColor(getHairColor());
-        setHeight(getHeight());
-        setId(getId());
-        String loc = "(" + p.getLocation().getLocX()  + p.getLocation().getLocY();
-        loc = loc += p.getLocation().getName() != null ? p.getLocation().getName() + ")" : ")";
+        setHairColor(p.getHairColor().toString());
+        setHeight(p.getHeight().toString());
+        String loc = "(" + p.getLocation().getLocX() + ","  + p.getLocation().getLocY();
+        loc = loc += p.getLocation().getName() != null ? "," + p.getLocation().getName() + ")" : ")";
         setLocation(loc);
         setName(p.getName());
         setWeight(p.getWeight().toString());

@@ -13,10 +13,10 @@ public class Person implements Comparable<Person>,Serializable{
      * id of a person
      */
     
-    private transient Integer id; //Поле не может быть null, Значение поля должно быть больше 0, Значение этого поля должно быть уникальным, Значение этого поля должно генерироваться автоматически
+    private Integer id; //Поле не может быть null, Значение поля должно быть больше 0, Значение этого поля должно быть уникальным, Значение этого поля должно генерироваться автоматически
     
 
-    private transient Integer ownerId;
+    private Integer ownerId;
 
     /**
      * Name of a Person
@@ -34,7 +34,7 @@ public class Person implements Comparable<Person>,Serializable{
      * Creation date of a person
      */
     
-    private transient LocalDate creationDate; //Поле не может быть null, Значение этого поля должно генерироваться автоматически
+    private LocalDate creationDate; //Поле не может быть null, Значение этого поля должно генерироваться автоматически
     
     /**
      * height of a person

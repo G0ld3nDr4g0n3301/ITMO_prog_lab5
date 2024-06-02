@@ -5,6 +5,7 @@ import java.util.Comparator;
 import java.util.logging.Logger;
 import java.util.stream.Collectors;
 
+import ru.ifmo.se.common.collections.Person;
 import ru.ifmo.se.common.net.Request;
 import ru.ifmo.se.server.CollectionManager;
 import ru.ifmo.se.server.Command;
@@ -29,6 +30,9 @@ public class Reload extends Command{
     
     @Override
     public Request execute(Request args){
+        for (Person p : CollectionManager.getCollection()){
+            System.out.println(p);
+        }
         args.setCollection((ArrayList) CollectionManager.getCollection());
         return args;
     }

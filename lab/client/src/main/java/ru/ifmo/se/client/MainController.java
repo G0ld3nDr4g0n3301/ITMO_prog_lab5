@@ -1,12 +1,14 @@
 package ru.ifmo.se.client;
 
 import java.net.URL;
+import java.util.List;
 import java.util.ResourceBundle;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.TimeUnit;
 
 import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -47,6 +49,10 @@ public class MainController implements Initializable{
 
     @FXML
     private ScrollPane tablePane;
+
+
+    private static TableView<PersonData> table = new TableView<>();
+
     
     @Override
     public void initialize(URL url, ResourceBundle resources){
@@ -62,7 +68,6 @@ public class MainController implements Initializable{
             
         });
 
-        TableView<PersonData> table = new TableView<>();
         
         TableColumn id = new TableColumn<>("id");
         id.setCellValueFactory(new PropertyValueFactory<>("id"));
@@ -72,8 +77,8 @@ public class MainController implements Initializable{
         ownerId.setCellValueFactory(new PropertyValueFactory<>("ownerId"));
         TableColumn height = new TableColumn<>("height");
         height.setCellValueFactory(new PropertyValueFactory<>("height"));
-        TableColumn width = new TableColumn<>("width");
-        width.setCellValueFactory(new PropertyValueFactory<>("width"));
+        TableColumn weight = new TableColumn<>("weight");
+        weight.setCellValueFactory(new PropertyValueFactory<>("weight"));
         TableColumn birthday = new TableColumn<>("birthday");
         birthday.setCellValueFactory(new PropertyValueFactory<>("birthday"));
         TableColumn creationDate = new TableColumn<>("creationDate");
@@ -86,7 +91,9 @@ public class MainController implements Initializable{
         coordinates.setCellValueFactory(new PropertyValueFactory<>("coordinates"));
         
 
-        table.getColumns().addAll(id,name,ownerId,height,width,birthday,creationDate,hairColor,location,coordinates);
+
+
+        table.getColumns().addAll(id,name,ownerId,height,weight,birthday,creationDate,hairColor,location,coordinates);
         
         tablePane.setContent(table);
 
@@ -100,4 +107,10 @@ public class MainController implements Initializable{
 
     }
     
+    public static void refreshTable(List<Person> collection){
+        ObservableList<PersonData> data = FXCollections.observableArrayList(PersonData.calc(collection));
+        table.setItems(data);
+    }
+
+
 }
