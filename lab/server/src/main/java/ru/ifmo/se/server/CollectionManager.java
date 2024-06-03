@@ -126,6 +126,17 @@ public class CollectionManager {
         lock.writeLock().unlock();
     }
     
+    public static void update(Person pN){
+        lock.writeLock().lock();
+        if(DBConnection.update(pN)){
+            Person p = findPerson(pN.getId());
+            collection.remove(p);
+            collection.add(pN);
+        }
+
+        lock.writeLock().unlock();
+    }
+
     /**
      * clears the collection
      */

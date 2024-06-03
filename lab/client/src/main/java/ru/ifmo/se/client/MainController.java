@@ -32,6 +32,7 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.SelectionMode;
 import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableRow;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -40,6 +41,7 @@ import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 import ru.ifmo.se.client.GUIHelp.PersonData;
+import ru.ifmo.se.client.GUIHelp.UpdateController;
 import ru.ifmo.se.client.net.Collection;
 import ru.ifmo.se.client.net.ConnectionManager;
 import ru.ifmo.se.common.collections.Person;
@@ -262,8 +264,38 @@ public class MainController implements Initializable{
         langChoice.getItems().addAll("RU", "UA", "BL", "SP");
         langChoice.getSelectionModel().select("RU");
 
+        table.setRowFactory(e -> {
+            TableRow<PersonData> row = new TableRow<>();
+            row.setOnMouseClicked(event -> {
+                UpdateController.setPerson(row.getItem());
+                callUpdateWindow();
+            });
+            return row;
+        });
         
 
+    }
+
+    private void callUpdateWindow(){
+        URL url = null;
+                try {
+                    url = new File("fxml/update.fxml").toURI().toURL();
+                } catch (MalformedURLException e) {
+                    e.printStackTrace();
+                }
+                FXMLLoader fxmlLoader = new FXMLLoader(url);
+
+                try {
+                    fxmlLoader.load();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+                Parent root = fxmlLoader.getRoot();
+                Scene scene = new Scene(root);
+                Stage stage = new Stage();
+                stage.setScene(scene);
+                stage.setResizable(false);
+                stage.show();
     }
     
     public void refreshTable(){
@@ -323,6 +355,9 @@ public class MainController implements Initializable{
             return false;
     }
 
+    public static ArrayList<Person> getCollection(){
+        return collection;
+    }
 
     public static void setCollection(ArrayList<Person> p){
         collection = p;

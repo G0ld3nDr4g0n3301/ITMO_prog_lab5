@@ -170,6 +170,17 @@ public class DBConnection {
         return false;
     }
 
+    public static synchronized Boolean update(Person pN){
+        try {
+            PreparedStatement preparedStatement = connect().prepareStatement("UPDATE collection SET (owner,name,creation_date,height,birthday,weight,coord_x,coord_y,loc_x,loc_y,loc_name,color) = (" + pN.getOwnerId() + ","+ pN.getName()+",'"+pN.getCreationDate()+"',"+pN.getHeight()+",'"+pN.getBirthday()+"',"+pN.getWeight()+","+pN.getCoordinates().getX()+","+pN.getCoordinates().getY()+","+pN.getLocation().getLocX()+","+pN.getLocation().getLocY()+","+pN.getName()+",'"+pN.getHairColor()+"') WHERE id = "+pN.getId()+";");
+            return preparedStatement.executeUpdate() != 0;
+        } catch (SQLException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+        return false;
+    }
+
     public static synchronized Person getLast(Request request){
         try {
             PreparedStatement preparedStatement = connect().prepareStatement("SELECT MAX(id) FROM collection WHERE owner = " + request.getOwnerId() + ";");

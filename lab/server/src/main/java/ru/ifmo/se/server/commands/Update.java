@@ -54,17 +54,14 @@ public class Update extends Command{
             logger.warning("No person is given");
             return new Request(404, "Error in creating new Person. Try again.");
         }
-        
+        newPerson.setId(person.getId());
         newPerson.setOwnerId(arguments.getOwnerId());
         newPerson.setCreationDate(new CreationDate().create(null));
         if (!Validator.validatePerson(person)) {
             logger.warning("given person is inappropriate");
             return null;
         }
-        CollectionManager.remove(person);
-        logger.info("removed old person");
-        CollectionManager.add(newPerson);
-        logger.info("added new person");
+        CollectionManager.update(newPerson);
         return new Request(200);
     }
 }
