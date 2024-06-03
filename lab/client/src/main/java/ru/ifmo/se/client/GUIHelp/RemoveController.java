@@ -24,6 +24,10 @@ import ru.ifmo.se.common.net.Request;
 
 public class RemoveController implements Initializable{
 
+    private static ResourceBundle bundle = ResourceBundle.getBundle("locale");
+    public static void setBundle(ResourceBundle newBundle){
+        bundle = newBundle;
+    }
      @FXML
     private Button startButton;
 

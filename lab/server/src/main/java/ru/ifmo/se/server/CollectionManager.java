@@ -47,7 +47,7 @@ public class CollectionManager {
      * Adds an element to collection
      * @param p 
      */
-    public static void add(Person p){
+    public static synchronized void add(Person p){
         if(DBConnection.putPerson(p)){
             int id = DBConnection.getNextId();
             p.setId(id);
@@ -64,7 +64,7 @@ public class CollectionManager {
         return initDate;
     }
 
-    public static boolean addIfMax(Person p){
+    public static synchronized boolean addIfMax(Person p){
         lock.writeLock().lock();
         if (collection.stream().allMatch(p1 -> p1.compareTo(p) < 0)){
             add(p);
@@ -124,15 +124,13 @@ public class CollectionManager {
         }
     }
     
-    public static void update(Person pN){
-        lock.writeLock().lock();
+    public static synchronized void update(Person pN){
         if(DBConnection.update(pN)){
             Person p = findPerson(pN.getId());
             collection.remove(p);
             collection.add(pN);
         }
 
-        lock.writeLock().unlock();
     }
 
     /**
@@ -154,8 +152,7 @@ public class CollectionManager {
      * @param loc
      * @return first match in collection
      */
-    public static Person findPerson(Location loc){
-        lock.readLock().lock();
+    public static synchronized Person findPerson(Location loc){
         List<Person> list = collection.stream()
         .filter((Person p) -> p.getLocation().equals(loc))
         .collect(Collectors.toList());
@@ -163,7 +160,6 @@ public class CollectionManager {
                 lock.readLock().unlock();
                 return p;
         }
-        lock.readLock().unlock();
         return null;
     }
     

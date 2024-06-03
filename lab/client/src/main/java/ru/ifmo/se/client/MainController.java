@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Locale;
 import java.util.ResourceBundle;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
@@ -52,9 +53,12 @@ import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import javafx.util.Duration;
+import ru.ifmo.se.client.GUIHelp.AddController;
 import ru.ifmo.se.client.GUIHelp.Animate;
 import ru.ifmo.se.client.GUIHelp.AnimationHandler;
+import ru.ifmo.se.client.GUIHelp.InfoController;
 import ru.ifmo.se.client.GUIHelp.PersonData;
+import ru.ifmo.se.client.GUIHelp.RemoveController;
 import ru.ifmo.se.client.GUIHelp.UpdateController;
 import ru.ifmo.se.client.net.Collection;
 import ru.ifmo.se.client.net.ConnectionManager;
@@ -64,15 +68,18 @@ import ru.ifmo.se.common.net.Request;
 
 public class MainController implements Initializable{
 
-    private static HashMap<Person,Rectangle> animated = new HashMap<>();
+    private volatile static HashMap<Person,Rectangle> animated = new HashMap<>();
 
-    private static List<Person> collectionCopy = new ArrayList<>();
+    private volatile static List<Person> collectionCopy = new ArrayList<>();
 
-    private static ArrayList<Person> currentlyAnimated = new ArrayList<>();
+    private volatile static ArrayList<Person> currentlyAnimated = new ArrayList<>();
 
-    private static HashSet<Integer> idSet = new HashSet();
+    private volatile static HashSet<Integer> idSet = new HashSet();
 
-    private static HashMap<Integer, Color> colors = new HashMap<>();
+    private volatile static HashMap<Integer, Color> colors = new HashMap<>();
+
+    private static ResourceBundle bundle = ResourceBundle.getBundle("locale");
+    
 
     @FXML
     private Button infoCommandsButton;
@@ -120,6 +127,17 @@ public class MainController implements Initializable{
     @FXML
     private AnchorPane visual;
 
+    public void localize(){
+        filterButton.setText(bundle.getString("filter"));
+        elNumLabel.setText(bundle.getString("ID"));
+        currUserLabel.setText(bundle.getString("user"));
+        logoutButton.setText(bundle.getString("exit"));
+        infoCommandsButton.setText(bundle.getString("info commands"));
+        removeCommandsButton.setText(bundle.getString("remove commands"));
+        addCommandsButton.setText(bundle.getString("add commands"));
+    }
+
+
     private ExecutorService pool = Executors.newFixedThreadPool(5);
 
     private static ArrayList<Person> collection = new ArrayList<>();
@@ -133,13 +151,17 @@ public class MainController implements Initializable{
     private ObservableList<TableColumn<PersonData, ?>> sortedColumns = FXCollections.observableArrayList();
 
     
+    public static void setBundle(ResourceBundle newBundle){
+        bundle = newBundle;
+    }
+
     @Override
     public void initialize(URL url, ResourceBundle resources){
-
-        Executors.newScheduledThreadPool(1).scheduleAtFixedRate(new Collection(), 0, 10, TimeUnit.SECONDS);
+        localize();
+        Executors.newScheduledThreadPool(1).scheduleAtFixedRate(new Collection(), 0, 3, TimeUnit.SECONDS);
 
         refreshTable();
-        Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(3), e -> refreshTable()));
+        Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(2), e -> refreshTable()));
 
         timeline.setCycleCount(Animation.INDEFINITE);
         timeline.playFromStart();
@@ -296,6 +318,29 @@ public class MainController implements Initializable{
         langChoice.getItems().addAll("RU", "UA", "BL", "SP");
         langChoice.getSelectionModel().select("RU");
 
+        langChoice.setOnMouseExited(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent e){
+                String lang = langChoice.getSelectionModel().getSelectedItem().toString();
+                if (lang == "RU"){
+                    bundle = ResourceBundle.getBundle("locale", new Locale("ru","RU"));
+                } else if (lang == "UA"){
+                    bundle = ResourceBundle.getBundle("locale", new Locale("ua","UA"));
+                } else if (lang == "BL") {
+                    bundle = ResourceBundle.getBundle("locale", new Locale("bl","BL"));
+                } else {
+                    bundle = ResourceBundle.getBundle("locale", new Locale("sp","SP"));
+                }
+                AddController.setBundle(bundle);
+                UpdateController.setBundle(bundle);
+                LoginController.setBundle(bundle);
+                MainController.setBundle(bundle);
+                RemoveController.setBundle(bundle);
+                InfoController.setBundle(bundle);
+                localize();
+            }
+        });
+    
         table.setRowFactory(e -> {
             TableRow<PersonData> row = new TableRow<>();
             row.setOnMouseClicked(event -> {

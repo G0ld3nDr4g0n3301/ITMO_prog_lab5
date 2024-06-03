@@ -187,7 +187,12 @@ public class DBConnection {
 
     public static synchronized Boolean update(Person pN){
         try {
-            PreparedStatement preparedStatement = connect().prepareStatement("UPDATE collection SET (owner,name,creation_date,height,birthday,weight,coord_x,coord_y,loc_x,loc_y,loc_name,color) = (" + pN.getOwnerId() + ","+ pN.getName()+",'"+pN.getCreationDate()+"',"+pN.getHeight()+",'"+pN.getBirthday()+"',"+pN.getWeight()+","+pN.getCoordinates().getX()+","+pN.getCoordinates().getY()+","+pN.getLocation().getLocX()+","+pN.getLocation().getLocY()+","+pN.getName()+",'"+pN.getHairColor()+"') WHERE id = "+pN.getId()+";");
+            PreparedStatement preparedStatement = null;
+            if (pN.getBirthday() == null){
+                preparedStatement = connect().prepareStatement("UPDATE collection SET (owner,name,creation_date,height,weight,coord_x,coord_y,loc_x,loc_y,loc_name,color) = (" + pN.getOwnerId() + ","+ pN.getName()+",'"+pN.getCreationDate()+"',"+pN.getHeight()+","+pN.getWeight()+","+pN.getCoordinates().getX()+","+pN.getCoordinates().getY()+","+pN.getLocation().getLocX()+","+pN.getLocation().getLocY()+","+pN.getName()+",'"+pN.getHairColor()+"') WHERE id = "+pN.getId()+";");
+            } else {
+            preparedStatement = connect().prepareStatement("UPDATE collection SET (owner,name,creation_date,height,birthday,weight,coord_x,coord_y,loc_x,loc_y,loc_name,color) = (" + pN.getOwnerId() + ","+ pN.getName()+",'"+pN.getCreationDate()+"',"+pN.getHeight()+",'"+pN.getBirthday()+"',"+pN.getWeight()+","+pN.getCoordinates().getX()+","+pN.getCoordinates().getY()+","+pN.getLocation().getLocX()+","+pN.getLocation().getLocY()+","+pN.getName()+",'"+pN.getHairColor()+"') WHERE id = "+pN.getId()+";");
+            }
             return preparedStatement.executeUpdate() != 0;
         } catch (SQLException e) {
             // TODO Auto-generated catch block

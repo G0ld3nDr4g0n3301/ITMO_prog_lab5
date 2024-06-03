@@ -16,6 +16,10 @@ import ru.ifmo.se.common.net.Request;
 
 public class InfoController implements Initializable{
 
+    private static ResourceBundle bundle = ResourceBundle.getBundle("locale");
+    public static void setBundle(ResourceBundle newBundle){
+        bundle = newBundle;
+    }
     @FXML
     private Text commandLabel;
 
@@ -34,6 +38,10 @@ public class InfoController implements Initializable{
     @FXML
     private Text answerText;
 
+    public void localize(){
+        commandLabel.setText(bundle.getString("commands"));
+        dataLabel.setText(bundle.getString("data"));
+    }
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {

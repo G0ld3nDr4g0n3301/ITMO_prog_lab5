@@ -22,7 +22,10 @@ import ru.ifmo.se.common.collections.Person;
 import ru.ifmo.se.common.net.Request;
 
 public class AddController implements Initializable{
-
+    private static ResourceBundle bundle = ResourceBundle.getBundle("locale");
+    public static void setBundle(ResourceBundle newBundle){
+        bundle = newBundle;
+    }
     @FXML
     private Button addButton;
 
@@ -74,8 +77,13 @@ public class AddController implements Initializable{
     @FXML
     private Text answerText;
 
+    public void localize(){
+        addButton.setText(bundle.getString("add"));
+    }
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        localize();
         hairColorField.getItems().clear();
         hairColorField.getItems().addAll("RED","YELLOW","ORANGE","WHITE","BROWN");
         hairColorField.getSelectionModel().select("RED");
@@ -105,7 +113,7 @@ public class AddController implements Initializable{
 
                 Person p = AskPerson.createPerson(args, locName, newBirthday);
                 if(p == null){
-                    answerText.setText("Values failed validation.Recheck if the values are correct.");
+                    answerText.setText(bundle.getString("Values failed validation.Recheck if the values are correct."));
                 } else {
                     String command = null;
                     if (addIfMax.isSelected()){
@@ -117,7 +125,7 @@ public class AddController implements Initializable{
                     }
                     Request r = Invoker.execute(command.split(" "));
                     if (r == null){
-                        answerText.setText("Error in execution.Recheck the data.");
+                        answerText.setText(bundle.getString("Error in execution.Recheck the data."));
                     }
                     answerText.setText(r.getMsg());
                 }

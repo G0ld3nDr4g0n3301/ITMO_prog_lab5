@@ -43,6 +43,7 @@ public class Update extends Command{
 
     @Override
     public Request execute(String[] args){
+        System.out.println(p);
         Integer id = null;
         try{
             id = Integer.parseInt(args[1]);

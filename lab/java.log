@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE log SYSTEM "logger.dtd">
+<log>
+<record>
+  <date>2024-06-03T15:52:14.748299679Z</date>
+  <millis>1717429934748</millis>
+  <nanos>299679</nanos>
+  <sequence>0</sequence>
+  <logger>ru.ifmo.se.client.net.ConnectionManager</logger>
+  <level>INFO</level>
+  <class>ru.ifmo.se.client.Main</class>
+  <method>main</method>
+  <thread>1</thread>
+  <message>Server doesn't respond.Retrying, try 0...</message>
+</record>
+<record>
+  <date>2024-06-03T15:52:14.748299679Z</date>
+  <millis>1717429934748</millis>
+  <nanos>299679</nanos>
+  <sequence>0</sequence>
+  <logger>ru.ifmo.se.client.net.ConnectionManager</logger>
+  <level>INFO</level>
+  <class>ru.ifmo.se.client.Main</class>
+  <method>main</method>
+  <thread>1</thread>
+  <message>Server doesn't respond.Retrying, try 0...</message>
+</record>
+<record>
+  <date>2024-06-03T15:52:15.099416852Z</date>
+  <millis>1717429935099</millis>
+  <nanos>416852</nanos>
+  <sequence>1</sequence>
+  <logger>ru.ifmo.se.client.net.ConnectionManager</logger>
+  <level>INFO</level>
+  <class>ru.ifmo.se.client.Main</class>
+  <method>main</method>
+  <thread>1</thread>
+  <message>Connected!</message>
+</record>
+<record>
+  <date>2024-06-03T15:52:15.099416852Z</date>
+  <millis>1717429935099</millis>
+  <nanos>416852</nanos>
+  <sequence>1</sequence>
+  <logger>ru.ifmo.se.client.net.ConnectionManager</logger>
+  <level>INFO</level>
+  <class>ru.ifmo.se.client.Main</class>
+  <method>main</method>
+  <thread>1</thread>
+  <message>Connected!</message>
+</record>
+</log>

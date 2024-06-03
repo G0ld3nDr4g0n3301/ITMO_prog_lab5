@@ -8,6 +8,8 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.Enumeration;
+import java.util.Locale;
 import java.util.Properties;
 import java.util.ResourceBundle;
 
@@ -30,9 +32,16 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
+import ru.ifmo.se.client.GUIHelp.AddController;
+import ru.ifmo.se.client.GUIHelp.InfoController;
+import ru.ifmo.se.client.GUIHelp.RemoveController;
+import ru.ifmo.se.client.GUIHelp.UpdateController;
 import ru.ifmo.se.client.net.ConnectionManager;
 
 public class LoginController implements Initializable {
+
+    private static ResourceBundle bundle = ResourceBundle.getBundle("locale");
+
 
     @FXML
     private ImageView rus_img;
@@ -73,9 +82,20 @@ public class LoginController implements Initializable {
     @FXML
     private CheckBox remember;
 
+    public void localize(){
+        login_label.setText(bundle.getString("username"));
+        pass_label.setText(bundle.getString("password"));
+        login_button.setText(bundle.getString("login"));
+        register_button.setText(bundle.getString("register"));
+        remember.setText(bundle.getString("remember data"));
+    }
+
+    public static void setBundle(ResourceBundle newBundle) {
+        bundle = newBundle;
+    }
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-
 
         File file = new File("0.png");
         Image image = new Image(file.toURI().toString());
@@ -97,7 +117,61 @@ public class LoginController implements Initializable {
         image = new Image(file.toURI().toString());
         vt_img.setImage(image);
 
+        
         loadUserData();
+
+        rus_img.setOnMouseClicked(new EventHandler<MouseEvent>(){
+            @Override
+            public void handle(MouseEvent e){
+                ResourceBundle resourcesBundle = ResourceBundle.getBundle("resources", new Locale("ru","RU"));
+                AddController.setBundle(resourcesBundle);
+                UpdateController.setBundle(resourcesBundle);
+                LoginController.setBundle(resourcesBundle);
+                MainController.setBundle(resourcesBundle);
+                RemoveController.setBundle(resourcesBundle);
+                InfoController.setBundle(resourcesBundle);
+                localize();
+            }
+        });
+        bel_img.setOnMouseClicked(new EventHandler<MouseEvent>(){
+            @Override
+            public void handle(MouseEvent e){
+                ResourceBundle resourcesBundle = ResourceBundle.getBundle("locale", new Locale("bl","BL"));
+                AddController.setBundle(resourcesBundle);
+                UpdateController.setBundle(resourcesBundle);
+                LoginController.setBundle(resourcesBundle);
+                MainController.setBundle(resourcesBundle);
+                RemoveController.setBundle(resourcesBundle);
+                InfoController.setBundle(resourcesBundle);
+                localize();
+            }
+        });
+        ukr_img.setOnMouseClicked(new EventHandler<MouseEvent>(){
+            @Override
+            public void handle(MouseEvent e){
+                ResourceBundle resourcesBundle = ResourceBundle.getBundle("locale", new Locale("ua","UA"));
+                AddController.setBundle(resourcesBundle);
+                UpdateController.setBundle(resourcesBundle);
+                LoginController.setBundle(resourcesBundle);
+                MainController.setBundle(resourcesBundle);
+                RemoveController.setBundle(resourcesBundle);
+                InfoController.setBundle(resourcesBundle);
+                localize();
+            }
+        });
+        spa_img.setOnMouseClicked(new EventHandler<MouseEvent>(){
+            @Override
+            public void handle(MouseEvent e){
+                ResourceBundle resourcesBundle = ResourceBundle.getBundle("locale", new Locale("sp","SP"));
+                AddController.setBundle(resourcesBundle);
+                UpdateController.setBundle(resourcesBundle);
+                LoginController.setBundle(resourcesBundle);
+                MainController.setBundle(resourcesBundle);
+                RemoveController.setBundle(resourcesBundle);
+                InfoController.setBundle(resourcesBundle);
+                localize();
+            }
+        });
 
         login_field.setOnKeyTyped(new EventHandler<KeyEvent>(){
             @Override
@@ -241,4 +315,6 @@ public class LoginController implements Initializable {
         stage.setResizable(false);
         stage.show();
     }
+
+    
 }
