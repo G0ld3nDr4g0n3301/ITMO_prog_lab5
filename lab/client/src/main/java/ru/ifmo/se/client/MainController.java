@@ -134,11 +134,6 @@ public class MainController implements Initializable{
         timeline.setCycleCount(Animation.INDEFINITE);
         timeline.playFromStart();
 
-        Timeline animationTimeline = new Timeline(new KeyFrame(Duration.seconds(7), e -> calcAnimations()));
-
-        animationTimeline.setCycleCount(Animation.INDEFINITE);
-        animationTimeline.playFromStart();
-
         logoutButton.setOnMouseClicked(new EventHandler<MouseEvent>(){
 
             @Override
@@ -336,9 +331,7 @@ public class MainController implements Initializable{
         table.getSortOrder().addAll(currentSortedColumns);
         table.sort();
         table.refresh();
-        for (Person p : collection){
-            animate(p);
-        }
+        calcAnimations();
     }
 
     public void setRectangle(){
@@ -402,44 +395,21 @@ public class MainController implements Initializable{
     }
 
     public void animate(Person p){
-        Rectangle rec = new Rectangle(p.getWeight() > 200 ? 200 : p.getWeight(), p.getHeight() > 200 ? 200 : p.getHeight());
-        rec.setLayoutX(p.getCoordinates().getX() > 300 ? 300 : p.getCoordinates().getX());
-        rec.setLayoutY(p.getCoordinates().getY() > 300 ? 300 : p.getCoordinates().getY());
+        Rectangle rec = new Rectangle(p.getWeight(), p.getHeight());
+        rec.setLayoutX(p.getCoordinates().getX());
+        rec.setLayoutY(p.getCoordinates().getY());
         rec.setFill(Color.MAGENTA);
         rec.setArcHeight(30);
         rec.setArcWidth(30);
-        System.out.println(rec.getX() + " " + rec.getY());
         visualPane.getChildren().add(rec);
-        currentlyAnimated.add(p);
-        animated.put(p, rec);
     }
 
     public void calcAnimations(){
-        collectionCopy.clear();
-        collectionCopy.addAll(MainController.getCollection());
-        collectionCopy.removeAll(currentlyAnimated);
-                for (Person p : collectionCopy){
-                    animate(p);
-                }
-        collectionCopy.clear();
-        collectionCopy.addAll(MainController.getCollection());
-        for (Person p : collectionCopy) {
-            System.out.println("COPY : " + p);
+        visualPane.getChildren().clear();
+        for (Person p : collection){
+            animate(p);
         }
-        for (Person p : currentlyAnimated){
-            System.out.println("CURR : " + p);
-        }
-        currentlyAnimated.removeAll(collectionCopy);
-        System.out.println("HERE");
-                for (Person p : currentlyAnimated){
-                    Rectangle a = animated.get(p);
-                    System.out.println(a);
-                    System.out.println("EXTERMINATUS " + p);
-                    a.setFill(Color.web("000000FE"));
-                    a.toBack();
-                    visualPane.getChildren().clear();
-                }
-        
+
     }
 
 }
