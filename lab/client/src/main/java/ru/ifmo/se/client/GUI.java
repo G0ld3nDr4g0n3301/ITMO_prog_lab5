@@ -54,7 +54,7 @@ public class GUI extends Application {
             FXMLLoader fxmlLoader = new FXMLLoader(url);
             root = fxmlLoader.load();
         
-        Scene scene = new Scene(root,800,500);
+        Scene scene = new Scene(root,1000,600);
         stage.setResizable(false);
         stage.sizeToScene();
         stage.setScene(scene);

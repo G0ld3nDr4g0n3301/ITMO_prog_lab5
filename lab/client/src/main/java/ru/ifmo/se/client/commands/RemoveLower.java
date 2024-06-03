@@ -18,6 +18,8 @@ public class RemoveLower extends Command{
     
     private static final Logger logger = Logger.getLogger(Add.class.getName());
 
+    private static Person p = null;
+
     static {
             logger.addHandler(LogFile.getHandler());
     }
@@ -34,14 +36,17 @@ public class RemoveLower extends Command{
     
     @Override
     public Request execute(String[] args){
-        Person person = AskPerson.generatePerson(args);
-        if (person == null){
+        if (p == null){
             return null;
         }
         
         Request request = new Request(Commands.REMOVE_LOWER);
-        request.setPerson(person);
+        request.setPerson(p);
         logger.info("Sending REMOVE_LOWER request");
         return request;
+    }
+
+    public static void setPerson(Person newP) {
+        p = newP;
     }
 }

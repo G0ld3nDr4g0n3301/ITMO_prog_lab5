@@ -228,6 +228,34 @@ public class MainController implements Initializable{
 
         });
 
+
+        removeCommandsButton.setOnMouseClicked(new EventHandler<MouseEvent>(){
+
+            @Override
+            public void handle(MouseEvent event) {
+                URL url = null;
+                try {
+                    url = new File("fxml/remove.fxml").toURI().toURL();
+                } catch (MalformedURLException e) {
+                    e.printStackTrace();
+                }
+                FXMLLoader fxmlLoader = new FXMLLoader(url);
+
+                try {
+                    fxmlLoader.load();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+                Parent root = fxmlLoader.getRoot();
+                Scene scene = new Scene(root);
+                Stage stage = new Stage();
+                stage.setScene(scene);
+                stage.setResizable(false);
+                stage.show();
+            }
+
+        });
+
         currUser.setText(ConnectionManager.getLogin());
 
         langChoice.getItems().clear();

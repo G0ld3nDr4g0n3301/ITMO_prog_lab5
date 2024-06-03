@@ -34,6 +34,7 @@ public class RemoveLoc extends Command{
     public Request execute(Request args){
         
         Location loc = args.getLoc();
+        System.out.println(loc);
         if (loc == null) {
             logger.warning("no location specified in request");
             return new Request(404, "No location specified");

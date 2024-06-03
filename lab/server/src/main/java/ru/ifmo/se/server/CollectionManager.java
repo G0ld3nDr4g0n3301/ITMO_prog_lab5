@@ -120,6 +120,8 @@ public class CollectionManager {
         lock.writeLock().lock();
         if(DBConnection.deletePerson(p)){
             collection.remove(p);
+        }else { 
+            System.out.println("BAAAAD");
         }
         lock.writeLock().unlock();
     }

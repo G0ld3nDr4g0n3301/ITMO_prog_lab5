@@ -19,6 +19,8 @@ public class RemoveLoc extends Command{
     
     private static final Logger logger = Logger.getLogger(Add.class.getName());
 
+    private static Location loc = null;
+
     static {
             logger.addHandler(LogFile.getHandler());
     }
@@ -30,11 +32,14 @@ public class RemoveLoc extends Command{
     
     @Override
     public Request execute(String[] args){
-        
-        Location loc = new LocationField().create("");
+        System.out.println(loc);
         Request request = new Request(Commands.REMOVE_BY_LOC);
         request.setLoc(loc);
         logger.info("Sending REMOVE_BY_LOCATION request");
         return request;
+    }
+
+    public static void setLoc(Location newLoc) {
+        loc = newLoc;
     }
 }

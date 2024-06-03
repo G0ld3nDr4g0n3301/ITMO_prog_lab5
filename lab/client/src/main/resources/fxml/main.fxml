@@ -10,22 +10,22 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane fx:id="rootPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ru.ifmo.se.client.MainController">
+<AnchorPane fx:id="rootPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ru.ifmo.se.client.MainController">
    <children>
-      <BorderPane layoutX="-3.0" prefHeight="500.0" prefWidth="800.0">
+      <BorderPane layoutX="-3.0" prefHeight="600.0" prefWidth="1007.0">
          <top>
-            <AnchorPane prefHeight="38.0" prefWidth="800.0" BorderPane.alignment="CENTER">
+            <AnchorPane prefHeight="38.0" prefWidth="832.0" BorderPane.alignment="CENTER">
                <children>
-                  <Button fx:id="logoutButton" layoutX="727.0" layoutY="6.0" mnemonicParsing="false" style="-fx-background-radius: 18 18 18 18; -fx-background-color: #e1593c;" text="Выход" />
+                  <Button fx:id="logoutButton" layoutX="934.0" layoutY="6.0" mnemonicParsing="false" style="-fx-background-radius: 18 18 18 18; -fx-background-color: #e1593c;" text="Выход" />
                   <Text fx:id="currUserLabel" layoutX="14.0" layoutY="24.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Пользователь:" />
                   <Text fx:id="currUser" layoutX="113.0" layoutY="24.0" strokeType="OUTSIDE" strokeWidth="0.0" text="username" />
-                  <Text fx:id="elNumLabel" layoutX="182.0" layoutY="24.0" strokeType="OUTSIDE" strokeWidth="0.0" text="ID:" />
-                  <Text fx:id="elNum" layoutX="301.0" layoutY="24.0" strokeType="OUTSIDE" strokeWidth="0.0" text="666" />
+                  <Text fx:id="elNumLabel" layoutX="241.0" layoutY="24.0" strokeType="OUTSIDE" strokeWidth="0.0" text="ID:" />
+                  <Text fx:id="elNum" layoutX="258.0" layoutY="24.0" strokeType="OUTSIDE" strokeWidth="0.0" text="666" />
                   <Accordion layoutX="713.0" layoutY="-7.0" />
-                  <ComboBox fx:id="langChoice" layoutX="643.0" layoutY="6.0" prefHeight="26.0" prefWidth="70.0" promptText="ru" />
-                  <ComboBox fx:id="filterColumn" layoutX="358.0" layoutY="6.0" prefHeight="26.0" prefWidth="97.0" />
-                  <TextField fx:id="filterValue" layoutX="462.0" layoutY="6.0" prefHeight="26.0" prefWidth="84.0" />
-                  <Button fx:id="filterButton" layoutX="560.0" layoutY="6.0" mnemonicParsing="false" text="Фильтр" />
+                  <ComboBox fx:id="langChoice" layoutX="854.0" layoutY="6.0" prefHeight="26.0" prefWidth="70.0" promptText="ru" />
+                  <ComboBox fx:id="filterColumn" layoutX="554.0" layoutY="6.0" prefHeight="26.0" prefWidth="97.0" />
+                  <TextField fx:id="filterValue" layoutX="671.0" layoutY="6.0" prefHeight="26.0" prefWidth="84.0" />
+                  <Button fx:id="filterButton" layoutX="765.0" layoutY="6.0" mnemonicParsing="false" text="Фильтр" />
                </children>
             </AnchorPane>
          </top>

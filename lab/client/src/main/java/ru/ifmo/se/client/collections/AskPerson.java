@@ -62,6 +62,14 @@ public class AskPerson {
         toGenerate.add(creationDate);
     }
     
+    public static Location createLoction(String locx, String locy, String locname){
+        Location loc = new Location(Float.valueOf(locx), Double.valueOf(locy), locname);
+        if(Validator.validateLoc(loc)){
+            return loc;
+        }
+        return null;
+    }
+
     public static Person createPerson(String[] args, String locName, String birthday){
         if(Validator.validateInt(args[0]) && args[1] != "" && Validator.validateHeight(args[2]) && Validator.validateWeight(args[3]) && Validator.validateCoordX(args[5]) && Validator.validateCoordY(args[6]) && Validator.validateLocX(args[7]) && Validator.validateLocY(args[8])){
             Person p = new Person();
