@@ -223,7 +223,6 @@ public class LoginController implements Initializable {
         try {
             url = new File("fxml/main.fxml").toURI().toURL();
         } catch (MalformedURLException e) {
-            // TODO Auto-generated catch block
             e.printStackTrace();
         }
         FXMLLoader fxmlLoader = new FXMLLoader(url);

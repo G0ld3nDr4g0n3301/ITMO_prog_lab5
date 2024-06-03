@@ -19,7 +19,7 @@
                   <Button fx:id="logoutButton" layoutX="727.0" layoutY="6.0" mnemonicParsing="false" style="-fx-background-radius: 18 18 18 18; -fx-background-color: #e1593c;" text="Выход" />
                   <Text fx:id="currUserLabel" layoutX="14.0" layoutY="24.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Пользователь:" />
                   <Text fx:id="currUser" layoutX="113.0" layoutY="24.0" strokeType="OUTSIDE" strokeWidth="0.0" text="username" />
-                  <Text fx:id="elNumLabel" layoutX="182.0" layoutY="24.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Создал элементов:" />
+                  <Text fx:id="elNumLabel" layoutX="182.0" layoutY="24.0" strokeType="OUTSIDE" strokeWidth="0.0" text="ID:" />
                   <Text fx:id="elNum" layoutX="301.0" layoutY="24.0" strokeType="OUTSIDE" strokeWidth="0.0" text="666" />
                   <Accordion layoutX="713.0" layoutY="-7.0" />
                   <ComboBox fx:id="langChoice" layoutX="643.0" layoutY="6.0" prefHeight="26.0" prefWidth="70.0" promptText="ru" />

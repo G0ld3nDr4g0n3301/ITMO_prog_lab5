@@ -2,8 +2,13 @@ package ru.ifmo.se.client.collections;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
+
+import javafx.scene.chart.ValueAxis;
 import ru.ifmo.se.client.Invoker;
 import ru.ifmo.se.client.Validator;
+import ru.ifmo.se.common.collections.Color;
+import ru.ifmo.se.common.collections.Coordinates;
+import ru.ifmo.se.common.collections.Location;
 import ru.ifmo.se.common.collections.Person;
 
 /**
@@ -57,6 +62,27 @@ public class AskPerson {
         toGenerate.add(creationDate);
     }
     
+    public static Person createPerson(String[] args, String locName, String birthday){
+        if(Validator.validateInt(args[0]) && args[1] != "" && Validator.validateHeight(args[2]) && Validator.validateWeight(args[3]) && Validator.validateCoordX(args[5]) && Validator.validateCoordY(args[6]) && Validator.validateLocX(args[7]) && Validator.validateLocY(args[8])){
+            Person p = new Person();
+            p.setId(Integer.valueOf(args[0]));
+            p.setName(args[1]);
+            p.setHeight(Long.valueOf(args[2]));
+            p.setWeight(Integer.valueOf(args[3]));
+            Coordinates cords = new Coordinates(Double.valueOf(args[5]),Long.valueOf(args[6]));
+            p.setCoordinates(cords);
+            Location loc = new Location(Float.valueOf(args[7]), Double.valueOf(args[8]), locName);
+            p.setLocation(loc);
+            p.setHairColor(Color.valueOf(args[4]));
+            if(birthday != ""){
+                p.setBirthday(LocalDate.parse(birthday));
+            }
+            return p;
+
+        }
+        return null;
+    }
+
     /**
      * Method generates a new Person, based on user input
      * @param args user input, splitted by " ".

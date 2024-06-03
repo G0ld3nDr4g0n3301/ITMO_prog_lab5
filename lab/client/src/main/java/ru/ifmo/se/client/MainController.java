@@ -57,7 +57,7 @@ public class MainController implements Initializable{
 
 
     @FXML
-    private Button addComandsButton;
+    private Button addCommandsButton;
 
 
     @FXML
@@ -201,6 +201,33 @@ public class MainController implements Initializable{
 
         });
 
+        addCommandsButton.setOnMouseClicked(new EventHandler<MouseEvent>(){
+
+            @Override
+            public void handle(MouseEvent event) {
+                URL url = null;
+                try {
+                    url = new File("fxml/add.fxml").toURI().toURL();
+                } catch (MalformedURLException e) {
+                    e.printStackTrace();
+                }
+                FXMLLoader fxmlLoader = new FXMLLoader(url);
+
+                try {
+                    fxmlLoader.load();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+                Parent root = fxmlLoader.getRoot();
+                Scene scene = new Scene(root);
+                Stage stage = new Stage();
+                stage.setScene(scene);
+                stage.setResizable(false);
+                stage.show();
+            }
+
+        });
+
         currUser.setText(ConnectionManager.getLogin());
 
         langChoice.getItems().clear();
@@ -213,6 +240,9 @@ public class MainController implements Initializable{
     
     public void refreshTable(){
         ObservableList<PersonData> data = FXCollections.observableArrayList(filterValues());
+        if (ConnectionManager.getUserId() != null){
+            elNum.setText(ConnectionManager.getUserId().toString());
+        }
         ObservableList<TableColumn<PersonData, ?>> currentSortedColumns = FXCollections.observableArrayList();
         currentSortedColumns.addAll(sortedColumns);
         table.setItems(data);
@@ -220,6 +250,7 @@ public class MainController implements Initializable{
         table.sort();
         table.refresh();
     }
+
 
     public List<PersonData> filterValues(){
         List<PersonData> oldList = PersonData.calc(collection);

@@ -62,6 +62,8 @@ public class ConnectionManager{
      */
     private static InputStream in;
 
+    private static Integer userId;
+
     /**
      * Logger
      */
@@ -225,6 +227,7 @@ public class ConnectionManager{
                 return result.getMsg();
             }
             setCookie(result.getCookie());
+            setUserId(result.getOwnerId());
             return null;
         } catch (IOException e) {
             
@@ -233,6 +236,14 @@ public class ConnectionManager{
         }
         
 
+    }
+
+    public static void setUserId(Integer id){
+        userId = id;
+    }
+
+    public static Integer getUserId(){
+        return userId;
     }
 
     public static String getLogin(){

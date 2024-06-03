@@ -68,6 +68,10 @@ public class Request implements Serializable{
     public void setOwnerId(Integer id){
         this.ownerId = id;
     }
+
+    public Integer getOwnerId(){
+        return this.ownerId;
+    }
     public void setLogin(String login){
         this.login = login;
     }

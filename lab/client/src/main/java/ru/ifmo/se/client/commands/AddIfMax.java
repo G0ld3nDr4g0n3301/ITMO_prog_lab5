@@ -18,6 +18,8 @@ public class AddIfMax extends Command{
     
     private static final Logger logger = Logger.getLogger(Add.class.getName());
 
+    private static Person p = null;
+
     static {
             logger.addHandler(LogFile.getHandler());
     }
@@ -31,15 +33,18 @@ public class AddIfMax extends Command{
     public String toString(){
         return "AddIfMax";
     }
+
+    public static void setPerson(Person newP){
+        p = newP;
+    }
     
     @Override
     public Request execute(String[] args){
-        Person person = AskPerson.generatePerson(args);
-        if(person == null){
+        if(p == null){
             return null;
         }
         Request request = new Request(Commands.ADDIF);
-        request.setPerson(person);
+        request.setPerson(p);
         logger.info("Sending ADD_IF_MAX request");
         return request;
     }
