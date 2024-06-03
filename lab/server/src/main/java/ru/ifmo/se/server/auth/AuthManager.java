@@ -64,7 +64,7 @@ public class AuthManager implements Runnable {
                 keyNew.attach(answer);
             } else {
                 answer = new Request(404);
-                answer.setMsg("Wrong password.");
+                answer.setMsg("Wrong credentials.");
                 SocketChannel client = (SocketChannel) key.channel();
                 SelectionKey keyNew = client.register(selector, SelectionKey.OP_WRITE);
                 keyNew.attach(answer);

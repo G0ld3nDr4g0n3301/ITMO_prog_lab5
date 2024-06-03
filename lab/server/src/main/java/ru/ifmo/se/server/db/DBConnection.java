@@ -170,6 +170,21 @@ public class DBConnection {
         return false;
     }
 
+    public static synchronized Boolean usernameExists(String username){
+        try {
+            PreparedStatement preparedStatement = connect().prepareStatement("SELECT COUNT(id) FROM users WHERE login = '" + username+"';");
+            ResultSet res = preparedStatement.executeQuery();
+            res.next();
+            Integer users = res.getInt(1);
+            System.out.println("USERS WITH USERNAME = " + users);
+            return users == 0 ? false : true;
+        } catch (SQLException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+        return null;
+    }
+
     public static synchronized Boolean update(Person pN){
         try {
             PreparedStatement preparedStatement = connect().prepareStatement("UPDATE collection SET (owner,name,creation_date,height,birthday,weight,coord_x,coord_y,loc_x,loc_y,loc_name,color) = (" + pN.getOwnerId() + ","+ pN.getName()+",'"+pN.getCreationDate()+"',"+pN.getHeight()+",'"+pN.getBirthday()+"',"+pN.getWeight()+","+pN.getCoordinates().getX()+","+pN.getCoordinates().getY()+","+pN.getLocation().getLocX()+","+pN.getLocation().getLocY()+","+pN.getName()+",'"+pN.getHairColor()+"') WHERE id = "+pN.getId()+";");

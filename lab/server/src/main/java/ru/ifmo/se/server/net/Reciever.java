@@ -19,6 +19,7 @@ import ru.ifmo.se.server.Invoker;
 import ru.ifmo.se.server.LogFile;
 import ru.ifmo.se.server.auth.AuthManager;
 import ru.ifmo.se.server.auth.CookieCheck;
+import ru.ifmo.se.server.db.DBConnection;
 
 public class Reciever implements Runnable{
 
@@ -78,6 +79,12 @@ public class Reciever implements Runnable{
             if(login == null || password == null || login == "" || password == ""){
                 Request errorRequest = new Request(404);
                 errorRequest.setMsg("Unauthorized users can't execute commands.To exit type Ctrl+C.");
+                SelectionKey keyNew = client.register(selector, SelectionKey.OP_WRITE);
+                keyNew.attach(errorRequest);
+                throw new IOException();
+            } else if (request.getCommandType() == Commands.REGISTER && DBConnection.usernameExists(login)){
+                Request errorRequest = new Request(404);
+                errorRequest.setMsg("User already exists.");
                 SelectionKey keyNew = client.register(selector, SelectionKey.OP_WRITE);
                 keyNew.attach(errorRequest);
                 throw new IOException();
