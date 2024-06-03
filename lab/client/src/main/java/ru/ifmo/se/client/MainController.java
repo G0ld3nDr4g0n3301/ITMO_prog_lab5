@@ -18,8 +18,12 @@ import java.util.stream.Collectors;
 
 import javafx.animation.Animation;
 import javafx.animation.AnimationTimer;
+import javafx.animation.FillTransition;
 import javafx.animation.KeyFrame;
+import javafx.animation.ParallelTransition;
+import javafx.animation.RotateTransition;
 import javafx.animation.Timeline;
+import javafx.animation.TranslateTransition;
 import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -68,8 +72,11 @@ public class MainController implements Initializable{
 
     private static HashSet<Integer> idSet = new HashSet();
 
+    private static HashMap<Integer, Color> colors = new HashMap<>();
+
     @FXML
     private Button infoCommandsButton;
+
 
 
     @FXML
@@ -398,10 +405,39 @@ public class MainController implements Initializable{
     }
 
     public void animate(Person p){
-        Rectangle rec = new Rectangle(45,45);
-        rec.setX(34);
-        rec.setY(34);
-        rec.setFill(Color.RED);
+        Rectangle rec = new Rectangle(p.getHeight() > 200 ? 200 : p.getHeight(),p.getWeight() > 200 ? 200 : p.getWeight());
+        rec.setX(p.getCoordinates().getX() > 200 ? 200 : p.getCoordinates().getX());
+        rec.setY(p.getCoordinates().getY() > 200 ? 200 : p.getCoordinates().getY());
+        rec.setFill(getColor(p));
+
+        rec.setOnMouseClicked(new EventHandler<MouseEvent>(){
+
+            @Override
+            public void handle(MouseEvent event) {
+                UpdateController.setPerson(new PersonData(p));
+                callUpdateWindow();
+
+            }});
+        TranslateTransition tt = new TranslateTransition();
+        tt.setDuration(Duration.seconds(5));
+        tt.setToX(p.getLocation().getLocY() * 1.5);
+        tt.setToY(p.getLocation().getLocX() * 1.3);
+        tt.setAutoReverse(true);
+        tt.setCycleCount(2);
+        tt.setNode(rec);
+        
+        FillTransition ft = new FillTransition(Duration.seconds(4),rec, getColor(p), Color.color(Math.random(),Math.random(),Math.random()));
+        ft.setCycleCount(4);
+        ft.setAutoReverse(true);
+        
+        RotateTransition rt = new RotateTransition(Duration.seconds(3));
+        rt.setByAngle(270);
+        rt.setCycleCount(4);
+        rt.setAutoReverse(true);
+
+        ParallelTransition pt = new ParallelTransition(rec, tt, ft, rt);
+        pt.play();
+
         animated.put(p, rec);
     }
     
@@ -418,7 +454,8 @@ public class MainController implements Initializable{
         collectionCopy = List.copyOf(collection);
         currentlyAnimated.removeAll(collectionCopy);
         for (Person p : currentlyAnimated){
-            animated.remove(p);
+            System.out.println(animated.remove(p));
+            
         }
         visual.getChildren().clear();
         visual.getChildren().addAll(animated.values());
@@ -426,6 +463,14 @@ public class MainController implements Initializable{
     }
 
 
-    //public Color getColor(Person p){}
+    public Color getColor(Person p){
+        if(colors.containsKey(p.getOwnerId())){
+            return colors.get(p.getOwnerId());
+        } else {
+            Color color = Color.color(Math.random(), Math.random(), Math.random());
+            colors.put(p.getOwnerId(), color);
+            return color;
+        }
+    }
 
 }

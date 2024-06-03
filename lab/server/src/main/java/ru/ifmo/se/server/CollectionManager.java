@@ -138,8 +138,7 @@ public class CollectionManager {
     /**
      * clears the collection
      */
-    public static void clear(Request request){
-        lock.writeLock().lock();
+    public synchronized static void clear(Request request){
         if(DBConnection.truncate(request)){
             Integer ownerId = request.getOwnerId();
         for (int i = 0; i < collection.size(); i++){
@@ -148,7 +147,6 @@ public class CollectionManager {
             }
         }
         }
-        lock.writeLock().unlock();
     }
     
     /**
