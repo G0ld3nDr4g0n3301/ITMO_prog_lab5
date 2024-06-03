@@ -32,7 +32,7 @@
          <left>
             <ScrollPane id="visualScrollPane" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
                <content>
-                  <AnchorPane id="visualPane" prefHeight="456.0" prefWidth="200.0" />
+                  <AnchorPane fx:id="visualPane" prefHeight="562.0" prefWidth="193.0" />
                </content>
             </ScrollPane>
          </left>

@@ -116,14 +116,12 @@ public class CollectionManager {
      * remove element from collection
      * @param p 
      */
-    public static void remove(Person p){
-        lock.writeLock().lock();
+    public static synchronized void remove(Person p){
         if(DBConnection.deletePerson(p)){
             collection.remove(p);
         }else { 
             System.out.println("BAAAAD");
         }
-        lock.writeLock().unlock();
     }
     
     public static void update(Person pN){

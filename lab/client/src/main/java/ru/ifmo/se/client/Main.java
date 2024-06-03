@@ -41,23 +41,7 @@ public class Main {
         logger.info("Connected!");
         
         GUI.main(args);
-        try {
-            while(true){
-                String input = CLIInputManager.ask("> ");
-                if(input != null){
-                    if(Validator.validateCommand(input)){
-                        Invoker.execute(input.split(" "));
-                    }
-                }
-            }
-        
-        } finally {
-            try {
-                ConnectionManager.close();
-            } catch (IOException e) {
-                // TODO: handle
-            }
-        }
+        System.exit(0);
 }
 
    

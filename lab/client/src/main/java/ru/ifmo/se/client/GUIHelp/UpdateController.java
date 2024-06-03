@@ -95,6 +95,8 @@ public class UpdateController implements Initializable{
     public void initialize(URL location, ResourceBundle resources) {
         hairColorField.getItems().clear();
         hairColorField.getItems().addAll("RED","YELLOW","ORANGE","WHITE","BROWN");
+        if (currentObject.getHairColor() != null) {
+        
         hairColorField.getSelectionModel().select(currentObject.getHairColor());
         
         idField.setText(currentObject.getId());
@@ -119,7 +121,7 @@ public class UpdateController implements Initializable{
         if(person.getLocation().getName() != null){
             locNameField.setText(person.getLocation().getName());
         }
-        if(currentObject.getBirthday() != ""){
+        if(currentObject.getBirthday() != "" && currentObject.getBirthday() != null){
             birthdayField.setValue(LocalDate.parse(currentObject.getBirthday()));
         }
 
@@ -161,6 +163,7 @@ public class UpdateController implements Initializable{
             }
             
         });
+    }
    
 }
 

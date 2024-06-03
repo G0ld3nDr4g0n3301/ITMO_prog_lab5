@@ -7,6 +7,7 @@ import java.lang.reflect.Method;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.ResourceBundle;
 import java.util.concurrent.ExecutorService;
@@ -15,6 +16,7 @@ import java.util.concurrent.TimeUnit;
 import java.util.stream.Collectors;
 
 import javafx.animation.Animation;
+import javafx.animation.AnimationTimer;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.application.Platform;
@@ -25,6 +27,7 @@ import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -37,9 +40,15 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.Pane;
+import javafx.scene.paint.Color;
+import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import javafx.util.Duration;
+import ru.ifmo.se.client.GUIHelp.Animate;
+import ru.ifmo.se.client.GUIHelp.AnimationHandler;
 import ru.ifmo.se.client.GUIHelp.PersonData;
 import ru.ifmo.se.client.GUIHelp.UpdateController;
 import ru.ifmo.se.client.net.Collection;
@@ -49,6 +58,12 @@ import ru.ifmo.se.common.net.Commands;
 import ru.ifmo.se.common.net.Request;
 
 public class MainController implements Initializable{
+
+    private static HashMap<Person,Rectangle> animated = new HashMap<>();
+
+    private static ArrayList<Person> collectionCopy = new ArrayList<>();
+
+    private static ArrayList<Person> currentlyAnimated = new ArrayList<>();
 
     @FXML
     private Button infoCommandsButton;
@@ -92,6 +107,11 @@ public class MainController implements Initializable{
     @FXML
     private Button filterButton;
 
+    @FXML
+    private AnchorPane visualPane;
+
+    private ExecutorService pool = Executors.newFixedThreadPool(5);
+
     private static ArrayList<Person> collection = new ArrayList<>();
 
     private static TableView<PersonData> table = new TableView<>();
@@ -114,6 +134,11 @@ public class MainController implements Initializable{
         timeline.setCycleCount(Animation.INDEFINITE);
         timeline.playFromStart();
 
+        Timeline animationTimeline = new Timeline(new KeyFrame(Duration.seconds(7), e -> calcAnimations()));
+
+        animationTimeline.setCycleCount(Animation.INDEFINITE);
+        animationTimeline.playFromStart();
+
         logoutButton.setOnMouseClicked(new EventHandler<MouseEvent>(){
 
             @Override
@@ -130,6 +155,8 @@ public class MainController implements Initializable{
         filterColumn.getItems().clear();
         filterColumn.getItems().addAll("None","Id", "Name", "OwnerId", "Height", "Weight", "Birthday", "CreationDate","HairColor","Location","Coordinates");
         filterColumn.getSelectionModel().select("Id");
+
+
 
         filterButton.setOnMouseClicked(new EventHandler<MouseEvent>() {
 
@@ -309,6 +336,17 @@ public class MainController implements Initializable{
         table.getSortOrder().addAll(currentSortedColumns);
         table.sort();
         table.refresh();
+        for (Person p : collection){
+            animate(p);
+        }
+    }
+
+    public void setRectangle(){
+        ArrayList<Rectangle> rec = new ArrayList<>();
+        for (Animate a : AnimationHandler.getAnimated().values()){
+            rec.add(a.getRec());
+        }
+        visualPane.getChildren().addAll(rec);
     }
 
 
@@ -355,11 +393,53 @@ public class MainController implements Initializable{
             return false;
     }
 
-    public static ArrayList<Person> getCollection(){
+    public static synchronized ArrayList<Person> getCollection(){
         return collection;
     }
 
     public static void setCollection(ArrayList<Person> p){
         collection = p;
     }
+
+    public void animate(Person p){
+        Rectangle rec = new Rectangle(p.getWeight() > 200 ? 200 : p.getWeight(), p.getHeight() > 200 ? 200 : p.getHeight());
+        rec.setLayoutX(p.getCoordinates().getX() > 300 ? 300 : p.getCoordinates().getX());
+        rec.setLayoutY(p.getCoordinates().getY() > 300 ? 300 : p.getCoordinates().getY());
+        rec.setFill(Color.MAGENTA);
+        rec.setArcHeight(30);
+        rec.setArcWidth(30);
+        System.out.println(rec.getX() + " " + rec.getY());
+        visualPane.getChildren().add(rec);
+        currentlyAnimated.add(p);
+        animated.put(p, rec);
+    }
+
+    public void calcAnimations(){
+        collectionCopy.clear();
+        collectionCopy.addAll(MainController.getCollection());
+        collectionCopy.removeAll(currentlyAnimated);
+                for (Person p : collectionCopy){
+                    animate(p);
+                }
+        collectionCopy.clear();
+        collectionCopy.addAll(MainController.getCollection());
+        for (Person p : collectionCopy) {
+            System.out.println("COPY : " + p);
+        }
+        for (Person p : currentlyAnimated){
+            System.out.println("CURR : " + p);
+        }
+        currentlyAnimated.removeAll(collectionCopy);
+        System.out.println("HERE");
+                for (Person p : currentlyAnimated){
+                    Rectangle a = animated.get(p);
+                    System.out.println(a);
+                    System.out.println("EXTERMINATUS " + p);
+                    a.setFill(Color.web("000000FE"));
+                    a.toBack();
+                    visualPane.getChildren().clear();
+                }
+        
+    }
+
 }
