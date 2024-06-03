@@ -8,6 +8,7 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.ResourceBundle;
 import java.util.concurrent.ExecutorService;
@@ -61,9 +62,11 @@ public class MainController implements Initializable{
 
     private static HashMap<Person,Rectangle> animated = new HashMap<>();
 
-    private static ArrayList<Person> collectionCopy = new ArrayList<>();
+    private static List<Person> collectionCopy = new ArrayList<>();
 
     private static ArrayList<Person> currentlyAnimated = new ArrayList<>();
+
+    private static HashSet<Integer> idSet = new HashSet();
 
     @FXML
     private Button infoCommandsButton;
@@ -108,7 +111,7 @@ public class MainController implements Initializable{
     private Button filterButton;
 
     @FXML
-    private AnchorPane visualPane;
+    private AnchorPane visual;
 
     private ExecutorService pool = Executors.newFixedThreadPool(5);
 
@@ -339,7 +342,7 @@ public class MainController implements Initializable{
         for (Animate a : AnimationHandler.getAnimated().values()){
             rec.add(a.getRec());
         }
-        visualPane.getChildren().addAll(rec);
+        visual.getChildren().addAll(rec);
     }
 
 
@@ -395,21 +398,34 @@ public class MainController implements Initializable{
     }
 
     public void animate(Person p){
-        Rectangle rec = new Rectangle(p.getWeight(), p.getHeight());
-        rec.setLayoutX(p.getCoordinates().getX());
-        rec.setLayoutY(p.getCoordinates().getY());
-        rec.setFill(Color.MAGENTA);
-        rec.setArcHeight(30);
-        rec.setArcWidth(30);
-        visualPane.getChildren().add(rec);
+        Rectangle rec = new Rectangle(45,45);
+        rec.setX(34);
+        rec.setY(34);
+        rec.setFill(Color.RED);
+        animated.put(p, rec);
     }
-
+    
     public void calcAnimations(){
-        visualPane.getChildren().clear();
-        for (Person p : collection){
-            animate(p);
+        collectionCopy = new ArrayList<>();
+        collectionCopy.addAll(collection);
+        collectionCopy.removeAll(currentlyAnimated);
+        for (Person p : collectionCopy){
+            if(!idSet.contains(p.getId())){
+                animate(p);
+                idSet.add(p.getId());
+            }
         }
+        collectionCopy = List.copyOf(collection);
+        currentlyAnimated.removeAll(collectionCopy);
+        for (Person p : currentlyAnimated){
+            animated.remove(p);
+        }
+        visual.getChildren().clear();
+        visual.getChildren().addAll(animated.values());
 
     }
+
+
+    //public Color getColor(Person p){}
 
 }

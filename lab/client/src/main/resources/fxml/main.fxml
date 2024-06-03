@@ -30,11 +30,10 @@
             </AnchorPane>
          </top>
          <left>
-            <ScrollPane id="visualScrollPane" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+            <ScrollPane id="visualScrollPane" fx:id="visualPane" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
                <content>
-                  <AnchorPane fx:id="visualPane" prefHeight="562.0" prefWidth="193.0" />
-               </content>
-            </ScrollPane>
+                  <AnchorPane fx:id="visual" prefHeight="559.0" prefWidth="200.0" />
+               </content></ScrollPane>
          </left>
          <center>
             <ScrollPane fx:id="tablePane" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
